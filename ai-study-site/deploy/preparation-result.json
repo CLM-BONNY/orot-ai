@@ -18,11 +18,15 @@
     "enabled": false,
     "resources_created": false,
     "credentials_available_locally": false,
-    "console": "login_required"
+    "console": "authenticated_cloudshell_read_only_preflight_complete",
+    "preflight": "account-preflight.json",
+    "gpu_on_demand_vcpu_quota": 0
   },
   "domain": {
-    "candidate": "orot-ai.study",
-    "availability_and_price_checked": false,
+    "candidate": "orot-ai.dev",
+    "availability_and_price_checked": true,
+    "registration_usd_per_year": 17,
+    "renewal_usd_per_year": 17,
     "purchased": false
   },
   "inference": {
@@ -33,7 +37,7 @@
   },
   "cost_assumption": "See cost-estimate.json; not an approved budget cap or full invoice estimate",
   "remaining": [
-    "AWS sign-in and account/region/quota verification",
+    "Request G/VT quota increase from 0 to 4 vCPU and await approval; web can proceed separately",
     "Confirm cost ceiling and domain registration/renewal price",
     "Choose and verify model/GPU/runtime",
     "Provision infrastructure and validate actual deployment/rollback/GPU stop",

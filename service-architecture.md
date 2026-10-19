@@ -15,6 +15,7 @@
 - CI/CD: GitHub Actions → 테스트/이미지 빌드 → ECR → OIDC/SSM으로 EC2 교체 배포·검증·롤백
 - 기존 S3·CloudFront/Lambda·SAM과 초기 ECS+ALB 안은 첫 배포에 쓰지 않는다. CDN·다중 서버는 이후 개선 실험 후보다.
 - 도메인·서버·GPU는 아직 구매/생성하지 않았다. 실제 유료 배포 전 비용·사용 상한·AWS 접근·모델/GPU 호환성을 확인한다.
+- 2026-10-19 콘솔 로그인·서울 리전 사전 조회 완료. GPU G/VT 한도는 0 vCPU로 증액이 필요하다. 도메인은 Route 53 등록 가능한 `orot-ai.dev`(등록·갱신 각각 연 $17)를 제안했고 비용 승인은 대기 중이다. [계정 사전 점검](ai-study-site/deploy/account-preflight.json)
 
 ## 1. 서비스 범위
 

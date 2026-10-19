@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-19",
+  "source": "Authenticated AWS CloudShell; read-only boto3/CLI API calls",
+  "region": "ap-northeast-2",
+  "identity_type": "root",
+  "credentials_exported": false,
+  "resources_created": false,
+  "quota_request_submitted": false,
+  "ec2": {
+    "instances_in_region": 0,
+    "elastic_ips_in_region": 0,
+    "standard_on_demand_vcpu_quota": 5,
+    "g_and_vt_on_demand_vcpu_quota": 0,
+    "g_and_vt_quota_code": "L-DB2E81BA",
+    "g_and_vt_quota_adjustable": true,
+    "g_and_vt_previous_requests": [],
+    "instance_types_offered_in_region": ["g5.xlarge", "g4dn.xlarge"],
+    "capacity_or_model_fit_verified": false
+  },
+  "iam": {
+    "oidc_providers_found": 0,
+    "deployment_role_created": false
+  },
+  "domains": [
+    {"name": "orot-ai.study", "route53_registration": "UnsupportedTLD", "availability": "not_checked_outside_route53"},
+    {"name": "orot-ai.com", "availability": "UNAVAILABLE", "registration_usd_per_year": 16, "renewal_usd_per_year": 16},
+    {"name": "orot-ai.dev", "availability": "AVAILABLE", "registration_usd_per_year": 17, "renewal_usd_per_year": 17, "recommended": true}
+  ],
+  "proposed_budget": {
+    "approved": false,
+    "operations_usd_per_month": 50,
+    "domain_usd_first_year_separate": 17,
+    "gpu_hours_per_month_target": 10,
+    "gpu_minutes_per_session_proposal": 60,
+    "tax_included": false,
+    "hard_billing_cap": false,
+    "monthly_gpu_hours_enforcement_implemented": false
+  },
+  "next_steps": [
+    "Receive budget and domain purchase approval before paid provisioning",
+    "Request G/VT quota of 4 vCPU for one candidate xlarge GPU; approval is not guaranteed",
+    "Confirm deployment OIDC/instance IAM scopes at the point of creation",
+    "Register selected domain with owner-supplied contact information and applicable agreement approval",
+    "Provision and verify web infrastructure; GPU quota approval need not block basic web deployment",
+    "Verify checkpoint/GPU/runtime, actual deployment, TLS, rollback and GPU shutdown"
+  ],
+  "limitations": [
+    "Read API success does not validate actual CloudFormation creation or GitHub OIDC deployment",
+    "Regional offering does not guarantee current instance capacity",
+    "Domain availability and prices must be checked again at purchase",
+    "Account identifiers and recovery contact information are omitted"
+  ]
+}
