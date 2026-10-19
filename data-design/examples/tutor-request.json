@@ -1,0 +1,9 @@
+{
+  "kind": "tutor_request",
+  "request_id": "REQ-fa257d8f-76ab-593e-8a98-f0d4e48b1cf1",
+  "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+  "page_id": "CH01-P01",
+  "message": "RAG와 모델 자체의 지식은 어떻게 다른가요?",
+  "selected_text": "RAG는 모델 종류가 아니라",
+  "history": []
+}

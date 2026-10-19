@@ -1,0 +1,14 @@
+{
+  "id": "CH15-P03",
+  "chapter_id": "CH15",
+  "title": "여러 관점을 섞되 설명과 동일시하지 않기",
+  "order": 3,
+  "concept_ids": [
+    "self-attention",
+    "multi-head-attention"
+  ],
+  "body_markdown": "Multi-head Attention은 여러 학습된 투영으로 관계를 계산하고 결과를 결합한다. 한 번의 비교보다 다양한 관계를 표현할 여지가 생긴다. 그러나 첫 head는 문법, 둘째는 대명사처럼 역할이 항상 명확하게 나뉘는 것은 아니다.\n\nSelf-attention은 Q·K·V가 같은 시퀀스에서 나오고, cross-attention은 질문 역할과 참조 정보가 서로 다른 시퀀스에서 나오는 형태를 말한다. 번역 decoder가 encoder 출력을 참고하는 경우가 대표적인 cross-attention 예다.\n\n높은 attention weight가 곧 “이 단어 때문에 답했다”는 완전한 인과 설명은 아니다. 여러 head·층·잔차 경로와 후속 변환이 출력을 만든다. Attention 시각화는 유용한 관찰 도구지만 사실 검증이나 해석의 최종 근거로만 사용하지 않는다.",
+  "previous_page_id": "CH15-P02",
+  "next_page_id": "CH16-P01",
+  "revision": "sha256:126dd29195dd5ebc7036523a1b95632408344a25c936e67f3d38a36ea1bd4545"
+}

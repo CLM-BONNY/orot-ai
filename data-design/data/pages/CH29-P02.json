@@ -1,0 +1,16 @@
+{
+  "id": "CH29-P02",
+  "chapter_id": "CH29",
+  "title": "FastAPI·Lambda·Mangum의 역할",
+  "order": 2,
+  "concept_ids": [
+    "fastapi",
+    "asgi",
+    "mangum",
+    "serverless"
+  ],
+  "body_markdown": "FastAPI는 Python에서 HTTP API를 작성하는 웹 프레임워크다. Lambda는 이벤트가 발생하면 함수를 실행하는 환경이다. API Gateway가 넘긴 이벤트와 FastAPI가 기대하는 ASGI 요청 사이를 연결하는 어댑터로 Mangum을 사용할 수 있다. 변환 플러그에 비유할 수 있지만 실제 비즈니스 로직은 FastAPI와 그 내부 모듈에 있다.\n\n일반 서버에서 ASGI 서버로 FastAPI를 실행한다면 이 Lambda 어댑터가 꼭 필요한 것은 아니다. 프레임워크, 실행 서버·환경, 이벤트 연결 도구를 구분하자. Docker 역시 모델이나 웹 프레임워크가 아니라 실행 환경을 패키징하는 수단이다.\n\n서버리스는 서버가 없다는 뜻이 아니다. 인프라 관리의 상당 부분을 제공자가 맡지만 실행 시간·패키지·동시성·초기화·네트워크 제약은 남는다. 로컬에서 실행된 코드가 배포 환경에서도 같은 권한과 의존성을 갖는지 확인해야 한다.",
+  "previous_page_id": "CH29-P01",
+  "next_page_id": "CH29-P03",
+  "revision": "sha256:6f44d8897a4c0f7c0a11ac6ea4ec5809ed724b34934204749b59f24ed5ab6205"
+}

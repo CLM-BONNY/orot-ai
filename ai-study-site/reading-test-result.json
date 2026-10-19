@@ -1,0 +1,100 @@
+{
+  "stage": 3,
+  "name": "전체 콘텐츠와 페이지형 읽기 화면",
+  "verified_on": "2026-10-18",
+  "status": "passed",
+  "automated": {
+    "reading_storage": {
+      "command": "npm test",
+      "passed": 10,
+      "failed": 0,
+      "environment": "Vitest + fake-indexeddb"
+    },
+    "build": {
+      "command": "npm run build",
+      "typescript": "passed",
+      "vite": "passed",
+      "js_bytes_kb": 811.66,
+      "js_gzip_kb": 250.04,
+      "warnings": [
+        "React Router module-level use client directive in client-only build",
+        "JavaScript chunk exceeds 500 kB; optimization deferred to performance study"
+      ]
+    },
+    "actual_http_content": {
+      "base_url": "http://127.0.0.1:8018",
+      "tracks": 8,
+      "chapters": 32,
+      "pages": 96,
+      "assertions": [
+        "HTTP success",
+        "page ID matches curriculum",
+        "page revision matches curriculum",
+        "nonempty Markdown body"
+      ]
+    }
+  },
+  "browser": {
+    "base_url": "http://127.0.0.1:5178",
+    "checks": [
+      {
+        "case": "Search Attention",
+        "result": "2 matching chapters"
+      },
+      {
+        "case": "Filter NLP and Transformer track",
+        "result": "4 chapters"
+      },
+      {
+        "case": "Open CH15-P02",
+        "result": "Actual Markdown and Attention formula rendered"
+      },
+      {
+        "case": "Mark CH15-P02 complete",
+        "result": "1/96 overall, 1/3 chapter, completed page tab"
+      },
+      {
+        "case": "Reload page",
+        "result": "Completion persists"
+      },
+      {
+        "case": "Undo completion",
+        "result": "0/96 overall; no fabricated completed learning left"
+      },
+      {
+        "case": "Scroll and reload",
+        "result": "Same bottom reading position restored after page/font loading"
+      },
+      {
+        "case": "Open curriculum and continue reading",
+        "result": "Returns to CH15-P02 and saved scroll position"
+      },
+      {
+        "case": "Next page",
+        "result": "CH15-P03 opens"
+      },
+      {
+        "case": "Open curriculum",
+        "result": "Catalog opens at top"
+      },
+      {
+        "case": "Final state",
+        "result": "CH01-P01 at top, 0 completed pages"
+      }
+    ],
+    "screenshots": [
+      "curriculum-preview.png",
+      "reading-preview.png"
+    ]
+  },
+  "scope": {
+    "persistence": "Current origin and browser profile, IndexedDB; no cloud sync or backup UI yet",
+    "model": "Existing Qwen integration retained; no additional live model request required for reader verification",
+    "not_verified_in_this_stage": [
+      "Mobile viewport end-to-end",
+      "Cloud deployment",
+      "Load/performance percentiles",
+      "Quiz, memo, wrong-answer and star UI"
+    ]
+  }
+}

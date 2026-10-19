@@ -1,0 +1,15 @@
+{
+  "id": "CH09-P03",
+  "chapter_id": "CH09",
+  "title": "최소 신경망의 모양 추적",
+  "order": 3,
+  "concept_ids": [
+    "tensor-shape",
+    "mlp",
+    "logits"
+  ],
+  "body_markdown": "아래 코드는 네 샘플을 세 특징에서 두 클래스 점수로 바꾼다. 정답 값은 넣지 않았으므로 학습이 아니라 순전파 예시다.\n\n```python\nimport torch\nfrom torch import nn\n\ntorch.manual_seed(7)\nx = torch.randn(4, 3)\nmodel = nn.Sequential(\n    nn.Linear(3, 6),\n    nn.ReLU(),\n    nn.Linear(6, 2),\n)\nlogits = model(x)\nassert logits.shape == (4, 2)\n```\n\n중간 결과는 `[4,6]`, 최종 결과는 `[4,2]`다. 두 숫자는 두 클래스의 상대 점수이지 문제 두 개의 정답이 아니다. 이 출력을 해석하려면 학습 때 정한 클래스 순서와 목표 정의가 필요하다.\n\n모형을 만들었지만 아직 학습하지 않았다. 코드가 정상 실행되고 출력 모양이 맞는 것, 손실이 줄어드는 것, 새 자료에서 잘 맞는 것은 서로 다른 검증 단계다. 각 단계를 나누면 오류를 좁히기 쉽다.",
+  "previous_page_id": "CH09-P02",
+  "next_page_id": "CH10-P01",
+  "revision": "sha256:73a071f309fc508fd3e91674cfda63105f0f0d12e115977b9a3a90d4dbc4c039"
+}

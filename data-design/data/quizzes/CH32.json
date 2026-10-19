@@ -1,0 +1,118 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH32",
+  "questions": [
+    {
+      "id": "CH32-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "concept_ids": [
+        "observability",
+        "regression-test"
+      ],
+      "source_page_ids": [
+        "CH32-P01",
+        "CH32-P02"
+      ],
+      "prompt_markdown": "HTTP 성공률은 높지만 생성 문제의 정답 오류가 늘었다. 적절한 판단은?",
+      "category": "운영 품질",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH32-Q01:A",
+          "text": "서버가 살아 있으므로 문제 없다."
+        },
+        {
+          "id": "CH32-Q01:B",
+          "text": "로그를 모두 삭제한다."
+        },
+        {
+          "id": "CH32-Q01:C",
+          "text": "문제 수를 무조건 늘린다."
+        },
+        {
+          "id": "CH32-Q01:D",
+          "text": "제품 품질 실패로 보고 모델·프롬프트·자료 버전과 평가 결과를 조사한다."
+        }
+      ],
+      "correct_option_id": "CH32-Q01:D",
+      "explanation_markdown": "전송 성공과 교육 기능 성공은 다르다.",
+      "generation_id": null,
+      "revision": "sha256:53187629a4498254b7b2a70607961643d369a0def8b475a69d3bd09c1c9995da"
+    },
+    {
+      "id": "CH32-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "concept_ids": [
+        "experiment-report"
+      ],
+      "source_page_ids": [
+        "CH32-P03"
+      ],
+      "prompt_markdown": "성능 개선 보고서에 필요한 것은?",
+      "category": "최종 보고",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH32-Q02:A",
+          "text": "최고 수치 하나만 기록"
+        },
+        {
+          "id": "CH32-Q02:B",
+          "text": "기준선·변경·같은 조건·표본 수·품질·비용·한계 기록"
+        },
+        {
+          "id": "CH32-Q02:C",
+          "text": "실패 실험 숨기기"
+        },
+        {
+          "id": "CH32-Q02:D",
+          "text": "모델 이름만 적기"
+        }
+      ],
+      "correct_option_id": "CH32-Q02:B",
+      "explanation_markdown": "재현과 판단에 필요한 조건·절충·관측 범위를 제공해야 한다.",
+      "generation_id": null,
+      "revision": "sha256:0e0a560c867c662ff9a022d1df77d6fc1c8633f6afb4aa7928ed59bb46adfc62"
+    },
+    {
+      "id": "CH32-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "concept_ids": [
+        "observability",
+        "metrics-logs-traces",
+        "slo",
+        "data-drift",
+        "concept-drift",
+        "rollback",
+        "canary",
+        "experiment-report"
+      ],
+      "source_page_ids": [
+        "CH32-P01",
+        "CH32-P02",
+        "CH32-P03"
+      ],
+      "prompt_markdown": "이 사이트의 4~7주차에서 실험할 변경을 한 가지씩 고르고, 어떤 지표가 나빠지면 채택하지 않을지 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "4주차에는 관련 문맥 축소와 지연·품질, 5주차에는 모델 변경과 유효 결과당 비용·정답 정확성, 6주차에는 동시성 증가와 첫 실패 원인, 7주차에는 제한된 재시도와 성공률·p95·추가 비용을 비교할 수 있다. 품질이 기준 아래로 떨어지거나 시간·비용이 허용 범위를 넘으면 채택하지 않는 조건을 미리 정한다. 이 내용은 실험 설계 예시이며 결과가 미리 정해진 것은 아니다.",
+      "grading": "self_assessment",
+      "revision": "sha256:0c1ec86fd52e012df21f7269497e914be49074c99ab7cdcf953d2680b8480993"
+    }
+  ]
+}

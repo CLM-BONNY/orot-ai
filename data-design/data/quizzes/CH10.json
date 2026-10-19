@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH10",
+  "questions": [
+    {
+      "id": "CH10-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH10"
+      ],
+      "concept_ids": [
+        "backpropagation",
+        "autograd"
+      ],
+      "source_page_ids": [
+        "CH10-P01"
+      ],
+      "prompt_markdown": "`loss.backward()`의 직접적인 역할은?",
+      "category": "학습 루프",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH10-Q01:A",
+          "text": "파라미터 기울기를 계산하고 누적한다."
+        },
+        {
+          "id": "CH10-Q01:B",
+          "text": "optimizer의 학습률을 무조건 줄인다."
+        },
+        {
+          "id": "CH10-Q01:C",
+          "text": "검증 세트를 만든다."
+        },
+        {
+          "id": "CH10-Q01:D",
+          "text": "모델을 평가 모드로 바꾼다."
+        }
+      ],
+      "correct_option_id": "CH10-Q01:A",
+      "explanation_markdown": "파라미터 갱신은 `optimizer.step()`의 역할이다.",
+      "generation_id": null,
+      "revision": "sha256:302c83110f18e8f2f8b79d1de02e43a51ee1d9e20b1b3af71da85aff0c75587e"
+    },
+    {
+      "id": "CH10-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH10"
+      ],
+      "concept_ids": [
+        "train-eval-mode",
+        "autograd"
+      ],
+      "source_page_ids": [
+        "CH10-P03"
+      ],
+      "prompt_markdown": "PyTorch 평가에서 맞는 설명은?",
+      "category": "평가 동작",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH10-Q02:A",
+          "text": "`eval()`만 호출하면 항상 기울기가 기록되지 않는다."
+        },
+        {
+          "id": "CH10-Q02:B",
+          "text": "`no_grad()`만으로 dropout이 평가 동작으로 바뀐다."
+        },
+        {
+          "id": "CH10-Q02:C",
+          "text": "`eval()`과 기울기 기록 비활성화는 서로 다른 역할이다."
+        },
+        {
+          "id": "CH10-Q02:D",
+          "text": "평가에서도 항상 `optimizer.step()`을 호출한다."
+        }
+      ],
+      "correct_option_id": "CH10-Q02:C",
+      "explanation_markdown": "층의 모드와 autograd 기록은 별개다. D는 평가 중 가중치를 바꾸는 잘못된 흐름이다.",
+      "generation_id": null,
+      "revision": "sha256:a26370a8df1203fccd2aaad45327c37927751862a55e49eb2dff122b4ad2a710"
+    },
+    {
+      "id": "CH10-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH10"
+      ],
+      "concept_ids": [
+        "forward-pass",
+        "backpropagation",
+        "autograd",
+        "optimizer",
+        "gradient-accumulation",
+        "train-eval-mode"
+      ],
+      "source_page_ids": [
+        "CH10-P01",
+        "CH10-P02",
+        "CH10-P03"
+      ],
+      "prompt_markdown": "`zero_grad`, `backward`, `step`을 각각 생략했을 때 어떤 문제가 생기는지 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "`zero_grad`가 없으면 기울기가 누적된다. 의도한 누적이 아니라면 갱신이 잘못될 수 있다. `backward`가 없으면 현재 손실의 기울기를 얻지 못한다. `step`이 없으면 optimizer가 가중치를 갱신하지 않는다. 순전파·기울기 계산·파라미터 갱신은 서로 다른 동작이다.",
+      "grading": "self_assessment",
+      "revision": "sha256:c84bf5524da3df639509af39264462d9dd61ae316d92b474891053044bcd029d"
+    }
+  ]
+}

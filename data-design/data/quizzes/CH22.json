@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH22",
+  "questions": [
+    {
+      "id": "CH22-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH22"
+      ],
+      "concept_ids": [
+        "overlap",
+        "chunking"
+      ],
+      "source_page_ids": [
+        "CH22-P02"
+      ],
+      "prompt_markdown": "청크 overlap을 늘릴 때 함께 고려할 것은?",
+      "category": "청킹 판단",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH22-Q01:A",
+          "text": "경계 정보 보존과 중복·토큰 비용 사이의 절충"
+        },
+        {
+          "id": "CH22-Q01:B",
+          "text": "정확성이 무조건 100%가 된다는 점"
+        },
+        {
+          "id": "CH22-Q01:C",
+          "text": "접근 권한이 자동 생긴다는 점"
+        },
+        {
+          "id": "CH22-Q01:D",
+          "text": "원문 삭제가 불필요해진다는 점"
+        }
+      ],
+      "correct_option_id": "CH22-Q01:A",
+      "explanation_markdown": "겹침은 유용할 수 있지만 저장·검색·문맥 중복을 늘린다.",
+      "generation_id": null,
+      "revision": "sha256:ea4f683523824516f56baa992df6e73d0a555d3cd65bdccb1aade3c874764231"
+    },
+    {
+      "id": "CH22-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH22"
+      ],
+      "concept_ids": [
+        "index-update",
+        "document-version"
+      ],
+      "source_page_ids": [
+        "CH22-P03"
+      ],
+      "prompt_markdown": "임베딩 모델을 교체한다. 올바른 조치는?",
+      "category": "갱신 설계",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH22-Q02:A",
+          "text": "질문 벡터만 새 모델로 바꾼다."
+        },
+        {
+          "id": "CH22-Q02:B",
+          "text": "벡터 차원만 맞춰 자른다."
+        },
+        {
+          "id": "CH22-Q02:C",
+          "text": "문서 재임베딩·색인 버전·전환 평가를 계획한다."
+        },
+        {
+          "id": "CH22-Q02:D",
+          "text": "예전 벡터와 임의로 평균한다."
+        }
+      ],
+      "correct_option_id": "CH22-Q02:C",
+      "explanation_markdown": "같은 표현 공간을 사용해야 하고 갱신 과정도 검증해야 한다.",
+      "generation_id": null,
+      "revision": "sha256:1382054db3269cdac15ef2adc1999bec3a796ebe5a79f8b57089731ff98fd3d1"
+    },
+    {
+      "id": "CH22-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH22"
+      ],
+      "concept_ids": [
+        "chunking",
+        "overlap",
+        "parent-child-retrieval",
+        "metadata",
+        "document-version",
+        "index-update"
+      ],
+      "source_page_ids": [
+        "CH22-P01",
+        "CH22-P02",
+        "CH22-P03"
+      ],
+      "prompt_markdown": "예외 조건이 다른 청크로 분리되면 생길 수 있는 오류와 이를 줄일 방법을 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "정책 본문과 예외가 갈라지면 일반 규칙만 검색되어 예외 대상에게 틀린 답을 줄 수 있다. 의미 단위 분할, 제목 보존, 적절한 겹침, 부모 문맥 확장 등을 비교한다. 문맥이 늘면 중복·비용·지연도 생기므로 실제 답변 품질로 평가한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:441a3371d4815f91c94bdb9feb8bb9d8569834778e2896e6caa7fc9a9484d77d"
+    }
+  ]
+}

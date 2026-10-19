@@ -1,0 +1,16 @@
+{
+  "id": "CH11-P02",
+  "chapter_id": "CH11",
+  "title": "서로 다른 조절 장치를 구분하기",
+  "order": 2,
+  "concept_ids": [
+    "dropout",
+    "weight-decay",
+    "adam",
+    "normalization"
+  ],
+  "body_markdown": "Dropout은 학습 중 일부 활성값을 무작위로 제거하는 방식으로 특정 연결에 과하게 의존하는 것을 줄이려 한다. 평가 때도 그대로 무작위로 끄는 것이 기본 동작은 아니다. Weight decay는 가중치를 작게 만드는 방향의 갱신을 더한다. L2 벌점과의 정확한 관계는 optimizer 방식에 따라 달라질 수 있다.\n\nSGD, momentum, Adam은 파라미터 갱신 방식이 다르다. Adam은 기울기 통계를 이용해 파라미터별 갱신 크기를 조절하지만 학습률 설정이 필요 없다는 뜻은 아니다. 학습률 스케줄과 warmup도 초반 불안정을 줄이기 위해 사용할 수 있다. 모든 모델에 같은 설정이 최선이라고 가정하지 않는다.\n\nBatch normalization과 layer normalization은 정규화하는 축과 통계 사용 방식이 다르다. 이름에 normalization이 들어간다고 입력 표준화와 같은 작업은 아니다. 특히 배치 크기·학습 모드·추론 모드에 따른 차이를 확인해야 한다.",
+  "previous_page_id": "CH11-P01",
+  "next_page_id": "CH11-P03",
+  "revision": "sha256:b0e61a2949b5837ad18aa08f1096e4584e35dd9cfca5599e02db0b679d2f83f3"
+}

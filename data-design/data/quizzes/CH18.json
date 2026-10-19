@@ -1,0 +1,117 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH18",
+  "questions": [
+    {
+      "id": "CH18-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "concept_ids": [
+        "lora",
+        "peft"
+      ],
+      "source_page_ids": [
+        "CH18-P02"
+      ],
+      "prompt_markdown": "LoRA의 대표적인 설명은?",
+      "category": "기법 구분",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH18-Q01:A",
+          "text": "매 요청마다 외부 문서를 검색한다."
+        },
+        {
+          "id": "CH18-Q01:B",
+          "text": "모든 숫자를 반드시 4비트로 저장한다."
+        },
+        {
+          "id": "CH18-Q01:C",
+          "text": "기반 모델이 필요 없어진다."
+        },
+        {
+          "id": "CH18-Q01:D",
+          "text": "기반 가중치를 고정하고 낮은 rank의 변화량을 학습한다."
+        }
+      ],
+      "correct_option_id": "CH18-Q01:D",
+      "explanation_markdown": "A는 RAG, B는 특정 양자화 설정과 혼동한 설명이다. 기반 모델 실행은 여전히 필요하다.",
+      "generation_id": null,
+      "revision": "sha256:d80b3969a81ce408e5f2f9d2e854fd9f6a8c1b957791dfe29a5adc61952eb1ea"
+    },
+    {
+      "id": "CH18-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "concept_ids": [
+        "fine-tuning"
+      ],
+      "source_page_ids": [
+        "CH18-P02"
+      ],
+      "prompt_markdown": "매주 바뀌는 규정을 출처와 함께 답해야 한다. 우선 검토할 방향은?",
+      "category": "목적에 맞는 선택",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH18-Q02:A",
+          "text": "매 요청 뒤 전체 모델을 재학습한다."
+        },
+        {
+          "id": "CH18-Q02:B",
+          "text": "최신 문서 검색과 근거 제공을 설계하고 필요하면 행동 조정을 별도로 검토한다."
+        },
+        {
+          "id": "CH18-Q02:C",
+          "text": "양자화만 적용하면 최신 지식이 생긴다."
+        },
+        {
+          "id": "CH18-Q02:D",
+          "text": "모델 크기만 늘리면 출처가 보장된다."
+        }
+      ],
+      "correct_option_id": "CH18-Q02:B",
+      "explanation_markdown": "최신 지식 공급과 행동·비용 최적화는 다른 문제다.",
+      "generation_id": null,
+      "revision": "sha256:601ac38b40e514ef8e8b21bffc933c89ba2f20e0a9de57cd26ce6731bd12272e"
+    },
+    {
+      "id": "CH18-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "concept_ids": [
+        "sft",
+        "rlhf",
+        "dpo",
+        "fine-tuning",
+        "peft",
+        "lora",
+        "quantization",
+        "distillation"
+      ],
+      "source_page_ids": [
+        "CH18-P01",
+        "CH18-P02",
+        "CH18-P03"
+      ],
+      "prompt_markdown": "SFT·선호 학습·LoRA·양자화가 각각 무엇을 바꾸는지 한 문장씩 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "SFT는 바람직한 입력·응답 예제로 행동을 학습한다. 선호 학습은 응답 간 선호를 이용해 모델을 조정한다. LoRA는 고정 기반 가중치에 낮은 rank 변화량을 학습한다. 양자화는 수치 표현 정밀도를 줄이는 방법이다. 서로 다른 축이므로 결합할 수 있다.",
+      "grading": "self_assessment",
+      "revision": "sha256:7c40a7b0f56d6cf092cfe3ec503921a35d66611cd8b7df20da105a9ed7bc9d2f"
+    }
+  ]
+}

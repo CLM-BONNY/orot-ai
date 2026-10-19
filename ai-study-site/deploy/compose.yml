@@ -1,0 +1,40 @@
+name: orot-ai
+services:
+  api:
+    image: orot-ai-api:${IMAGE_TAG:-local}
+    build:
+      context: ../..
+      dockerfile: ai-study-site/deploy/docker/Dockerfile.api
+      args:
+        APP_REVISION: ${APP_REVISION:-local}
+    environment:
+      INFERENCE_PROVIDER: ${INFERENCE_PROVIDER:-ollama}
+      INFERENCE_BASE_URL: ${INFERENCE_BASE_URL:-http://host.docker.internal:11535}
+      MODEL_NAME: ${MODEL_NAME:-qwen3.5:9b-q4_K_M}
+      INFERENCE_AUTH_TOKEN: ${INFERENCE_AUTH_TOKEN:-}
+      INFERENCE_TIMEOUT_SECONDS: '180'
+      REVIEW_MAX_OUTPUT_TOKENS: '1536'
+      STRUCTURED_CONTEXT_LENGTH: '4096'
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    init: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+  web:
+    image: orot-ai-web:${IMAGE_TAG:-local}
+    build:
+      context: ../..
+      dockerfile: ai-study-site/deploy/docker/Dockerfile.web
+      args:
+        APP_REVISION: ${APP_REVISION:-local}
+    ports: ['127.0.0.1:${WEB_PORT:-5180}:8080']
+    environment:
+      API_UPSTREAM: api:8000
+      NGINX_RESOLVER: 127.0.0.11
+      TRUSTED_PROXY_CIDR: 127.0.0.1/32
+    depends_on:
+      api:
+        condition: service_healthy
+    init: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]

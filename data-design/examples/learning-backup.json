@@ -1,0 +1,416 @@
+{
+  "kind": "learning_backup",
+  "schema_version": "1.0.0",
+  "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+  "exported_at": "2026-10-18T01:05:00Z",
+  "profile": {
+    "id": "LP-040c3a78-7736-5ec1-9d39-14d86de449ef",
+    "display_name": "예시 학습자",
+    "created_at": "2026-10-18T01:00:00Z",
+    "updated_at": "2026-10-18T01:05:00Z"
+  },
+  "attempts": [
+    {
+      "id": "ATT-0bbf54d4-df8e-5bb2-bcc2-36d5dc1db6ce",
+      "profile_id": "LP-040c3a78-7736-5ec1-9d39-14d86de449ef",
+      "question_ref": {
+        "id": "CH01-Q01",
+        "revision": "sha256:f63023f2d5e44e8627043918281e6272f7b141acb2a7d8299978e2cfd5b979a4"
+      },
+      "question_snapshot": {
+        "id": "CH01-Q01",
+        "format": "single_choice",
+        "origin": "authored",
+        "content_version": "1.0.0",
+        "chapter_ids": [
+          "CH01"
+        ],
+        "concept_ids": [
+          "rag"
+        ],
+        "source_page_ids": [
+          "CH01-P01"
+        ],
+        "prompt_markdown": "RAG를 가장 정확하게 설명한 것은?",
+        "category": "개념 구분",
+        "difficulty": "not_rated",
+        "options": [
+          {
+            "id": "CH01-Q01:A",
+            "text": "모든 언어 모델을 학습시키는 손실 함수"
+          },
+          {
+            "id": "CH01-Q01:B",
+            "text": "외부 자료를 검색해 생성에 활용하는 시스템 방식"
+          },
+          {
+            "id": "CH01-Q01:C",
+            "text": "자연어 처리와 완전히 같은 분야"
+          },
+          {
+            "id": "CH01-Q01:D",
+            "text": "데이터 없이 정답을 보장하는 모델"
+          }
+        ],
+        "correct_option_id": "CH01-Q01:B",
+        "explanation_markdown": "RAG는 검색과 생성을 연결한다. A는 학습 목적과, C는 문제 영역과 혼동한 설명이다. D처럼 정확성을 보장하지도 않는다.",
+        "generation_id": null,
+        "revision": "sha256:f63023f2d5e44e8627043918281e6272f7b141acb2a7d8299978e2cfd5b979a4"
+      },
+      "selected_option_id": "CH01-Q01:A",
+      "displayed_option_ids": [
+        "CH01-Q01:A",
+        "CH01-Q01:B",
+        "CH01-Q01:C",
+        "CH01-Q01:D"
+      ],
+      "is_correct": false,
+      "submitted_at": "2026-10-18T01:02:00Z",
+      "elapsed_ms": 15000,
+      "mode": "chapter_quiz"
+    },
+    {
+      "id": "ATT-d24b0c40-1771-55f8-842e-1f98ab3a13b1",
+      "profile_id": "LP-040c3a78-7736-5ec1-9d39-14d86de449ef",
+      "question_ref": {
+        "id": "CH01-Q01",
+        "revision": "sha256:f63023f2d5e44e8627043918281e6272f7b141acb2a7d8299978e2cfd5b979a4"
+      },
+      "question_snapshot": {
+        "id": "CH01-Q01",
+        "format": "single_choice",
+        "origin": "authored",
+        "content_version": "1.0.0",
+        "chapter_ids": [
+          "CH01"
+        ],
+        "concept_ids": [
+          "rag"
+        ],
+        "source_page_ids": [
+          "CH01-P01"
+        ],
+        "prompt_markdown": "RAG를 가장 정확하게 설명한 것은?",
+        "category": "개념 구분",
+        "difficulty": "not_rated",
+        "options": [
+          {
+            "id": "CH01-Q01:A",
+            "text": "모든 언어 모델을 학습시키는 손실 함수"
+          },
+          {
+            "id": "CH01-Q01:B",
+            "text": "외부 자료를 검색해 생성에 활용하는 시스템 방식"
+          },
+          {
+            "id": "CH01-Q01:C",
+            "text": "자연어 처리와 완전히 같은 분야"
+          },
+          {
+            "id": "CH01-Q01:D",
+            "text": "데이터 없이 정답을 보장하는 모델"
+          }
+        ],
+        "correct_option_id": "CH01-Q01:B",
+        "explanation_markdown": "RAG는 검색과 생성을 연결한다. A는 학습 목적과, C는 문제 영역과 혼동한 설명이다. D처럼 정확성을 보장하지도 않는다.",
+        "generation_id": null,
+        "revision": "sha256:f63023f2d5e44e8627043918281e6272f7b141acb2a7d8299978e2cfd5b979a4"
+      },
+      "selected_option_id": "CH01-Q01:B",
+      "displayed_option_ids": [
+        "CH01-Q01:A",
+        "CH01-Q01:B",
+        "CH01-Q01:C",
+        "CH01-Q01:D"
+      ],
+      "is_correct": true,
+      "submitted_at": "2026-10-18T01:05:00Z",
+      "elapsed_ms": 15000,
+      "mode": "wrong_retry"
+    }
+  ],
+  "notes": [
+    {
+      "id": "NOTE-2b6b5e29-848f-5178-956b-50e64d076122",
+      "profile_id": "LP-040c3a78-7736-5ec1-9d39-14d86de449ef",
+      "target": {
+        "kind": "page",
+        "id": "CH01-P01",
+        "revision": "sha256:d31a8356452e13879351b6de5cece3a627e40b9691719cd02a339ab9a3252424"
+      },
+      "quote_anchor": {
+        "page_ref": {
+          "id": "CH01-P01",
+          "revision": "sha256:d31a8356452e13879351b6de5cece3a627e40b9691719cd02a339ab9a3252424"
+        },
+        "exact": "RAG는 모델 종류가 아니라",
+        "prefix": "",
+        "suffix": " 외부 자료를 검색해"
+      },
+      "body_markdown": "RAG는 모델 이름이 아니라 검색과 생성을 연결하는 방식이다.",
+      "created_at": "2026-10-18T01:02:00Z",
+      "updated_at": "2026-10-18T01:05:00Z"
+    }
+  ],
+  "bookmarks": [
+    {
+      "id": "BKM-808edd67-cf56-5f00-b310-30c6611c6455",
+      "profile_id": "LP-040c3a78-7736-5ec1-9d39-14d86de449ef",
+      "question_ref": {
+        "id": "CH01-Q01",
+        "revision": "sha256:f63023f2d5e44e8627043918281e6272f7b141acb2a7d8299978e2cfd5b979a4"
+      },
+      "question_snapshot": {
+        "id": "CH01-Q01",
+        "format": "single_choice",
+        "origin": "authored",
+        "content_version": "1.0.0",
+        "chapter_ids": [
+          "CH01"
+        ],
+        "concept_ids": [
+          "rag"
+        ],
+        "source_page_ids": [
+          "CH01-P01"
+        ],
+        "prompt_markdown": "RAG를 가장 정확하게 설명한 것은?",
+        "category": "개념 구분",
+        "difficulty": "not_rated",
+        "options": [
+          {
+            "id": "CH01-Q01:A",
+            "text": "모든 언어 모델을 학습시키는 손실 함수"
+          },
+          {
+            "id": "CH01-Q01:B",
+            "text": "외부 자료를 검색해 생성에 활용하는 시스템 방식"
+          },
+          {
+            "id": "CH01-Q01:C",
+            "text": "자연어 처리와 완전히 같은 분야"
+          },
+          {
+            "id": "CH01-Q01:D",
+            "text": "데이터 없이 정답을 보장하는 모델"
+          }
+        ],
+        "correct_option_id": "CH01-Q01:B",
+        "explanation_markdown": "RAG는 검색과 생성을 연결한다. A는 학습 목적과, C는 문제 영역과 혼동한 설명이다. D처럼 정확성을 보장하지도 않는다.",
+        "generation_id": null,
+        "revision": "sha256:f63023f2d5e44e8627043918281e6272f7b141acb2a7d8299978e2cfd5b979a4"
+      },
+      "created_at": "2026-10-18T01:02:00Z"
+    }
+  ],
+  "reading_progress": [
+    {
+      "id": "READ-5c4906ef-724d-5d11-9d43-eef234d8df05",
+      "profile_id": "LP-040c3a78-7736-5ec1-9d39-14d86de449ef",
+      "page_ref": {
+        "id": "CH01-P01",
+        "revision": "sha256:d31a8356452e13879351b6de5cece3a627e40b9691719cd02a339ab9a3252424"
+      },
+      "state": "completed",
+      "completed_at": "2026-10-18T01:02:00Z",
+      "updated_at": "2026-10-18T01:02:00Z"
+    }
+  ],
+  "resume": {
+    "profile_id": "LP-040c3a78-7736-5ec1-9d39-14d86de449ef",
+    "page_ref": {
+      "id": "CH01-P01",
+      "revision": "sha256:d31a8356452e13879351b6de5cece3a627e40b9691719cd02a339ab9a3252424"
+    },
+    "scroll_fraction": 0.8,
+    "updated_at": "2026-10-18T01:05:00Z"
+  },
+  "self_assessments": [
+    {
+      "id": "SELF-aebe2ff3-aabf-576f-81c8-a3736f58954c",
+      "profile_id": "LP-040c3a78-7736-5ec1-9d39-14d86de449ef",
+      "question_ref": {
+        "id": "CH01-R01",
+        "revision": "sha256:19740e34ddaaafed3e012395d94457f68335ad829a7ef91b2897959a5bae0e78"
+      },
+      "question_snapshot": {
+        "id": "CH01-R01",
+        "format": "self_explanation",
+        "origin": "authored",
+        "content_version": "1.0.0",
+        "chapter_ids": [
+          "CH01"
+        ],
+        "concept_ids": [
+          "ai",
+          "machine-learning",
+          "deep-learning",
+          "nlp",
+          "llm",
+          "rag",
+          "baseline",
+          "supervised-learning",
+          "unsupervised-learning",
+          "self-supervised-learning",
+          "reinforcement-learning"
+        ],
+        "source_page_ids": [
+          "CH01-P01",
+          "CH01-P02",
+          "CH01-P03"
+        ],
+        "prompt_markdown": "머신러닝·NLP·LLM·RAG를 같은 종류의 분류로 놓을 수 없는 이유를 자신의 말로 설명하라. 답에는 학습 방법, 문제 영역, 모델, 시스템 방식이라는 구분이 들어가야 한다.",
+        "category": "인출 연습",
+        "difficulty": "not_rated",
+        "expected_answer_markdown": "머신러닝은 데이터로 예측 규칙을 학습하는 접근, NLP는 언어를 다루는 문제 영역, LLM은 언어 모델의 한 부류, RAG는 검색을 생성에 연결하는 시스템 구성이다. NLP에는 규칙 기반 방법도 있고 RAG의 검색도 꼭 벡터 검색일 필요는 없다. 서로 다른 분류 축을 하나의 포함 관계로만 외우지 않는다.",
+        "grading": "self_assessment",
+        "revision": "sha256:19740e34ddaaafed3e012395d94457f68335ad829a7ef91b2897959a5bae0e78"
+      },
+      "response_markdown": "NLP는 문제 영역이고 LLM은 모델, RAG는 시스템 구성이다.",
+      "rating": "partial",
+      "submitted_at": "2026-10-18T01:05:00Z"
+    }
+  ],
+  "generations": [
+    {
+      "id": "GEN-f5bc644f-9105-5807-b390-8f82f1e021e6",
+      "profile_id": "LP-040c3a78-7736-5ec1-9d39-14d86de449ef",
+      "request_id": "REQ-2a13dabb-61b5-5786-90c5-a267023ac83e",
+      "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+      "concept_ids": [
+        "rag"
+      ],
+      "question_ids": [
+        "GQ-60993d03-1881-521b-8dbe-2a1e1aefef97",
+        "GQ-033268d8-7f40-5429-b4da-3cb3cc094bd0",
+        "GQ-a18d5d94-ed1e-5e52-804d-b0bae64a0ab5"
+      ],
+      "model": "example-only-no-api-call",
+      "prompt_version": "example-1",
+      "review_status": "unreviewed",
+      "created_at": "2026-10-18T01:05:00Z"
+    }
+  ],
+  "generated_questions": [
+    {
+      "id": "GQ-60993d03-1881-521b-8dbe-2a1e1aefef97",
+      "format": "single_choice",
+      "origin": "generated",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "concept_ids": [
+        "rag"
+      ],
+      "source_page_ids": [
+        "CH01-P01"
+      ],
+      "prompt_markdown": "예시 복습 문제 1: RAG의 설명으로 맞는 것은?",
+      "category": "예시 데이터",
+      "difficulty": "beginner",
+      "options": [
+        {
+          "id": "GQ-60993d03-1881-521b-8dbe-2a1e1aefef97:A",
+          "text": "모든 언어 모델을 학습시키는 손실 함수"
+        },
+        {
+          "id": "GQ-60993d03-1881-521b-8dbe-2a1e1aefef97:B",
+          "text": "외부 자료를 검색해 생성에 활용하는 시스템 방식"
+        },
+        {
+          "id": "GQ-60993d03-1881-521b-8dbe-2a1e1aefef97:C",
+          "text": "자연어 처리와 완전히 같은 분야"
+        },
+        {
+          "id": "GQ-60993d03-1881-521b-8dbe-2a1e1aefef97:D",
+          "text": "데이터 없이 정답을 보장하는 모델"
+        }
+      ],
+      "correct_option_id": "GQ-60993d03-1881-521b-8dbe-2a1e1aefef97:B",
+      "explanation_markdown": "RAG는 검색과 생성을 연결한다. A는 학습 목적과, C는 문제 영역과 혼동한 설명이다. D처럼 정확성을 보장하지도 않는다.",
+      "generation_id": "GEN-f5bc644f-9105-5807-b390-8f82f1e021e6",
+      "revision": "sha256:c8889f95cfc13d3659592a06817d9dffb7f664392fd823f61f1f205bda29d7c7"
+    },
+    {
+      "id": "GQ-033268d8-7f40-5429-b4da-3cb3cc094bd0",
+      "format": "single_choice",
+      "origin": "generated",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "concept_ids": [
+        "rag"
+      ],
+      "source_page_ids": [
+        "CH01-P01"
+      ],
+      "prompt_markdown": "예시 복습 문제 2: RAG의 설명으로 맞는 것은?",
+      "category": "예시 데이터",
+      "difficulty": "beginner",
+      "options": [
+        {
+          "id": "GQ-033268d8-7f40-5429-b4da-3cb3cc094bd0:A",
+          "text": "모든 언어 모델을 학습시키는 손실 함수"
+        },
+        {
+          "id": "GQ-033268d8-7f40-5429-b4da-3cb3cc094bd0:B",
+          "text": "외부 자료를 검색해 생성에 활용하는 시스템 방식"
+        },
+        {
+          "id": "GQ-033268d8-7f40-5429-b4da-3cb3cc094bd0:C",
+          "text": "자연어 처리와 완전히 같은 분야"
+        },
+        {
+          "id": "GQ-033268d8-7f40-5429-b4da-3cb3cc094bd0:D",
+          "text": "데이터 없이 정답을 보장하는 모델"
+        }
+      ],
+      "correct_option_id": "GQ-033268d8-7f40-5429-b4da-3cb3cc094bd0:B",
+      "explanation_markdown": "RAG는 검색과 생성을 연결한다. A는 학습 목적과, C는 문제 영역과 혼동한 설명이다. D처럼 정확성을 보장하지도 않는다.",
+      "generation_id": "GEN-f5bc644f-9105-5807-b390-8f82f1e021e6",
+      "revision": "sha256:3970c1330db3573404fc91ca5985038912c632c238ec447c49d52547c149ba35"
+    },
+    {
+      "id": "GQ-a18d5d94-ed1e-5e52-804d-b0bae64a0ab5",
+      "format": "single_choice",
+      "origin": "generated",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "concept_ids": [
+        "rag"
+      ],
+      "source_page_ids": [
+        "CH01-P01"
+      ],
+      "prompt_markdown": "예시 복습 문제 3: RAG의 설명으로 맞는 것은?",
+      "category": "예시 데이터",
+      "difficulty": "beginner",
+      "options": [
+        {
+          "id": "GQ-a18d5d94-ed1e-5e52-804d-b0bae64a0ab5:A",
+          "text": "모든 언어 모델을 학습시키는 손실 함수"
+        },
+        {
+          "id": "GQ-a18d5d94-ed1e-5e52-804d-b0bae64a0ab5:B",
+          "text": "외부 자료를 검색해 생성에 활용하는 시스템 방식"
+        },
+        {
+          "id": "GQ-a18d5d94-ed1e-5e52-804d-b0bae64a0ab5:C",
+          "text": "자연어 처리와 완전히 같은 분야"
+        },
+        {
+          "id": "GQ-a18d5d94-ed1e-5e52-804d-b0bae64a0ab5:D",
+          "text": "데이터 없이 정답을 보장하는 모델"
+        }
+      ],
+      "correct_option_id": "GQ-a18d5d94-ed1e-5e52-804d-b0bae64a0ab5:B",
+      "explanation_markdown": "RAG는 검색과 생성을 연결한다. A는 학습 목적과, C는 문제 영역과 혼동한 설명이다. D처럼 정확성을 보장하지도 않는다.",
+      "generation_id": "GEN-f5bc644f-9105-5807-b390-8f82f1e021e6",
+      "revision": "sha256:3e18edc19db14206fd9a9b6ad3501d8feed5a6e639f7590733ecf07f41959661"
+    }
+  ]
+}

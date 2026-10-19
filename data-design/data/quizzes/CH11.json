@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH11",
+  "questions": [
+    {
+      "id": "CH11-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "concept_ids": [
+        "overfitting",
+        "early-stopping"
+      ],
+      "source_page_ids": [
+        "CH11-P01"
+      ],
+      "prompt_markdown": "학습 손실은 감소하지만 검증 손실이 증가한다. 적절한 다음 단계는?",
+      "category": "지표 해석",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH11-Q01:A",
+          "text": "테스트 자료를 학습에 넣는다."
+        },
+        {
+          "id": "CH11-Q01:B",
+          "text": "검증 결과를 무시한다."
+        },
+        {
+          "id": "CH11-Q01:C",
+          "text": "항상 모델을 더 크게 만든다."
+        },
+        {
+          "id": "CH11-Q01:D",
+          "text": "과적합·분할 차이를 조사하고 검증 기반 중단·정규화 등을 비교한다."
+        }
+      ],
+      "correct_option_id": "CH11-Q01:D",
+      "explanation_markdown": "곡선은 조사할 가설을 제공한다. 단일 원인으로 단정하지 않고 비교 실험으로 확인한다.",
+      "generation_id": null,
+      "revision": "sha256:bbfb4cbf36d7ea18a49d2fc51db597599f970f89c0f0fa7e895d578e385b7647"
+    },
+    {
+      "id": "CH11-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "concept_ids": [
+        "overfitting"
+      ],
+      "source_page_ids": [
+        "CH11-P03"
+      ],
+      "prompt_markdown": "재현 가능한 실험 기록으로 가장 적절한 것은?",
+      "category": "재현성",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH11-Q02:A",
+          "text": "최고 점수만 적는다."
+        },
+        {
+          "id": "CH11-Q02:B",
+          "text": "seed뿐 아니라 분할·전처리·버전·설정과 반복 결과를 남긴다."
+        },
+        {
+          "id": "CH11-Q02:C",
+          "text": "성공한 실행만 저장한다."
+        },
+        {
+          "id": "CH11-Q02:D",
+          "text": "모든 변경을 한 번에 적용한다."
+        }
+      ],
+      "correct_option_id": "CH11-Q02:B",
+      "explanation_markdown": "조건과 변동을 함께 알아야 결과를 비교할 수 있다.",
+      "generation_id": null,
+      "revision": "sha256:04a1c093df8ddf246de64300fea9e195a140412cfeebcbb95f4d6a13a35afee6"
+    },
+    {
+      "id": "CH11-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "concept_ids": [
+        "overfitting",
+        "underfitting",
+        "dropout",
+        "weight-decay",
+        "early-stopping",
+        "adam",
+        "normalization"
+      ],
+      "source_page_ids": [
+        "CH11-P01",
+        "CH11-P02",
+        "CH11-P03"
+      ],
+      "prompt_markdown": "dropout, weight decay, early stopping이 각각 어디에 개입하는지 비교하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "Dropout은 학습 중 활성값 사용을 무작위로 바꾸고, weight decay는 가중치 갱신에 축소 효과를 주며, early stopping은 검증 결과로 사용할 학습 시점을 선택한다. 모두 일반화에 영향을 줄 수 있지만 개입 위치가 다르다. 데이터 오류·누수·학습 실패를 만능으로 해결하지는 않는다.",
+      "grading": "self_assessment",
+      "revision": "sha256:2550ea085af76f9b6d4e8a50e4095e7e3f178a227b1a39bc1003f98f2362c8df"
+    }
+  ]
+}

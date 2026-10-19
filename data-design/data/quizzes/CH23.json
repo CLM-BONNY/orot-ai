@@ -1,0 +1,118 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH23",
+  "questions": [
+    {
+      "id": "CH23-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "concept_ids": [
+        "hybrid-search",
+        "rrf"
+      ],
+      "source_page_ids": [
+        "CH23-P02"
+      ],
+      "prompt_markdown": "BM25 점수와 코사인 점수를 아무 처리 없이 더할 때의 문제는?",
+      "category": "점수 결합",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH23-Q01:A",
+          "text": "항상 정답만 남는다."
+        },
+        {
+          "id": "CH23-Q01:B",
+          "text": "서로 다른 척도의 점수가 한쪽을 과도하게 지배할 수 있다."
+        },
+        {
+          "id": "CH23-Q01:C",
+          "text": "검색 시간이 0이 된다."
+        },
+        {
+          "id": "CH23-Q01:D",
+          "text": "접근 권한이 자동 적용된다."
+        }
+      ],
+      "correct_option_id": "CH23-Q01:B",
+      "explanation_markdown": "정규화나 순위 결합 등을 검토하고 실제 검색 품질을 평가해야 한다.",
+      "generation_id": null,
+      "revision": "sha256:0f07b4767c832bee51b97fdd57135e96d58a7454cfe8234c6a879de373241ada"
+    },
+    {
+      "id": "CH23-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "concept_ids": [
+        "reranker",
+        "dense-retrieval"
+      ],
+      "source_page_ids": [
+        "CH23-P03"
+      ],
+      "prompt_markdown": "필요한 근거가 후보 20개 안에도 없다. 우선 조사할 부분은?",
+      "category": "병목 찾기",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH23-Q02:A",
+          "text": "버튼 색상"
+        },
+        {
+          "id": "CH23-Q02:B",
+          "text": "최종 답변의 글자 크기"
+        },
+        {
+          "id": "CH23-Q02:C",
+          "text": "재정렬만 반복하면 반드시 해결된다."
+        },
+        {
+          "id": "CH23-Q02:D",
+          "text": "색인·전처리·질의·필터·후보 검색 단계"
+        }
+      ],
+      "correct_option_id": "CH23-Q02:D",
+      "explanation_markdown": "Reranker는 존재하는 후보를 재배치한다. 후보 누락은 앞 단계에서 조사한다.",
+      "generation_id": null,
+      "revision": "sha256:4c1ea036c47e7099a011dc65a823969eaa9b924962fcaf2beb5000de59a2739b"
+    },
+    {
+      "id": "CH23-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "concept_ids": [
+        "bm25",
+        "dense-retrieval",
+        "ann",
+        "hnsw",
+        "hybrid-search",
+        "rrf",
+        "reranker",
+        "cross-encoder"
+      ],
+      "source_page_ids": [
+        "CH23-P01",
+        "CH23-P02",
+        "CH23-P03"
+      ],
+      "prompt_markdown": "Bi-encoder 검색과 cross-encoder 재정렬을 계산 방식과 적용 범위로 비교하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "Bi-encoder는 질문·문서를 각각 벡터로 만들므로 문서 표현을 미리 색인할 수 있다. Cross-encoder는 질문과 문서를 함께 처리해 후보별 관련성을 더 세밀하게 판단할 수 있지만 계산량이 커질 수 있다. 빠른 후보 검색 뒤 재정렬하는 구성이 흔하다. 후보에 없는 문서는 재정렬로 복원할 수 없다.",
+      "grading": "self_assessment",
+      "revision": "sha256:94a37b08030d28e36a4e6cd4d3ab6efc6c1828e38a4834b82b8a9f552c927c91"
+    }
+  ]
+}

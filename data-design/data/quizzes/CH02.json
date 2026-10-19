@@ -1,0 +1,115 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH02",
+  "questions": [
+    {
+      "id": "CH02-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH02"
+      ],
+      "concept_ids": [
+        "matrix",
+        "dot-product"
+      ],
+      "source_page_ids": [
+        "CH02-P02"
+      ],
+      "prompt_markdown": "X가 `[8, 12]`, W가 `[12, 5]`일 때 XW의 모양은?",
+      "category": "계산",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH02-Q01:A",
+          "text": "`[8, 5]`"
+        },
+        {
+          "id": "CH02-Q01:B",
+          "text": "`[12, 12]`"
+        },
+        {
+          "id": "CH02-Q01:C",
+          "text": "`[5, 8]`"
+        },
+        {
+          "id": "CH02-Q01:D",
+          "text": "`[8, 12, 5]`"
+        }
+      ],
+      "correct_option_id": "CH02-Q01:A",
+      "explanation_markdown": "안쪽 차원 12를 따라 합산하고 바깥 차원 8과 5가 남는다. 원소별 곱과 다르다.",
+      "generation_id": null,
+      "revision": "sha256:4b0585ac1301719acb017c900f357371ea75cc9c6775176fbb4e5ac508a5a79f"
+    },
+    {
+      "id": "CH02-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH02"
+      ],
+      "concept_ids": [
+        "cosine-similarity"
+      ],
+      "source_page_ids": [
+        "CH02-P03"
+      ],
+      "prompt_markdown": "문장 임베딩의 코사인 유사도가 0.9일 때 올바른 해석은?",
+      "category": "오해 찾기",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH02-Q02:A",
+          "text": "두 문장의 모든 사실이 같다."
+        },
+        {
+          "id": "CH02-Q02:B",
+          "text": "정답일 확률이 정확히 90%다."
+        },
+        {
+          "id": "CH02-Q02:C",
+          "text": "어떤 모델에서나 점수가 같다."
+        },
+        {
+          "id": "CH02-Q02:D",
+          "text": "해당 표현 공간에서 방향이 가깝지만 정답 여부는 별도 확인해야 한다."
+        }
+      ],
+      "correct_option_id": "CH02-Q02:D",
+      "explanation_markdown": "유사도는 확률이나 사실 검증 결과가 아니다. 임베딩 모델이 달라지면 점수의 의미도 달라진다.",
+      "generation_id": null,
+      "revision": "sha256:ae9b3beaecf379643a89af8e52af643bdded672a87331c0072233989e4566a01"
+    },
+    {
+      "id": "CH02-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH02"
+      ],
+      "concept_ids": [
+        "scalar",
+        "vector",
+        "matrix",
+        "tensor",
+        "dot-product",
+        "cosine-similarity"
+      ],
+      "source_page_ids": [
+        "CH02-P01",
+        "CH02-P02",
+        "CH02-P03"
+      ],
+      "prompt_markdown": "검색 문서와 질문에 서로 다른 임베딩 모델을 쓰면 왜 문제가 되는가? 같은 공간의 표현을 비교해야 한다는 점과 차원 수만 같아서는 부족하다는 점을 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "차원 수는 좌표의 개수일 뿐 축의 의미와 학습된 공간을 보장하지 않는다. 문서와 질문 벡터는 호환되는 모델·전처리·버전으로 생성해야 한다. 서로 다른 지도에서 같은 숫자의 좌표가 같은 장소를 뜻하지 않는 것과 비슷하다. 모델을 바꾸면 문서 재임베딩과 인덱스 전환도 계획한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:9398423ed753c55fcba6f2a8e8c96ac7a831dad1e55508c5fd172465e06ad2bb"
+    }
+  ]
+}

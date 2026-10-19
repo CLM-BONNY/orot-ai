@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH17",
+  "questions": [
+    {
+      "id": "CH17-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH17"
+      ],
+      "concept_ids": [
+        "self-supervised-learning",
+        "causal-language-modeling"
+      ],
+      "source_page_ids": [
+        "CH17-P01"
+      ],
+      "prompt_markdown": "다음 토큰 자기지도학습의 정답은 어디서 얻는가?",
+      "category": "학습 방식",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH17-Q01:A",
+          "text": "모든 문장을 사람이 새로 채점해서만 얻는다."
+        },
+        {
+          "id": "CH17-Q01:B",
+          "text": "모델의 파라미터 번호를 정답으로 쓴다."
+        },
+        {
+          "id": "CH17-Q01:C",
+          "text": "원문 시퀀스의 다음 토큰에서 만든다."
+        },
+        {
+          "id": "CH17-Q01:D",
+          "text": "정답 없이 임의 점수만 사용한다."
+        }
+      ],
+      "correct_option_id": "CH17-Q01:C",
+      "explanation_markdown": "데이터 자체로 예측 목표를 만든다. 마스크로 미래 정보 접근은 제한한다.",
+      "generation_id": null,
+      "revision": "sha256:8bfc2f39f783ac6ed3daa606f825817066bacf05e574a2c996b4fd8523ba05df"
+    },
+    {
+      "id": "CH17-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH17"
+      ],
+      "concept_ids": [
+        "moe",
+        "parameters"
+      ],
+      "source_page_ids": [
+        "CH17-P02"
+      ],
+      "prompt_markdown": "MoE 모델에 관한 적절한 설명은?",
+      "category": "규모 해석",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH17-Q02:A",
+          "text": "총 파라미터 수와 토큰당 활성 파라미터 수가 다를 수 있다."
+        },
+        {
+          "id": "CH17-Q02:B",
+          "text": "모든 expert가 항상 같은 비중으로 실행된다."
+        },
+        {
+          "id": "CH17-Q02:C",
+          "text": "활성 계산이 적으면 가중치 메모리도 반드시 같은 비율로 줄어든다."
+        },
+        {
+          "id": "CH17-Q02:D",
+          "text": "규모가 크면 사실 오류가 불가능하다."
+        }
+      ],
+      "correct_option_id": "CH17-Q02:A",
+      "explanation_markdown": "저장·계산·통신 비용을 따로 봐야 한다. 규모는 정확성 보증이 아니다.",
+      "generation_id": null,
+      "revision": "sha256:bd0e13f46f3b9564c7ebbbf6b071b7d202e2c244e220a91b26a334d898a48da3"
+    },
+    {
+      "id": "CH17-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH17"
+      ],
+      "concept_ids": [
+        "pretraining",
+        "self-supervised-learning",
+        "causal-language-modeling",
+        "cross-entropy-lm",
+        "parameters",
+        "moe"
+      ],
+      "source_page_ids": [
+        "CH17-P01",
+        "CH17-P02",
+        "CH17-P03"
+      ],
+      "prompt_markdown": "모델이 최근 사실에 답했을 때 사전학습·문맥·검색 중 어떤 경로인지 확인해야 하는 이유를 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "최근 사실을 사전학습 때 알고 있었을 수도, 요청 문맥으로 받았을 수도, 검색 도구로 찾았을 수도 있다. 우연히 맞춘 가능성도 있다. 최신성·출처·재현을 판단하려면 제공된 문맥과 도구 기록을 확인해야 한다. 서비스의 능력을 모델 내부 지식만으로 설명하지 않는다.",
+      "grading": "self_assessment",
+      "revision": "sha256:e3bd858f1ad5a3a5f89f0c318fa7cdbad0d139b1fa6902c04af11e89b197a8e3"
+    }
+  ]
+}

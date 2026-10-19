@@ -1,0 +1,14 @@
+{
+  "id": "CH10-P03",
+  "chapter_id": "CH10",
+  "title": "평가 모드와 기울기 비활성화는 다른 스위치다",
+  "order": 3,
+  "concept_ids": [
+    "train-eval-mode",
+    "autograd"
+  ],
+  "body_markdown": "`model.eval()`은 dropout이나 batch normalization처럼 모드에 따라 행동이 바뀌는 층을 평가 동작으로 전환한다. 이것만으로 기울기 기록이 꺼지는 것은 아니다. `torch.no_grad()` 또는 적절한 추론 모드는 기울기 추적과 관련된 동작을 제어한다. 보통 평가에서는 두 역할을 함께 고려한다.\n\n```python\nmodel.eval()\nwith torch.no_grad():\n    predictions = model(x).argmax(dim=-1)\n```\n\n새 모델을 디버깅할 때 작은 자료 몇 건을 먼저 과하게 맞춰보는 방법이 유용하다. 쉬운 자료도 못 맞추면 입력·정답·손실·갱신 경로를 의심할 수 있다. 작은 자료를 외우는 데 성공했다고 일반화가 입증된 것은 아니다. 이 검사는 학습 배선이 작동하는지 확인하는 단계다.",
+  "previous_page_id": "CH10-P02",
+  "next_page_id": "CH11-P01",
+  "revision": "sha256:0c050cb2a2180052866c96d5225a982a7e0990b6318b20e3444bf2420f4d9551"
+}

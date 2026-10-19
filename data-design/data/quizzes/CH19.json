@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH19",
+  "questions": [
+    {
+      "id": "CH19-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "concept_ids": [
+        "top-p"
+      ],
+      "source_page_ids": [
+        "CH19-P02"
+      ],
+      "prompt_markdown": "확률 `[0.6,0.25,0.1,0.05]`, top-p=0.8에서 전형적으로 남는 후보는?",
+      "category": "후보 선택",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH19-Q01:A",
+          "text": "앞 두 후보"
+        },
+        {
+          "id": "CH19-Q01:B",
+          "text": "마지막 후보 하나"
+        },
+        {
+          "id": "CH19-Q01:C",
+          "text": "항상 정확히 세 후보"
+        },
+        {
+          "id": "CH19-Q01:D",
+          "text": "항상 모든 후보"
+        }
+      ],
+      "correct_option_id": "CH19-Q01:A",
+      "explanation_markdown": "앞 두 후보의 누적 확률 0.85가 기준을 넘는다.",
+      "generation_id": null,
+      "revision": "sha256:aef7d5d510d16432659948aae9a923398e01f876048b74d2053f8a3bfd45f15b"
+    },
+    {
+      "id": "CH19-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "concept_ids": [
+        "stop-condition",
+        "structured-generation"
+      ],
+      "source_page_ids": [
+        "CH19-P03"
+      ],
+      "prompt_markdown": "응답은 HTTP 200인데 JSON이 중간에 끊겼다. 적절한 조사는?",
+      "category": "생성 오류",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH19-Q02:A",
+          "text": "성공으로 집계하고 무시한다."
+        },
+        {
+          "id": "CH19-Q02:B",
+          "text": "temperature를 0으로 하면 모든 문제가 해결된다."
+        },
+        {
+          "id": "CH19-Q02:C",
+          "text": "종료 이유·출력 상한·스키마 검증을 확인한다."
+        },
+        {
+          "id": "CH19-Q02:D",
+          "text": "입력 자료를 테스트 세트에 합친다."
+        }
+      ],
+      "correct_option_id": "CH19-Q02:C",
+      "explanation_markdown": "전송 성공과 유효한 생성 결과는 다르다.",
+      "generation_id": null,
+      "revision": "sha256:5f1a5b10bb4dd09b1f5eae0680c5bb131d217b4bbe44b1406e454f78ea736f99"
+    },
+    {
+      "id": "CH19-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "concept_ids": [
+        "softmax",
+        "temperature",
+        "greedy-decoding",
+        "top-k",
+        "top-p",
+        "stop-condition",
+        "structured-generation"
+      ],
+      "source_page_ids": [
+        "CH19-P01",
+        "CH19-P02",
+        "CH19-P03"
+      ],
+      "prompt_markdown": "낮은 temperature가 사실 정확성이나 완전한 재현성을 보장하지 않는 이유를 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "낮은 temperature는 높은 점수 후보에 분포를 집중시키지만 높은 점수의 답이 사실이라고 보장하지 않는다. 잘못된 패턴을 더 일관되게 출력할 수도 있다. 완전한 재현성은 모델 버전·실행 환경·제공자 구현 등의 영향도 받는다. 생성 설정과 사실 검증을 구분한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:f82816cd9b03f197642901d21d7c1700ea544818c55a9689a7e654a4bac6dac8"
+    }
+  ]
+}

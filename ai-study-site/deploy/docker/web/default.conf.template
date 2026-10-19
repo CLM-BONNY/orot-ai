@@ -1,0 +1,55 @@
+limit_req_zone $binary_remote_addr zone=ai_requests:10m rate=6r/m;
+server {
+    listen 8080;
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+    resolver ${NGINX_RESOLVER} valid=10s ipv6=off;
+    set $api_upstream "${API_UPSTREAM}";
+    set_real_ip_from ${TRUSTED_PROXY_CIDR};
+    real_ip_header X-Forwarded-For;
+    real_ip_recursive on;
+    client_max_body_size 64k;
+    auth_basic "${SITE_AUTH_MODE}";
+    auth_basic_user_file /tmp/orot.htpasswd;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+    location = /release.json { auth_basic off; try_files /release.json =404; add_header Cache-Control no-cache always; }
+    location = /healthz { auth_basic off; access_log off; default_type text/plain; return 200 "ok\n"; }
+    location ^~ /api/ai/ {
+        limit_req zone=ai_requests burst=2 nodelay;
+        limit_req_status 429;
+        error_page 429 = @limited;
+        proxy_pass http://$api_upstream;
+        proxy_read_timeout 190s;
+        proxy_send_timeout 190s;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        add_header Cache-Control no-store always;
+    }
+    location @limited { default_type application/json; return 429 '{"error":{"code":"EDGE_RATE_LIMITED","message":"요청이 많아요. 잠시 후 다시 시도해 주세요."}}'; }
+    location = /api/health { auth_basic off; proxy_pass http://$api_upstream; add_header Cache-Control no-store always; }
+    location /api/ {
+        proxy_pass http://$api_upstream;
+        proxy_read_timeout 10s;
+        proxy_set_header Host $host;
+        add_header Cache-Control no-store always;
+    }
+    location /content/ {
+        proxy_pass http://$api_upstream;
+        proxy_set_header Host $host;
+    }
+    location /assets/ {
+        try_files $uri =404;
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        add_header X-Content-Type-Options nosniff always;
+    }
+    location ~ /\. { return 404; }
+    location = / { try_files /index.html =404; add_header Cache-Control no-cache always; }
+    location = /index.html { add_header Cache-Control no-cache always; }
+    location ~ "^/(curriculum|notebook|ai-review|learn/CH[0-9]{2}-P[0-9]{2}|quiz/(CH[0-9]{2}|capstones)|review/(wrong|star|ai))$" {
+        try_files /index.html =404;
+        add_header Cache-Control no-cache always;
+    }
+    location / { return 404; }
+}

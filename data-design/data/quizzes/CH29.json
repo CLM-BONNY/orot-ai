@@ -1,0 +1,118 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH29",
+  "questions": [
+    {
+      "id": "CH29-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "concept_ids": [
+        "mangum",
+        "asgi"
+      ],
+      "source_page_ids": [
+        "CH29-P02"
+      ],
+      "prompt_markdown": "Mangum의 역할은?",
+      "category": "역할 구분",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH29-Q01:A",
+          "text": "LLM의 가중치를 학습한다."
+        },
+        {
+          "id": "CH29-Q01:B",
+          "text": "개인 노트를 영구 저장한다."
+        },
+        {
+          "id": "CH29-Q01:C",
+          "text": "Lambda 이벤트와 ASGI 애플리케이션 요청·응답을 연결한다."
+        },
+        {
+          "id": "CH29-Q01:D",
+          "text": "모든 요청의 응답시간을 보장한다."
+        }
+      ],
+      "correct_option_id": "CH29-Q01:C",
+      "explanation_markdown": "연결 어댑터이며 모델 학습이나 DB, 성능 보증 도구가 아니다.",
+      "generation_id": null,
+      "revision": "sha256:fc1d89ff58525e4d429711a5f330a0cec18c58410283a98186009729b46423b6"
+    },
+    {
+      "id": "CH29-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "concept_ids": [
+        "async-io",
+        "background-job"
+      ],
+      "source_page_ids": [
+        "CH29-P03"
+      ],
+      "prompt_markdown": "함수에 `async`를 붙였을 때 항상 성립하는 주장은?",
+      "category": "비동기 구분",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH29-Q02:A",
+          "text": "그것만으로 작업 큐·영구 상태·결과 조회 API가 완성되는 것은 아니다."
+        },
+        {
+          "id": "CH29-Q02:B",
+          "text": "외부 모델이 반드시 빨라진다."
+        },
+        {
+          "id": "CH29-Q02:C",
+          "text": "모든 CPU 작업이 자동 병렬화된다."
+        },
+        {
+          "id": "CH29-Q02:D",
+          "text": "API 시간 제한이 사라진다."
+        }
+      ],
+      "correct_option_id": "CH29-Q02:A",
+      "explanation_markdown": "비동기 I/O와 비동기 작업 시스템은 다른 설계다.",
+      "generation_id": null,
+      "revision": "sha256:74249372ca08b9c436f1991e43e9738fdff74ec51bcf564aece79497ecfdc6f9"
+    },
+    {
+      "id": "CH29-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "concept_ids": [
+        "http",
+        "api-contract",
+        "fastapi",
+        "asgi",
+        "mangum",
+        "serverless",
+        "async-io",
+        "background-job"
+      ],
+      "source_page_ids": [
+        "CH29-P01",
+        "CH29-P02",
+        "CH29-P03"
+      ],
+      "prompt_markdown": "브라우저에서 문제 생성 버튼을 누른 뒤 결과가 나타날 때까지의 경로를 그려라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "React 버튼→HTTP 요청→API Gateway→Lambda 이벤트→Mangum→FastAPI 검증→콘텐츠 조회→모델 호출→결과 검증→HTTP 응답→화면 표시다. 개인 기록과 기본 채점은 브라우저에서 처리할 수 있다. 구간마다 어디서 시간을 재는지도 표시하면 운영 실험으로 이어진다.",
+      "grading": "self_assessment",
+      "revision": "sha256:00e83ef90f3b9bee77d3f44355904b4be8813e718a1a2f01a1d99bce1398bcbe"
+    }
+  ]
+}

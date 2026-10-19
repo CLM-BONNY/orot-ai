@@ -1,0 +1,115 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH24",
+  "questions": [
+    {
+      "id": "CH24-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "concept_ids": [
+        "recall-at-k"
+      ],
+      "source_page_ids": [
+        "CH24-P01"
+      ],
+      "prompt_markdown": "관련 문서가 2개이고 상위 5개 결과에 그중 1개가 있다. 이 질문의 Recall@5는?",
+      "category": "지표 계산",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH24-Q01:A",
+          "text": "0.5"
+        },
+        {
+          "id": "CH24-Q01:B",
+          "text": "0.2"
+        },
+        {
+          "id": "CH24-Q01:C",
+          "text": "1.0"
+        },
+        {
+          "id": "CH24-Q01:D",
+          "text": "5.0"
+        }
+      ],
+      "correct_option_id": "CH24-Q01:A",
+      "explanation_markdown": "관련 문서 전체 중 찾은 비율인 `1/2`다. `1/5`는 다른 정의이며 recall의 분모가 아니다.",
+      "generation_id": null,
+      "revision": "sha256:3af1b40acb598e2dbf3b88111224d9eaa49450fd8772dec73b6e40947f55776c"
+    },
+    {
+      "id": "CH24-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "concept_ids": [
+        "retrieval-acl"
+      ],
+      "source_page_ids": [
+        "CH24-P03"
+      ],
+      "prompt_markdown": "개인 노트 검색 권한을 적용할 가장 적절한 위치는?",
+      "category": "보안 경계",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH24-Q02:A",
+          "text": "답변이 생성된 뒤 CSS로 숨기기"
+        },
+        {
+          "id": "CH24-Q02:B",
+          "text": "모델에게 주의하라고만 지시하기"
+        },
+        {
+          "id": "CH24-Q02:C",
+          "text": "서버가 확인한 권한으로 검색·문맥 전달·캐시 접근을 제한하기"
+        },
+        {
+          "id": "CH24-Q02:D",
+          "text": "질문을 익명 문자열로 바꾸기만 하기"
+        }
+      ],
+      "correct_option_id": "CH24-Q02:C",
+      "explanation_markdown": "허용되지 않은 자료를 모델에 넘기지 않는 데이터 경계가 필요하다.",
+      "generation_id": null,
+      "revision": "sha256:7056fc2f45d17ea198917d5c797d89020383c8e501873ff31ab4edcf98bbb558"
+    },
+    {
+      "id": "CH24-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "concept_ids": [
+        "recall-at-k",
+        "mrr",
+        "groundedness",
+        "answer-correctness",
+        "citation",
+        "abstention",
+        "retrieval-acl"
+      ],
+      "source_page_ids": [
+        "CH24-P01",
+        "CH24-P02",
+        "CH24-P03"
+      ],
+      "prompt_markdown": "근거 충실성과 정답 정확성이 서로 다르게 평가되는 예를 각각 만들어라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "오래된 규정의 숫자를 그대로 답하면 근거에는 충실하지만 현재 정답은 틀릴 수 있다. 반대로 검색 문맥에는 없지만 모델이 이미 아는 정확한 사실을 답하면 정답 정확성은 높아도 제공 근거에 대한 충실성은 낮을 수 있다. 검색·근거 사용·원문 최신성을 각각 조사한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:bf740a995ac335f72ed8ef946a423bd066f586de0a8a92e0c62b8b6e0a08bb5d"
+    }
+  ]
+}

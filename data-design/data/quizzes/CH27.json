@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH27",
+  "questions": [
+    {
+      "id": "CH27-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH27"
+      ],
+      "concept_ids": [
+        "llm-as-judge",
+        "rubric"
+      ],
+      "source_page_ids": [
+        "CH27-P02"
+      ],
+      "prompt_markdown": "LLM 채점자를 사용하는 적절한 방식은?",
+      "category": "평가 설계",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH27-Q01:A",
+          "text": "사람이 한 번도 보지 않고 최종 사실 판정으로 사용"
+        },
+        {
+          "id": "CH27-Q01:B",
+          "text": "답이 길면 무조건 만점"
+        },
+        {
+          "id": "CH27-Q01:C",
+          "text": "모델 이름만 보고 점수 부여"
+        },
+        {
+          "id": "CH27-Q01:D",
+          "text": "구체적 기준·일부 사람 검토·순서 편향 점검과 함께 사용"
+        }
+      ],
+      "correct_option_id": "CH27-Q01:D",
+      "explanation_markdown": "채점자 자체의 오류와 편향도 관찰해야 한다.",
+      "generation_id": null,
+      "revision": "sha256:5f00b87867418dfc5af422b28aecb196ab3e8a79775162c45d168464083e3cb5"
+    },
+    {
+      "id": "CH27-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH27"
+      ],
+      "concept_ids": [
+        "eval-dataset",
+        "rubric"
+      ],
+      "source_page_ids": [
+        "CH27-P03"
+      ],
+      "prompt_markdown": "같은 오답 문제를 반복해 맞힌 뒤 이해 전이를 더 확인하려면?",
+      "category": "학습 효과",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH27-Q02:A",
+          "text": "정답 위치만 외우게 한다."
+        },
+        {
+          "id": "CH27-Q02:B",
+          "text": "시간이 지난 뒤 같은 개념의 다른 상황 문제를 푼다."
+        },
+        {
+          "id": "CH27-Q02:C",
+          "text": "모든 보기를 정답으로 바꾼다."
+        },
+        {
+          "id": "CH27-Q02:D",
+          "text": "해설을 숨긴 채 점수만 높인다."
+        }
+      ],
+      "correct_option_id": "CH27-Q02:B",
+      "explanation_markdown": "같은 문항의 기억과 개념을 새로운 상황에 적용하는 능력을 구분하려는 방법이다.",
+      "generation_id": null,
+      "revision": "sha256:6bdd633688fd416c0326163efc49b60d1763235ac1cdf9dd1fa6fc59534f4985"
+    },
+    {
+      "id": "CH27-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH27"
+      ],
+      "concept_ids": [
+        "eval-dataset",
+        "rubric",
+        "llm-as-judge",
+        "pairwise-evaluation",
+        "regression-test",
+        "ablation"
+      ],
+      "source_page_ids": [
+        "CH27-P01",
+        "CH27-P02",
+        "CH27-P03"
+      ],
+      "prompt_markdown": "생성 퀴즈 평가 루브릭을 만들고, 자동 검사와 사람 검토에 각각 맡길 항목을 구분하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "평가 항목은 근거성·정답 유일성·오답 보기의 질·난이도·해설의 교정 효과다. 형식·ID·개수·인덱스·단순 중복은 자동 검사한다. 모호함·개념 오류·적절한 난이도는 대표 사례를 사람이 검토하고 모델 채점자를 보조로 쓸 수 있다. 각 항목의 판정 기준과 불일치 사례를 남긴다.",
+      "grading": "self_assessment",
+      "revision": "sha256:d1799f728a104642dc54abdb0c22ba2094714b94ed5ab0cfc0990c045c8451e9"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "CH24-P02",
+  "chapter_id": "CH24",
+  "title": "근거를 잘 따랐는데 답이 틀릴 수도 있다",
+  "order": 2,
+  "concept_ids": [
+    "groundedness",
+    "answer-correctness",
+    "citation",
+    "abstention"
+  ],
+  "body_markdown": "Groundedness 또는 faithfulness는 답의 주장이 제공 문맥에 의해 뒷받침되는지 보는 관점이다. Answer correctness는 정답 자체가 맞는지를 본다. 오래된 문서를 충실히 따라 틀린 답을 만들 수 있고, 자료에는 없는 내용을 우연히 맞힐 수도 있다. 두 지표를 합쳐 생각하면 원인을 놓친다.\n\n출처 검사는 링크 존재 여부보다 구체적이어야 한다. 인용한 구간이 실제 해당 주장을 뒷받침하는가, 예외를 빠뜨리지 않았는가, 다른 문서의 숫자를 옮기지 않았는가를 본다. 자료에 없을 때 답변을 보류하는 능력도 평가한다.\n\n실패를 “근거 미검색”, “근거 순위 낮음”, “문맥 선택 중 누락”, “근거 해석 오류”, “원문 오류”로 나누면 다음 조치가 보인다. 평가용 모델을 쓰더라도 일부 사례를 사람이 검토해 판정 기준이 실제 목표와 맞는지 확인한다.",
+  "previous_page_id": "CH24-P01",
+  "next_page_id": "CH24-P03",
+  "revision": "sha256:ec42123136a0fe46b6fedeb692d9e30c57f1cc3219cbfa21c060d1dcc8621d87"
+}

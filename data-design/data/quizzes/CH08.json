@@ -1,0 +1,119 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH08",
+  "questions": [
+    {
+      "id": "CH08-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "concept_ids": [
+        "recall",
+        "confusion-matrix"
+      ],
+      "source_page_ids": [
+        "CH08-P01"
+      ],
+      "prompt_markdown": "TP=8, FP=12, FN=2인 분류기의 재현율은?",
+      "category": "계산",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH08-Q01:A",
+          "text": "40%"
+        },
+        {
+          "id": "CH08-Q01:B",
+          "text": "80%"
+        },
+        {
+          "id": "CH08-Q01:C",
+          "text": "53.3%"
+        },
+        {
+          "id": "CH08-Q01:D",
+          "text": "99%"
+        }
+      ],
+      "correct_option_id": "CH08-Q01:B",
+      "explanation_markdown": "`8/(8+2)=0.8`이다. 40%는 정밀도, 약 53.3%는 F1이다.",
+      "generation_id": null,
+      "revision": "sha256:a3a9f46974a66f75887e54045e9149d3a1e901d08007341abf4bc3ec1bbf667d"
+    },
+    {
+      "id": "CH08-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "concept_ids": [
+        "precision",
+        "recall",
+        "threshold"
+      ],
+      "source_page_ids": [
+        "CH08-P02"
+      ],
+      "prompt_markdown": "희귀 오류 알림을 하루 최대 20건만 사람이 확인할 수 있다. 가장 직접적인 추가 평가는?",
+      "category": "지표 선택",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH08-Q02:A",
+          "text": "모델 파일 크기만 확인"
+        },
+        {
+          "id": "CH08-Q02:B",
+          "text": "테스트 자료를 학습에 합치기"
+        },
+        {
+          "id": "CH08-Q02:C",
+          "text": "정확도만 보고 종료"
+        },
+        {
+          "id": "CH08-Q02:D",
+          "text": "상위 20개 알림의 정밀도와 놓친 오류 비율 확인"
+        }
+      ],
+      "correct_option_id": "CH08-Q02:D",
+      "explanation_markdown": "실제 확인 용량과 놓침 비용을 반영해야 한다. 하나의 전체 평균 점수로 대체하기 어렵다.",
+      "generation_id": null,
+      "revision": "sha256:e36aca4e5ab93cd25f6d84e16cb895a09df55eca3e989e98f86b515a84803724"
+    },
+    {
+      "id": "CH08-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "concept_ids": [
+        "confusion-matrix",
+        "precision",
+        "recall",
+        "f1",
+        "roc-auc",
+        "pr-curve",
+        "threshold",
+        "error-analysis"
+      ],
+      "source_page_ids": [
+        "CH08-P01",
+        "CH08-P02",
+        "CH08-P03"
+      ],
+      "prompt_markdown": "정확도가 99%지만 쓸모없는 모델의 예를 만들고, 어떤 지표를 추가하면 문제가 드러나는지 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "오류가 1%인 자료에서 모두 정상이라고 하면 정확도는 99%지만 오류 재현율은 0이다. 혼동행렬과 정밀도·재현율을 보면 문제가 드러난다. 알림을 검토할 인력이 제한되어 있으면 상위 일정 개수의 정밀도와 놓침 비용도 확인한다. 전체 정확도 하나로 결정을 대신하지 않는다.",
+      "grading": "self_assessment",
+      "revision": "sha256:b881797c146bb9e6a6bebb1cfa23659be734086f72845c331a36fd72aab0909a"
+    }
+  ]
+}

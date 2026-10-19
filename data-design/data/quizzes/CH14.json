@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH14",
+  "questions": [
+    {
+      "id": "CH14-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH14"
+      ],
+      "concept_ids": [
+        "tf-idf",
+        "embedding"
+      ],
+      "source_page_ids": [
+        "CH14-P01"
+      ],
+      "prompt_markdown": "정확한 오류 코드 `ERR-731` 검색을 개선하려고 한다. 가장 합리적인 출발은?",
+      "category": "검색 선택",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH14-Q01:A",
+          "text": "키워드 기반 검색을 기준선으로 두고 의미 검색과 비교한다."
+        },
+        {
+          "id": "CH14-Q01:B",
+          "text": "숫자와 하이픈을 모두 제거한다."
+        },
+        {
+          "id": "CH14-Q01:C",
+          "text": "임베딩이면 정확한 일치를 항상 보장한다고 가정한다."
+        },
+        {
+          "id": "CH14-Q01:D",
+          "text": "평가 질문을 없앤다."
+        }
+      ],
+      "correct_option_id": "CH14-Q01:A",
+      "explanation_markdown": "고유 기호의 일치에는 키워드가 중요할 수 있다. 실제 데이터에서 장단점을 확인한다.",
+      "generation_id": null,
+      "revision": "sha256:d0cad234da407582e957544117f0b55eadbe4232851f41915a4a14b811ae392f"
+    },
+    {
+      "id": "CH14-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH14"
+      ],
+      "concept_ids": [
+        "embedding",
+        "sentence-embedding"
+      ],
+      "source_page_ids": [
+        "CH14-P03"
+      ],
+      "prompt_markdown": "문서와 질문의 임베딩 차원 수가 같으면 서로 다른 모델의 벡터를 바로 비교해도 되는가?",
+      "category": "표현 호환성",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH14-Q02:A",
+          "text": "항상 가능하다."
+        },
+        {
+          "id": "CH14-Q02:B",
+          "text": "벡터 길이만 1로 만들면 항상 가능하다."
+        },
+        {
+          "id": "CH14-Q02:C",
+          "text": "아니다. 같은 차원 수가 같은 표현 공간을 보장하지 않는다."
+        },
+        {
+          "id": "CH14-Q02:D",
+          "text": "질문을 길게 만들면 자동 변환된다."
+        }
+      ],
+      "correct_option_id": "CH14-Q02:C",
+      "explanation_markdown": "모델의 학습된 좌표계와 사용 조건이 맞아야 한다.",
+      "generation_id": null,
+      "revision": "sha256:9819da036cdb66da1162cb94ec2f69edb5de0b9905d29cb2bc519c41b71be4a8"
+    },
+    {
+      "id": "CH14-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH14"
+      ],
+      "concept_ids": [
+        "bag-of-words",
+        "tf-idf",
+        "embedding",
+        "contextual-embedding",
+        "sentence-embedding",
+        "bi-encoder"
+      ],
+      "source_page_ids": [
+        "CH14-P01",
+        "CH14-P02",
+        "CH14-P03"
+      ],
+      "prompt_markdown": "TF-IDF와 문장 임베딩이 서로 다른 검색 실패를 보일 수 있는 예를 하나씩 만들어라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "TF-IDF는 다른 말로 표현된 같은 개념을 놓칠 수 있다. Dense 임베딩은 의미가 비슷해도 정확한 오류 코드나 부정 조건을 구분하는 데 실패할 수 있다. 실제 질문으로 비교하고 필요하면 하이브리드 검색을 검토한다. 검색 점수는 사실 일치나 정답 확률이 아니다.",
+      "grading": "self_assessment",
+      "revision": "sha256:06e92e9f5fae36bbc988e5d895d83fcefea5535ee2cce9435fb0bb68744e364c"
+    }
+  ]
+}

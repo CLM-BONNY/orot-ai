@@ -1,0 +1,114 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH15",
+  "questions": [
+    {
+      "id": "CH15-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH15"
+      ],
+      "concept_ids": [
+        "attention",
+        "query-key-value"
+      ],
+      "source_page_ids": [
+        "CH15-P02"
+      ],
+      "prompt_markdown": "Value `[10,0]`, `[0,10]`에 가중치 `[0.8,0.2]`를 적용한 가중합은?",
+      "category": "계산",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH15-Q01:A",
+          "text": "`[10,10]`"
+        },
+        {
+          "id": "CH15-Q01:B",
+          "text": "`[0.8,0.2]`"
+        },
+        {
+          "id": "CH15-Q01:C",
+          "text": "`[2,8]`"
+        },
+        {
+          "id": "CH15-Q01:D",
+          "text": "`[8,2]`"
+        }
+      ],
+      "correct_option_id": "CH15-Q01:D",
+      "explanation_markdown": "`0.8×[10,0]+0.2×[0,10]=[8,2]`다.",
+      "generation_id": null,
+      "revision": "sha256:bfe69b6dc84ebe7938d7799f667135487b3fe5c2d83e6bd8a944f1b13363b0d1"
+    },
+    {
+      "id": "CH15-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH15"
+      ],
+      "concept_ids": [
+        "scaled-dot-product"
+      ],
+      "source_page_ids": [
+        "CH15-P02"
+      ],
+      "prompt_markdown": "미래 위치를 softmax 이전에 차단하려면 어떤 처리가 적절한가?",
+      "category": "마스크",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH15-Q02:A",
+          "text": "점수를 항상 1로 만든다."
+        },
+        {
+          "id": "CH15-Q02:B",
+          "text": "해당 점수에 매우 큰 음수 또는 음의 무한대를 적용한다."
+        },
+        {
+          "id": "CH15-Q02:C",
+          "text": "Value의 차원을 늘리기만 한다."
+        },
+        {
+          "id": "CH15-Q02:D",
+          "text": "점수를 0으로 만들면 언제나 확률도 0이다."
+        }
+      ],
+      "correct_option_id": "CH15-Q02:B",
+      "explanation_markdown": "softmax에서 0점도 양의 기여를 하므로 D는 틀리다.",
+      "generation_id": null,
+      "revision": "sha256:f03f70559c8b7265d283ea6eaf496d8d78b3fe39ebd70a1723e946b3b8b17d33"
+    },
+    {
+      "id": "CH15-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH15"
+      ],
+      "concept_ids": [
+        "attention",
+        "query-key-value",
+        "scaled-dot-product",
+        "self-attention",
+        "multi-head-attention"
+      ],
+      "source_page_ids": [
+        "CH15-P01",
+        "CH15-P02",
+        "CH15-P03"
+      ],
+      "prompt_markdown": "Attention 가중치만으로 답변 생성의 모든 원인을 설명할 수 없는 이유를 말하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "답변은 여러 층·head·잔차 경로·비선형 변환을 거쳐 만들어진다. 한 Attention 행렬은 그 계산의 일부다. 높은 가중치를 준 토큰이 출력의 유일한 원인이라고 할 수 없고, 인과 효과를 말하려면 다른 분석이 필요하다. 시각화는 관찰 도구로 사용한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:3e5e5d0fa41aa43f3c08175d7f90deccedd03b727225d4a38f359d1f39e43dca"
+    }
+  ]
+}

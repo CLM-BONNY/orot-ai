@@ -1,0 +1,13 @@
+{
+  "kind": "review_request",
+  "request_id": "REQ-2a13dabb-61b5-5786-90c5-a267023ac83e",
+  "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+  "concept_ids": [
+    "rag"
+  ],
+  "question_count": 3,
+  "difficulty": "beginner",
+  "source_page_ids": [
+    "CH01-P01"
+  ]
+}

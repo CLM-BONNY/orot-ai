@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH04",
+  "questions": [
+    {
+      "id": "CH04-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH04"
+      ],
+      "concept_ids": [
+        "gradient-descent",
+        "learning-rate"
+      ],
+      "source_page_ids": [
+        "CH04-P02"
+      ],
+      "prompt_markdown": "현재 w=1, 기울기=-16, 학습률=0.1일 때 경사하강법 갱신 결과는?",
+      "category": "계산",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH04-Q01:A",
+          "text": "-0.6"
+        },
+        {
+          "id": "CH04-Q01:B",
+          "text": "1.6"
+        },
+        {
+          "id": "CH04-Q01:C",
+          "text": "-15"
+        },
+        {
+          "id": "CH04-Q01:D",
+          "text": "2.6"
+        }
+      ],
+      "correct_option_id": "CH04-Q01:D",
+      "explanation_markdown": "`1-0.1×(-16)=2.6`이다. 기울기가 음수이면 빼기 갱신에서 w가 증가한다.",
+      "generation_id": null,
+      "revision": "sha256:1a55fccdc2ae2fb4f433b63c9887d88ae07484c8250a1cae7331d6ed9d69bd8a"
+    },
+    {
+      "id": "CH04-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH04"
+      ],
+      "concept_ids": [
+        "loss",
+        "gradient-descent"
+      ],
+      "source_page_ids": [
+        "CH04-P03"
+      ],
+      "prompt_markdown": "학습 손실은 계속 줄지만 검증 성능이 나빠진다. 가장 적절한 판단은?",
+      "category": "원인 구분",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH04-Q02:A",
+          "text": "최적화와 일반화를 구분하고 과적합 등을 조사한다."
+        },
+        {
+          "id": "CH04-Q02:B",
+          "text": "학습 손실이 줄었으므로 운영 성능도 반드시 좋다."
+        },
+        {
+          "id": "CH04-Q02:C",
+          "text": "검증 자료는 필요 없다."
+        },
+        {
+          "id": "CH04-Q02:D",
+          "text": "학습률을 무조건 크게 올린다."
+        }
+      ],
+      "correct_option_id": "CH04-Q02:A",
+      "explanation_markdown": "학습 자료의 목적함수를 잘 맞추는 것만으로 새로운 자료에서의 성능을 보장하지 않는다.",
+      "generation_id": null,
+      "revision": "sha256:318de868932e29a837bd0758b9fc8957c08cbfd1ea185e85e7b5581bbadf397c"
+    },
+    {
+      "id": "CH04-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH04"
+      ],
+      "concept_ids": [
+        "parameter",
+        "hyperparameter",
+        "loss",
+        "gradient",
+        "gradient-descent",
+        "learning-rate"
+      ],
+      "source_page_ids": [
+        "CH04-P01",
+        "CH04-P02",
+        "CH04-P03"
+      ],
+      "prompt_markdown": "파라미터와 하이퍼파라미터를 예시 두 개씩 들어 구분하고, 작은 학습률이 항상 최선은 아닌 이유를 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "선형 모델의 가중치와 편향은 학습으로 바뀌는 파라미터다. 학습률과 배치 크기는 절차를 정하는 하이퍼파라미터다. 너무 작은 학습률은 갱신이 느려 정해진 시간 안에 충분히 최적화하지 못할 수 있고 너무 큰 값은 진동·발산할 수 있다. 검증 결과와 계산 예산을 보며 선택한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:ddde7dd9a21e7aa6e540b68aa4f244414222e360a84dee9bf853921fa4c0a40e"
+    }
+  ]
+}

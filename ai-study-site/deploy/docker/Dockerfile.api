@@ -1,0 +1,14 @@
+# syntax=docker/dockerfile:1
+FROM python:3.12-slim-bookworm
+ARG APP_REVISION=local
+LABEL org.opencontainers.image.title="orot-ai-api" org.opencontainers.image.revision=$APP_REVISION
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 SERVE_FRONTEND=false CONTENT_DATA_DIR=/app/data-design/data APP_REVISION=$APP_REVISION
+WORKDIR /app/ai-study-site
+COPY ai-study-site/backend/requirements-runtime.txt ./backend/requirements-runtime.txt
+RUN pip install --no-cache-dir -r backend/requirements-runtime.txt && useradd --uid 10001 --create-home app
+COPY --chown=10001:10001 ai-study-site/backend ./backend
+COPY --chown=10001:10001 data-design/data /app/data-design/data
+USER 10001:10001
+EXPOSE 8000
+HEALTHCHECK --interval=15s --timeout=5s --start-period=15s --retries=3 CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health',timeout=3)"
+CMD ["python", "-m", "uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1", "--no-access-log"]

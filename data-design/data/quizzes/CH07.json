@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH07",
+  "questions": [
+    {
+      "id": "CH07-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH07"
+      ],
+      "concept_ids": [
+        "random-forest",
+        "gradient-boosting"
+      ],
+      "source_page_ids": [
+        "CH07-P02"
+      ],
+      "prompt_markdown": "랜덤 포레스트와 그레이디언트 부스팅을 비교한 설명 중 적절한 것은?",
+      "category": "방식 비교",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH07-Q01:A",
+          "text": "둘 다 언제나 신경망보다 우수하다."
+        },
+        {
+          "id": "CH07-Q01:B",
+          "text": "부스팅은 모든 모델을 완전히 독립적으로 학습한다."
+        },
+        {
+          "id": "CH07-Q01:C",
+          "text": "포레스트는 다양한 트리 결과를 모으고, 부스팅은 순차적으로 손실을 보완한다."
+        },
+        {
+          "id": "CH07-Q01:D",
+          "text": "둘 다 데이터 누수를 자동 탐지한다."
+        }
+      ],
+      "correct_option_id": "CH07-Q01:C",
+      "explanation_markdown": "결합 방식이 다르다. 우열은 데이터와 조건에 달려 있고 누수는 별도 설계 문제다.",
+      "generation_id": null,
+      "revision": "sha256:39d0ee6097d26e6ba8001ba08923dad4a53b73a822dbadd7331ea173ae5344d2"
+    },
+    {
+      "id": "CH07-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH07"
+      ],
+      "concept_ids": [
+        "clustering",
+        "k-means"
+      ],
+      "source_page_ids": [
+        "CH07-P03"
+      ],
+      "prompt_markdown": "사용자 군집 0번을 발견했다. 바로 결론 내릴 수 있는 것은?",
+      "category": "결과 해석",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH07-Q02:A",
+          "text": "선택한 표현·거리·알고리즘에 따라 한 집단으로 묶였다는 것"
+        },
+        {
+          "id": "CH07-Q02:B",
+          "text": "반드시 초보자라는 것"
+        },
+        {
+          "id": "CH07-Q02:C",
+          "text": "학습 능력이 가장 낮다는 것"
+        },
+        {
+          "id": "CH07-Q02:D",
+          "text": "서비스 개입의 인과 효과가 입증되었다는 것"
+        }
+      ],
+      "correct_option_id": "CH07-Q02:A",
+      "explanation_markdown": "군집의 의미는 원자료와 목적을 보며 검증해야 한다. 번호에는 순위나 인과 의미가 없다.",
+      "generation_id": null,
+      "revision": "sha256:26305789f32f393a913172b43abe18205e76a7ffca6251744ff8da9f34aa5820"
+    },
+    {
+      "id": "CH07-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH07"
+      ],
+      "concept_ids": [
+        "decision-tree",
+        "random-forest",
+        "gradient-boosting",
+        "clustering",
+        "k-means",
+        "pca"
+      ],
+      "source_page_ids": [
+        "CH07-P01",
+        "CH07-P02",
+        "CH07-P03"
+      ],
+      "prompt_markdown": "PCA가 분산을 많이 보존하면서도 특정 분류에 필요한 정보를 잃을 수 있는 상황을 만들어 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "샘플의 큰 변화가 조명 밝기에 있고 분류에 필요한 정보는 작은 표시 하나에 있다고 하자. 분산이 큰 축만 남기는 PCA가 작은 표시의 정보를 버릴 수 있다. PCA는 정답 레이블을 보고 분류를 최적화하는 방법이 아니다. 차원 축소 뒤 실제 과제의 성능을 평가해야 한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:0ef410aab00b8c5040019c589a1d050783c245001c35742e6c40d573a8f272e1"
+    }
+  ]
+}

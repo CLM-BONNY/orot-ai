@@ -1,0 +1,1468 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Engineer learning content and local record contracts",
+  "description": "Version 1.0.0; foreign keys and revision integrity require validate_data.py.",
+  "$defs": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^SRC-[0-9a-f]{12}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "track": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^T\\d{2}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "introduction_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "chapter_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "source_file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "order",
+        "introduction_markdown",
+        "chapter_ids",
+        "source_ids",
+        "source_file",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "chapter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^CH\\d{2}$"
+        },
+        "track_id": {
+          "type": "string",
+          "pattern": "^T\\d{2}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "prerequisite_chapter_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "learning_objectives": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "concept_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "page_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}-P\\d{2}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "question_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(CH\\d{2}-[QR]\\d{2}|CAP\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "track_id",
+        "title",
+        "order",
+        "prerequisite_chapter_ids",
+        "learning_objectives",
+        "concept_ids",
+        "page_ids",
+        "question_ids",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^CH\\d{2}-P\\d{2}$"
+        },
+        "chapter_id": {
+          "type": "string",
+          "pattern": "^CH\\d{2}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "concept_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "body_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "previous_page_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^CH\\d{2}-P\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "next_page_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^CH\\d{2}-P\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "chapter_id",
+        "title",
+        "order",
+        "concept_ids",
+        "body_markdown",
+        "previous_page_id",
+        "next_page_id",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "concept": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "chapter_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "page_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}-P\\d{2}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "question_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(CH\\d{2}-[QR]\\d{2}|CAP\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "chapter_ids",
+        "page_ids",
+        "question_ids"
+      ],
+      "additionalProperties": false
+    },
+    "option": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(CH\\d{2}-Q\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}):[A-D]$"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "single_choice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(CH\\d{2}-[QR]\\d{2}|CAP\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"
+        },
+        "format": {
+          "const": "single_choice"
+        },
+        "origin": {
+          "enum": [
+            "authored",
+            "generated"
+          ]
+        },
+        "content_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "chapter_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "concept_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "source_page_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}-P\\d{2}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "prompt_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "difficulty": {
+          "enum": [
+            "not_rated",
+            "beginner",
+            "intermediate",
+            "advanced"
+          ]
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/option"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "correct_option_id": {
+          "type": "string",
+          "pattern": "^(CH\\d{2}-Q\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}):[A-D]$"
+        },
+        "explanation_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generation_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^GEN-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "format",
+        "origin",
+        "content_version",
+        "chapter_ids",
+        "concept_ids",
+        "source_page_ids",
+        "prompt_markdown",
+        "category",
+        "difficulty",
+        "options",
+        "correct_option_id",
+        "explanation_markdown",
+        "generation_id",
+        "revision"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "origin": {
+                "const": "authored"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "pattern": "^CH\\d{2}-Q\\d{2}$"
+              },
+              "generation_id": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "id": {
+                "pattern": "^GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+              },
+              "generation_id": {
+                "type": "string",
+                "pattern": "^GEN-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "reflection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(CH\\d{2}-R\\d{2}|CAP\\d{2})$"
+        },
+        "format": {
+          "const": "self_explanation"
+        },
+        "origin": {
+          "const": "authored"
+        },
+        "content_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "chapter_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "concept_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "source_page_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}-P\\d{2}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "prompt_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "difficulty": {
+          "enum": [
+            "not_rated",
+            "beginner",
+            "intermediate",
+            "advanced"
+          ]
+        },
+        "expected_answer_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grading": {
+          "const": "self_assessment"
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "format",
+        "origin",
+        "content_version",
+        "chapter_ids",
+        "concept_ids",
+        "source_page_ids",
+        "prompt_markdown",
+        "category",
+        "difficulty",
+        "expected_answer_markdown",
+        "grading",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "question": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/single_choice"
+        },
+        {
+          "$ref": "#/$defs/reflection"
+        }
+      ]
+    },
+    "content_bundle": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "content_bundle"
+        },
+        "schema_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "content_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "dataset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "release_id": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "tracks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/track"
+          },
+          "minItems": 1
+        },
+        "chapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/chapter"
+          },
+          "minItems": 1
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/page"
+          },
+          "minItems": 1
+        },
+        "concepts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/concept"
+          },
+          "minItems": 1
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/question"
+          },
+          "minItems": 1
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "kind",
+        "schema_version",
+        "content_version",
+        "dataset_id",
+        "release_id",
+        "tracks",
+        "chapters",
+        "pages",
+        "concepts",
+        "questions",
+        "sources"
+      ],
+      "additionalProperties": false
+    },
+    "page_ref": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^CH\\d{2}-P\\d{2}$"
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "question_ref": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(CH\\d{2}-[QR]\\d{2}|CAP\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "note_target": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "page"
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^CH\\d{2}-P\\d{2}$"
+            },
+            "revision": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "revision"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "concept"
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+            }
+          },
+          "required": [
+            "kind",
+            "id"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "question"
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^(CH\\d{2}-[QR]\\d{2}|CAP\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"
+            },
+            "revision": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "revision"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "quote_anchor": {
+      "type": "object",
+      "properties": {
+        "exact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "suffix": {
+          "type": "string"
+        },
+        "page_ref": {
+          "$ref": "#/$defs/page_ref"
+        }
+      },
+      "required": [
+        "exact",
+        "prefix",
+        "suffix",
+        "page_ref"
+      ],
+      "additionalProperties": false
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^LP-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "display_name",
+        "created_at",
+        "updated_at"
+      ],
+      "additionalProperties": false
+    },
+    "attempt": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ATT-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "profile_id": {
+          "type": "string",
+          "pattern": "^LP-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "question_ref": {
+          "$ref": "#/$defs/question_ref"
+        },
+        "question_snapshot": {
+          "$ref": "#/$defs/single_choice"
+        },
+        "displayed_option_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(CH\\d{2}-Q\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}):[A-D]$"
+          },
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "selected_option_id": {
+          "type": "string",
+          "pattern": "^(CH\\d{2}-Q\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}):[A-D]$"
+        },
+        "is_correct": {
+          "type": "boolean"
+        },
+        "submitted_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "elapsed_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mode": {
+          "enum": [
+            "chapter_quiz",
+            "wrong_retry",
+            "starred",
+            "ai_review"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "profile_id",
+        "question_ref",
+        "question_snapshot",
+        "displayed_option_ids",
+        "selected_option_id",
+        "is_correct",
+        "submitted_at",
+        "elapsed_ms",
+        "mode"
+      ],
+      "additionalProperties": false
+    },
+    "note": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^NOTE-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "profile_id": {
+          "type": "string",
+          "pattern": "^LP-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "target": {
+          "$ref": "#/$defs/note_target"
+        },
+        "quote_anchor": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/quote_anchor"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "profile_id",
+        "target",
+        "quote_anchor",
+        "body_markdown",
+        "created_at",
+        "updated_at"
+      ],
+      "additionalProperties": false
+    },
+    "bookmark": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^BKM-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "profile_id": {
+          "type": "string",
+          "pattern": "^LP-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "question_ref": {
+          "$ref": "#/$defs/question_ref"
+        },
+        "question_snapshot": {
+          "$ref": "#/$defs/question"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "profile_id",
+        "question_ref",
+        "question_snapshot",
+        "created_at"
+      ],
+      "additionalProperties": false
+    },
+    "reading_progress": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^READ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "profile_id": {
+          "type": "string",
+          "pattern": "^LP-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "page_ref": {
+          "$ref": "#/$defs/page_ref"
+        },
+        "state": {
+          "enum": [
+            "started",
+            "completed"
+          ]
+        },
+        "completed_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "profile_id",
+        "page_ref",
+        "state",
+        "completed_at",
+        "updated_at"
+      ],
+      "additionalProperties": false
+    },
+    "resume": {
+      "type": "object",
+      "properties": {
+        "profile_id": {
+          "type": "string",
+          "pattern": "^LP-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "page_ref": {
+          "$ref": "#/$defs/page_ref"
+        },
+        "scroll_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "profile_id",
+        "page_ref",
+        "scroll_fraction",
+        "updated_at"
+      ],
+      "additionalProperties": false
+    },
+    "self_assessment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^SELF-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "profile_id": {
+          "type": "string",
+          "pattern": "^LP-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "question_ref": {
+          "$ref": "#/$defs/question_ref"
+        },
+        "question_snapshot": {
+          "$ref": "#/$defs/reflection"
+        },
+        "response_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rating": {
+          "enum": [
+            "again",
+            "partial",
+            "understood"
+          ]
+        },
+        "submitted_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "profile_id",
+        "question_ref",
+        "question_snapshot",
+        "response_markdown",
+        "rating",
+        "submitted_at"
+      ],
+      "additionalProperties": false
+    },
+    "generation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^GEN-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "profile_id": {
+          "type": "string",
+          "pattern": "^LP-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^REQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "content_release_id": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "concept_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true
+        },
+        "question_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(CH\\d{2}-[QR]\\d{2}|CAP\\d{2}|GQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_status": {
+          "const": "unreviewed"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "profile_id",
+        "request_id",
+        "content_release_id",
+        "concept_ids",
+        "question_ids",
+        "model",
+        "prompt_version",
+        "review_status",
+        "created_at"
+      ],
+      "additionalProperties": false
+    },
+    "backup": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "learning_backup"
+        },
+        "schema_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "content_release_id": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "exported_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "profile": {
+          "$ref": "#/$defs/profile"
+        },
+        "attempts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/attempt"
+          },
+          "minItems": 0
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/note"
+          },
+          "minItems": 0
+        },
+        "bookmarks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bookmark"
+          },
+          "minItems": 0
+        },
+        "reading_progress": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reading_progress"
+          },
+          "minItems": 0
+        },
+        "resume": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/resume"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "self_assessments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/self_assessment"
+          },
+          "minItems": 0
+        },
+        "generations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/generation"
+          },
+          "minItems": 0
+        },
+        "generated_questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/single_choice"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "kind",
+        "schema_version",
+        "content_release_id",
+        "exported_at",
+        "profile",
+        "attempts",
+        "notes",
+        "bookmarks",
+        "reading_progress",
+        "resume",
+        "self_assessments",
+        "generations",
+        "generated_questions"
+      ],
+      "additionalProperties": false
+    },
+    "history_message": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "enum": [
+            "user",
+            "assistant"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "role",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "tutor_request": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "tutor_request"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^REQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "content_release_id": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "page_id": {
+          "type": "string",
+          "pattern": "^CH\\d{2}-P\\d{2}$"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000
+        },
+        "selected_text": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/history_message"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "kind",
+        "request_id",
+        "content_release_id",
+        "page_id",
+        "message",
+        "selected_text",
+        "history"
+      ],
+      "additionalProperties": false
+    },
+    "tutor_response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "tutor_response"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^REQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "content_release_id": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "answer_markdown": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer_status": {
+          "enum": [
+            "grounded",
+            "insufficient_context"
+          ]
+        },
+        "source_page_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}-P\\d{2}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "request_id",
+        "content_release_id",
+        "answer_markdown",
+        "answer_status",
+        "source_page_ids",
+        "model",
+        "prompt_version"
+      ],
+      "additionalProperties": false
+    },
+    "review_request": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "review_request"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^REQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "content_release_id": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "concept_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true
+        },
+        "question_count": {
+          "const": 3
+        },
+        "difficulty": {
+          "enum": [
+            "beginner",
+            "intermediate",
+            "advanced"
+          ]
+        },
+        "source_page_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CH\\d{2}-P\\d{2}$"
+          },
+          "minItems": 0,
+          "maxItems": 10,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "kind",
+        "request_id",
+        "content_release_id",
+        "concept_ids",
+        "question_count",
+        "difficulty",
+        "source_page_ids"
+      ],
+      "additionalProperties": false
+    },
+    "review_response": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "review_response"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^REQ-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "content_release_id": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "generation_id": {
+          "type": "string",
+          "pattern": "^GEN-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_status": {
+          "const": "unreviewed"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/single_choice"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "kind",
+        "request_id",
+        "content_release_id",
+        "generation_id",
+        "model",
+        "prompt_version",
+        "review_status",
+        "questions"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/content_bundle"
+    },
+    {
+      "$ref": "#/$defs/backup"
+    },
+    {
+      "$ref": "#/$defs/tutor_request"
+    },
+    {
+      "$ref": "#/$defs/tutor_response"
+    },
+    {
+      "$ref": "#/$defs/review_request"
+    },
+    {
+      "$ref": "#/$defs/review_response"
+    }
+  ]
+}

@@ -1,0 +1,5584 @@
+{
+  "schema_version": "1.0.0",
+  "content_version": "1.0.0",
+  "release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+  "tracks": [
+    {
+      "id": "T01",
+      "title": "AI의 지도와 필요한 수학",
+      "order": 1,
+      "introduction_markdown": "이 트랙의 목표는 공식을 많이 외우는 것이 아니라, 모델이 무엇을 입력받고 어떤 숫자를 바꾸어 무엇을 최적화하는지 읽을 수 있게 되는 것이다. Python의 변수·함수·리스트를 알고 있다고 가정한다. 수식의 숫자는 이해를 위한 가상 예시다.",
+      "chapter_ids": [
+        "CH01",
+        "CH02",
+        "CH03",
+        "CH04"
+      ],
+      "source_ids": [
+        "SRC-ae53e3fd516d",
+        "SRC-31b37e22cc05",
+        "SRC-e3e431707540",
+        "SRC-c6288a335c36",
+        "SRC-ed554e5166ad"
+      ],
+      "source_file": "learning-content/01-foundations.md",
+      "revision": "sha256:03c865d610edd6f6b5a08db4ada75f5b261677b21124d28ff4f90babff3ca4d5"
+    },
+    {
+      "id": "T02",
+      "title": "데이터와 머신러닝의 판단 기준",
+      "order": 2,
+      "introduction_markdown": "이 트랙에서는 모델이 시험 문제를 몰래 본 상황과 실제로 일반화한 상황을 구분한다. 앞 트랙의 벡터·손실·조건부 확률을 실제 데이터와 연결한다.",
+      "chapter_ids": [
+        "CH05",
+        "CH06",
+        "CH07",
+        "CH08"
+      ],
+      "source_ids": [
+        "SRC-64104a518105",
+        "SRC-8eccb4ab18d7",
+        "SRC-a0a701fbf291",
+        "SRC-73de612c66eb",
+        "SRC-3e48badc01c0",
+        "SRC-05f057efe73a"
+      ],
+      "source_file": "learning-content/02-data-and-machine-learning.md",
+      "revision": "sha256:0d94468c11da823cc8d051899d0d837eed97c45d489a00ca59189d3c45c6a3c0"
+    },
+    {
+      "id": "T03",
+      "title": "딥러닝이 학습되는 과정",
+      "order": 3,
+      "introduction_markdown": "신경망을 신비한 상자 대신 입력·변환·손실·갱신으로 읽는다. 코드는 PyTorch 문법을 설명하기 위한 최소 예시이며, 패키지 설치나 실행 환경을 이 문서가 제공하는 것은 아니다.",
+      "chapter_ids": [
+        "CH09",
+        "CH10",
+        "CH11",
+        "CH12"
+      ],
+      "source_ids": [
+        "SRC-97354b8e63ef",
+        "SRC-f4182aa469fb",
+        "SRC-62f80af427e3",
+        "SRC-ad1a8b720acf",
+        "SRC-eb1a284bf553",
+        "SRC-08a8c4a77723",
+        "SRC-e4178c8cc5b2"
+      ],
+      "source_file": "learning-content/03-deep-learning.md",
+      "revision": "sha256:45ae272d5782d92697c8bed558aa55404d5db0d635e3ea1f0a11d5255ee22141"
+    },
+    {
+      "id": "T04",
+      "title": "NLP와 Transformer",
+      "order": 4,
+      "introduction_markdown": "문자열에서 토큰·표현·관계·출력으로 이어지는 길을 따라간다. “모델이 중요한 단어를 본다”는 설명에서 멈추지 않고, 무엇을 어떻게 계산하는지 살펴본다.",
+      "chapter_ids": [
+        "CH13",
+        "CH14",
+        "CH15",
+        "CH16"
+      ],
+      "source_ids": [
+        "SRC-516e19d463b9",
+        "SRC-46c04646b830",
+        "SRC-afdfedb70256",
+        "SRC-a7468c685165",
+        "SRC-cca3358a9b67"
+      ],
+      "source_file": "learning-content/04-nlp-and-transformers.md",
+      "revision": "sha256:0e80db3ebeaf12a8ec171181646ce94e199532a0f225bc7dc443fb1905b07502"
+    },
+    {
+      "id": "T05",
+      "title": "LLM을 이해하고 선택하기",
+      "order": 5,
+      "introduction_markdown": "큰 언어 모델이 어떻게 만들어지고 어떤 계산으로 답을 이어 쓰는지 배운다. 특정 제품의 최신 이름이나 순위 대신 모델을 비교하고 한계를 판단할 기준을 다룬다.",
+      "chapter_ids": [
+        "CH17",
+        "CH18",
+        "CH19",
+        "CH20"
+      ],
+      "source_ids": [
+        "SRC-3f5d847a8051",
+        "SRC-cae140a2c5e7",
+        "SRC-d5a5216fcde8",
+        "SRC-123e0cfc4e9d",
+        "SRC-61e2d620c85f",
+        "SRC-0c61f82af768"
+      ],
+      "source_file": "learning-content/05-large-language-models.md",
+      "revision": "sha256:d577251c0fb0461aa64e6354263db06940fecab560daa543b656820854c8432e"
+    },
+    {
+      "id": "T06",
+      "title": "근거를 찾아 답하는 시스템",
+      "order": 6,
+      "introduction_markdown": "RAG를 벡터 DB 하나로 기억하지 않고 수집·검색·선택·생성·검증의 흐름으로 배운다. 사이트의 작은 학습 자료에서 시작해 문서 규모가 커지는 상황으로 확장한다.",
+      "chapter_ids": [
+        "CH21",
+        "CH22",
+        "CH23",
+        "CH24"
+      ],
+      "source_ids": [
+        "SRC-02ad74cdb0c9",
+        "SRC-003233868319",
+        "SRC-40e16394da72",
+        "SRC-b7f706e2a00d",
+        "SRC-2b7c5bc63df4",
+        "SRC-a1c4613ca21d"
+      ],
+      "source_file": "learning-content/06-retrieval-augmented-generation.md",
+      "revision": "sha256:14aac54b0ea30854a08b535aba54492a01ed80662251b23bde346e69909e91a5"
+    },
+    {
+      "id": "T07",
+      "title": "모델을 믿을 수 있는 기능으로 만들기",
+      "order": 7,
+      "introduction_markdown": "이 트랙은 모델이 문장을 생성하는 능력과 서비스가 정확하게 실행되는 능력을 분리한다. 프롬프트·구조화 출력·도구·평가·데이터 경계를 하나의 흐름으로 연결한다.",
+      "chapter_ids": [
+        "CH25",
+        "CH26",
+        "CH27",
+        "CH28"
+      ],
+      "source_ids": [
+        "SRC-3965b6bffd82",
+        "SRC-ffc229d83891",
+        "SRC-3ce408fba6b4",
+        "SRC-16e11e26be5b",
+        "SRC-a1c4613ca21d",
+        "SRC-bb3542a7fc45"
+      ],
+      "source_file": "learning-content/07-ai-applications-and-evaluation.md",
+      "revision": "sha256:e0bbf2077b08240a23c7facf11613c1c6af266fb4afcc4e44ce849b868358076"
+    },
+    {
+      "id": "T08",
+      "title": "작동하는 데서 측정하고 개선하는 데로",
+      "order": 8,
+      "introduction_markdown": "이 트랙에서는 앞에서 배운 모델·검색·평가를 실제 웹 서비스에 연결한다. 지표를 외우는 대신 어떤 실패를 관찰하고 어떤 변경을 비교할지 설계한다.",
+      "chapter_ids": [
+        "CH29",
+        "CH30",
+        "CH31",
+        "CH32"
+      ],
+      "source_ids": [
+        "SRC-d3a85dd7e6a4",
+        "SRC-b97afe3e8f29",
+        "SRC-e5d49bfe92a5",
+        "SRC-7eecbd969b8c",
+        "SRC-71b82c307f88",
+        "SRC-c9a6d946f504",
+        "SRC-bc7db439643e"
+      ],
+      "source_file": "learning-content/08-serving-and-operations.md",
+      "revision": "sha256:7bd1290593f6380c0d2783dd164b348fcb075657989de4712878d619812f22b4"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "CH01",
+      "track_id": "T01",
+      "title": "AI Engineer는 어떤 문제를 푸는가",
+      "order": 1,
+      "prerequisite_chapter_ids": [],
+      "learning_objectives": [
+        "분야의 관계를 설명하고 사용자 문제를 입력·출력·성공 기준으로 바꾼다."
+      ],
+      "concept_ids": [
+        "ai",
+        "machine-learning",
+        "deep-learning",
+        "nlp",
+        "llm",
+        "rag",
+        "baseline",
+        "supervised-learning",
+        "unsupervised-learning",
+        "self-supervised-learning",
+        "reinforcement-learning"
+      ],
+      "page_ids": [
+        "CH01-P01",
+        "CH01-P02",
+        "CH01-P03"
+      ],
+      "question_ids": [
+        "CH01-Q01",
+        "CH01-Q02",
+        "CH01-R01"
+      ],
+      "revision": "sha256:be71343a22aa337421a12efcdfa09a24053945a323b67e1e8ec98c9eb7a58301"
+    },
+    {
+      "id": "CH02",
+      "track_id": "T01",
+      "title": "벡터·행렬·유사도",
+      "order": 2,
+      "prerequisite_chapter_ids": [
+        "CH01"
+      ],
+      "learning_objectives": [
+        "숫자 배열의 축과 행렬 곱의 의미를 읽고 유사도의 한계를 설명한다."
+      ],
+      "concept_ids": [
+        "scalar",
+        "vector",
+        "matrix",
+        "tensor",
+        "dot-product",
+        "cosine-similarity"
+      ],
+      "page_ids": [
+        "CH02-P01",
+        "CH02-P02",
+        "CH02-P03"
+      ],
+      "question_ids": [
+        "CH02-Q01",
+        "CH02-Q02",
+        "CH02-R01"
+      ],
+      "revision": "sha256:0333e56beb515001f1f75d491f2ba434963b00d937308045bfe7ba8bc3f01017"
+    },
+    {
+      "id": "CH03",
+      "track_id": "T01",
+      "title": "확률·통계·불확실성",
+      "order": 3,
+      "prerequisite_chapter_ids": [
+        "CH02"
+      ],
+      "learning_objectives": [
+        "조건부 확률과 표본의 변동을 이해하고 모델 점수와 신뢰도를 구분한다."
+      ],
+      "concept_ids": [
+        "conditional-probability",
+        "bayes-rule",
+        "expectation",
+        "variance",
+        "entropy",
+        "calibration"
+      ],
+      "page_ids": [
+        "CH03-P01",
+        "CH03-P02",
+        "CH03-P03"
+      ],
+      "question_ids": [
+        "CH03-Q01",
+        "CH03-Q02",
+        "CH03-R01"
+      ],
+      "revision": "sha256:6412ff77bb366980d4109c3fe1ac90ac87a7e6552067cf048c6804feb5e8626f"
+    },
+    {
+      "id": "CH04",
+      "track_id": "T01",
+      "title": "손실·미분·경사하강법",
+      "order": 4,
+      "prerequisite_chapter_ids": [
+        "CH02",
+        "CH03"
+      ],
+      "learning_objectives": [
+        "학습이 어떤 숫자를 어떤 방향으로 바꾸는 과정인지 계산으로 설명한다."
+      ],
+      "concept_ids": [
+        "parameter",
+        "hyperparameter",
+        "loss",
+        "gradient",
+        "gradient-descent",
+        "learning-rate"
+      ],
+      "page_ids": [
+        "CH04-P01",
+        "CH04-P02",
+        "CH04-P03"
+      ],
+      "question_ids": [
+        "CH04-Q01",
+        "CH04-Q02",
+        "CH04-R01"
+      ],
+      "revision": "sha256:7585e8518d89647d2c8b8d6b759f01a8817af28ab58e8ab7a5328fff7155e754"
+    },
+    {
+      "id": "CH05",
+      "track_id": "T02",
+      "title": "데이터 설계·분할·누수",
+      "order": 1,
+      "prerequisite_chapter_ids": [
+        "CH01",
+        "CH03"
+      ],
+      "learning_objectives": [
+        "예측 시점에 사용 가능한 특징을 고르고 실제 사용 조건에 맞게 데이터를 나눈다."
+      ],
+      "concept_ids": [
+        "feature",
+        "label",
+        "data-quality",
+        "train-validation-test",
+        "data-leakage",
+        "distribution-shift"
+      ],
+      "page_ids": [
+        "CH05-P01",
+        "CH05-P02",
+        "CH05-P03"
+      ],
+      "question_ids": [
+        "CH05-Q01",
+        "CH05-Q02",
+        "CH05-R01"
+      ],
+      "revision": "sha256:d891eaf10148b98a278ff7e9fc66626ea8c872d55364eaea5d10dce88e236eea"
+    },
+    {
+      "id": "CH06",
+      "track_id": "T02",
+      "title": "선형 회귀·로지스틱 회귀·손실",
+      "order": 2,
+      "prerequisite_chapter_ids": [
+        "CH02",
+        "CH04",
+        "CH05"
+      ],
+      "learning_objectives": [
+        "연속값 예측과 분류를 구분하고 출력·손실의 조합을 설명한다."
+      ],
+      "concept_ids": [
+        "linear-regression",
+        "logistic-regression",
+        "sigmoid",
+        "mse",
+        "cross-entropy",
+        "regularization"
+      ],
+      "page_ids": [
+        "CH06-P01",
+        "CH06-P02",
+        "CH06-P03"
+      ],
+      "question_ids": [
+        "CH06-Q01",
+        "CH06-Q02",
+        "CH06-R01"
+      ],
+      "revision": "sha256:8bfa226fa08e30e9c281f6386e5fb622f9184591142352d7dc37aac24840e404"
+    },
+    {
+      "id": "CH07",
+      "track_id": "T02",
+      "title": "트리·앙상블·비지도학습",
+      "order": 3,
+      "prerequisite_chapter_ids": [
+        "CH05",
+        "CH06"
+      ],
+      "learning_objectives": [
+        "대표 모델의 학습 방식을 비교하고 정답 없는 분석의 해석 한계를 설명한다."
+      ],
+      "concept_ids": [
+        "decision-tree",
+        "random-forest",
+        "gradient-boosting",
+        "clustering",
+        "k-means",
+        "pca"
+      ],
+      "page_ids": [
+        "CH07-P01",
+        "CH07-P02",
+        "CH07-P03"
+      ],
+      "question_ids": [
+        "CH07-Q01",
+        "CH07-Q02",
+        "CH07-R01"
+      ],
+      "revision": "sha256:9b41e18d075e0811a2e608f17efad09d29fc51d08c7509f2bd55c1beee0f83b3"
+    },
+    {
+      "id": "CH08",
+      "track_id": "T02",
+      "title": "평가 지표와 모델 선택",
+      "order": 4,
+      "prerequisite_chapter_ids": [
+        "CH03",
+        "CH05",
+        "CH06"
+      ],
+      "learning_objectives": [
+        "사용자 비용에 맞는 지표와 임곗값을 선택하고 평균 점수 뒤의 실패를 찾는다."
+      ],
+      "concept_ids": [
+        "confusion-matrix",
+        "precision",
+        "recall",
+        "f1",
+        "roc-auc",
+        "pr-curve",
+        "threshold",
+        "error-analysis"
+      ],
+      "page_ids": [
+        "CH08-P01",
+        "CH08-P02",
+        "CH08-P03"
+      ],
+      "question_ids": [
+        "CH08-Q01",
+        "CH08-Q02",
+        "CH08-R01"
+      ],
+      "revision": "sha256:d0cc32a95c74a0fc73e01c1b213950676f6d0b53dbb699a2a3e6a227c45be5a4"
+    },
+    {
+      "id": "CH09",
+      "track_id": "T03",
+      "title": "텐서와 신경망의 표현",
+      "order": 1,
+      "prerequisite_chapter_ids": [
+        "CH02",
+        "CH04"
+      ],
+      "learning_objectives": [
+        "신경망의 축을 추적하고 비선형 활성화가 필요한 이유를 설명한다."
+      ],
+      "concept_ids": [
+        "tensor-shape",
+        "broadcasting",
+        "batch",
+        "mlp",
+        "activation",
+        "logits"
+      ],
+      "page_ids": [
+        "CH09-P01",
+        "CH09-P02",
+        "CH09-P03"
+      ],
+      "question_ids": [
+        "CH09-Q01",
+        "CH09-Q02",
+        "CH09-R01"
+      ],
+      "revision": "sha256:3515662f1b00d0c67d3617b0c67b5a4cf9e8befb3f4fead59c8825137286f406"
+    },
+    {
+      "id": "CH10",
+      "track_id": "T03",
+      "title": "역전파와 PyTorch 학습 루프",
+      "order": 2,
+      "prerequisite_chapter_ids": [
+        "CH04",
+        "CH09"
+      ],
+      "learning_objectives": [
+        "순전파·역전파·갱신을 구분하고 학습 코드의 기본 오류를 찾는다."
+      ],
+      "concept_ids": [
+        "forward-pass",
+        "backpropagation",
+        "autograd",
+        "optimizer",
+        "gradient-accumulation",
+        "train-eval-mode"
+      ],
+      "page_ids": [
+        "CH10-P01",
+        "CH10-P02",
+        "CH10-P03"
+      ],
+      "question_ids": [
+        "CH10-Q01",
+        "CH10-Q02",
+        "CH10-R01"
+      ],
+      "revision": "sha256:ed20a5052758a27c0cdd4a9b3508c9eba55a6ac30d04cfde56155a6858f5e810"
+    },
+    {
+      "id": "CH11",
+      "track_id": "T03",
+      "title": "일반화·최적화·학습 안정성",
+      "order": 3,
+      "prerequisite_chapter_ids": [
+        "CH05",
+        "CH08",
+        "CH10"
+      ],
+      "learning_objectives": [
+        "학습 곡선으로 가설을 만들고 최적화 문제와 일반화 문제를 구분한다."
+      ],
+      "concept_ids": [
+        "overfitting",
+        "underfitting",
+        "dropout",
+        "weight-decay",
+        "early-stopping",
+        "adam",
+        "normalization"
+      ],
+      "page_ids": [
+        "CH11-P01",
+        "CH11-P02",
+        "CH11-P03"
+      ],
+      "question_ids": [
+        "CH11-Q01",
+        "CH11-Q02",
+        "CH11-R01"
+      ],
+      "revision": "sha256:1ad9b739c961ad1f290396bdc9c8c422b50d1b8ade15c8fa688a4ea16eb1a00d"
+    },
+    {
+      "id": "CH12",
+      "track_id": "T03",
+      "title": "CNN·RNN과 구조적 가정",
+      "order": 4,
+      "prerequisite_chapter_ids": [
+        "CH09",
+        "CH10"
+      ],
+      "learning_objectives": [
+        "데이터 구조에 맞는 모델 가정과 그 한계를 설명한다."
+      ],
+      "concept_ids": [
+        "cnn",
+        "convolution",
+        "pooling",
+        "rnn",
+        "lstm",
+        "gru",
+        "inductive-bias"
+      ],
+      "page_ids": [
+        "CH12-P01",
+        "CH12-P02",
+        "CH12-P03"
+      ],
+      "question_ids": [
+        "CH12-Q01",
+        "CH12-Q02",
+        "CH12-R01"
+      ],
+      "revision": "sha256:9f21486aef6ff3229a563c3c678658ffe20155f7b80ee2f578dbad6f72120789"
+    },
+    {
+      "id": "CH13",
+      "track_id": "T04",
+      "title": "토큰화와 언어 입력",
+      "order": 1,
+      "prerequisite_chapter_ids": [
+        "CH02",
+        "CH09"
+      ],
+      "learning_objectives": [
+        "토큰·문자·단어를 구분하고 입력 길이와 특수 토큰을 관리한다."
+      ],
+      "concept_ids": [
+        "tokenization",
+        "subword",
+        "bpe",
+        "vocabulary",
+        "special-token",
+        "padding",
+        "truncation"
+      ],
+      "page_ids": [
+        "CH13-P01",
+        "CH13-P02",
+        "CH13-P03"
+      ],
+      "question_ids": [
+        "CH13-Q01",
+        "CH13-Q02",
+        "CH13-R01"
+      ],
+      "revision": "sha256:056b54c2ad18b0ac26e221d27d9d6139da392ca867c41c303ef6554202f572b2"
+    },
+    {
+      "id": "CH14",
+      "track_id": "T04",
+      "title": "희소 표현과 학습된 임베딩",
+      "order": 2,
+      "prerequisite_chapter_ids": [
+        "CH02",
+        "CH13"
+      ],
+      "learning_objectives": [
+        "텍스트 표현의 선택이 검색 결과에 미치는 영향을 설명한다."
+      ],
+      "concept_ids": [
+        "bag-of-words",
+        "tf-idf",
+        "embedding",
+        "contextual-embedding",
+        "sentence-embedding",
+        "bi-encoder"
+      ],
+      "page_ids": [
+        "CH14-P01",
+        "CH14-P02",
+        "CH14-P03"
+      ],
+      "question_ids": [
+        "CH14-Q01",
+        "CH14-Q02",
+        "CH14-R01"
+      ],
+      "revision": "sha256:698025ed67910c48add2514595875071d0b335b40f397df65037ccc38bbe2a48"
+    },
+    {
+      "id": "CH15",
+      "track_id": "T04",
+      "title": "Attention의 Q·K·V",
+      "order": 3,
+      "prerequisite_chapter_ids": [
+        "CH02",
+        "CH09",
+        "CH14"
+      ],
+      "learning_objectives": [
+        "Attention을 가중합으로 계산하고 사람의 주의·설명 가능성과 구분한다."
+      ],
+      "concept_ids": [
+        "attention",
+        "query-key-value",
+        "scaled-dot-product",
+        "self-attention",
+        "multi-head-attention"
+      ],
+      "page_ids": [
+        "CH15-P01",
+        "CH15-P02",
+        "CH15-P03"
+      ],
+      "question_ids": [
+        "CH15-Q01",
+        "CH15-Q02",
+        "CH15-R01"
+      ],
+      "revision": "sha256:278dfad1cd4ca4805149e1bf7bedfc317b46aaddba419e8ad97a6937c70381f8"
+    },
+    {
+      "id": "CH16",
+      "track_id": "T04",
+      "title": "Transformer와 언어 모델 구조",
+      "order": 4,
+      "prerequisite_chapter_ids": [
+        "CH10",
+        "CH13",
+        "CH15"
+      ],
+      "learning_objectives": [
+        "encoder·decoder의 접근 범위와 학습·생성의 병렬성 차이를 설명한다."
+      ],
+      "concept_ids": [
+        "transformer",
+        "encoder",
+        "decoder",
+        "causal-mask",
+        "positional-encoding",
+        "residual-connection",
+        "feed-forward-network"
+      ],
+      "page_ids": [
+        "CH16-P01",
+        "CH16-P02",
+        "CH16-P03"
+      ],
+      "question_ids": [
+        "CH16-Q01",
+        "CH16-Q02",
+        "CH16-R01"
+      ],
+      "revision": "sha256:568c7f615f51abd8379e185042cf64d9400a4e9b87f2cba411b50e05e300f9f5"
+    },
+    {
+      "id": "CH17",
+      "track_id": "T05",
+      "title": "사전학습과 다음 토큰 예측",
+      "order": 1,
+      "prerequisite_chapter_ids": [
+        "CH06",
+        "CH13",
+        "CH16"
+      ],
+      "learning_objectives": [
+        "자기지도학습의 정답 생성 방식과 다음 토큰 학습의 가능성·한계를 설명한다."
+      ],
+      "concept_ids": [
+        "pretraining",
+        "self-supervised-learning",
+        "causal-language-modeling",
+        "cross-entropy-lm",
+        "parameters",
+        "moe"
+      ],
+      "page_ids": [
+        "CH17-P01",
+        "CH17-P02",
+        "CH17-P03"
+      ],
+      "question_ids": [
+        "CH17-Q01",
+        "CH17-Q02",
+        "CH17-R01"
+      ],
+      "revision": "sha256:b51a9ee3880f7c256cfbb5069f452bc3359bec9bc7b87832e77e6d26f0eac101"
+    },
+    {
+      "id": "CH18",
+      "track_id": "T05",
+      "title": "지시 학습·선호 학습·모델 적응",
+      "order": 2,
+      "prerequisite_chapter_ids": [
+        "CH10",
+        "CH17"
+      ],
+      "learning_objectives": [
+        "지식 공급·행동 조정·메모리 최적화를 서로 다른 문제로 구분한다."
+      ],
+      "concept_ids": [
+        "sft",
+        "rlhf",
+        "dpo",
+        "fine-tuning",
+        "peft",
+        "lora",
+        "quantization",
+        "distillation"
+      ],
+      "page_ids": [
+        "CH18-P01",
+        "CH18-P02",
+        "CH18-P03"
+      ],
+      "question_ids": [
+        "CH18-Q01",
+        "CH18-Q02",
+        "CH18-R01"
+      ],
+      "revision": "sha256:a5ddae8147608fca2f398367e20738b4e4e8d3a34199fd772cbe762c267084fd"
+    },
+    {
+      "id": "CH19",
+      "track_id": "T05",
+      "title": "Logits·샘플링·생성 설정",
+      "order": 3,
+      "prerequisite_chapter_ids": [
+        "CH03",
+        "CH09",
+        "CH16"
+      ],
+      "learning_objectives": [
+        "생성 설정이 분포와 길이에 미치는 영향을 이해하고 사실성 보장과 구분한다."
+      ],
+      "concept_ids": [
+        "softmax",
+        "temperature",
+        "greedy-decoding",
+        "top-k",
+        "top-p",
+        "stop-condition",
+        "structured-generation"
+      ],
+      "page_ids": [
+        "CH19-P01",
+        "CH19-P02",
+        "CH19-P03"
+      ],
+      "question_ids": [
+        "CH19-Q01",
+        "CH19-Q02",
+        "CH19-R01"
+      ],
+      "revision": "sha256:809bb062a2edb3d577e4af7cddaed1c7838a042c4e6c3a95f5479b1ae9417f27"
+    },
+    {
+      "id": "CH20",
+      "track_id": "T05",
+      "title": "문맥·환각·추론 메모리",
+      "order": 4,
+      "prerequisite_chapter_ids": [
+        "CH13",
+        "CH16",
+        "CH19"
+      ],
+      "learning_objectives": [
+        "문맥과 장기 기억을 구분하고 생성 지연과 환각의 원인을 분석한다."
+      ],
+      "concept_ids": [
+        "context-window",
+        "hallucination",
+        "conversation-state",
+        "prefill",
+        "decode",
+        "kv-cache",
+        "ttft"
+      ],
+      "page_ids": [
+        "CH20-P01",
+        "CH20-P02",
+        "CH20-P03"
+      ],
+      "question_ids": [
+        "CH20-Q01",
+        "CH20-Q02",
+        "CH20-R01"
+      ],
+      "revision": "sha256:3457911a44976033be60e681897413ece0e2705556312ce23d752bc7b5e732d4"
+    },
+    {
+      "id": "CH21",
+      "track_id": "T06",
+      "title": "RAG의 전체 흐름과 도입 판단",
+      "order": 1,
+      "prerequisite_chapter_ids": [
+        "CH14",
+        "CH18",
+        "CH20"
+      ],
+      "learning_objectives": [
+        "색인 준비와 질의 처리를 구분하고 검색이 필요한 상황을 설명한다."
+      ],
+      "concept_ids": [
+        "rag",
+        "ingestion",
+        "retrieval",
+        "grounding",
+        "indexing",
+        "query-pipeline"
+      ],
+      "page_ids": [
+        "CH21-P01",
+        "CH21-P02",
+        "CH21-P03"
+      ],
+      "question_ids": [
+        "CH21-Q01",
+        "CH21-Q02",
+        "CH21-R01"
+      ],
+      "revision": "sha256:4da35b821d228ca3383aa02e94bf6d6620780fc302eceba838f1ba61422f0b5e"
+    },
+    {
+      "id": "CH22",
+      "track_id": "T06",
+      "title": "청킹·메타데이터·문서 갱신",
+      "order": 2,
+      "prerequisite_chapter_ids": [
+        "CH13",
+        "CH21"
+      ],
+      "learning_objectives": [
+        "검색 단위와 답변 문맥 단위를 구분하고 갱신·삭제를 설계한다."
+      ],
+      "concept_ids": [
+        "chunking",
+        "overlap",
+        "parent-child-retrieval",
+        "metadata",
+        "document-version",
+        "index-update"
+      ],
+      "page_ids": [
+        "CH22-P01",
+        "CH22-P02",
+        "CH22-P03"
+      ],
+      "question_ids": [
+        "CH22-Q01",
+        "CH22-Q02",
+        "CH22-R01"
+      ],
+      "revision": "sha256:02e4d4c491c89f146a4411b277619db988f306b374a716273c387367fc8b8dab"
+    },
+    {
+      "id": "CH23",
+      "track_id": "T06",
+      "title": "검색·하이브리드·재정렬",
+      "order": 3,
+      "prerequisite_chapter_ids": [
+        "CH02",
+        "CH14",
+        "CH22"
+      ],
+      "learning_objectives": [
+        "후보 검색과 재정렬을 구분하고 검색 방식의 장단점을 비교한다."
+      ],
+      "concept_ids": [
+        "bm25",
+        "dense-retrieval",
+        "ann",
+        "hnsw",
+        "hybrid-search",
+        "rrf",
+        "reranker",
+        "cross-encoder"
+      ],
+      "page_ids": [
+        "CH23-P01",
+        "CH23-P02",
+        "CH23-P03"
+      ],
+      "question_ids": [
+        "CH23-Q01",
+        "CH23-Q02",
+        "CH23-R01"
+      ],
+      "revision": "sha256:5ea224b53e9fb1a0d3495e2f149b480245452103a94d272e9a6aa74be595edc1"
+    },
+    {
+      "id": "CH24",
+      "track_id": "T06",
+      "title": "RAG 평가와 권한",
+      "order": 4,
+      "prerequisite_chapter_ids": [
+        "CH08",
+        "CH21",
+        "CH23"
+      ],
+      "learning_objectives": [
+        "검색·근거 사용·정답·권한을 별도로 평가하고 실패를 분류한다."
+      ],
+      "concept_ids": [
+        "recall-at-k",
+        "mrr",
+        "groundedness",
+        "answer-correctness",
+        "citation",
+        "abstention",
+        "retrieval-acl"
+      ],
+      "page_ids": [
+        "CH24-P01",
+        "CH24-P02",
+        "CH24-P03"
+      ],
+      "question_ids": [
+        "CH24-Q01",
+        "CH24-Q02",
+        "CH24-R01"
+      ],
+      "revision": "sha256:8ae0f796ee7b3c517835e74d04c78fccb3fb826ba4b25cca53d0ebd048a7d004"
+    },
+    {
+      "id": "CH25",
+      "track_id": "T07",
+      "title": "프롬프트와 구조화 출력",
+      "order": 1,
+      "prerequisite_chapter_ids": [
+        "CH19",
+        "CH20",
+        "CH24"
+      ],
+      "learning_objectives": [
+        "요구를 검증 가능한 출력 계약으로 바꾸고 형식과 내용을 별도로 확인한다."
+      ],
+      "concept_ids": [
+        "prompt-design",
+        "few-shot",
+        "context-engineering",
+        "json-schema",
+        "output-validation",
+        "prompt-version"
+      ],
+      "page_ids": [
+        "CH25-P01",
+        "CH25-P02",
+        "CH25-P03"
+      ],
+      "question_ids": [
+        "CH25-Q01",
+        "CH25-Q02",
+        "CH25-R01"
+      ],
+      "revision": "sha256:43351a479329f03242a7a184a333ac776581722812c7c4eabcca385b64e09ce2"
+    },
+    {
+      "id": "CH26",
+      "track_id": "T07",
+      "title": "도구 호출·워크플로·에이전트",
+      "order": 2,
+      "prerequisite_chapter_ids": [
+        "CH21",
+        "CH25"
+      ],
+      "learning_objectives": [
+        "모델의 제안과 실제 실행을 구분하고 자율성에 맞는 제어를 설계한다."
+      ],
+      "concept_ids": [
+        "tool-calling",
+        "workflow",
+        "agent",
+        "orchestration",
+        "idempotency",
+        "least-privilege",
+        "termination"
+      ],
+      "page_ids": [
+        "CH26-P01",
+        "CH26-P02",
+        "CH26-P03"
+      ],
+      "question_ids": [
+        "CH26-Q01",
+        "CH26-Q02",
+        "CH26-R01"
+      ],
+      "revision": "sha256:afa2806e33ff21a9191d424742d19810f403c4a40ac5c39745daa97f30fa5119"
+    },
+    {
+      "id": "CH27",
+      "track_id": "T07",
+      "title": "AI 품질 평가와 교육용 퀴즈 평가",
+      "order": 3,
+      "prerequisite_chapter_ids": [
+        "CH08",
+        "CH24",
+        "CH25"
+      ],
+      "learning_objectives": [
+        "자동 검사와 사람 검토를 조합하고 평가 세트에 대한 과적합을 줄인다."
+      ],
+      "concept_ids": [
+        "eval-dataset",
+        "rubric",
+        "llm-as-judge",
+        "pairwise-evaluation",
+        "regression-test",
+        "ablation"
+      ],
+      "page_ids": [
+        "CH27-P01",
+        "CH27-P02",
+        "CH27-P03"
+      ],
+      "question_ids": [
+        "CH27-Q01",
+        "CH27-Q02",
+        "CH27-R01"
+      ],
+      "revision": "sha256:95ffcf1d9be8ea49f57e126d7e64dac7ffc6db3dcb45301dbd6d0428a8f124bd"
+    },
+    {
+      "id": "CH28",
+      "track_id": "T07",
+      "title": "프롬프트 인젝션·개인정보·출력 경계",
+      "order": 4,
+      "prerequisite_chapter_ids": [
+        "CH24",
+        "CH25",
+        "CH26"
+      ],
+      "learning_objectives": [
+        "외부 문서의 지시와 사용자 요청을 구분하고 코드로 데이터·행동 경계를 지킨다."
+      ],
+      "concept_ids": [
+        "prompt-injection",
+        "untrusted-content",
+        "authorization",
+        "pii",
+        "secret-management",
+        "output-escaping"
+      ],
+      "page_ids": [
+        "CH28-P01",
+        "CH28-P02",
+        "CH28-P03"
+      ],
+      "question_ids": [
+        "CH28-Q01",
+        "CH28-Q02",
+        "CH28-R01"
+      ],
+      "revision": "sha256:55514b2dca1a7273a52db99a2685da0dc098b0ca12ad7b1a94c60f174d81637e"
+    },
+    {
+      "id": "CH29",
+      "track_id": "T08",
+      "title": "웹 요청과 AI 백엔드",
+      "order": 1,
+      "prerequisite_chapter_ids": [
+        "CH20",
+        "CH25",
+        "CH28"
+      ],
+      "learning_objectives": [
+        "요청 경로와 실행 환경의 역할을 설명하고 동기·비동기 설계를 선택한다."
+      ],
+      "concept_ids": [
+        "http",
+        "api-contract",
+        "fastapi",
+        "asgi",
+        "mangum",
+        "serverless",
+        "async-io",
+        "background-job"
+      ],
+      "page_ids": [
+        "CH29-P01",
+        "CH29-P02",
+        "CH29-P03"
+      ],
+      "question_ids": [
+        "CH29-Q01",
+        "CH29-Q02",
+        "CH29-R01"
+      ],
+      "revision": "sha256:ff72c5f6523891f4ba4ffd8873742861d3e03486cd6271c3cf82a03ce75044ca"
+    },
+    {
+      "id": "CH30",
+      "track_id": "T08",
+      "title": "지연·비용·캐시",
+      "order": 2,
+      "prerequisite_chapter_ids": [
+        "CH03",
+        "CH20",
+        "CH29"
+      ],
+      "learning_objectives": [
+        "관측 구간을 구분하고 품질·표본 수를 포함해 속도와 비용을 비교한다."
+      ],
+      "concept_ids": [
+        "latency",
+        "p95",
+        "cold-start",
+        "warm-invocation",
+        "cost-per-success",
+        "response-cache",
+        "cache-key"
+      ],
+      "page_ids": [
+        "CH30-P01",
+        "CH30-P02",
+        "CH30-P03"
+      ],
+      "question_ids": [
+        "CH30-Q01",
+        "CH30-Q02",
+        "CH30-R01"
+      ],
+      "revision": "sha256:2443c22653e718d6783b1f6e7e1cec251e085420d1c3013291252ab695441a26"
+    },
+    {
+      "id": "CH31",
+      "track_id": "T08",
+      "title": "동시성·과부하·재시도",
+      "order": 3,
+      "prerequisite_chapter_ids": [
+        "CH26",
+        "CH29",
+        "CH30"
+      ],
+      "learning_objectives": [
+        "부하 수준과 처리 한계를 구분하고 재시도가 실패를 증폭하는 조건을 설명한다."
+      ],
+      "concept_ids": [
+        "concurrency",
+        "throughput",
+        "rate-limit",
+        "backpressure",
+        "timeout",
+        "exponential-backoff",
+        "jitter",
+        "circuit-breaker"
+      ],
+      "page_ids": [
+        "CH31-P01",
+        "CH31-P02",
+        "CH31-P03"
+      ],
+      "question_ids": [
+        "CH31-Q01",
+        "CH31-Q02",
+        "CH31-R01"
+      ],
+      "revision": "sha256:294ba64c3efd19e2b7eceffa77df11010896d8f3ffcfe40f0c4b30e065747b09"
+    },
+    {
+      "id": "CH32",
+      "track_id": "T08",
+      "title": "관측·버전·지속적인 품질 관리",
+      "order": 4,
+      "prerequisite_chapter_ids": [
+        "CH11",
+        "CH24",
+        "CH27",
+        "CH30",
+        "CH31"
+      ],
+      "learning_objectives": [
+        "운영 신호와 품질을 연결하고 재현 가능한 최종 실험을 설계한다."
+      ],
+      "concept_ids": [
+        "observability",
+        "metrics-logs-traces",
+        "slo",
+        "data-drift",
+        "concept-drift",
+        "rollback",
+        "canary",
+        "experiment-report"
+      ],
+      "page_ids": [
+        "CH32-P01",
+        "CH32-P02",
+        "CH32-P03"
+      ],
+      "question_ids": [
+        "CH32-Q01",
+        "CH32-Q02",
+        "CH32-R01"
+      ],
+      "revision": "sha256:152db1a77059129e5aae39c82fb2a0ba793192f0ac496683907933225f6d4830"
+    }
+  ],
+  "pages": [
+    {
+      "id": "CH01-P01",
+      "chapter_id": "CH01",
+      "title": "AI라는 큰 지도에서 길 찾기",
+      "order": 1,
+      "concept_ids": [
+        "ai",
+        "machine-learning",
+        "deep-learning",
+        "nlp",
+        "llm",
+        "rag",
+        "supervised-learning",
+        "unsupervised-learning",
+        "self-supervised-learning",
+        "reinforcement-learning"
+      ],
+      "previous_page_id": null,
+      "next_page_id": "CH01-P02",
+      "revision": "sha256:d31a8356452e13879351b6de5cece3a627e40b9691719cd02a339ab9a3252424"
+    },
+    {
+      "id": "CH01-P02",
+      "chapter_id": "CH01",
+      "title": "모델보다 먼저 입력과 성공을 정하기",
+      "order": 2,
+      "concept_ids": [
+        "baseline"
+      ],
+      "previous_page_id": "CH01-P01",
+      "next_page_id": "CH01-P03",
+      "revision": "sha256:2ac16034e45ad9dcf3bc37ce203a0d71880b7da61c713052942298f604a8b205"
+    },
+    {
+      "id": "CH01-P03",
+      "chapter_id": "CH01",
+      "title": "우리 사이트를 문제 명세로 바꿔보기",
+      "order": 3,
+      "concept_ids": [
+        "baseline",
+        "rag"
+      ],
+      "previous_page_id": "CH01-P02",
+      "next_page_id": "CH02-P01",
+      "revision": "sha256:9c7324e2a49780dc59549e628cc21fe19bf27872ff03e3420cd1b6f6115be7cb"
+    },
+    {
+      "id": "CH02-P01",
+      "chapter_id": "CH02",
+      "title": "숫자 하나에서 여러 축의 데이터로",
+      "order": 1,
+      "concept_ids": [
+        "scalar",
+        "vector",
+        "matrix",
+        "tensor"
+      ],
+      "previous_page_id": "CH01-P03",
+      "next_page_id": "CH02-P02",
+      "revision": "sha256:5d0235102dc7f998ceb30b899e96728854f73f2267f0af42f4cd3af922acf92a"
+    },
+    {
+      "id": "CH02-P02",
+      "chapter_id": "CH02",
+      "title": "내적과 행렬 곱이 계산하는 것",
+      "order": 2,
+      "concept_ids": [
+        "dot-product",
+        "matrix"
+      ],
+      "previous_page_id": "CH02-P01",
+      "next_page_id": "CH02-P03",
+      "revision": "sha256:4690fd7efe9b3eb0365e829d00c131bd30ff17113ae11b61af8bae5e2220eb4e"
+    },
+    {
+      "id": "CH02-P03",
+      "chapter_id": "CH02",
+      "title": "방향이 비슷하면 의미도 같을까",
+      "order": 3,
+      "concept_ids": [
+        "cosine-similarity"
+      ],
+      "previous_page_id": "CH02-P02",
+      "next_page_id": "CH03-P01",
+      "revision": "sha256:a7e92243b1c0f00bf9776bafad375ae102af09c8b98378e267529df60a4e73fb"
+    },
+    {
+      "id": "CH03-P01",
+      "chapter_id": "CH03",
+      "title": "확률은 조건을 빼면 다른 숫자가 된다",
+      "order": 1,
+      "concept_ids": [
+        "conditional-probability",
+        "bayes-rule"
+      ],
+      "previous_page_id": "CH02-P03",
+      "next_page_id": "CH03-P02",
+      "revision": "sha256:c4fd649cd06029be9c3025a14f1c1c1f0f77151cef31a0df1de47d1c09d9add0"
+    },
+    {
+      "id": "CH03-P02",
+      "chapter_id": "CH03",
+      "title": "평균 하나로는 실험을 설명할 수 없다",
+      "order": 2,
+      "concept_ids": [
+        "expectation",
+        "variance"
+      ],
+      "previous_page_id": "CH03-P01",
+      "next_page_id": "CH03-P03",
+      "revision": "sha256:b883169a7569d58bd685a67552f4a060d1ce15b60a489d462ce37196d4b84e5e"
+    },
+    {
+      "id": "CH03-P03",
+      "chapter_id": "CH03",
+      "title": "확률 분포와 자신감의 차이",
+      "order": 3,
+      "concept_ids": [
+        "entropy",
+        "calibration"
+      ],
+      "previous_page_id": "CH03-P02",
+      "next_page_id": "CH04-P01",
+      "revision": "sha256:45560342eff6799a2aa1af34f62dc3a5d878370daabcd06fca7813108a731650"
+    },
+    {
+      "id": "CH04-P01",
+      "chapter_id": "CH04",
+      "title": "학습은 오차를 줄이는 방향으로 숫자를 바꾸는 일",
+      "order": 1,
+      "concept_ids": [
+        "parameter",
+        "hyperparameter",
+        "loss"
+      ],
+      "previous_page_id": "CH03-P03",
+      "next_page_id": "CH04-P02",
+      "revision": "sha256:0d0cac98877b42d2ef1c5a66e11ec772d8fae85319274448bf74b1ac5110e328"
+    },
+    {
+      "id": "CH04-P02",
+      "chapter_id": "CH04",
+      "title": "미분은 작은 변화에 대한 민감도다",
+      "order": 2,
+      "concept_ids": [
+        "gradient",
+        "gradient-descent",
+        "learning-rate"
+      ],
+      "previous_page_id": "CH04-P01",
+      "next_page_id": "CH04-P03",
+      "revision": "sha256:f422ea68894f3ebff01f2c89611b3e9a4183e83743d03ec75bec8d94ecf3a2dd"
+    },
+    {
+      "id": "CH04-P03",
+      "chapter_id": "CH04",
+      "title": "배치와 최적화 결과를 읽는 법",
+      "order": 3,
+      "concept_ids": [
+        "hyperparameter",
+        "gradient-descent"
+      ],
+      "previous_page_id": "CH04-P02",
+      "next_page_id": "CH05-P01",
+      "revision": "sha256:7fd46c637844bf399e99ed6a02ef6c2ad03f818739861956a4bb61c39c83b96e"
+    },
+    {
+      "id": "CH05-P01",
+      "chapter_id": "CH05",
+      "title": "데이터는 정답이 적힌 표보다 넓은 개념이다",
+      "order": 1,
+      "concept_ids": [
+        "feature",
+        "label",
+        "data-quality"
+      ],
+      "previous_page_id": "CH04-P03",
+      "next_page_id": "CH05-P02",
+      "revision": "sha256:ef3271d93df7b55bcbcea4fc85420064170c92fe79910b6d425c8b8664241da6"
+    },
+    {
+      "id": "CH05-P02",
+      "chapter_id": "CH05",
+      "title": "학습·검증·테스트는 서로 다른 역할이다",
+      "order": 2,
+      "concept_ids": [
+        "train-validation-test"
+      ],
+      "previous_page_id": "CH05-P01",
+      "next_page_id": "CH05-P03",
+      "revision": "sha256:236d08c0a71bd6fd007d155a6e31f4a76ac085da76e29acd2413387bec3f9485"
+    },
+    {
+      "id": "CH05-P03",
+      "chapter_id": "CH05",
+      "title": "누수는 모델이 미래를 훔쳐보는 일이다",
+      "order": 3,
+      "concept_ids": [
+        "data-leakage",
+        "distribution-shift"
+      ],
+      "previous_page_id": "CH05-P02",
+      "next_page_id": "CH06-P01",
+      "revision": "sha256:d4023aa74d71199da550416c22a2af12ce4861c526f1973eca7cff119ad36dd0"
+    },
+    {
+      "id": "CH06-P01",
+      "chapter_id": "CH06",
+      "title": "선형이라는 말은 무엇을 제한하는가",
+      "order": 1,
+      "concept_ids": [
+        "linear-regression",
+        "mse"
+      ],
+      "previous_page_id": "CH05-P03",
+      "next_page_id": "CH06-P02",
+      "revision": "sha256:38f1813aa4862061fcff6d61444a3ed6da109b2afb910fda203d13e953724d90"
+    },
+    {
+      "id": "CH06-P02",
+      "chapter_id": "CH06",
+      "title": "이름은 회귀지만 분류에 쓰는 모델",
+      "order": 2,
+      "concept_ids": [
+        "logistic-regression",
+        "sigmoid",
+        "cross-entropy"
+      ],
+      "previous_page_id": "CH06-P01",
+      "next_page_id": "CH06-P03",
+      "revision": "sha256:bb4bcfa6614ec275250a957fd17499ff1fd2d9076eb2609d30c0ecf937d99c57"
+    },
+    {
+      "id": "CH06-P03",
+      "chapter_id": "CH06",
+      "title": "정규화와 단순 기준선의 힘",
+      "order": 3,
+      "concept_ids": [
+        "regularization"
+      ],
+      "previous_page_id": "CH06-P02",
+      "next_page_id": "CH07-P01",
+      "revision": "sha256:98946fa2c6440c3704df1b709856cca1bf40b75f52566aceaed0bb5569925b51"
+    },
+    {
+      "id": "CH07-P01",
+      "chapter_id": "CH07",
+      "title": "질문을 이어 붙이는 결정트리",
+      "order": 1,
+      "concept_ids": [
+        "decision-tree"
+      ],
+      "previous_page_id": "CH06-P03",
+      "next_page_id": "CH07-P02",
+      "revision": "sha256:83d0e3f9a39cfc24916486df2a3028556149a8e43354a58fe86519846fc96deb"
+    },
+    {
+      "id": "CH07-P02",
+      "chapter_id": "CH07",
+      "title": "여러 모델을 모으는 두 방식",
+      "order": 2,
+      "concept_ids": [
+        "random-forest",
+        "gradient-boosting"
+      ],
+      "previous_page_id": "CH07-P01",
+      "next_page_id": "CH07-P03",
+      "revision": "sha256:b51f012a8388e826fc1e957dc464ae19db336075ce293c3425ee52b361aa8ad0"
+    },
+    {
+      "id": "CH07-P03",
+      "chapter_id": "CH07",
+      "title": "정답 없이 모으고 줄여보기",
+      "order": 3,
+      "concept_ids": [
+        "clustering",
+        "k-means",
+        "pca"
+      ],
+      "previous_page_id": "CH07-P02",
+      "next_page_id": "CH08-P01",
+      "revision": "sha256:647e59c36fecfe16c91af1457a664a06bf3871e34a0a193ca1bb6189418a4e00"
+    },
+    {
+      "id": "CH08-P01",
+      "chapter_id": "CH08",
+      "title": "정확도만 높으면 좋은 모델일까",
+      "order": 1,
+      "concept_ids": [
+        "confusion-matrix",
+        "precision",
+        "recall",
+        "f1"
+      ],
+      "previous_page_id": "CH07-P03",
+      "next_page_id": "CH08-P02",
+      "revision": "sha256:7d1b3937a0a83cc0c9a7b65c9a5b439c783a41321d010d14b9147145c9bcf08e"
+    },
+    {
+      "id": "CH08-P02",
+      "chapter_id": "CH08",
+      "title": "순위를 잘 매기는 것과 결정이 좋은 것은 다르다",
+      "order": 2,
+      "concept_ids": [
+        "roc-auc",
+        "pr-curve",
+        "threshold"
+      ],
+      "previous_page_id": "CH08-P01",
+      "next_page_id": "CH08-P03",
+      "revision": "sha256:2469462b1bbaa0ff0335df2b20d2a27a31b72018dc0999edce6fe7199d2ac00b"
+    },
+    {
+      "id": "CH08-P03",
+      "chapter_id": "CH08",
+      "title": "오류를 묶어보면 다음 작업이 보인다",
+      "order": 3,
+      "concept_ids": [
+        "error-analysis"
+      ],
+      "previous_page_id": "CH08-P02",
+      "next_page_id": "CH09-P01",
+      "revision": "sha256:90a35da2786b91f2d7f7709a969531e1214b55e2a179270f344569fc1da4c48f"
+    },
+    {
+      "id": "CH09-P01",
+      "chapter_id": "CH09",
+      "title": "모양을 읽으면 계산이 보인다",
+      "order": 1,
+      "concept_ids": [
+        "tensor-shape",
+        "broadcasting",
+        "batch"
+      ],
+      "previous_page_id": "CH08-P03",
+      "next_page_id": "CH09-P02",
+      "revision": "sha256:a7cadd68fdcbe36a75e78c59147bef9c1f4e296e23b445db784c573a1ac01ee7"
+    },
+    {
+      "id": "CH09-P02",
+      "chapter_id": "CH09",
+      "title": "층을 쌓기만 하면 표현력이 늘까",
+      "order": 2,
+      "concept_ids": [
+        "mlp",
+        "activation",
+        "logits"
+      ],
+      "previous_page_id": "CH09-P01",
+      "next_page_id": "CH09-P03",
+      "revision": "sha256:4876412219edfd23f2700c6ab4cd6a204343c2ee4abac07ba9ca3313626414cc"
+    },
+    {
+      "id": "CH09-P03",
+      "chapter_id": "CH09",
+      "title": "최소 신경망의 모양 추적",
+      "order": 3,
+      "concept_ids": [
+        "tensor-shape",
+        "mlp",
+        "logits"
+      ],
+      "previous_page_id": "CH09-P02",
+      "next_page_id": "CH10-P01",
+      "revision": "sha256:73a071f309fc508fd3e91674cfda63105f0f0d12e115977b9a3a90d4dbc4c039"
+    },
+    {
+      "id": "CH10-P01",
+      "chapter_id": "CH10",
+      "title": "계산을 따라 앞으로, 민감도를 따라 뒤로",
+      "order": 1,
+      "concept_ids": [
+        "forward-pass",
+        "backpropagation",
+        "autograd"
+      ],
+      "previous_page_id": "CH09-P03",
+      "next_page_id": "CH10-P02",
+      "revision": "sha256:f076855e45319f085563a26cf5b4e37d985ac2b1ae62a2db9cc4638e95e3e0c6"
+    },
+    {
+      "id": "CH10-P02",
+      "chapter_id": "CH10",
+      "title": "학습 루프의 네 동작",
+      "order": 2,
+      "concept_ids": [
+        "optimizer",
+        "gradient-accumulation"
+      ],
+      "previous_page_id": "CH10-P01",
+      "next_page_id": "CH10-P03",
+      "revision": "sha256:e2db2543cf10b379ed31c1d269fc376eb34a6a8d37e916b4372274d3784474e9"
+    },
+    {
+      "id": "CH10-P03",
+      "chapter_id": "CH10",
+      "title": "평가 모드와 기울기 비활성화는 다른 스위치다",
+      "order": 3,
+      "concept_ids": [
+        "train-eval-mode",
+        "autograd"
+      ],
+      "previous_page_id": "CH10-P02",
+      "next_page_id": "CH11-P01",
+      "revision": "sha256:0c050cb2a2180052866c96d5225a982a7e0990b6318b20e3444bf2420f4d9551"
+    },
+    {
+      "id": "CH11-P01",
+      "chapter_id": "CH11",
+      "title": "연습장을 외우는 것과 실력이 느는 것",
+      "order": 1,
+      "concept_ids": [
+        "overfitting",
+        "underfitting",
+        "early-stopping"
+      ],
+      "previous_page_id": "CH10-P03",
+      "next_page_id": "CH11-P02",
+      "revision": "sha256:6817007c1332a5325cf92cb499a3bf998da46e2db6445ccff7e6f36e9d9cbba9"
+    },
+    {
+      "id": "CH11-P02",
+      "chapter_id": "CH11",
+      "title": "서로 다른 조절 장치를 구분하기",
+      "order": 2,
+      "concept_ids": [
+        "dropout",
+        "weight-decay",
+        "adam",
+        "normalization"
+      ],
+      "previous_page_id": "CH11-P01",
+      "next_page_id": "CH11-P03",
+      "revision": "sha256:b0e61a2949b5837ad18aa08f1096e4584e35dd9cfca5599e02db0b679d2f83f3"
+    },
+    {
+      "id": "CH11-P03",
+      "chapter_id": "CH11",
+      "title": "재현 가능한 실험 만들기",
+      "order": 3,
+      "concept_ids": [
+        "overfitting"
+      ],
+      "previous_page_id": "CH11-P02",
+      "next_page_id": "CH12-P01",
+      "revision": "sha256:724f391a58baeedfbb7d5373ecfbaac9c5490a48c9dde004ca6cd6f9075d2f1c"
+    },
+    {
+      "id": "CH12-P01",
+      "chapter_id": "CH12",
+      "title": "CNN은 왜 이미지를 작은 창으로 볼까",
+      "order": 1,
+      "concept_ids": [
+        "cnn",
+        "convolution",
+        "pooling",
+        "inductive-bias"
+      ],
+      "previous_page_id": "CH11-P03",
+      "next_page_id": "CH12-P02",
+      "revision": "sha256:2d45995182ad7c1e2dc38e5416ca4b91280b3113c920cd38b511e00b3970312c"
+    },
+    {
+      "id": "CH12-P02",
+      "chapter_id": "CH12",
+      "title": "RNN은 이전 상태를 들고 다음 입력으로 간다",
+      "order": 2,
+      "concept_ids": [
+        "rnn",
+        "lstm",
+        "gru"
+      ],
+      "previous_page_id": "CH12-P01",
+      "next_page_id": "CH12-P03",
+      "revision": "sha256:bc72d55528ff04ee123d27b615f3fcdf9ee258f344c1ce9d733c8b60e190584c"
+    },
+    {
+      "id": "CH12-P03",
+      "chapter_id": "CH12",
+      "title": "구조 선택은 정답을 미리 넣는 방식이다",
+      "order": 3,
+      "concept_ids": [
+        "inductive-bias",
+        "cnn",
+        "rnn"
+      ],
+      "previous_page_id": "CH12-P02",
+      "next_page_id": "CH13-P01",
+      "revision": "sha256:e9351b1f1468ede7ae235f753b37d14b041a3f04316e59489bb9201d443c7f21"
+    },
+    {
+      "id": "CH13-P01",
+      "chapter_id": "CH13",
+      "title": "컴퓨터가 읽는 단위는 단어와 다르다",
+      "order": 1,
+      "concept_ids": [
+        "tokenization",
+        "vocabulary"
+      ],
+      "previous_page_id": "CH12-P03",
+      "next_page_id": "CH13-P02",
+      "revision": "sha256:bf2776fe783eabe3622a94265b54dc0c746eda5a03828077a2a87eef8679b3fb"
+    },
+    {
+      "id": "CH13-P02",
+      "chapter_id": "CH13",
+      "title": "Subword와 특수 토큰",
+      "order": 2,
+      "concept_ids": [
+        "subword",
+        "bpe",
+        "special-token"
+      ],
+      "previous_page_id": "CH13-P01",
+      "next_page_id": "CH13-P03",
+      "revision": "sha256:e94d544f1d564fc46b557a2d37cbb9e3cb7db549dc68abbd61c3ab61449e3af3"
+    },
+    {
+      "id": "CH13-P03",
+      "chapter_id": "CH13",
+      "title": "Padding과 truncation은 의미를 바꿀 수 있다",
+      "order": 3,
+      "concept_ids": [
+        "padding",
+        "truncation"
+      ],
+      "previous_page_id": "CH13-P02",
+      "next_page_id": "CH14-P01",
+      "revision": "sha256:108495ec573b4af0007afc08430fa950fcd31f511eb9144282f0ff2604b03d82"
+    },
+    {
+      "id": "CH14-P01",
+      "chapter_id": "CH14",
+      "title": "단어의 출현을 세는 방법",
+      "order": 1,
+      "concept_ids": [
+        "bag-of-words",
+        "tf-idf"
+      ],
+      "previous_page_id": "CH13-P03",
+      "next_page_id": "CH14-P02",
+      "revision": "sha256:22d6471ce670622a4dc0c36d821edb0312404ffbf45ea01977acb5d0b4af882c"
+    },
+    {
+      "id": "CH14-P02",
+      "chapter_id": "CH14",
+      "title": "임베딩은 학습된 좌표다",
+      "order": 2,
+      "concept_ids": [
+        "embedding",
+        "contextual-embedding",
+        "sentence-embedding"
+      ],
+      "previous_page_id": "CH14-P01",
+      "next_page_id": "CH14-P03",
+      "revision": "sha256:4975ca1a2575c8f503e3ff17b5d85e6fa8c2218dccae835b1193b0f9c64a869a"
+    },
+    {
+      "id": "CH14-P03",
+      "chapter_id": "CH14",
+      "title": "검색 임베딩을 선택하는 기준",
+      "order": 3,
+      "concept_ids": [
+        "bi-encoder",
+        "sentence-embedding"
+      ],
+      "previous_page_id": "CH14-P02",
+      "next_page_id": "CH15-P01",
+      "revision": "sha256:aec56cbf58082d7090833b095c0d7a3ef35f9d51cb4cc30aca984a8d843e8287"
+    },
+    {
+      "id": "CH15-P01",
+      "chapter_id": "CH15",
+      "title": "누구의 정보를 얼마나 가져올까",
+      "order": 1,
+      "concept_ids": [
+        "attention",
+        "query-key-value"
+      ],
+      "previous_page_id": "CH14-P03",
+      "next_page_id": "CH15-P02",
+      "revision": "sha256:b26e208a6bbcfdf3d93e339a2f6ca8bc7ad3718bc3502da4f24b2197cc8b8d4b"
+    },
+    {
+      "id": "CH15-P02",
+      "chapter_id": "CH15",
+      "title": "점수에서 가중합으로",
+      "order": 2,
+      "concept_ids": [
+        "scaled-dot-product",
+        "query-key-value"
+      ],
+      "previous_page_id": "CH15-P01",
+      "next_page_id": "CH15-P03",
+      "revision": "sha256:d057cab0c2f451d156d939bc0afbb5e53074c33e65330798003051e00ccc4997"
+    },
+    {
+      "id": "CH15-P03",
+      "chapter_id": "CH15",
+      "title": "여러 관점을 섞되 설명과 동일시하지 않기",
+      "order": 3,
+      "concept_ids": [
+        "self-attention",
+        "multi-head-attention"
+      ],
+      "previous_page_id": "CH15-P02",
+      "next_page_id": "CH16-P01",
+      "revision": "sha256:126dd29195dd5ebc7036523a1b95632408344a25c936e67f3d38a36ea1bd4545"
+    },
+    {
+      "id": "CH16-P01",
+      "chapter_id": "CH16",
+      "title": "Attention만으로 순서를 모두 알 수 있을까",
+      "order": 1,
+      "concept_ids": [
+        "transformer",
+        "positional-encoding",
+        "residual-connection",
+        "feed-forward-network"
+      ],
+      "previous_page_id": "CH15-P03",
+      "next_page_id": "CH16-P02",
+      "revision": "sha256:20d3c60e5eb8e5d1d6c0bdaae962849688ace818e7d324885c211258fbbc24db"
+    },
+    {
+      "id": "CH16-P02",
+      "chapter_id": "CH16",
+      "title": "Encoder·decoder·encoder-decoder",
+      "order": 2,
+      "concept_ids": [
+        "encoder",
+        "decoder",
+        "causal-mask"
+      ],
+      "previous_page_id": "CH16-P01",
+      "next_page_id": "CH16-P03",
+      "revision": "sha256:232f8d075b2b841fc550261d314ada01659d49cb991674968c728c12d3e91ce1"
+    },
+    {
+      "id": "CH16-P03",
+      "chapter_id": "CH16",
+      "title": "학습은 병렬이어도 생성은 순차일 수 있다",
+      "order": 3,
+      "concept_ids": [
+        "causal-mask",
+        "decoder"
+      ],
+      "previous_page_id": "CH16-P02",
+      "next_page_id": "CH17-P01",
+      "revision": "sha256:96f40287b294195636643a92345c1aeccf2425080c4b04653a2b96b1b5267050"
+    },
+    {
+      "id": "CH17-P01",
+      "chapter_id": "CH17",
+      "title": "정답은 문장 안에서 만든다",
+      "order": 1,
+      "concept_ids": [
+        "self-supervised-learning",
+        "causal-language-modeling",
+        "cross-entropy-lm"
+      ],
+      "previous_page_id": "CH16-P03",
+      "next_page_id": "CH17-P02",
+      "revision": "sha256:8192992b1e11844dcb260c1b21230a1d7542511f29964108c5d838bb74b44d72"
+    },
+    {
+      "id": "CH17-P02",
+      "chapter_id": "CH17",
+      "title": "데이터와 규모가 만드는 능력과 한계",
+      "order": 2,
+      "concept_ids": [
+        "pretraining",
+        "parameters",
+        "moe"
+      ],
+      "previous_page_id": "CH17-P01",
+      "next_page_id": "CH17-P03",
+      "revision": "sha256:becda027cd0e573acdb7bb46ead7799c5adf925f4b4d4ca656886e3984a32af1"
+    },
+    {
+      "id": "CH17-P03",
+      "chapter_id": "CH17",
+      "title": "기반 모델을 곧바로 도우미로 볼 수 없는 이유",
+      "order": 3,
+      "concept_ids": [
+        "pretraining"
+      ],
+      "previous_page_id": "CH17-P02",
+      "next_page_id": "CH18-P01",
+      "revision": "sha256:445d54c3ca9d9203a5eaac7e35cd156005784592ccb80ddfaa0764f926d4833d"
+    },
+    {
+      "id": "CH18-P01",
+      "chapter_id": "CH18",
+      "title": "대답하는 방식을 학습시키기",
+      "order": 1,
+      "concept_ids": [
+        "sft",
+        "rlhf",
+        "dpo",
+        "fine-tuning"
+      ],
+      "previous_page_id": "CH17-P03",
+      "next_page_id": "CH18-P02",
+      "revision": "sha256:95a73576848d5732051997bd3d77250b3f90b3d4f8309031ba8a4120e86a1af1"
+    },
+    {
+      "id": "CH18-P02",
+      "chapter_id": "CH18",
+      "title": "LoRA는 작은 수정 공간을 학습한다",
+      "order": 2,
+      "concept_ids": [
+        "peft",
+        "lora",
+        "fine-tuning"
+      ],
+      "previous_page_id": "CH18-P01",
+      "next_page_id": "CH18-P03",
+      "revision": "sha256:bc5025db86aa603b954b2a9e15b6a4a0e1ca8ab99d7d00b7bf1519b088de7905"
+    },
+    {
+      "id": "CH18-P03",
+      "chapter_id": "CH18",
+      "title": "양자화와 증류는 다른 축이다",
+      "order": 3,
+      "concept_ids": [
+        "quantization",
+        "distillation"
+      ],
+      "previous_page_id": "CH18-P02",
+      "next_page_id": "CH19-P01",
+      "revision": "sha256:05e6745ee7a31dc022b0319cbf9d259facc03d1f40d5dfa88baef7d9f0518143"
+    },
+    {
+      "id": "CH19-P01",
+      "chapter_id": "CH19",
+      "title": "다음 토큰의 후보에서 하나를 고르기",
+      "order": 1,
+      "concept_ids": [
+        "softmax",
+        "temperature",
+        "greedy-decoding"
+      ],
+      "previous_page_id": "CH18-P03",
+      "next_page_id": "CH19-P02",
+      "revision": "sha256:63fe159c527f752020b759f1b0165a94857ea452ae2402c9f6702a50632479a9"
+    },
+    {
+      "id": "CH19-P02",
+      "chapter_id": "CH19",
+      "title": "후보를 몇 개까지 남길까",
+      "order": 2,
+      "concept_ids": [
+        "top-k",
+        "top-p",
+        "temperature"
+      ],
+      "previous_page_id": "CH19-P01",
+      "next_page_id": "CH19-P03",
+      "revision": "sha256:924b3e7fd145bc9b2801adfaaf288d60a442b48ed8032b23c5fdb2c6b93e7291"
+    },
+    {
+      "id": "CH19-P03",
+      "chapter_id": "CH19",
+      "title": "길이 제한과 올바른 완료",
+      "order": 3,
+      "concept_ids": [
+        "stop-condition",
+        "structured-generation"
+      ],
+      "previous_page_id": "CH19-P02",
+      "next_page_id": "CH20-P01",
+      "revision": "sha256:a571f6f1d926b85e26e9171ea39bf65a83e7a86e6c6eb62c5a3574158949f132"
+    },
+    {
+      "id": "CH20-P01",
+      "chapter_id": "CH20",
+      "title": "문맥은 펼쳐놓은 참고 자료다",
+      "order": 1,
+      "concept_ids": [
+        "context-window",
+        "conversation-state"
+      ],
+      "previous_page_id": "CH19-P03",
+      "next_page_id": "CH20-P02",
+      "revision": "sha256:920cc273b57f270f78fbb20fda9ef5f5d5ebbd9c4c95a312bad10cf51bd73ec9"
+    },
+    {
+      "id": "CH20-P02",
+      "chapter_id": "CH20",
+      "title": "환각은 말투로 판별할 수 없다",
+      "order": 2,
+      "concept_ids": [
+        "hallucination"
+      ],
+      "previous_page_id": "CH20-P01",
+      "next_page_id": "CH20-P03",
+      "revision": "sha256:e675bfbd7110088076982f8c3c039be04d28cbcdb43e647029a1c43d39603909"
+    },
+    {
+      "id": "CH20-P03",
+      "chapter_id": "CH20",
+      "title": "입력을 읽는 시간과 이어 쓰는 시간",
+      "order": 3,
+      "concept_ids": [
+        "prefill",
+        "decode",
+        "kv-cache",
+        "ttft"
+      ],
+      "previous_page_id": "CH20-P02",
+      "next_page_id": "CH21-P01",
+      "revision": "sha256:7aa31723cfdd66c697108004cdcccebe82764d8cff8c8f9bc9c1ab54bd8a879b"
+    },
+    {
+      "id": "CH21-P01",
+      "chapter_id": "CH21",
+      "title": "자료를 찾아놓고 답변에 쓰게 하기",
+      "order": 1,
+      "concept_ids": [
+        "rag",
+        "retrieval",
+        "grounding"
+      ],
+      "previous_page_id": "CH20-P03",
+      "next_page_id": "CH21-P02",
+      "revision": "sha256:a250c01036b6cbf50f9a4db3e9ceae18e186d18558a45e028cd9b50561103e24"
+    },
+    {
+      "id": "CH21-P02",
+      "chapter_id": "CH21",
+      "title": "오프라인 준비와 온라인 처리를 나누기",
+      "order": 2,
+      "concept_ids": [
+        "ingestion",
+        "indexing",
+        "query-pipeline"
+      ],
+      "previous_page_id": "CH21-P01",
+      "next_page_id": "CH21-P03",
+      "revision": "sha256:3229170e4be5ac4d8268c0b463df18e04014b1f7c8413cb859e018aa2a8f52f7"
+    },
+    {
+      "id": "CH21-P03",
+      "chapter_id": "CH21",
+      "title": "우리 사이트에서는 어디까지 필요할까",
+      "order": 3,
+      "concept_ids": [
+        "rag",
+        "retrieval"
+      ],
+      "previous_page_id": "CH21-P02",
+      "next_page_id": "CH22-P01",
+      "revision": "sha256:4f4523dbd28527d1b0545394278248aaa805281d5e51e7776983892eddd89d2c"
+    },
+    {
+      "id": "CH22-P01",
+      "chapter_id": "CH22",
+      "title": "글을 자르는 위치가 답변을 바꾼다",
+      "order": 1,
+      "concept_ids": [
+        "chunking"
+      ],
+      "previous_page_id": "CH21-P03",
+      "next_page_id": "CH22-P02",
+      "revision": "sha256:e877528b9be7b0a727a06507c398aa8c1028d77a0ebec737397c289b8c18756d"
+    },
+    {
+      "id": "CH22-P02",
+      "chapter_id": "CH22",
+      "title": "겹침과 부모 문맥의 절충",
+      "order": 2,
+      "concept_ids": [
+        "overlap",
+        "parent-child-retrieval"
+      ],
+      "previous_page_id": "CH22-P01",
+      "next_page_id": "CH22-P03",
+      "revision": "sha256:0eee58ad7358fca77de220e5b02adc9f9e5bfbb88b51f99ae24bf3c23cf645e5"
+    },
+    {
+      "id": "CH22-P03",
+      "chapter_id": "CH22",
+      "title": "문서는 바뀌고 삭제된다",
+      "order": 3,
+      "concept_ids": [
+        "metadata",
+        "document-version",
+        "index-update"
+      ],
+      "previous_page_id": "CH22-P02",
+      "next_page_id": "CH23-P01",
+      "revision": "sha256:fcd1c1f9812b125baf8490c3c14370a01c430618edc9e1e3dcfc5e3089ac5c93"
+    },
+    {
+      "id": "CH23-P01",
+      "chapter_id": "CH23",
+      "title": "정확한 단어와 비슷한 의미를 함께 보기",
+      "order": 1,
+      "concept_ids": [
+        "bm25",
+        "dense-retrieval",
+        "ann",
+        "hnsw"
+      ],
+      "previous_page_id": "CH22-P03",
+      "next_page_id": "CH23-P02",
+      "revision": "sha256:5695cd68b9f0f143d40165cf5e47776e1d143e7c01312161f3d4d4128f43766b"
+    },
+    {
+      "id": "CH23-P02",
+      "chapter_id": "CH23",
+      "title": "하이브리드는 점수 합치기부터 주의하기",
+      "order": 2,
+      "concept_ids": [
+        "hybrid-search",
+        "rrf"
+      ],
+      "previous_page_id": "CH23-P01",
+      "next_page_id": "CH23-P03",
+      "revision": "sha256:7b9adaab3e4cd6389adf50e86f5c70ff0bcadf93901c21a2deb3a3382dbc8849"
+    },
+    {
+      "id": "CH23-P03",
+      "chapter_id": "CH23",
+      "title": "많이 찾고 정밀하게 다시 읽기",
+      "order": 3,
+      "concept_ids": [
+        "reranker",
+        "cross-encoder"
+      ],
+      "previous_page_id": "CH23-P02",
+      "next_page_id": "CH24-P01",
+      "revision": "sha256:19f19c6789705dab1b5a110a86a373a448e1f6d3691f4d392d9cf598820e59d6"
+    },
+    {
+      "id": "CH24-P01",
+      "chapter_id": "CH24",
+      "title": "검색기는 검색 문제로 평가한다",
+      "order": 1,
+      "concept_ids": [
+        "recall-at-k",
+        "mrr"
+      ],
+      "previous_page_id": "CH23-P03",
+      "next_page_id": "CH24-P02",
+      "revision": "sha256:7965937963c05b0c0f92a93614233b0295c1053a07e7bede6f44a069f9625e81"
+    },
+    {
+      "id": "CH24-P02",
+      "chapter_id": "CH24",
+      "title": "근거를 잘 따랐는데 답이 틀릴 수도 있다",
+      "order": 2,
+      "concept_ids": [
+        "groundedness",
+        "answer-correctness",
+        "citation",
+        "abstention"
+      ],
+      "previous_page_id": "CH24-P01",
+      "next_page_id": "CH24-P03",
+      "revision": "sha256:ec42123136a0fe46b6fedeb692d9e30c57f1cc3219cbfa21c060d1dcc8621d87"
+    },
+    {
+      "id": "CH24-P03",
+      "chapter_id": "CH24",
+      "title": "잘 찾는 것보다 먼저 읽을 권한이 있는가",
+      "order": 3,
+      "concept_ids": [
+        "retrieval-acl"
+      ],
+      "previous_page_id": "CH24-P02",
+      "next_page_id": "CH25-P01",
+      "revision": "sha256:611a1d39a2f741838487abc576361c419058448db06967f9a68b6cdbb3d6cf07"
+    },
+    {
+      "id": "CH25-P01",
+      "chapter_id": "CH25",
+      "title": "좋은 요청은 역할보다 과업이 분명하다",
+      "order": 1,
+      "concept_ids": [
+        "prompt-design",
+        "few-shot",
+        "context-engineering"
+      ],
+      "previous_page_id": "CH24-P03",
+      "next_page_id": "CH25-P02",
+      "revision": "sha256:455319bcf3a525311b99d49307c5d267989d13e2e82c0226fb6c92918a3bb14f"
+    },
+    {
+      "id": "CH25-P02",
+      "chapter_id": "CH25",
+      "title": "출력 계약은 코드가 검사할 수 있어야 한다",
+      "order": 2,
+      "concept_ids": [
+        "json-schema",
+        "output-validation"
+      ],
+      "previous_page_id": "CH25-P01",
+      "next_page_id": "CH25-P03",
+      "revision": "sha256:5ab8118f56950d48011abb73337eb8df7b3a758d7da8d2520131495cc79b94bb"
+    },
+    {
+      "id": "CH25-P03",
+      "chapter_id": "CH25",
+      "title": "프롬프트는 버전과 평가로 관리한다",
+      "order": 3,
+      "concept_ids": [
+        "prompt-version",
+        "output-validation"
+      ],
+      "previous_page_id": "CH25-P02",
+      "next_page_id": "CH26-P01",
+      "revision": "sha256:f1d0bc099334180955b2b395a9f606b9a2632da3a0b9f8562fc99d8b7692b703"
+    },
+    {
+      "id": "CH26-P01",
+      "chapter_id": "CH26",
+      "title": "도구 이름을 출력하는 것과 실행하는 것은 다르다",
+      "order": 1,
+      "concept_ids": [
+        "tool-calling",
+        "least-privilege"
+      ],
+      "previous_page_id": "CH25-P03",
+      "next_page_id": "CH26-P02",
+      "revision": "sha256:9589429fe116a46d6d955057a554cf0fd5cc5bb5c8f6467062ce47453c75d515"
+    },
+    {
+      "id": "CH26-P02",
+      "chapter_id": "CH26",
+      "title": "정해진 길과 스스로 고르는 길",
+      "order": 2,
+      "concept_ids": [
+        "workflow",
+        "agent",
+        "orchestration",
+        "termination"
+      ],
+      "previous_page_id": "CH26-P01",
+      "next_page_id": "CH26-P03",
+      "revision": "sha256:8a17a559f6363f4fe51cb6b91004221547333f83b52f15590b54bc008d5f048c"
+    },
+    {
+      "id": "CH26-P03",
+      "chapter_id": "CH26",
+      "title": "재실행과 부작용을 설계하기",
+      "order": 3,
+      "concept_ids": [
+        "idempotency",
+        "least-privilege"
+      ],
+      "previous_page_id": "CH26-P02",
+      "next_page_id": "CH27-P01",
+      "revision": "sha256:32fb221d5ffbf1f43f8a5e03a2663e0b4c1f40fdfaf4b078d565754cef55511f"
+    },
+    {
+      "id": "CH27-P01",
+      "chapter_id": "CH27",
+      "title": "실제 질문을 닮은 평가 세트 만들기",
+      "order": 1,
+      "concept_ids": [
+        "eval-dataset"
+      ],
+      "previous_page_id": "CH26-P03",
+      "next_page_id": "CH27-P02",
+      "revision": "sha256:7fe44964e395c82f20374f22141bb92693a0ad503c0b6b67780fbd8eb8297fe0"
+    },
+    {
+      "id": "CH27-P02",
+      "chapter_id": "CH27",
+      "title": "모델 채점자도 평가해야 한다",
+      "order": 2,
+      "concept_ids": [
+        "rubric",
+        "llm-as-judge",
+        "pairwise-evaluation"
+      ],
+      "previous_page_id": "CH27-P01",
+      "next_page_id": "CH27-P03",
+      "revision": "sha256:bfea95e8d397f121917cc50d4d3ba47371548e90d8451a493f5c64e1e184968a"
+    },
+    {
+      "id": "CH27-P03",
+      "chapter_id": "CH27",
+      "title": "문제 생성기의 교육 품질을 평가하기",
+      "order": 3,
+      "concept_ids": [
+        "rubric",
+        "regression-test",
+        "ablation"
+      ],
+      "previous_page_id": "CH27-P02",
+      "next_page_id": "CH28-P01",
+      "revision": "sha256:982847285f387df3190d50d7212884db9c03b895daed120e022a6299578efc7b"
+    },
+    {
+      "id": "CH28-P01",
+      "chapter_id": "CH28",
+      "title": "참고 자료에 적힌 명령을 따르는 문제",
+      "order": 1,
+      "concept_ids": [
+        "prompt-injection",
+        "untrusted-content"
+      ],
+      "previous_page_id": "CH27-P03",
+      "next_page_id": "CH28-P02",
+      "revision": "sha256:f77da29ad9d228d4cfb6fc87b861a17993505504e11b583f9bdbc2c52a59adbc"
+    },
+    {
+      "id": "CH28-P02",
+      "chapter_id": "CH28",
+      "title": "비밀과 개인 기록의 이동을 추적하기",
+      "order": 2,
+      "concept_ids": [
+        "pii",
+        "secret-management"
+      ],
+      "previous_page_id": "CH28-P01",
+      "next_page_id": "CH28-P03",
+      "revision": "sha256:591f19e456d26bf49635ba9b63707650c95ea6545dd750be52697b5c1a8e3ee6"
+    },
+    {
+      "id": "CH28-P03",
+      "chapter_id": "CH28",
+      "title": "출력은 화면과 도구에 들어가기 전에 검증한다",
+      "order": 3,
+      "concept_ids": [
+        "authorization",
+        "output-escaping"
+      ],
+      "previous_page_id": "CH28-P02",
+      "next_page_id": "CH29-P01",
+      "revision": "sha256:8578d66c71255489e09af123030dd850125438d0ff6c3c8e847c725df11a8824"
+    },
+    {
+      "id": "CH29-P01",
+      "chapter_id": "CH29",
+      "title": "버튼을 누른 뒤 어디에서 무엇을 할까",
+      "order": 1,
+      "concept_ids": [
+        "http",
+        "api-contract"
+      ],
+      "previous_page_id": "CH28-P03",
+      "next_page_id": "CH29-P02",
+      "revision": "sha256:af12e34daf668cf9cf6018f97dab644d2e862ac08102bd2aff0bd0361c16daf1"
+    },
+    {
+      "id": "CH29-P02",
+      "chapter_id": "CH29",
+      "title": "FastAPI·Lambda·Mangum의 역할",
+      "order": 2,
+      "concept_ids": [
+        "fastapi",
+        "asgi",
+        "mangum",
+        "serverless"
+      ],
+      "previous_page_id": "CH29-P01",
+      "next_page_id": "CH29-P03",
+      "revision": "sha256:6f44d8897a4c0f7c0a11ac6ea4ec5809ed724b34934204749b59f24ed5ab6205"
+    },
+    {
+      "id": "CH29-P03",
+      "chapter_id": "CH29",
+      "title": "기다림을 다루는 방법은 두 가지다",
+      "order": 3,
+      "concept_ids": [
+        "async-io",
+        "background-job"
+      ],
+      "previous_page_id": "CH29-P02",
+      "next_page_id": "CH30-P01",
+      "revision": "sha256:2e22a1e014a119233a7670026fedf09a2f2db91dbd47733c22eb75bb920928a1"
+    },
+    {
+      "id": "CH30-P01",
+      "chapter_id": "CH30",
+      "title": "어느 시간을 측정했는지 먼저 적기",
+      "order": 1,
+      "concept_ids": [
+        "latency",
+        "p95",
+        "cold-start",
+        "warm-invocation"
+      ],
+      "previous_page_id": "CH29-P03",
+      "next_page_id": "CH30-P02",
+      "revision": "sha256:84263651aab746f8118b3e6de6d232bdbf7ea8ea37a979fbca82458f5728bf3c"
+    },
+    {
+      "id": "CH30-P02",
+      "chapter_id": "CH30",
+      "title": "싼 요청과 싼 성공은 다르다",
+      "order": 2,
+      "concept_ids": [
+        "cost-per-success"
+      ],
+      "previous_page_id": "CH30-P01",
+      "next_page_id": "CH30-P03",
+      "revision": "sha256:29434339d51c12775e7a2401a6b13033221f0523cadbdee6c455b5dded18670a"
+    },
+    {
+      "id": "CH30-P03",
+      "chapter_id": "CH30",
+      "title": "같은 답을 재사용해도 되는가",
+      "order": 3,
+      "concept_ids": [
+        "response-cache",
+        "cache-key"
+      ],
+      "previous_page_id": "CH30-P02",
+      "next_page_id": "CH31-P01",
+      "revision": "sha256:64432001dc5aa03154a5f06ddc9020af229af6b06860b5226406f351f8dbac98"
+    },
+    {
+      "id": "CH31-P01",
+      "chapter_id": "CH31",
+      "title": "동시 사용자 수와 초당 요청 수는 다르다",
+      "order": 1,
+      "concept_ids": [
+        "concurrency",
+        "throughput"
+      ],
+      "previous_page_id": "CH30-P03",
+      "next_page_id": "CH31-P02",
+      "revision": "sha256:d66b9b77a36434a25978fd68f08660648d3f109d109672ce8ecdaa389d379afa"
+    },
+    {
+      "id": "CH31-P02",
+      "chapter_id": "CH31",
+      "title": "첫 실패는 어느 계층에서 나왔는가",
+      "order": 2,
+      "concept_ids": [
+        "rate-limit",
+        "backpressure"
+      ],
+      "previous_page_id": "CH31-P01",
+      "next_page_id": "CH31-P03",
+      "revision": "sha256:12ffd60c1845cff444d24f95bd71191877a44b1d3a3eb3eb4def09fd00e3a1a0"
+    },
+    {
+      "id": "CH31-P03",
+      "chapter_id": "CH31",
+      "title": "재시도는 공짜도 무조건 좋은 것도 아니다",
+      "order": 3,
+      "concept_ids": [
+        "timeout",
+        "exponential-backoff",
+        "jitter",
+        "circuit-breaker"
+      ],
+      "previous_page_id": "CH31-P02",
+      "next_page_id": "CH32-P01",
+      "revision": "sha256:e9b355257b51b45dc8a8b8b56ebc4a0f5977d1c081cd5da4ffa890db0db863d5"
+    },
+    {
+      "id": "CH32-P01",
+      "chapter_id": "CH32",
+      "title": "숫자·사건·경로를 함께 관찰하기",
+      "order": 1,
+      "concept_ids": [
+        "observability",
+        "metrics-logs-traces",
+        "slo"
+      ],
+      "previous_page_id": "CH31-P03",
+      "next_page_id": "CH32-P02",
+      "revision": "sha256:813aa6b184876da8d84fd1a433d9624903847271fd14ae9756f01785d89c05db"
+    },
+    {
+      "id": "CH32-P02",
+      "chapter_id": "CH32",
+      "title": "시간이 지나면 입력과 정답 관계가 달라진다",
+      "order": 2,
+      "concept_ids": [
+        "data-drift",
+        "concept-drift",
+        "rollback",
+        "canary"
+      ],
+      "previous_page_id": "CH32-P01",
+      "next_page_id": "CH32-P03",
+      "revision": "sha256:c024ef9dc05a195f5cafe55105b21621b998306be92979e4a5a9a1f4fa931306"
+    },
+    {
+      "id": "CH32-P03",
+      "chapter_id": "CH32",
+      "title": "이 사이트의 최종 실험 설계",
+      "order": 3,
+      "concept_ids": [
+        "experiment-report"
+      ],
+      "previous_page_id": "CH32-P02",
+      "next_page_id": null,
+      "revision": "sha256:90704e684eaff46919a08ed2d44e010d384aff29a0eb50ac41a81c2a9d53953d"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "ablation",
+      "chapter_ids": [
+        "CH27"
+      ],
+      "page_ids": [
+        "CH27-P03"
+      ],
+      "question_ids": [
+        "CH27-R01",
+        "CAP01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "abstention",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "page_ids": [
+        "CH24-P02"
+      ],
+      "question_ids": [
+        "CH24-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "activation",
+      "chapter_ids": [
+        "CH09"
+      ],
+      "page_ids": [
+        "CH09-P02"
+      ],
+      "question_ids": [
+        "CH09-Q01",
+        "CH09-R01"
+      ]
+    },
+    {
+      "id": "adam",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "page_ids": [
+        "CH11-P02"
+      ],
+      "question_ids": [
+        "CH11-R01"
+      ]
+    },
+    {
+      "id": "agent",
+      "chapter_ids": [
+        "CH26"
+      ],
+      "page_ids": [
+        "CH26-P02"
+      ],
+      "question_ids": [
+        "CH26-R01"
+      ]
+    },
+    {
+      "id": "ai",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "page_ids": [
+        "CH01-P01"
+      ],
+      "question_ids": [
+        "CH01-R01"
+      ]
+    },
+    {
+      "id": "ann",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "page_ids": [
+        "CH23-P01"
+      ],
+      "question_ids": [
+        "CH23-R01"
+      ]
+    },
+    {
+      "id": "answer-correctness",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "page_ids": [
+        "CH24-P02"
+      ],
+      "question_ids": [
+        "CH24-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "api-contract",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "page_ids": [
+        "CH29-P01"
+      ],
+      "question_ids": [
+        "CH29-R01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "asgi",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "page_ids": [
+        "CH29-P02"
+      ],
+      "question_ids": [
+        "CH29-Q01",
+        "CH29-R01"
+      ]
+    },
+    {
+      "id": "async-io",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "page_ids": [
+        "CH29-P03"
+      ],
+      "question_ids": [
+        "CH29-Q02",
+        "CH29-R01"
+      ]
+    },
+    {
+      "id": "attention",
+      "chapter_ids": [
+        "CH15"
+      ],
+      "page_ids": [
+        "CH15-P01"
+      ],
+      "question_ids": [
+        "CH15-Q01",
+        "CH15-R01"
+      ]
+    },
+    {
+      "id": "authorization",
+      "chapter_ids": [
+        "CH28"
+      ],
+      "page_ids": [
+        "CH28-P03"
+      ],
+      "question_ids": [
+        "CH28-R01",
+        "CAP04"
+      ]
+    },
+    {
+      "id": "autograd",
+      "chapter_ids": [
+        "CH10"
+      ],
+      "page_ids": [
+        "CH10-P01",
+        "CH10-P03"
+      ],
+      "question_ids": [
+        "CH10-Q01",
+        "CH10-Q02",
+        "CH10-R01"
+      ]
+    },
+    {
+      "id": "background-job",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "page_ids": [
+        "CH29-P03"
+      ],
+      "question_ids": [
+        "CH29-Q02",
+        "CH29-R01"
+      ]
+    },
+    {
+      "id": "backpressure",
+      "chapter_ids": [
+        "CH31"
+      ],
+      "page_ids": [
+        "CH31-P02"
+      ],
+      "question_ids": [
+        "CH31-R01",
+        "CAP03"
+      ]
+    },
+    {
+      "id": "backpropagation",
+      "chapter_ids": [
+        "CH10"
+      ],
+      "page_ids": [
+        "CH10-P01"
+      ],
+      "question_ids": [
+        "CH10-Q01",
+        "CH10-R01"
+      ]
+    },
+    {
+      "id": "bag-of-words",
+      "chapter_ids": [
+        "CH14"
+      ],
+      "page_ids": [
+        "CH14-P01"
+      ],
+      "question_ids": [
+        "CH14-R01"
+      ]
+    },
+    {
+      "id": "baseline",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "page_ids": [
+        "CH01-P02",
+        "CH01-P03"
+      ],
+      "question_ids": [
+        "CH01-Q02",
+        "CH01-R01"
+      ]
+    },
+    {
+      "id": "batch",
+      "chapter_ids": [
+        "CH09"
+      ],
+      "page_ids": [
+        "CH09-P01"
+      ],
+      "question_ids": [
+        "CH09-R01"
+      ]
+    },
+    {
+      "id": "bayes-rule",
+      "chapter_ids": [
+        "CH03"
+      ],
+      "page_ids": [
+        "CH03-P01"
+      ],
+      "question_ids": [
+        "CH03-R01"
+      ]
+    },
+    {
+      "id": "bi-encoder",
+      "chapter_ids": [
+        "CH14"
+      ],
+      "page_ids": [
+        "CH14-P03"
+      ],
+      "question_ids": [
+        "CH14-R01"
+      ]
+    },
+    {
+      "id": "bm25",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "page_ids": [
+        "CH23-P01"
+      ],
+      "question_ids": [
+        "CH23-R01"
+      ]
+    },
+    {
+      "id": "bpe",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "page_ids": [
+        "CH13-P02"
+      ],
+      "question_ids": [
+        "CH13-R01"
+      ]
+    },
+    {
+      "id": "broadcasting",
+      "chapter_ids": [
+        "CH09"
+      ],
+      "page_ids": [
+        "CH09-P01"
+      ],
+      "question_ids": [
+        "CH09-Q02",
+        "CH09-R01"
+      ]
+    },
+    {
+      "id": "cache-key",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "page_ids": [
+        "CH30-P03"
+      ],
+      "question_ids": [
+        "CH30-Q02",
+        "CH30-R01",
+        "CAP02",
+        "CAP04"
+      ]
+    },
+    {
+      "id": "calibration",
+      "chapter_ids": [
+        "CH03"
+      ],
+      "page_ids": [
+        "CH03-P03"
+      ],
+      "question_ids": [
+        "CH03-R01"
+      ]
+    },
+    {
+      "id": "canary",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "page_ids": [
+        "CH32-P02"
+      ],
+      "question_ids": [
+        "CH32-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "causal-language-modeling",
+      "chapter_ids": [
+        "CH17"
+      ],
+      "page_ids": [
+        "CH17-P01"
+      ],
+      "question_ids": [
+        "CH17-Q01",
+        "CH17-R01"
+      ]
+    },
+    {
+      "id": "causal-mask",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "page_ids": [
+        "CH16-P02",
+        "CH16-P03"
+      ],
+      "question_ids": [
+        "CH16-Q01",
+        "CH16-R01"
+      ]
+    },
+    {
+      "id": "chunking",
+      "chapter_ids": [
+        "CH22"
+      ],
+      "page_ids": [
+        "CH22-P01"
+      ],
+      "question_ids": [
+        "CH22-Q01",
+        "CH22-R01",
+        "CAP01"
+      ]
+    },
+    {
+      "id": "circuit-breaker",
+      "chapter_ids": [
+        "CH31"
+      ],
+      "page_ids": [
+        "CH31-P03"
+      ],
+      "question_ids": [
+        "CH31-R01",
+        "CAP03"
+      ]
+    },
+    {
+      "id": "citation",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "page_ids": [
+        "CH24-P02"
+      ],
+      "question_ids": [
+        "CH24-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "clustering",
+      "chapter_ids": [
+        "CH07"
+      ],
+      "page_ids": [
+        "CH07-P03"
+      ],
+      "question_ids": [
+        "CH07-Q02",
+        "CH07-R01"
+      ]
+    },
+    {
+      "id": "cnn",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "page_ids": [
+        "CH12-P01",
+        "CH12-P03"
+      ],
+      "question_ids": [
+        "CH12-Q01",
+        "CH12-R01"
+      ]
+    },
+    {
+      "id": "cold-start",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "page_ids": [
+        "CH30-P01"
+      ],
+      "question_ids": [
+        "CH30-R01",
+        "CAP01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "concept-drift",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "page_ids": [
+        "CH32-P02"
+      ],
+      "question_ids": [
+        "CH32-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "concurrency",
+      "chapter_ids": [
+        "CH31"
+      ],
+      "page_ids": [
+        "CH31-P01"
+      ],
+      "question_ids": [
+        "CH31-Q01",
+        "CH31-R01",
+        "CAP03"
+      ]
+    },
+    {
+      "id": "conditional-probability",
+      "chapter_ids": [
+        "CH03"
+      ],
+      "page_ids": [
+        "CH03-P01"
+      ],
+      "question_ids": [
+        "CH03-Q01",
+        "CH03-R01"
+      ]
+    },
+    {
+      "id": "confusion-matrix",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "page_ids": [
+        "CH08-P01"
+      ],
+      "question_ids": [
+        "CH08-Q01",
+        "CH08-R01"
+      ]
+    },
+    {
+      "id": "context-engineering",
+      "chapter_ids": [
+        "CH25"
+      ],
+      "page_ids": [
+        "CH25-P01"
+      ],
+      "question_ids": [
+        "CH25-R01"
+      ]
+    },
+    {
+      "id": "context-window",
+      "chapter_ids": [
+        "CH20"
+      ],
+      "page_ids": [
+        "CH20-P01"
+      ],
+      "question_ids": [
+        "CH20-Q01",
+        "CH20-R01"
+      ]
+    },
+    {
+      "id": "contextual-embedding",
+      "chapter_ids": [
+        "CH14"
+      ],
+      "page_ids": [
+        "CH14-P02"
+      ],
+      "question_ids": [
+        "CH14-R01"
+      ]
+    },
+    {
+      "id": "conversation-state",
+      "chapter_ids": [
+        "CH20"
+      ],
+      "page_ids": [
+        "CH20-P01"
+      ],
+      "question_ids": [
+        "CH20-Q01",
+        "CH20-R01"
+      ]
+    },
+    {
+      "id": "convolution",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "page_ids": [
+        "CH12-P01"
+      ],
+      "question_ids": [
+        "CH12-Q01",
+        "CH12-R01"
+      ]
+    },
+    {
+      "id": "cosine-similarity",
+      "chapter_ids": [
+        "CH02"
+      ],
+      "page_ids": [
+        "CH02-P03"
+      ],
+      "question_ids": [
+        "CH02-Q02",
+        "CH02-R01"
+      ]
+    },
+    {
+      "id": "cost-per-success",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "page_ids": [
+        "CH30-P02"
+      ],
+      "question_ids": [
+        "CH30-Q01",
+        "CH30-R01"
+      ]
+    },
+    {
+      "id": "cross-encoder",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "page_ids": [
+        "CH23-P03"
+      ],
+      "question_ids": [
+        "CH23-R01"
+      ]
+    },
+    {
+      "id": "cross-entropy",
+      "chapter_ids": [
+        "CH06"
+      ],
+      "page_ids": [
+        "CH06-P02"
+      ],
+      "question_ids": [
+        "CH06-R01"
+      ]
+    },
+    {
+      "id": "cross-entropy-lm",
+      "chapter_ids": [
+        "CH17"
+      ],
+      "page_ids": [
+        "CH17-P01"
+      ],
+      "question_ids": [
+        "CH17-R01"
+      ]
+    },
+    {
+      "id": "data-drift",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "page_ids": [
+        "CH32-P02"
+      ],
+      "question_ids": [
+        "CH32-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "data-leakage",
+      "chapter_ids": [
+        "CH05"
+      ],
+      "page_ids": [
+        "CH05-P03"
+      ],
+      "question_ids": [
+        "CH05-Q01",
+        "CH05-Q02",
+        "CH05-R01",
+        "CAP05"
+      ]
+    },
+    {
+      "id": "data-quality",
+      "chapter_ids": [
+        "CH05"
+      ],
+      "page_ids": [
+        "CH05-P01"
+      ],
+      "question_ids": [
+        "CH05-R01"
+      ]
+    },
+    {
+      "id": "decision-tree",
+      "chapter_ids": [
+        "CH07"
+      ],
+      "page_ids": [
+        "CH07-P01"
+      ],
+      "question_ids": [
+        "CH07-R01"
+      ]
+    },
+    {
+      "id": "decode",
+      "chapter_ids": [
+        "CH20"
+      ],
+      "page_ids": [
+        "CH20-P03"
+      ],
+      "question_ids": [
+        "CH20-Q02",
+        "CH20-R01"
+      ]
+    },
+    {
+      "id": "decoder",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "page_ids": [
+        "CH16-P02",
+        "CH16-P03"
+      ],
+      "question_ids": [
+        "CH16-Q01",
+        "CH16-Q02",
+        "CH16-R01"
+      ]
+    },
+    {
+      "id": "deep-learning",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "page_ids": [
+        "CH01-P01"
+      ],
+      "question_ids": [
+        "CH01-R01"
+      ]
+    },
+    {
+      "id": "dense-retrieval",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "page_ids": [
+        "CH23-P01"
+      ],
+      "question_ids": [
+        "CH23-Q02",
+        "CH23-R01"
+      ]
+    },
+    {
+      "id": "distillation",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "page_ids": [
+        "CH18-P03"
+      ],
+      "question_ids": [
+        "CH18-R01"
+      ]
+    },
+    {
+      "id": "distribution-shift",
+      "chapter_ids": [
+        "CH05"
+      ],
+      "page_ids": [
+        "CH05-P03"
+      ],
+      "question_ids": [
+        "CH05-R01",
+        "CAP05"
+      ]
+    },
+    {
+      "id": "document-version",
+      "chapter_ids": [
+        "CH22"
+      ],
+      "page_ids": [
+        "CH22-P03"
+      ],
+      "question_ids": [
+        "CH22-Q02",
+        "CH22-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "dot-product",
+      "chapter_ids": [
+        "CH02"
+      ],
+      "page_ids": [
+        "CH02-P02"
+      ],
+      "question_ids": [
+        "CH02-Q01",
+        "CH02-R01"
+      ]
+    },
+    {
+      "id": "dpo",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "page_ids": [
+        "CH18-P01"
+      ],
+      "question_ids": [
+        "CH18-R01"
+      ]
+    },
+    {
+      "id": "dropout",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "page_ids": [
+        "CH11-P02"
+      ],
+      "question_ids": [
+        "CH11-R01"
+      ]
+    },
+    {
+      "id": "early-stopping",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "page_ids": [
+        "CH11-P01"
+      ],
+      "question_ids": [
+        "CH11-Q01",
+        "CH11-R01",
+        "CAP05"
+      ]
+    },
+    {
+      "id": "embedding",
+      "chapter_ids": [
+        "CH14"
+      ],
+      "page_ids": [
+        "CH14-P02"
+      ],
+      "question_ids": [
+        "CH14-Q01",
+        "CH14-Q02",
+        "CH14-R01"
+      ]
+    },
+    {
+      "id": "encoder",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "page_ids": [
+        "CH16-P02"
+      ],
+      "question_ids": [
+        "CH16-R01"
+      ]
+    },
+    {
+      "id": "entropy",
+      "chapter_ids": [
+        "CH03"
+      ],
+      "page_ids": [
+        "CH03-P03"
+      ],
+      "question_ids": [
+        "CH03-R01"
+      ]
+    },
+    {
+      "id": "error-analysis",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "page_ids": [
+        "CH08-P03"
+      ],
+      "question_ids": [
+        "CH08-R01",
+        "CAP05"
+      ]
+    },
+    {
+      "id": "eval-dataset",
+      "chapter_ids": [
+        "CH27"
+      ],
+      "page_ids": [
+        "CH27-P01"
+      ],
+      "question_ids": [
+        "CH27-Q02",
+        "CH27-R01"
+      ]
+    },
+    {
+      "id": "expectation",
+      "chapter_ids": [
+        "CH03"
+      ],
+      "page_ids": [
+        "CH03-P02"
+      ],
+      "question_ids": [
+        "CH03-R01"
+      ]
+    },
+    {
+      "id": "experiment-report",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "page_ids": [
+        "CH32-P03"
+      ],
+      "question_ids": [
+        "CH32-Q02",
+        "CH32-R01"
+      ]
+    },
+    {
+      "id": "exponential-backoff",
+      "chapter_ids": [
+        "CH31"
+      ],
+      "page_ids": [
+        "CH31-P03"
+      ],
+      "question_ids": [
+        "CH31-Q02",
+        "CH31-R01",
+        "CAP03"
+      ]
+    },
+    {
+      "id": "f1",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "page_ids": [
+        "CH08-P01"
+      ],
+      "question_ids": [
+        "CH08-R01"
+      ]
+    },
+    {
+      "id": "fastapi",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "page_ids": [
+        "CH29-P02"
+      ],
+      "question_ids": [
+        "CH29-R01"
+      ]
+    },
+    {
+      "id": "feature",
+      "chapter_ids": [
+        "CH05"
+      ],
+      "page_ids": [
+        "CH05-P01"
+      ],
+      "question_ids": [
+        "CH05-R01"
+      ]
+    },
+    {
+      "id": "feed-forward-network",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "page_ids": [
+        "CH16-P01"
+      ],
+      "question_ids": [
+        "CH16-R01"
+      ]
+    },
+    {
+      "id": "few-shot",
+      "chapter_ids": [
+        "CH25"
+      ],
+      "page_ids": [
+        "CH25-P01"
+      ],
+      "question_ids": [
+        "CH25-R01"
+      ]
+    },
+    {
+      "id": "fine-tuning",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "page_ids": [
+        "CH18-P01",
+        "CH18-P02"
+      ],
+      "question_ids": [
+        "CH18-Q02",
+        "CH18-R01"
+      ]
+    },
+    {
+      "id": "forward-pass",
+      "chapter_ids": [
+        "CH10"
+      ],
+      "page_ids": [
+        "CH10-P01"
+      ],
+      "question_ids": [
+        "CH10-R01"
+      ]
+    },
+    {
+      "id": "gradient",
+      "chapter_ids": [
+        "CH04"
+      ],
+      "page_ids": [
+        "CH04-P02"
+      ],
+      "question_ids": [
+        "CH04-R01"
+      ]
+    },
+    {
+      "id": "gradient-accumulation",
+      "chapter_ids": [
+        "CH10"
+      ],
+      "page_ids": [
+        "CH10-P02"
+      ],
+      "question_ids": [
+        "CH10-R01"
+      ]
+    },
+    {
+      "id": "gradient-boosting",
+      "chapter_ids": [
+        "CH07"
+      ],
+      "page_ids": [
+        "CH07-P02"
+      ],
+      "question_ids": [
+        "CH07-Q01",
+        "CH07-R01"
+      ]
+    },
+    {
+      "id": "gradient-descent",
+      "chapter_ids": [
+        "CH04"
+      ],
+      "page_ids": [
+        "CH04-P02",
+        "CH04-P03"
+      ],
+      "question_ids": [
+        "CH04-Q01",
+        "CH04-Q02",
+        "CH04-R01",
+        "CAP05"
+      ]
+    },
+    {
+      "id": "greedy-decoding",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "page_ids": [
+        "CH19-P01"
+      ],
+      "question_ids": [
+        "CH19-R01"
+      ]
+    },
+    {
+      "id": "groundedness",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "page_ids": [
+        "CH24-P02"
+      ],
+      "question_ids": [
+        "CH24-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "grounding",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "page_ids": [
+        "CH21-P01"
+      ],
+      "question_ids": [
+        "CH21-Q01",
+        "CH21-R01"
+      ]
+    },
+    {
+      "id": "gru",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "page_ids": [
+        "CH12-P02"
+      ],
+      "question_ids": [
+        "CH12-R01"
+      ]
+    },
+    {
+      "id": "hallucination",
+      "chapter_ids": [
+        "CH20"
+      ],
+      "page_ids": [
+        "CH20-P02"
+      ],
+      "question_ids": [
+        "CH20-R01"
+      ]
+    },
+    {
+      "id": "hnsw",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "page_ids": [
+        "CH23-P01"
+      ],
+      "question_ids": [
+        "CH23-R01"
+      ]
+    },
+    {
+      "id": "http",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "page_ids": [
+        "CH29-P01"
+      ],
+      "question_ids": [
+        "CH29-R01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "hybrid-search",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "page_ids": [
+        "CH23-P02"
+      ],
+      "question_ids": [
+        "CH23-Q01",
+        "CH23-R01"
+      ]
+    },
+    {
+      "id": "hyperparameter",
+      "chapter_ids": [
+        "CH04"
+      ],
+      "page_ids": [
+        "CH04-P01",
+        "CH04-P03"
+      ],
+      "question_ids": [
+        "CH04-R01",
+        "CAP05"
+      ]
+    },
+    {
+      "id": "idempotency",
+      "chapter_ids": [
+        "CH26"
+      ],
+      "page_ids": [
+        "CH26-P03"
+      ],
+      "question_ids": [
+        "CH26-R01"
+      ]
+    },
+    {
+      "id": "index-update",
+      "chapter_ids": [
+        "CH22"
+      ],
+      "page_ids": [
+        "CH22-P03"
+      ],
+      "question_ids": [
+        "CH22-Q02",
+        "CH22-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "indexing",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "page_ids": [
+        "CH21-P02"
+      ],
+      "question_ids": [
+        "CH21-R01"
+      ]
+    },
+    {
+      "id": "inductive-bias",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "page_ids": [
+        "CH12-P01",
+        "CH12-P03"
+      ],
+      "question_ids": [
+        "CH12-R01"
+      ]
+    },
+    {
+      "id": "ingestion",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "page_ids": [
+        "CH21-P02"
+      ],
+      "question_ids": [
+        "CH21-R01"
+      ]
+    },
+    {
+      "id": "jitter",
+      "chapter_ids": [
+        "CH31"
+      ],
+      "page_ids": [
+        "CH31-P03"
+      ],
+      "question_ids": [
+        "CH31-Q02",
+        "CH31-R01",
+        "CAP03"
+      ]
+    },
+    {
+      "id": "json-schema",
+      "chapter_ids": [
+        "CH25"
+      ],
+      "page_ids": [
+        "CH25-P02"
+      ],
+      "question_ids": [
+        "CH25-Q01",
+        "CH25-R01",
+        "CAP01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "k-means",
+      "chapter_ids": [
+        "CH07"
+      ],
+      "page_ids": [
+        "CH07-P03"
+      ],
+      "question_ids": [
+        "CH07-Q02",
+        "CH07-R01"
+      ]
+    },
+    {
+      "id": "kv-cache",
+      "chapter_ids": [
+        "CH20"
+      ],
+      "page_ids": [
+        "CH20-P03"
+      ],
+      "question_ids": [
+        "CH20-Q02",
+        "CH20-R01"
+      ]
+    },
+    {
+      "id": "label",
+      "chapter_ids": [
+        "CH05"
+      ],
+      "page_ids": [
+        "CH05-P01"
+      ],
+      "question_ids": [
+        "CH05-R01"
+      ]
+    },
+    {
+      "id": "latency",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "page_ids": [
+        "CH30-P01"
+      ],
+      "question_ids": [
+        "CH30-R01",
+        "CAP01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "learning-rate",
+      "chapter_ids": [
+        "CH04"
+      ],
+      "page_ids": [
+        "CH04-P02"
+      ],
+      "question_ids": [
+        "CH04-Q01",
+        "CH04-R01"
+      ]
+    },
+    {
+      "id": "least-privilege",
+      "chapter_ids": [
+        "CH26"
+      ],
+      "page_ids": [
+        "CH26-P01",
+        "CH26-P03"
+      ],
+      "question_ids": [
+        "CH26-Q01",
+        "CH26-R01"
+      ]
+    },
+    {
+      "id": "linear-regression",
+      "chapter_ids": [
+        "CH06"
+      ],
+      "page_ids": [
+        "CH06-P01"
+      ],
+      "question_ids": [
+        "CH06-R01"
+      ]
+    },
+    {
+      "id": "llm",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "page_ids": [
+        "CH01-P01"
+      ],
+      "question_ids": [
+        "CH01-R01"
+      ]
+    },
+    {
+      "id": "llm-as-judge",
+      "chapter_ids": [
+        "CH27"
+      ],
+      "page_ids": [
+        "CH27-P02"
+      ],
+      "question_ids": [
+        "CH27-Q01",
+        "CH27-R01"
+      ]
+    },
+    {
+      "id": "logistic-regression",
+      "chapter_ids": [
+        "CH06"
+      ],
+      "page_ids": [
+        "CH06-P02"
+      ],
+      "question_ids": [
+        "CH06-Q01",
+        "CH06-Q02",
+        "CH06-R01"
+      ]
+    },
+    {
+      "id": "logits",
+      "chapter_ids": [
+        "CH09"
+      ],
+      "page_ids": [
+        "CH09-P02",
+        "CH09-P03"
+      ],
+      "question_ids": [
+        "CH09-R01"
+      ]
+    },
+    {
+      "id": "lora",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "page_ids": [
+        "CH18-P02"
+      ],
+      "question_ids": [
+        "CH18-Q01",
+        "CH18-R01"
+      ]
+    },
+    {
+      "id": "loss",
+      "chapter_ids": [
+        "CH04"
+      ],
+      "page_ids": [
+        "CH04-P01"
+      ],
+      "question_ids": [
+        "CH04-Q02",
+        "CH04-R01"
+      ]
+    },
+    {
+      "id": "lstm",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "page_ids": [
+        "CH12-P02"
+      ],
+      "question_ids": [
+        "CH12-Q02",
+        "CH12-R01"
+      ]
+    },
+    {
+      "id": "machine-learning",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "page_ids": [
+        "CH01-P01"
+      ],
+      "question_ids": [
+        "CH01-R01"
+      ]
+    },
+    {
+      "id": "mangum",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "page_ids": [
+        "CH29-P02"
+      ],
+      "question_ids": [
+        "CH29-Q01",
+        "CH29-R01"
+      ]
+    },
+    {
+      "id": "matrix",
+      "chapter_ids": [
+        "CH02"
+      ],
+      "page_ids": [
+        "CH02-P01",
+        "CH02-P02"
+      ],
+      "question_ids": [
+        "CH02-Q01",
+        "CH02-R01"
+      ]
+    },
+    {
+      "id": "metadata",
+      "chapter_ids": [
+        "CH22"
+      ],
+      "page_ids": [
+        "CH22-P03"
+      ],
+      "question_ids": [
+        "CH22-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "metrics-logs-traces",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "page_ids": [
+        "CH32-P01"
+      ],
+      "question_ids": [
+        "CH32-R01"
+      ]
+    },
+    {
+      "id": "mlp",
+      "chapter_ids": [
+        "CH09"
+      ],
+      "page_ids": [
+        "CH09-P02",
+        "CH09-P03"
+      ],
+      "question_ids": [
+        "CH09-Q01",
+        "CH09-R01"
+      ]
+    },
+    {
+      "id": "moe",
+      "chapter_ids": [
+        "CH17"
+      ],
+      "page_ids": [
+        "CH17-P02"
+      ],
+      "question_ids": [
+        "CH17-Q02",
+        "CH17-R01"
+      ]
+    },
+    {
+      "id": "mrr",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "page_ids": [
+        "CH24-P01"
+      ],
+      "question_ids": [
+        "CH24-R01"
+      ]
+    },
+    {
+      "id": "mse",
+      "chapter_ids": [
+        "CH06"
+      ],
+      "page_ids": [
+        "CH06-P01"
+      ],
+      "question_ids": [
+        "CH06-R01"
+      ]
+    },
+    {
+      "id": "multi-head-attention",
+      "chapter_ids": [
+        "CH15"
+      ],
+      "page_ids": [
+        "CH15-P03"
+      ],
+      "question_ids": [
+        "CH15-R01"
+      ]
+    },
+    {
+      "id": "nlp",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "page_ids": [
+        "CH01-P01"
+      ],
+      "question_ids": [
+        "CH01-R01"
+      ]
+    },
+    {
+      "id": "normalization",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "page_ids": [
+        "CH11-P02"
+      ],
+      "question_ids": [
+        "CH11-R01"
+      ]
+    },
+    {
+      "id": "observability",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "page_ids": [
+        "CH32-P01"
+      ],
+      "question_ids": [
+        "CH32-Q01",
+        "CH32-R01"
+      ]
+    },
+    {
+      "id": "optimizer",
+      "chapter_ids": [
+        "CH10"
+      ],
+      "page_ids": [
+        "CH10-P02"
+      ],
+      "question_ids": [
+        "CH10-R01"
+      ]
+    },
+    {
+      "id": "orchestration",
+      "chapter_ids": [
+        "CH26"
+      ],
+      "page_ids": [
+        "CH26-P02"
+      ],
+      "question_ids": [
+        "CH26-R01"
+      ]
+    },
+    {
+      "id": "output-escaping",
+      "chapter_ids": [
+        "CH28"
+      ],
+      "page_ids": [
+        "CH28-P03"
+      ],
+      "question_ids": [
+        "CH28-R01",
+        "CAP04"
+      ]
+    },
+    {
+      "id": "output-validation",
+      "chapter_ids": [
+        "CH25"
+      ],
+      "page_ids": [
+        "CH25-P02",
+        "CH25-P03"
+      ],
+      "question_ids": [
+        "CH25-Q01",
+        "CH25-R01",
+        "CAP01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "overfitting",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "page_ids": [
+        "CH11-P01",
+        "CH11-P03"
+      ],
+      "question_ids": [
+        "CH11-Q01",
+        "CH11-Q02",
+        "CH11-R01",
+        "CAP05"
+      ]
+    },
+    {
+      "id": "overlap",
+      "chapter_ids": [
+        "CH22"
+      ],
+      "page_ids": [
+        "CH22-P02"
+      ],
+      "question_ids": [
+        "CH22-Q01",
+        "CH22-R01",
+        "CAP01"
+      ]
+    },
+    {
+      "id": "p95",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "page_ids": [
+        "CH30-P01"
+      ],
+      "question_ids": [
+        "CH30-R01",
+        "CAP01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "padding",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "page_ids": [
+        "CH13-P03"
+      ],
+      "question_ids": [
+        "CH13-R01",
+        "CAP01"
+      ]
+    },
+    {
+      "id": "pairwise-evaluation",
+      "chapter_ids": [
+        "CH27"
+      ],
+      "page_ids": [
+        "CH27-P02"
+      ],
+      "question_ids": [
+        "CH27-R01"
+      ]
+    },
+    {
+      "id": "parameter",
+      "chapter_ids": [
+        "CH04"
+      ],
+      "page_ids": [
+        "CH04-P01"
+      ],
+      "question_ids": [
+        "CH04-R01"
+      ]
+    },
+    {
+      "id": "parameters",
+      "chapter_ids": [
+        "CH17"
+      ],
+      "page_ids": [
+        "CH17-P02"
+      ],
+      "question_ids": [
+        "CH17-Q02",
+        "CH17-R01"
+      ]
+    },
+    {
+      "id": "parent-child-retrieval",
+      "chapter_ids": [
+        "CH22"
+      ],
+      "page_ids": [
+        "CH22-P02"
+      ],
+      "question_ids": [
+        "CH22-R01",
+        "CAP01"
+      ]
+    },
+    {
+      "id": "pca",
+      "chapter_ids": [
+        "CH07"
+      ],
+      "page_ids": [
+        "CH07-P03"
+      ],
+      "question_ids": [
+        "CH07-R01"
+      ]
+    },
+    {
+      "id": "peft",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "page_ids": [
+        "CH18-P02"
+      ],
+      "question_ids": [
+        "CH18-Q01",
+        "CH18-R01"
+      ]
+    },
+    {
+      "id": "pii",
+      "chapter_ids": [
+        "CH28"
+      ],
+      "page_ids": [
+        "CH28-P02"
+      ],
+      "question_ids": [
+        "CH28-R01"
+      ]
+    },
+    {
+      "id": "pooling",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "page_ids": [
+        "CH12-P01"
+      ],
+      "question_ids": [
+        "CH12-R01"
+      ]
+    },
+    {
+      "id": "positional-encoding",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "page_ids": [
+        "CH16-P01"
+      ],
+      "question_ids": [
+        "CH16-R01"
+      ]
+    },
+    {
+      "id": "pr-curve",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "page_ids": [
+        "CH08-P02"
+      ],
+      "question_ids": [
+        "CH08-R01"
+      ]
+    },
+    {
+      "id": "precision",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "page_ids": [
+        "CH08-P01"
+      ],
+      "question_ids": [
+        "CH08-Q02",
+        "CH08-R01"
+      ]
+    },
+    {
+      "id": "prefill",
+      "chapter_ids": [
+        "CH20"
+      ],
+      "page_ids": [
+        "CH20-P03"
+      ],
+      "question_ids": [
+        "CH20-R01"
+      ]
+    },
+    {
+      "id": "pretraining",
+      "chapter_ids": [
+        "CH17"
+      ],
+      "page_ids": [
+        "CH17-P02",
+        "CH17-P03"
+      ],
+      "question_ids": [
+        "CH17-R01"
+      ]
+    },
+    {
+      "id": "prompt-design",
+      "chapter_ids": [
+        "CH25"
+      ],
+      "page_ids": [
+        "CH25-P01"
+      ],
+      "question_ids": [
+        "CH25-R01"
+      ]
+    },
+    {
+      "id": "prompt-injection",
+      "chapter_ids": [
+        "CH28"
+      ],
+      "page_ids": [
+        "CH28-P01"
+      ],
+      "question_ids": [
+        "CH28-Q01",
+        "CH28-R01"
+      ]
+    },
+    {
+      "id": "prompt-version",
+      "chapter_ids": [
+        "CH25"
+      ],
+      "page_ids": [
+        "CH25-P03"
+      ],
+      "question_ids": [
+        "CH25-Q02",
+        "CH25-R01"
+      ]
+    },
+    {
+      "id": "quantization",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "page_ids": [
+        "CH18-P03"
+      ],
+      "question_ids": [
+        "CH18-R01"
+      ]
+    },
+    {
+      "id": "query-key-value",
+      "chapter_ids": [
+        "CH15"
+      ],
+      "page_ids": [
+        "CH15-P01",
+        "CH15-P02"
+      ],
+      "question_ids": [
+        "CH15-Q01",
+        "CH15-R01"
+      ]
+    },
+    {
+      "id": "query-pipeline",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "page_ids": [
+        "CH21-P02"
+      ],
+      "question_ids": [
+        "CH21-Q02",
+        "CH21-R01"
+      ]
+    },
+    {
+      "id": "rag",
+      "chapter_ids": [
+        "CH01",
+        "CH21"
+      ],
+      "page_ids": [
+        "CH01-P01",
+        "CH01-P03",
+        "CH21-P01",
+        "CH21-P03"
+      ],
+      "question_ids": [
+        "CH01-Q01",
+        "CH01-R01",
+        "CH21-Q01",
+        "CH21-R01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "random-forest",
+      "chapter_ids": [
+        "CH07"
+      ],
+      "page_ids": [
+        "CH07-P02"
+      ],
+      "question_ids": [
+        "CH07-Q01",
+        "CH07-R01"
+      ]
+    },
+    {
+      "id": "rate-limit",
+      "chapter_ids": [
+        "CH31"
+      ],
+      "page_ids": [
+        "CH31-P02"
+      ],
+      "question_ids": [
+        "CH31-Q02",
+        "CH31-R01",
+        "CAP03"
+      ]
+    },
+    {
+      "id": "recall",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "page_ids": [
+        "CH08-P01"
+      ],
+      "question_ids": [
+        "CH08-Q01",
+        "CH08-Q02",
+        "CH08-R01"
+      ]
+    },
+    {
+      "id": "recall-at-k",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "page_ids": [
+        "CH24-P01"
+      ],
+      "question_ids": [
+        "CH24-Q01",
+        "CH24-R01"
+      ]
+    },
+    {
+      "id": "regression-test",
+      "chapter_ids": [
+        "CH27"
+      ],
+      "page_ids": [
+        "CH27-P03"
+      ],
+      "question_ids": [
+        "CH27-R01",
+        "CH32-Q01",
+        "CAP01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "regularization",
+      "chapter_ids": [
+        "CH06"
+      ],
+      "page_ids": [
+        "CH06-P03"
+      ],
+      "question_ids": [
+        "CH06-R01"
+      ]
+    },
+    {
+      "id": "reinforcement-learning",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "page_ids": [
+        "CH01-P01"
+      ],
+      "question_ids": [
+        "CH01-R01"
+      ]
+    },
+    {
+      "id": "reranker",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "page_ids": [
+        "CH23-P03"
+      ],
+      "question_ids": [
+        "CH23-Q02",
+        "CH23-R01"
+      ]
+    },
+    {
+      "id": "residual-connection",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "page_ids": [
+        "CH16-P01"
+      ],
+      "question_ids": [
+        "CH16-R01"
+      ]
+    },
+    {
+      "id": "response-cache",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "page_ids": [
+        "CH30-P03"
+      ],
+      "question_ids": [
+        "CH30-Q02",
+        "CH30-R01",
+        "CAP02",
+        "CAP04"
+      ]
+    },
+    {
+      "id": "retrieval",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "page_ids": [
+        "CH21-P01",
+        "CH21-P03"
+      ],
+      "question_ids": [
+        "CH21-Q01",
+        "CH21-Q02",
+        "CH21-R01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "retrieval-acl",
+      "chapter_ids": [
+        "CH24"
+      ],
+      "page_ids": [
+        "CH24-P03"
+      ],
+      "question_ids": [
+        "CH24-Q02",
+        "CH24-R01",
+        "CAP04",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "rlhf",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "page_ids": [
+        "CH18-P01"
+      ],
+      "question_ids": [
+        "CH18-R01"
+      ]
+    },
+    {
+      "id": "rnn",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "page_ids": [
+        "CH12-P02",
+        "CH12-P03"
+      ],
+      "question_ids": [
+        "CH12-Q02",
+        "CH12-R01"
+      ]
+    },
+    {
+      "id": "roc-auc",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "page_ids": [
+        "CH08-P02"
+      ],
+      "question_ids": [
+        "CH08-R01"
+      ]
+    },
+    {
+      "id": "rollback",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "page_ids": [
+        "CH32-P02"
+      ],
+      "question_ids": [
+        "CH32-R01",
+        "CAP02"
+      ]
+    },
+    {
+      "id": "rrf",
+      "chapter_ids": [
+        "CH23"
+      ],
+      "page_ids": [
+        "CH23-P02"
+      ],
+      "question_ids": [
+        "CH23-Q01",
+        "CH23-R01"
+      ]
+    },
+    {
+      "id": "rubric",
+      "chapter_ids": [
+        "CH27"
+      ],
+      "page_ids": [
+        "CH27-P02",
+        "CH27-P03"
+      ],
+      "question_ids": [
+        "CH27-Q01",
+        "CH27-Q02",
+        "CH27-R01",
+        "CAP01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "scalar",
+      "chapter_ids": [
+        "CH02"
+      ],
+      "page_ids": [
+        "CH02-P01"
+      ],
+      "question_ids": [
+        "CH02-R01"
+      ]
+    },
+    {
+      "id": "scaled-dot-product",
+      "chapter_ids": [
+        "CH15"
+      ],
+      "page_ids": [
+        "CH15-P02"
+      ],
+      "question_ids": [
+        "CH15-Q02",
+        "CH15-R01"
+      ]
+    },
+    {
+      "id": "secret-management",
+      "chapter_ids": [
+        "CH28"
+      ],
+      "page_ids": [
+        "CH28-P02"
+      ],
+      "question_ids": [
+        "CH28-Q02",
+        "CH28-R01"
+      ]
+    },
+    {
+      "id": "self-attention",
+      "chapter_ids": [
+        "CH15"
+      ],
+      "page_ids": [
+        "CH15-P03"
+      ],
+      "question_ids": [
+        "CH15-R01"
+      ]
+    },
+    {
+      "id": "self-supervised-learning",
+      "chapter_ids": [
+        "CH01",
+        "CH17"
+      ],
+      "page_ids": [
+        "CH01-P01",
+        "CH17-P01"
+      ],
+      "question_ids": [
+        "CH01-R01",
+        "CH17-Q01",
+        "CH17-R01"
+      ]
+    },
+    {
+      "id": "sentence-embedding",
+      "chapter_ids": [
+        "CH14"
+      ],
+      "page_ids": [
+        "CH14-P02",
+        "CH14-P03"
+      ],
+      "question_ids": [
+        "CH14-Q02",
+        "CH14-R01"
+      ]
+    },
+    {
+      "id": "serverless",
+      "chapter_ids": [
+        "CH29"
+      ],
+      "page_ids": [
+        "CH29-P02"
+      ],
+      "question_ids": [
+        "CH29-R01"
+      ]
+    },
+    {
+      "id": "sft",
+      "chapter_ids": [
+        "CH18"
+      ],
+      "page_ids": [
+        "CH18-P01"
+      ],
+      "question_ids": [
+        "CH18-R01"
+      ]
+    },
+    {
+      "id": "sigmoid",
+      "chapter_ids": [
+        "CH06"
+      ],
+      "page_ids": [
+        "CH06-P02"
+      ],
+      "question_ids": [
+        "CH06-R01"
+      ]
+    },
+    {
+      "id": "slo",
+      "chapter_ids": [
+        "CH32"
+      ],
+      "page_ids": [
+        "CH32-P01"
+      ],
+      "question_ids": [
+        "CH32-R01"
+      ]
+    },
+    {
+      "id": "softmax",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "page_ids": [
+        "CH19-P01"
+      ],
+      "question_ids": [
+        "CH19-R01"
+      ]
+    },
+    {
+      "id": "special-token",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "page_ids": [
+        "CH13-P02"
+      ],
+      "question_ids": [
+        "CH13-R01"
+      ]
+    },
+    {
+      "id": "stop-condition",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "page_ids": [
+        "CH19-P03"
+      ],
+      "question_ids": [
+        "CH19-Q02",
+        "CH19-R01"
+      ]
+    },
+    {
+      "id": "structured-generation",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "page_ids": [
+        "CH19-P03"
+      ],
+      "question_ids": [
+        "CH19-Q02",
+        "CH19-R01"
+      ]
+    },
+    {
+      "id": "subword",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "page_ids": [
+        "CH13-P02"
+      ],
+      "question_ids": [
+        "CH13-R01"
+      ]
+    },
+    {
+      "id": "supervised-learning",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "page_ids": [
+        "CH01-P01"
+      ],
+      "question_ids": [
+        "CH01-R01"
+      ]
+    },
+    {
+      "id": "temperature",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "page_ids": [
+        "CH19-P01",
+        "CH19-P02"
+      ],
+      "question_ids": [
+        "CH19-R01"
+      ]
+    },
+    {
+      "id": "tensor",
+      "chapter_ids": [
+        "CH02"
+      ],
+      "page_ids": [
+        "CH02-P01"
+      ],
+      "question_ids": [
+        "CH02-R01"
+      ]
+    },
+    {
+      "id": "tensor-shape",
+      "chapter_ids": [
+        "CH09"
+      ],
+      "page_ids": [
+        "CH09-P01",
+        "CH09-P03"
+      ],
+      "question_ids": [
+        "CH09-Q02",
+        "CH09-R01"
+      ]
+    },
+    {
+      "id": "termination",
+      "chapter_ids": [
+        "CH26"
+      ],
+      "page_ids": [
+        "CH26-P02"
+      ],
+      "question_ids": [
+        "CH26-Q02",
+        "CH26-R01"
+      ]
+    },
+    {
+      "id": "tf-idf",
+      "chapter_ids": [
+        "CH14"
+      ],
+      "page_ids": [
+        "CH14-P01"
+      ],
+      "question_ids": [
+        "CH14-Q01",
+        "CH14-R01"
+      ]
+    },
+    {
+      "id": "threshold",
+      "chapter_ids": [
+        "CH08"
+      ],
+      "page_ids": [
+        "CH08-P02"
+      ],
+      "question_ids": [
+        "CH08-Q02",
+        "CH08-R01"
+      ]
+    },
+    {
+      "id": "throughput",
+      "chapter_ids": [
+        "CH31"
+      ],
+      "page_ids": [
+        "CH31-P01"
+      ],
+      "question_ids": [
+        "CH31-Q01",
+        "CH31-R01",
+        "CAP03"
+      ]
+    },
+    {
+      "id": "timeout",
+      "chapter_ids": [
+        "CH31"
+      ],
+      "page_ids": [
+        "CH31-P03"
+      ],
+      "question_ids": [
+        "CH31-Q02",
+        "CH31-R01",
+        "CAP03"
+      ]
+    },
+    {
+      "id": "tokenization",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "page_ids": [
+        "CH13-P01"
+      ],
+      "question_ids": [
+        "CH13-Q01",
+        "CH13-R01"
+      ]
+    },
+    {
+      "id": "tool-calling",
+      "chapter_ids": [
+        "CH26"
+      ],
+      "page_ids": [
+        "CH26-P01"
+      ],
+      "question_ids": [
+        "CH26-Q01",
+        "CH26-R01"
+      ]
+    },
+    {
+      "id": "top-k",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "page_ids": [
+        "CH19-P02"
+      ],
+      "question_ids": [
+        "CH19-R01"
+      ]
+    },
+    {
+      "id": "top-p",
+      "chapter_ids": [
+        "CH19"
+      ],
+      "page_ids": [
+        "CH19-P02"
+      ],
+      "question_ids": [
+        "CH19-Q01",
+        "CH19-R01"
+      ]
+    },
+    {
+      "id": "train-eval-mode",
+      "chapter_ids": [
+        "CH10"
+      ],
+      "page_ids": [
+        "CH10-P03"
+      ],
+      "question_ids": [
+        "CH10-Q02",
+        "CH10-R01"
+      ]
+    },
+    {
+      "id": "train-validation-test",
+      "chapter_ids": [
+        "CH05"
+      ],
+      "page_ids": [
+        "CH05-P02"
+      ],
+      "question_ids": [
+        "CH05-Q01",
+        "CH05-Q02",
+        "CH05-R01",
+        "CAP05"
+      ]
+    },
+    {
+      "id": "transformer",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "page_ids": [
+        "CH16-P01"
+      ],
+      "question_ids": [
+        "CH16-Q02",
+        "CH16-R01"
+      ]
+    },
+    {
+      "id": "truncation",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "page_ids": [
+        "CH13-P03"
+      ],
+      "question_ids": [
+        "CH13-Q02",
+        "CH13-R01",
+        "CAP01"
+      ]
+    },
+    {
+      "id": "ttft",
+      "chapter_ids": [
+        "CH20"
+      ],
+      "page_ids": [
+        "CH20-P03"
+      ],
+      "question_ids": [
+        "CH20-R01"
+      ]
+    },
+    {
+      "id": "underfitting",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "page_ids": [
+        "CH11-P01"
+      ],
+      "question_ids": [
+        "CH11-R01",
+        "CAP05"
+      ]
+    },
+    {
+      "id": "unsupervised-learning",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "page_ids": [
+        "CH01-P01"
+      ],
+      "question_ids": [
+        "CH01-R01"
+      ]
+    },
+    {
+      "id": "untrusted-content",
+      "chapter_ids": [
+        "CH28"
+      ],
+      "page_ids": [
+        "CH28-P01"
+      ],
+      "question_ids": [
+        "CH28-Q01",
+        "CH28-R01"
+      ]
+    },
+    {
+      "id": "variance",
+      "chapter_ids": [
+        "CH03"
+      ],
+      "page_ids": [
+        "CH03-P02"
+      ],
+      "question_ids": [
+        "CH03-Q02",
+        "CH03-R01"
+      ]
+    },
+    {
+      "id": "vector",
+      "chapter_ids": [
+        "CH02"
+      ],
+      "page_ids": [
+        "CH02-P01"
+      ],
+      "question_ids": [
+        "CH02-R01"
+      ]
+    },
+    {
+      "id": "vocabulary",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "page_ids": [
+        "CH13-P01"
+      ],
+      "question_ids": [
+        "CH13-Q01",
+        "CH13-R01"
+      ]
+    },
+    {
+      "id": "warm-invocation",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "page_ids": [
+        "CH30-P01"
+      ],
+      "question_ids": [
+        "CH30-R01",
+        "CAP01",
+        "CAP06"
+      ]
+    },
+    {
+      "id": "weight-decay",
+      "chapter_ids": [
+        "CH11"
+      ],
+      "page_ids": [
+        "CH11-P02"
+      ],
+      "question_ids": [
+        "CH11-R01"
+      ]
+    },
+    {
+      "id": "workflow",
+      "chapter_ids": [
+        "CH26"
+      ],
+      "page_ids": [
+        "CH26-P02"
+      ],
+      "question_ids": [
+        "CH26-Q02",
+        "CH26-R01"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "SRC-ae53e3fd516d",
+      "title": "Hugging Face: NLP와 LLM의 관계",
+      "url": "https://huggingface.co/learn/llm-course/en/chapter1/1"
+    },
+    {
+      "id": "SRC-31b37e22cc05",
+      "title": "D2L: 강화학습",
+      "url": "https://d2l.ai/chapter_reinforcement-learning/index.html"
+    },
+    {
+      "id": "SRC-e3e431707540",
+      "title": "D2L: 선형대수",
+      "url": "https://d2l.ai/chapter_preliminaries/linear-algebra.html"
+    },
+    {
+      "id": "SRC-c6288a335c36",
+      "title": "D2L: 확률과 통계",
+      "url": "https://d2l.ai/chapter_preliminaries/probability.html"
+    },
+    {
+      "id": "SRC-ed554e5166ad",
+      "title": "D2L: 미분",
+      "url": "https://d2l.ai/chapter_preliminaries/calculus.html"
+    },
+    {
+      "id": "SRC-64104a518105",
+      "title": "scikit-learn: 데이터 누수와 전처리",
+      "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+    },
+    {
+      "id": "SRC-8eccb4ab18d7",
+      "title": "scikit-learn: 교차검증",
+      "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+    },
+    {
+      "id": "SRC-a0a701fbf291",
+      "title": "scikit-learn: 선형 모델",
+      "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+    },
+    {
+      "id": "SRC-73de612c66eb",
+      "title": "scikit-learn: 앙상블",
+      "url": "https://scikit-learn.org/stable/modules/ensemble.html"
+    },
+    {
+      "id": "SRC-3e48badc01c0",
+      "title": "scikit-learn: 군집화",
+      "url": "https://scikit-learn.org/stable/modules/clustering.html"
+    },
+    {
+      "id": "SRC-05f057efe73a",
+      "title": "scikit-learn: 평가 지표",
+      "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    },
+    {
+      "id": "SRC-97354b8e63ef",
+      "title": "PyTorch: 텐서",
+      "url": "https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html"
+    },
+    {
+      "id": "SRC-f4182aa469fb",
+      "title": "PyTorch: 신경망 구성",
+      "url": "https://docs.pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html"
+    },
+    {
+      "id": "SRC-62f80af427e3",
+      "title": "PyTorch: Autograd",
+      "url": "https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
+    },
+    {
+      "id": "SRC-ad1a8b720acf",
+      "title": "PyTorch: 최적화 루프",
+      "url": "https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html"
+    },
+    {
+      "id": "SRC-eb1a284bf553",
+      "title": "D2L: 일반화와 정규화",
+      "url": "https://d2l.ai/chapter_multilayer-perceptrons/generalization-deep.html"
+    },
+    {
+      "id": "SRC-08a8c4a77723",
+      "title": "D2L: 합성곱의 설계",
+      "url": "https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html"
+    },
+    {
+      "id": "SRC-e4178c8cc5b2",
+      "title": "D2L: 순환 신경망",
+      "url": "https://d2l.ai/chapter_recurrent-neural-networks/rnn.html"
+    },
+    {
+      "id": "SRC-516e19d463b9",
+      "title": "Hugging Face: 토크나이저",
+      "url": "https://huggingface.co/learn/llm-course/chapter2/4"
+    },
+    {
+      "id": "SRC-46c04646b830",
+      "title": "scikit-learn: 텍스트 특징 추출",
+      "url": "https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction"
+    },
+    {
+      "id": "SRC-afdfedb70256",
+      "title": "Sentence-BERT 논문",
+      "url": "https://arxiv.org/abs/1908.10084"
+    },
+    {
+      "id": "SRC-a7468c685165",
+      "title": "Attention Is All You Need 논문",
+      "url": "https://arxiv.org/abs/1706.03762"
+    },
+    {
+      "id": "SRC-cca3358a9b67",
+      "title": "Hugging Face: Transformer 구조",
+      "url": "https://huggingface.co/docs/course/chapter1/4"
+    },
+    {
+      "id": "SRC-3f5d847a8051",
+      "title": "Hugging Face: Causal 언어 모델 학습",
+      "url": "https://huggingface.co/learn/llm-course/chapter7/6"
+    },
+    {
+      "id": "SRC-cae140a2c5e7",
+      "title": "LoRA 논문",
+      "url": "https://arxiv.org/abs/2106.09685"
+    },
+    {
+      "id": "SRC-d5a5216fcde8",
+      "title": "DPO 논문",
+      "url": "https://arxiv.org/abs/2305.18290"
+    },
+    {
+      "id": "SRC-123e0cfc4e9d",
+      "title": "Hugging Face: 양자화",
+      "url": "https://huggingface.co/docs/transformers/quantization/overview"
+    },
+    {
+      "id": "SRC-61e2d620c85f",
+      "title": "Hugging Face: 생성 설정",
+      "url": "https://huggingface.co/docs/transformers/main_classes/text_generation"
+    },
+    {
+      "id": "SRC-0c61f82af768",
+      "title": "Hugging Face: KV cache",
+      "url": "https://huggingface.co/docs/transformers/kv_cache"
+    },
+    {
+      "id": "SRC-02ad74cdb0c9",
+      "title": "RAG 원 논문",
+      "url": "https://arxiv.org/abs/2005.11401"
+    },
+    {
+      "id": "SRC-003233868319",
+      "title": "Microsoft: RAG 구성",
+      "url": "https://learn.microsoft.com/azure/search/retrieval-augmented-generation-overview"
+    },
+    {
+      "id": "SRC-40e16394da72",
+      "title": "Microsoft: 문서 청킹",
+      "url": "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents"
+    },
+    {
+      "id": "SRC-b7f706e2a00d",
+      "title": "FAISS: 거리와 유사도",
+      "url": "https://github.com/facebookresearch/faiss/wiki/MetricType-and-distances"
+    },
+    {
+      "id": "SRC-2b7c5bc63df4",
+      "title": "Elastic: RRF",
+      "url": "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion"
+    },
+    {
+      "id": "SRC-a1c4613ca21d",
+      "title": "Microsoft: RAG 평가",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-llm-evaluation-phase"
+    },
+    {
+      "id": "SRC-3965b6bffd82",
+      "title": "JSON Schema: 객체·속성·필수 필드",
+      "url": "https://json-schema.org/understanding-json-schema/reference/object"
+    },
+    {
+      "id": "SRC-ffc229d83891",
+      "title": "Anthropic: 효과적인 에이전트와 워크플로",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents"
+    },
+    {
+      "id": "SRC-3ce408fba6b4",
+      "title": "HELM: 언어 모델의 다면 평가",
+      "url": "https://arxiv.org/abs/2211.09110"
+    },
+    {
+      "id": "SRC-16e11e26be5b",
+      "title": "MT-Bench: LLM 채점자의 한계와 편향",
+      "url": "https://arxiv.org/abs/2306.05685"
+    },
+    {
+      "id": "SRC-bb3542a7fc45",
+      "title": "OWASP: 프롬프트 인젝션",
+      "url": "https://github.com/OWASP/www-project-top-10-for-large-language-model-applications/blob/main/2_0_vulns/LLM01_PromptInjection.md"
+    },
+    {
+      "id": "SRC-d3a85dd7e6a4",
+      "title": "FastAPI: 비동기와 동시성",
+      "url": "https://fastapi.tiangolo.com/async/"
+    },
+    {
+      "id": "SRC-b97afe3e8f29",
+      "title": "Mangum: HTTP 이벤트 연결",
+      "url": "https://mangum.fastapiexpert.com/http/"
+    },
+    {
+      "id": "SRC-e5d49bfe92a5",
+      "title": "AWS: HTTP API 제한",
+      "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-quotas.html"
+    },
+    {
+      "id": "SRC-7eecbd969b8c",
+      "title": "AWS: Lambda 모범 사례",
+      "url": "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+    },
+    {
+      "id": "SRC-71b82c307f88",
+      "title": "Google SRE: 분산 시스템 모니터링",
+      "url": "https://sre.google/sre-book/monitoring-distributed-systems/"
+    },
+    {
+      "id": "SRC-c9a6d946f504",
+      "title": "AWS: 타임아웃·재시도·백오프·지터",
+      "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/"
+    },
+    {
+      "id": "SRC-bc7db439643e",
+      "title": "k6: 실행 시나리오",
+      "url": "https://grafana.com/docs/k6/latest/using-k6/scenarios/"
+    }
+  ],
+  "capstone_question_ids": [
+    "CAP01",
+    "CAP02",
+    "CAP03",
+    "CAP04",
+    "CAP05",
+    "CAP06"
+  ]
+}

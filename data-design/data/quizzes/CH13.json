@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH13",
+  "questions": [
+    {
+      "id": "CH13-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "concept_ids": [
+        "tokenization",
+        "vocabulary"
+      ],
+      "source_page_ids": [
+        "CH13-P01"
+      ],
+      "prompt_markdown": "토큰에 관한 올바른 설명은?",
+      "category": "개념 구분",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH13-Q01:A",
+          "text": "모든 언어에서 한 단어가 정확히 한 토큰이다."
+        },
+        {
+          "id": "CH13-Q01:B",
+          "text": "모델이 처리하는 기호 단위이며 분할과 ID는 토크나이저에 따라 달라진다."
+        },
+        {
+          "id": "CH13-Q01:C",
+          "text": "토큰 ID의 크기가 의미의 강도를 나타낸다."
+        },
+        {
+          "id": "CH13-Q01:D",
+          "text": "문자 수만 알면 모든 모델의 비용을 정확히 알 수 있다."
+        }
+      ],
+      "correct_option_id": "CH13-Q01:B",
+      "explanation_markdown": "단어·문자와 일대일 대응하지 않고 ID는 어휘표의 인덱스다.",
+      "generation_id": null,
+      "revision": "sha256:034f30434d57837face4971aaca21d0a1567a15087163409725d62722d7078d1"
+    },
+    {
+      "id": "CH13-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "concept_ids": [
+        "truncation"
+      ],
+      "source_page_ids": [
+        "CH13-P03"
+      ],
+      "prompt_markdown": "긴 자료를 앞부분부터 잘랐더니 마지막 질문이 사라졌다. 먼저 고칠 것은?",
+      "category": "입력 설계",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH13-Q02:A",
+          "text": "temperature를 올린다."
+        },
+        {
+          "id": "CH13-Q02:B",
+          "text": "임의로 답을 고정한다."
+        },
+        {
+          "id": "CH13-Q02:C",
+          "text": "문제 수를 늘린다."
+        },
+        {
+          "id": "CH13-Q02:D",
+          "text": "지시·질문·근거의 토큰 예산과 잘림 정책을 수정한다."
+        }
+      ],
+      "correct_option_id": "CH13-Q02:D",
+      "explanation_markdown": "필요한 입력이 빠진 상태에서는 생성 설정만으로 해결할 수 없다.",
+      "generation_id": null,
+      "revision": "sha256:94614fbe66c84919c99e2f4b0619245acff80c51081841e68666aab727bb4e85"
+    },
+    {
+      "id": "CH13-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH13"
+      ],
+      "concept_ids": [
+        "tokenization",
+        "subword",
+        "bpe",
+        "vocabulary",
+        "special-token",
+        "padding",
+        "truncation"
+      ],
+      "source_page_ids": [
+        "CH13-P01",
+        "CH13-P02",
+        "CH13-P03"
+      ],
+      "prompt_markdown": "패딩 마스크와 causal mask가 각각 무엇을 막는지 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "패딩 마스크는 길이를 맞추기 위해 넣은 빈 위치를 실제 내용처럼 참고하지 않도록 한다. Causal mask는 현재 예측 위치에서 미래 토큰을 참고하지 못하게 한다. 한 모델에서 두 조건이 함께 필요할 수 있다. 마스크 차원과 적용 위치도 확인한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:7d8bf33b740ffb559ef15c9abdc9f47c74df692d3f534dee32e2298609b8197b"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "CH10-P02",
+  "chapter_id": "CH10",
+  "title": "학습 루프의 네 동작",
+  "order": 2,
+  "concept_ids": [
+    "optimizer",
+    "gradient-accumulation"
+  ],
+  "body_markdown": "최소 루프는 기울기 초기화, 순전파와 손실, 역전파, optimizer 갱신으로 구성된다.\n\n```python\nimport torch\nfrom torch import nn\n\ntorch.manual_seed(7)\nmodel = nn.Linear(3, 2)\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)\nloss_fn = nn.CrossEntropyLoss()\nx = torch.randn(4, 3)\ny = torch.tensor([0, 1, 0, 1], dtype=torch.long)\n\nmodel.train()\noptimizer.zero_grad()\nlogits = model(x)\nloss = loss_fn(logits, y)\nloss.backward()\noptimizer.step()\n```\n\n`zero_grad()`를 생략하면 이전 기울기와 더해진다. 의도적인 gradient accumulation도 있지만, 그때는 손실 스케일과 갱신 주기를 설계해야 한다. `step()` 없이 `backward()`만 반복하면 가중치는 학습되지 않는다. 분류 정답은 위 예시에서 샘플별 클래스 인덱스이며 logits와 같은 모양이 아니다.",
+  "previous_page_id": "CH10-P01",
+  "next_page_id": "CH10-P03",
+  "revision": "sha256:e2db2543cf10b379ed31c1d269fc376eb34a6a8d37e916b4372274d3784474e9"
+}

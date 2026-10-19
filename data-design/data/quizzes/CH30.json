@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH30",
+  "questions": [
+    {
+      "id": "CH30-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "concept_ids": [
+        "cost-per-success"
+      ],
+      "source_page_ids": [
+        "CH30-P02"
+      ],
+      "prompt_markdown": "총비용 1,000원, 요청 100건, 유효 결과 80건일 때 유효 결과당 비용은?",
+      "category": "비용 계산",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH30-Q01:A",
+          "text": "8원"
+        },
+        {
+          "id": "CH30-Q01:B",
+          "text": "10원"
+        },
+        {
+          "id": "CH30-Q01:C",
+          "text": "100원"
+        },
+        {
+          "id": "CH30-Q01:D",
+          "text": "12.5원"
+        }
+      ],
+      "correct_option_id": "CH30-Q01:D",
+      "explanation_markdown": "전체 비용을 유효 결과 수로 나눈다. 10원은 요청당 비용이다.",
+      "generation_id": null,
+      "revision": "sha256:241bc6ec2bfc22a48f286f91ba22ab251d4371d733d274c609872cee7693352d"
+    },
+    {
+      "id": "CH30-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "concept_ids": [
+        "response-cache",
+        "cache-key"
+      ],
+      "source_page_ids": [
+        "CH30-P03"
+      ],
+      "prompt_markdown": "캐시 도입 뒤 같은 질문 반복만 측정했다. 추가로 해야 할 평가는?",
+      "category": "캐시 평가",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH30-Q02:A",
+          "text": "캐시 적중 결과를 모든 새 질문에 일반화한다."
+        },
+        {
+          "id": "CH30-Q02:B",
+          "text": "hit·miss·새 문제의 다양성·예상 반복률을 구분해 평가한다."
+        },
+        {
+          "id": "CH30-Q02:C",
+          "text": "모델 버전을 캐시 키에서 뺀다."
+        },
+        {
+          "id": "CH30-Q02:D",
+          "text": "개인화 응답을 모든 사용자에게 공유한다."
+        }
+      ],
+      "correct_option_id": "CH30-Q02:B",
+      "explanation_markdown": "캐시 성능은 입력 분포와 서비스 의미에 의존한다.",
+      "generation_id": null,
+      "revision": "sha256:664c2035233de92972637671807a01beb15c36171dfd047aa3c32e8a57714a55"
+    },
+    {
+      "id": "CH30-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH30"
+      ],
+      "concept_ids": [
+        "latency",
+        "p95",
+        "cold-start",
+        "warm-invocation",
+        "cost-per-success",
+        "response-cache",
+        "cache-key"
+      ],
+      "source_page_ids": [
+        "CH30-P01",
+        "CH30-P02",
+        "CH30-P03"
+      ],
+      "prompt_markdown": "타임아웃이 늘었는데 성공 요청 p95는 낮아지는 상황을 만들고 왜 개선이라고 단정하면 안 되는지 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "처음에는 느린 요청이 20초에 성공했는데 새 버전이 5초에 타임아웃으로 처리한다고 하자. 성공 요청만 모으면 느린 사례가 빠져 p95가 낮아질 수 있다. 그러나 실패율은 늘어 서비스가 나빠졌을 수 있다. 성공 지연·실패율·실패까지 걸린 시간과 전체 요청 수를 함께 보고한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:d27605843be462b84aa73941884cf012d75f984fe1ea1d8c43568a3070ed2d27"
+    }
+  ]
+}

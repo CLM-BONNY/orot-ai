@@ -1,0 +1,114 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH06",
+  "questions": [
+    {
+      "id": "CH06-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH06"
+      ],
+      "concept_ids": [
+        "logistic-regression"
+      ],
+      "source_page_ids": [
+        "CH06-P02"
+      ],
+      "prompt_markdown": "사용자가 다음 문제를 틀릴 확률을 예측하는 단순 기준선에 적절한 것은?",
+      "category": "모델 선택",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH06-Q01:A",
+          "text": "ID 값의 크기 비교만으로 정답 확정"
+        },
+        {
+          "id": "CH06-Q01:B",
+          "text": "로지스틱 회귀"
+        },
+        {
+          "id": "CH06-Q01:C",
+          "text": "모든 입력에 MSE 값 자체를 출력"
+        },
+        {
+          "id": "CH06-Q01:D",
+          "text": "테스트 정답을 입력 특징으로 사용"
+        }
+      ],
+      "correct_option_id": "CH06-Q01:B",
+      "explanation_markdown": "이진 결과의 확률을 모델링할 수 있다. 보정과 임곗값은 별도 평가 대상이다.",
+      "generation_id": null,
+      "revision": "sha256:adc4ed306c646bf3905c9f7a7c13ac98017b94e27f1a19f8e520e51139950028"
+    },
+    {
+      "id": "CH06-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH06"
+      ],
+      "concept_ids": [
+        "logistic-regression"
+      ],
+      "source_page_ids": [
+        "CH06-P02"
+      ],
+      "prompt_markdown": "모델은 그대로 두고 위험 알림 임곗값을 낮추면 일반적으로 어떤 일이 생기는가?",
+      "category": "임곗값 판단",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH06-Q02:A",
+          "text": "모든 오탐이 사라진다."
+        },
+        {
+          "id": "CH06-Q02:B",
+          "text": "모델 파라미터가 재학습된다."
+        },
+        {
+          "id": "CH06-Q02:C",
+          "text": "정규화 강도가 자동으로 커진다."
+        },
+        {
+          "id": "CH06-Q02:D",
+          "text": "더 많은 사례를 위험으로 분류하며 정밀도·재현율을 다시 확인해야 한다."
+        }
+      ],
+      "correct_option_id": "CH06-Q02:D",
+      "explanation_markdown": "임곗값은 분류 결정을 바꾼다. 동일 점수 집합에서 재현율은 보통 증가하거나 유지되지만 정밀도는 데이터에 따라 변하므로 직접 확인한다.",
+      "generation_id": null,
+      "revision": "sha256:4dc428e5ccd295614aee2296de9ffe727782e7b95471a7e29e488639efb260d7"
+    },
+    {
+      "id": "CH06-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH06"
+      ],
+      "concept_ids": [
+        "linear-regression",
+        "logistic-regression",
+        "sigmoid",
+        "mse",
+        "cross-entropy",
+        "regularization"
+      ],
+      "source_page_ids": [
+        "CH06-P01",
+        "CH06-P02",
+        "CH06-P03"
+      ],
+      "prompt_markdown": "손실 함수와 운영 지표가 다른 예를 들고, 정규화가 누수를 해결하지 못하는 이유를 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "이진 분류는 교차 엔트로피로 학습하면서 재현율과 알림 비용으로 평가할 수 있다. 학습 목적과 운영 의사결정은 다른 층이다. 정규화는 가중치나 복잡성을 제한하는 장치이며, 입력에 이미 섞인 미래 정답 정보를 제거하지 않는다. 누수는 분할·특징·전처리 설계에서 해결해야 한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:675475c1810ddc7ae1db454c59aaad1e2aaaf6053cba459cff6a87d3c64a738d"
+    }
+  ]
+}

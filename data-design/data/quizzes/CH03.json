@@ -1,0 +1,114 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH03",
+  "questions": [
+    {
+      "id": "CH03-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH03"
+      ],
+      "concept_ids": [
+        "conditional-probability"
+      ],
+      "source_page_ids": [
+        "CH03-P01"
+      ],
+      "prompt_markdown": "오류로 표시된 108건 중 실제 오류가 9건이다. 표시 결과의 정밀도는?",
+      "category": "수치 해석",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH03-Q01:A",
+          "text": "90%"
+        },
+        {
+          "id": "CH03-Q01:B",
+          "text": "약 8.3%"
+        },
+        {
+          "id": "CH03-Q01:C",
+          "text": "99%"
+        },
+        {
+          "id": "CH03-Q01:D",
+          "text": "10%"
+        }
+      ],
+      "correct_option_id": "CH03-Q01:B",
+      "explanation_markdown": "정밀도는 표시한 결과 중 진짜의 비율로 `9/108`이다. 실제 오류 10건 중 9건을 찾았다는 90%는 재현율이다.",
+      "generation_id": null,
+      "revision": "sha256:b0e6acdf886c399e5b61c6db55668ab949fa4f852a52e0af9c42a9f5cb2d989f"
+    },
+    {
+      "id": "CH03-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH03"
+      ],
+      "concept_ids": [
+        "variance"
+      ],
+      "source_page_ids": [
+        "CH03-P02"
+      ],
+      "prompt_markdown": "같은 입력을 새 버전에서 5회 실행해 평균이 낮아졌다. 가장 적절한 결론은?",
+      "category": "실험 판단",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH03-Q02:A",
+          "text": "모든 사용자에게 항상 더 빠르다."
+        },
+        {
+          "id": "CH03-Q02:B",
+          "text": "p95도 정확히 추정했다."
+        },
+        {
+          "id": "CH03-Q02:C",
+          "text": "초기 관찰이며 표본 수·변동·실험 조건을 더 확인한다."
+        },
+        {
+          "id": "CH03-Q02:D",
+          "text": "품질도 자동으로 좋아졌다."
+        }
+      ],
+      "correct_option_id": "CH03-Q02:C",
+      "explanation_markdown": "적은 표본으로 전체 성능과 상위 분위수를 단정할 수 없다. 속도 변화와 품질 변화도 별개다.",
+      "generation_id": null,
+      "revision": "sha256:2906ae28b2f174d56fce187def8a5a56aeb33e6b1e1302d867d1ccd1eb84fc13"
+    },
+    {
+      "id": "CH03-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH03"
+      ],
+      "concept_ids": [
+        "conditional-probability",
+        "bayes-rule",
+        "expectation",
+        "variance",
+        "entropy",
+        "calibration"
+      ],
+      "source_page_ids": [
+        "CH03-P01",
+        "CH03-P02",
+        "CH03-P03"
+      ],
+      "prompt_markdown": "모델의 자신감과 사실 정확성을 같은 값으로 볼 수 없는 이유를 분류 모델과 생성 모델 예시로 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "분류 모델의 0.9 점수는 비슷한 예측의 실제 정답률과 일치하는지 검증해야 한다. 생성 모델의 토큰 분포는 다음 토큰 선택의 분포이며 답변 전체가 사실일 확률이 아니다. 자신감 있는 문체도 사실 검증 신호가 아니다. 분류에는 보정 평가, 생성에는 근거·주장 검토가 필요하다.",
+      "grading": "self_assessment",
+      "revision": "sha256:1a8852c677c1dd433a4d09e387d555055fa56f741cf655646c8eee21ad89ccd8"
+    }
+  ]
+}

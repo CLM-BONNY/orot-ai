@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH09",
+  "questions": [
+    {
+      "id": "CH09-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH09"
+      ],
+      "concept_ids": [
+        "activation",
+        "mlp"
+      ],
+      "source_page_ids": [
+        "CH09-P02"
+      ],
+      "prompt_markdown": "선형 층 사이에 비선형 활성화를 넣는 핵심 이유는?",
+      "category": "구조 이해",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH09-Q01:A",
+          "text": "모든 파라미터를 정수로 만들기 위해"
+        },
+        {
+          "id": "CH09-Q01:B",
+          "text": "데이터 누수를 막기 위해"
+        },
+        {
+          "id": "CH09-Q01:C",
+          "text": "배치 크기를 자동으로 늘리기 위해"
+        },
+        {
+          "id": "CH09-Q01:D",
+          "text": "선형 변환의 합성만으로 표현하지 못하는 관계를 학습하기 위해"
+        }
+      ],
+      "correct_option_id": "CH09-Q01:D",
+      "explanation_markdown": "비선형이 없으면 여러 선형 층은 하나의 선형 변환으로 합칠 수 있다. 나머지는 활성화의 역할이 아니다.",
+      "generation_id": null,
+      "revision": "sha256:398d5af0cecf4bdbaca53e1be0b064cb7cd9da9764eb73dcba8fbc2c3da21cc0"
+    },
+    {
+      "id": "CH09-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH09"
+      ],
+      "concept_ids": [
+        "tensor-shape",
+        "broadcasting"
+      ],
+      "source_page_ids": [
+        "CH09-P01"
+      ],
+      "prompt_markdown": "예측 `[4,1]`과 정답 `[4]`의 뺄셈이 실행되었다. 올바른 대응은?",
+      "category": "모양 점검",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH09-Q02:A",
+          "text": "실행되었으므로 샘플별 오차가 맞다고 확정한다."
+        },
+        {
+          "id": "CH09-Q02:B",
+          "text": "브로드캐스팅 결과와 의도한 축을 확인한다."
+        },
+        {
+          "id": "CH09-Q02:C",
+          "text": "모델을 더 깊게 만든다."
+        },
+        {
+          "id": "CH09-Q02:D",
+          "text": "정답을 삭제한다."
+        }
+      ],
+      "correct_option_id": "CH09-Q02:B",
+      "explanation_markdown": "연산 가능성과 의미의 정확성은 다르다. 의도치 않은 `[4,4]` 결과가 나올 수 있다.",
+      "generation_id": null,
+      "revision": "sha256:df353d515952d0d4d4a934dc19253c7eba475dc2e59a8848a7d8b9e1dd2bda52"
+    },
+    {
+      "id": "CH09-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH09"
+      ],
+      "concept_ids": [
+        "tensor-shape",
+        "broadcasting",
+        "batch",
+        "mlp",
+        "activation",
+        "logits"
+      ],
+      "source_page_ids": [
+        "CH09-P01",
+        "CH09-P02",
+        "CH09-P03"
+      ],
+      "prompt_markdown": "logits와 확률을 구분하고, 다중 클래스 손실에 어떤 형태의 입력을 전달해야 하는지 확인하는 방법을 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "Logits는 정규화 전 점수이고 확률은 sigmoid·softmax 등으로 변환한 값이다. 손실 함수가 logits를 받는지 확률을 받는지 공식 문서와 입력 모양을 확인한다. 예를 들어 PyTorch `CrossEntropyLoss`는 보통 클래스별 logits와 클래스 인덱스를 받는다. softmax를 무심코 중복 적용하지 않는다.",
+      "grading": "self_assessment",
+      "revision": "sha256:e773caadfbcceb7eb5cba00b93d03977a3508059f04ae57b2d558374c029bba5"
+    }
+  ]
+}

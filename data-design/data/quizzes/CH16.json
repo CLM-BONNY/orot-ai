@@ -1,0 +1,118 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH16",
+  "questions": [
+    {
+      "id": "CH16-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "concept_ids": [
+        "causal-mask",
+        "decoder"
+      ],
+      "source_page_ids": [
+        "CH16-P02",
+        "CH16-P03"
+      ],
+      "prompt_markdown": "Causal decoder의 학습에서 미래 토큰을 차단하는 이유는?",
+      "category": "구조 이해",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH16-Q01:A",
+          "text": "실제 다음 토큰 예측 조건을 유지하고 미래 정답을 보지 못하게 하려고"
+        },
+        {
+          "id": "CH16-Q01:B",
+          "text": "모든 과거 문맥을 없애려고"
+        },
+        {
+          "id": "CH16-Q01:C",
+          "text": "정답 없이 지도학습을 하려고"
+        },
+        {
+          "id": "CH16-Q01:D",
+          "text": "모든 위치 정보를 제거하려고"
+        }
+      ],
+      "correct_option_id": "CH16-Q01:A",
+      "explanation_markdown": "정답 시퀀스가 학습 자료에 있어도 해당 위치는 미래를 참고하면 안 된다.",
+      "generation_id": null,
+      "revision": "sha256:b8b5483d068b04147c1062f791ab9cd6aff4a7b3ab6c48bc464afda9c7513849"
+    },
+    {
+      "id": "CH16-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "concept_ids": [
+        "transformer",
+        "decoder"
+      ],
+      "source_page_ids": [
+        "CH16-P03"
+      ],
+      "prompt_markdown": "“Transformer는 병렬 계산하므로 출력 토큰도 항상 한꺼번에 생성한다”는 주장에 대한 판단은?",
+      "category": "성능 이해",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH16-Q02:A",
+          "text": "모든 생성 모델에서 맞다."
+        },
+        {
+          "id": "CH16-Q02:B",
+          "text": "출력 길이와 지연은 관련 없다."
+        },
+        {
+          "id": "CH16-Q02:C",
+          "text": "일반적인 자기회귀 생성은 선택한 토큰을 이어가므로 학습 병렬성과 구분해야 한다."
+        },
+        {
+          "id": "CH16-Q02:D",
+          "text": "Attention이 있으면 미래 토큰을 이미 안다."
+        }
+      ],
+      "correct_option_id": "CH16-Q02:C",
+      "explanation_markdown": "학습 자료에 정답이 있는 상황과 생성 중 아직 미래가 없는 상황은 다르다.",
+      "generation_id": null,
+      "revision": "sha256:40123eac0c68f1d666ceea22b1f8ce7d43e4c20f8dbbbaafb64ef659c5e5fb3b"
+    },
+    {
+      "id": "CH16-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH16"
+      ],
+      "concept_ids": [
+        "transformer",
+        "encoder",
+        "decoder",
+        "causal-mask",
+        "positional-encoding",
+        "residual-connection",
+        "feed-forward-network"
+      ],
+      "source_page_ids": [
+        "CH16-P01",
+        "CH16-P02",
+        "CH16-P03"
+      ],
+      "prompt_markdown": "encoder·decoder·encoder-decoder를 입력 접근 범위와 대표 사용 방식으로 비교하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "Encoder는 일반적으로 입력의 양쪽 문맥을 참고해 표현을 만든다. Causal decoder는 과거·현재 위치만 보고 다음 토큰을 예측한다. Encoder-decoder는 입력 표현을 만드는 부분과 이를 참고해 출력하는 부분을 연결한다. 분류·생성·번역 같은 대표 용도는 있지만 실제 학습 목표와 구조를 함께 확인한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:81f45b521a75ca1594f7d0417eb9cb0fcd25228c2563f2ca9913babbf6c9ff73"
+    }
+  ]
+}

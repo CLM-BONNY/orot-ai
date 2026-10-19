@@ -1,0 +1,89 @@
+name: Deploy application to AWS
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: aws-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: >-
+      vars.DEPLOY_ENABLED == 'true' &&
+      ((github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository) ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'))
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 35
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      RELEASE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+      ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
+      ECS_APP_SERVICE: ${{ vars.ECS_APP_SERVICE }}
+      PUBLIC_URL: ${{ vars.PUBLIC_URL }}
+      IMAGE_TAG: ${{ github.event.workflow_run.head_sha || github.sha }}
+      APP_REVISION: ${{ github.event.workflow_run.head_sha || github.sha }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ env.RELEASE_SHA }}
+          persist-credentials: false
+      - name: Check deployment configuration
+        run: |
+          test -n "$AWS_REGION" && test -n "$AWS_DEPLOY_ROLE_ARN"
+          test -n "$ECS_CLUSTER" && test -n "$ECS_APP_SERVICE"
+          case "$PUBLIC_URL" in https://*) ;; *) exit 1 ;; esac
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+      - run: python -m pip install -r ai-study-site/backend/requirements.txt
+      - run: python -m pytest backend/tests deploy/inference/test_launch.py deploy/scripts/test_deploy_ecs.py -q -p no:cacheprovider
+        working-directory: ai-study-site
+      - run: npm ci && npm test && npm run build
+        working-directory: ai-study-site/frontend
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      - run: docker compose -f ai-study-site/deploy/compose.yml up --build --wait --wait-timeout 120
+      - run: python3 ai-study-site/deploy/scripts/container_smoke.py
+      - name: Stop smoke containers
+        if: always()
+        run: docker compose -f ai-study-site/deploy/compose.yml down
+      - name: Authenticate to AWS using OIDC
+        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5
+        with:
+          role-to-assume: ${{ env.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Push tested images to ECR and resolve immutable digests
+        run: |
+          set -euo pipefail
+          account=$(aws sts get-caller-identity --query Account --output text)
+          registry="$account.dkr.ecr.$AWS_REGION.amazonaws.com"
+          aws ecr get-login-password | docker login --username AWS --password-stdin "$registry"
+          for part in web api; do
+            repo="orot-ai-$part"
+            docker tag "$repo:$RELEASE_SHA" "$registry/$repo:$RELEASE_SHA"
+            docker push "$registry/$repo:$RELEASE_SHA"
+            digest=$(aws ecr describe-images --repository-name "$repo" --image-ids "imageTag=$RELEASE_SHA" --query 'imageDetails[0].imageDigest' --output text)
+            echo "IMAGE_${part^^}=$registry/$repo@$digest" >> "$GITHUB_ENV"
+          done
+      - name: Deploy the web and API together, verify HTTPS, roll back on failure
+        run: |
+          python3 ai-study-site/deploy/scripts/deploy_ecs.py \
+            --cluster "$ECS_CLUSTER" --service "$ECS_APP_SERVICE" --revision "$RELEASE_SHA" \
+            --image "web=$IMAGE_WEB" --image "api=$IMAGE_API" --url "$PUBLIC_URL" > release-result.json
+      - name: Save release evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: production-release-${{ env.RELEASE_SHA }}
+          path: release-result.json

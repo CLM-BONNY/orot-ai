@@ -1,0 +1,137 @@
+{
+  "stage": 5,
+  "name": "공부 도우미 보강과 AI 복습 퀴즈",
+  "verified_on": "2026-10-18",
+  "status": "passed_local",
+  "automated": {
+    "backend_tests": {
+      "passed": 42,
+      "failed": 0
+    },
+    "frontend_tests": {
+      "passed": 33,
+      "failed": 0
+    },
+    "typescript": "passed",
+    "production_build": "passed",
+    "build_warnings": [
+      "React Router client directive",
+      "Large initial JavaScript bundle; optimize in performance stage"
+    ],
+    "actual_generated_response_contract": "JSON Schema passed; ai-review-example.json"
+  },
+  "live_model": {
+    "provider": "ollama",
+    "model": "qwen3.5:9b-q4_K_M",
+    "context_tokens": 4096,
+    "review_output_limit": 1536,
+    "quality_output_limit": 512,
+    "review_metrics": {
+      "request_id": "REQ-c2db6452-4513-47a4-bed2-d9984f533bd9",
+      "api_kind": "review",
+      "concept_count": 1,
+      "source_page_ids": [
+        "CH01-P01",
+        "CH21-P01"
+      ],
+      "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+      "prompt_version": "review-qwen-1.3.0",
+      "quality_prompt_version": "review-quality-qwen-1.0.0",
+      "model_ms": 48816.72,
+      "provider": "ollama",
+      "model": "qwen3.5:9b-q4_K_M",
+      "input_tokens": 1768,
+      "output_tokens": 925,
+      "load_ms": 7.01,
+      "done_reason": "stop",
+      "truncated": false,
+      "generation_model_ms": 33130.81,
+      "inference_calls": 2,
+      "quality_model_ms": 15685.91,
+      "success": true,
+      "total_ms": 48820.32
+    },
+    "tutor_metrics": {
+      "request_id": "REQ-b011581f-792e-4bf8-a67e-113718201d4f",
+      "api_kind": "tutor",
+      "page_id": "CH01-P01",
+      "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+      "prompt_version": "tutor-qwen-2.0.0",
+      "model_ms": 15425.21,
+      "provider": "ollama",
+      "model": "qwen3.5:9b-q4_K_M",
+      "input_tokens": 1291,
+      "output_tokens": 199,
+      "load_ms": 3.6,
+      "done_reason": "stop",
+      "truncated": false,
+      "success": true,
+      "total_ms": 15426.38
+    },
+    "insufficient_context": {
+      "http_status": 200,
+      "answer_status": "insufficient_context",
+      "source_page_ids": [],
+      "metrics": {
+        "request_id": "REQ-6f36822d-c815-463c-a823-aed28872691c",
+        "api_kind": "tutor",
+        "page_id": "CH01-P01",
+        "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+        "prompt_version": "tutor-qwen-2.0.0",
+        "model_ms": 9454.51,
+        "provider": "ollama",
+        "model": "qwen3.5:9b-q4_K_M",
+        "input_tokens": 1290,
+        "output_tokens": 144,
+        "load_ms": 17.9,
+        "done_reason": "stop",
+        "truncated": false,
+        "success": true,
+        "total_ms": 9457.73
+      }
+    },
+    "observations_are_single_function_checks": true,
+    "performance_baseline_or_quality_benchmark": false
+  },
+  "browser": {
+    "origin": "http://localhost:5179",
+    "isolation": "QA origin, separate from user-facing 127.0.0.1:5178",
+    "checks": [
+      "Select wrong-answer concept rag -> actual Qwen generation and separate source/correctness check -> three-question set saved",
+      "Rejected quality check shows actual error and does not increment stored set count",
+      "Generated set reopened after reload",
+      "AI-generated label and evidence links visible",
+      "Final generated set completed with 2/3 objective answers",
+      "Generated wrong answer and star appear in notebook after reload",
+      "Generated wrong answer can be retried correctly while preserving previous attempt",
+      "Actual tutor response cites CH01-P01",
+      "Tutor response saved as page memo; original content visible in notebook after reload",
+      "Actual unrelated weather question returns insufficient_context with no invented source"
+    ],
+    "screenshots": [
+      "ai-review-preview.png",
+      "ai-tutor-preview.png"
+    ]
+  },
+  "integrity": {
+    "dexie_version": 3,
+    "existing_records_preserved": true,
+    "generated_set_atomic_storage": true,
+    "question_hash_verified_in_browser": true,
+    "duplicate_request_cache": "10 minutes, maximum 16 successes, in server memory",
+    "no_automatic_model_retry": true
+  },
+  "limitations": [
+    "Same-model quality checking can miss incorrect or ambiguous options; all generated questions remain unreviewed",
+    "Broad concept tags required more focused source-paragraph selection; content quality needs a separate evaluation set",
+    "A server interruption occurred during earlier testing; tests were rerun with the 4096-token local configuration",
+    "No cloud deployment, mobile end-to-end acceptance, account sync or backup UI in this stage",
+    "QA records were not inserted into the user-facing origin"
+  ],
+  "artifacts": [
+    "ai-review-example.json",
+    "README.md",
+    "ai-review-preview.png",
+    "ai-tutor-preview.png"
+  ]
+}

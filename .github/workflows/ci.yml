@@ -1,0 +1,53 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: ai-study-site/backend/requirements*.txt
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: ai-study-site/frontend/package-lock.json
+      - run: python -m pip install -r ai-study-site/backend/requirements.txt
+      - run: python -m pytest backend/tests deploy/inference/test_launch.py deploy/scripts/test_deploy_ecs.py -q -p no:cacheprovider
+        working-directory: ai-study-site
+      - run: npm ci
+        working-directory: ai-study-site/frontend
+      - run: npm test && npm run build
+        working-directory: ai-study-site/frontend
+  containers:
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      - name: Build and start web/API containers
+        run: docker compose -f ai-study-site/deploy/compose.yml up --build --wait --wait-timeout 120
+        env:
+          APP_REVISION: ${{ github.sha }}
+      - name: Verify production HTTP routes, content and proxy errors
+        run: python3 ai-study-site/deploy/scripts/container_smoke.py
+      - name: Collect container logs on failure
+        if: failure()
+        run: docker compose -f ai-study-site/deploy/compose.yml logs --no-color --tail 100
+      - name: Stop containers
+        if: always()
+        run: docker compose -f ai-study-site/deploy/compose.yml down

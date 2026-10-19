@@ -1,0 +1,115 @@
+{
+  "stage": 4,
+  "name": "기본 퀴즈·메모·오답·별표",
+  "verified_on": "2026-10-18",
+  "status": "passed",
+  "automated": {
+    "frontend_tests": {
+      "command": "npm test",
+      "passed": 23,
+      "failed": 0,
+      "reading_tests": 10,
+      "practice_tests": 13
+    },
+    "build": {
+      "command": "npm run build",
+      "typescript": "passed",
+      "vite": "passed",
+      "warnings": [
+        "React Router use client directive in client-only build",
+        "JavaScript bundle above 500 kB; performance optimization remains a later study step"
+      ]
+    },
+    "actual_http_content": {
+      "base_url": "http://127.0.0.1:8018",
+      "chapter_files": 32,
+      "single_choice": 64,
+      "chapter_reflections": 32,
+      "capstone_reflections": 6,
+      "status": "passed"
+    },
+    "critical_cases": [
+      "Version 1 to 2 migration preserves profile, reading progress and resume",
+      "Option-ID grading independent of displayed order",
+      "Rejects invalid or repeated option IDs",
+      "Same submission ID does not duplicate an attempt",
+      "Question snapshots survive content edits",
+      "Correct retry removes pending wrong answer while preserving history",
+      "Revisions remain separate review targets",
+      "Unique stars per question revision, removal and re-addition",
+      "Concept note edits preserve record ID and creation time",
+      "Rejects target or owner changes during note edit",
+      "Self-assessments stay separate from objective attempts",
+      "All four new record types survive DB reopen",
+      "Unknown owners cannot write records"
+    ]
+  },
+  "browser": {
+    "origin": "http://localhost:5178",
+    "data_isolation": "Separate origin in the in-app browser for QA; no test attempts or notes were inserted into the user-facing 127.0.0.1 origin.",
+    "checks": [
+      {
+        "case": "Chapter CH01 objective quiz",
+        "result": "Wrong and correct choices graded and explanations shown; stored choices remain distinct"
+      },
+      {
+        "case": "Final authored option order",
+        "result": "A-D display order preserved because authored explanations refer to those labels"
+      },
+      {
+        "case": "Concept note",
+        "result": "Saved under rag, edited in notebook, revised text persists after reload"
+      },
+      {
+        "case": "Starred questions",
+        "result": "Star saved, survives reload, listed in notebook and opens a single-question review; unstar works"
+      },
+      {
+        "case": "Reflection CH01-R01",
+        "result": "Own explanation -> expected explanation -> self-assessment saved"
+      },
+      {
+        "case": "Round result",
+        "result": "1/2 objective answers and 1 self-assessment displayed separately"
+      },
+      {
+        "case": "Wrong-answer notebook",
+        "result": "One pending question retained after reload"
+      },
+      {
+        "case": "Correct wrong-answer retry",
+        "result": "Pending count becomes 0 and prior wrong attempts remain in history"
+      },
+      {
+        "case": "History after reload",
+        "result": "5 objective attempts and 1 reflection record retained; original response and expected explanation available"
+      },
+      {
+        "case": "Reader integration",
+        "result": "Chapter quiz and page/concept note entry points visible; reading completion still 0/96 despite quiz submissions"
+      }
+    ],
+    "screenshots": [
+      "quiz-preview.png",
+      "notebook-preview.png"
+    ],
+    "test_data": "QA records are explicitly test-only; application does not seed any demo learning records."
+  },
+  "server": {
+    "mode": "reused existing local servers",
+    "owned_servers_started": 0,
+    "existing_servers_stopped": false
+  },
+  "scope": {
+    "persistence": "Current origin and browser profile in IndexedDB/Dexie version 2",
+    "unsubmitted_drafts": "Not persisted; submitted attempts and explicitly saved notes are durable",
+    "out_of_scope": [
+      "AI generation of new review quizzes (stage 5)",
+      "Cloud sync and backup UI",
+      "Cloud deployment",
+      "Final mobile viewport verification",
+      "Performance/load percentile baseline"
+    ],
+    "model": "Existing Qwen tutor retained; no model request was needed for this stage"
+  }
+}

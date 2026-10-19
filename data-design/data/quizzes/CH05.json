@@ -1,0 +1,116 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH05",
+  "questions": [
+    {
+      "id": "CH05-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH05"
+      ],
+      "concept_ids": [
+        "data-leakage",
+        "train-validation-test"
+      ],
+      "source_page_ids": [
+        "CH05-P03"
+      ],
+      "prompt_markdown": "교차검증 전에 전체 데이터로 특징 선택기를 학습했다. 가장 적절한 수정은?",
+      "category": "누수 탐지",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH05-Q01:A",
+          "text": "선택된 특징을 그대로 쓰고 seed만 바꾼다."
+        },
+        {
+          "id": "CH05-Q01:B",
+          "text": "테스트 레이블 이름만 바꾼다."
+        },
+        {
+          "id": "CH05-Q01:C",
+          "text": "각 학습 fold 안에서 특징 선택을 학습하는 파이프라인을 사용한다."
+        },
+        {
+          "id": "CH05-Q01:D",
+          "text": "정확도가 높으므로 유지한다."
+        }
+      ],
+      "correct_option_id": "CH05-Q01:C",
+      "explanation_markdown": "검증 fold 정보가 특징 선택에 들어가지 않게 해야 한다. 전처리도 학습 절차의 일부다.",
+      "generation_id": null,
+      "revision": "sha256:0227b57116a83e1a6fe289cce50a6ef6b0c80c918b00ffabc23c5b2d44a5efb0"
+    },
+    {
+      "id": "CH05-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH05"
+      ],
+      "concept_ids": [
+        "train-validation-test",
+        "data-leakage"
+      ],
+      "source_page_ids": [
+        "CH05-P02"
+      ],
+      "prompt_markdown": "다음 달의 요청 수를 예측하려고 한다. 평가 설계에서 우선할 것은?",
+      "category": "분할 설계",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH05-Q02:A",
+          "text": "과거로 학습하고 이후 기간으로 평가하는 시간 구조"
+        },
+        {
+          "id": "CH05-Q02:B",
+          "text": "같은 날짜의 복제 행을 양쪽에 배치"
+        },
+        {
+          "id": "CH05-Q02:C",
+          "text": "미래 집계값을 입력에 포함"
+        },
+        {
+          "id": "CH05-Q02:D",
+          "text": "테스트 점수를 보며 끝없이 튜닝"
+        }
+      ],
+      "correct_option_id": "CH05-Q02:A",
+      "explanation_markdown": "예측 시점 이후 정보를 사용할 수 없다는 조건을 재현해야 한다. B·C는 누수를, D는 테스트에 대한 과적합을 일으킬 수 있다.",
+      "generation_id": null,
+      "revision": "sha256:c00c09168d0828fcfe07f4e03caae9b52476d8c8c1db95190beed2612b4e8fa9"
+    },
+    {
+      "id": "CH05-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH05"
+      ],
+      "concept_ids": [
+        "feature",
+        "label",
+        "data-quality",
+        "train-validation-test",
+        "data-leakage",
+        "distribution-shift"
+      ],
+      "source_page_ids": [
+        "CH05-P01",
+        "CH05-P02",
+        "CH05-P03"
+      ],
+      "prompt_markdown": "“새 사용자에게 잘 작동하는가”와 “기존 사용자의 다음 행동을 잘 예측하는가”에서 분할 방법이 달라질 수 있는 이유를 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "새 사용자 일반화가 목적이면 같은 사용자의 패턴이 양쪽에 들어가 평가가 쉬워지지 않게 사용자 그룹 분할을 검토한다. 기존 사용자의 미래 행동 예측은 그 사용자의 과거 정보를 사용할 수 있지만 미래 정보는 쓰지 않아야 한다. 실제 예측 시점과 대상 집단에 맞춘 평가가 중요하다.",
+      "grading": "self_assessment",
+      "revision": "sha256:ca1faa439ab0f397e811f9486ecfc72972498ab35939eaff0fd4f299f37f01f7"
+    }
+  ]
+}

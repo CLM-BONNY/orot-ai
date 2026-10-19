@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-18",
+  "stage": 6,
+  "status": "local_complete_aws_deferred_by_user",
+  "production": {
+    "single_origin": true,
+    "vite_dev_server": false,
+    "qa_url": "http://127.0.0.1:5179",
+    "default_url": "http://127.0.0.1:5178",
+    "owned_servers_stopped_at_finish": true
+  },
+  "tests": {
+    "backend_passed": 61,
+    "frontend_passed": 41,
+    "total": 102,
+    "typescript_and_vite_build": "passed",
+    "http_report": "production-http-result.json"
+  },
+  "browser": {
+    "source_origin": "http://localhost:5179",
+    "restore_origin": "http://127.0.0.1:5179",
+    "user_default_origin_modified": false,
+    "restored": {
+      "notes": 1,
+      "attempts": 5,
+      "bookmarks": 2,
+      "ai_sets": 3
+    },
+    "checked": [
+      "actual backup download, file chooser, validation preview, import and automatic reload",
+      "restored generated quiz opens with bookmark preserved",
+      "390x844 reader, navigation panels, AI review and quiz, persistent completion",
+      "320x740 reader and quiz no horizontal overflow",
+      "authored wrong answer submitted and stored",
+      "real MODEL_UNAVAILABLE 503 displayed and original question retained",
+      "real Qwen answer with source link and saved note"
+    ],
+    "viewports": [
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        740
+      ]
+    ],
+    "native_mobile_or_safari_tested": false
+  },
+  "live_tutor_metrics": {
+    "request_id": "REQ-22b034ea-b749-4bb7-81b7-36c9f6660672",
+    "api_kind": "tutor",
+    "page_id": "CH01-P01",
+    "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+    "prompt_version": "tutor-qwen-2.0.0",
+    "model_ms": 19045.58,
+    "provider": "ollama",
+    "model": "qwen3.5:9b-q4_K_M",
+    "input_tokens": 1292,
+    "output_tokens": 138,
+    "load_ms": 6347.52,
+    "done_reason": "stop",
+    "truncated": false,
+    "success": true,
+    "total_ms": 19050.1
+  },
+  "ai_review_generation_rerun": false,
+  "previous_ai_review_evidence": "ai-test-result.json",
+  "limits": [
+    "No cloud resources or public URL; AWS deferred explicitly",
+    "Same-model question review is not a content accuracy guarantee",
+    "Single tutor functional check is not a performance baseline",
+    "Records are local to browser origin; no account sync",
+    "Browser viewport checks do not replace physical device checks"
+  ],
+  "screenshots": [
+    "backup-preview.jpg",
+    "mobile-preview.jpg",
+    "mobile-tutor-preview.jpg"
+  ]
+}

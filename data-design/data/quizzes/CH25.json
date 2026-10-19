@@ -1,0 +1,115 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH25",
+  "questions": [
+    {
+      "id": "CH25-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH25"
+      ],
+      "concept_ids": [
+        "output-validation",
+        "json-schema"
+      ],
+      "source_page_ids": [
+        "CH25-P02"
+      ],
+      "prompt_markdown": "정답 인덱스가 범위 안이고 JSON도 파싱된다. 아직 확인해야 할 것은?",
+      "category": "출력 검증",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH25-Q01:A",
+          "text": "더 이상 아무것도 없다."
+        },
+        {
+          "id": "CH25-Q01:B",
+          "text": "파일 이름만 바꾸면 된다."
+        },
+        {
+          "id": "CH25-Q01:C",
+          "text": "모델 크기만 기록하면 된다."
+        },
+        {
+          "id": "CH25-Q01:D",
+          "text": "정답 유일성·사실 정확성·근거와의 일치"
+        }
+      ],
+      "correct_option_id": "CH25-Q01:D",
+      "explanation_markdown": "스키마는 형식을 제한할 수 있지만 내용의 진실을 보장하지 않는다.",
+      "generation_id": null,
+      "revision": "sha256:c914de45cfefe36b89492262578ee2c175a2c095f2b82404b97d69a28615ec51"
+    },
+    {
+      "id": "CH25-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH25"
+      ],
+      "concept_ids": [
+        "prompt-version"
+      ],
+      "source_page_ids": [
+        "CH25-P03"
+      ],
+      "prompt_markdown": "새 프롬프트의 효과를 비교하는 적절한 방법은?",
+      "category": "프롬프트 실험",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH25-Q02:A",
+          "text": "성공한 사례 하나만 고른다."
+        },
+        {
+          "id": "CH25-Q02:B",
+          "text": "모델·입력·문제 수를 맞추고 품질·시간·토큰을 비교한다."
+        },
+        {
+          "id": "CH25-Q02:C",
+          "text": "새 버전에 쉬운 입력만 준다."
+        },
+        {
+          "id": "CH25-Q02:D",
+          "text": "실패 호출 비용은 빼고 계산한다."
+        }
+      ],
+      "correct_option_id": "CH25-Q02:B",
+      "explanation_markdown": "비교 조건과 실패·재시도 비용까지 기록해야 효과를 해석할 수 있다.",
+      "generation_id": null,
+      "revision": "sha256:bf575a8b77ec47be6f009b5fc8055c4282ab5c02c832a65edbc6cedffdfd5262"
+    },
+    {
+      "id": "CH25-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH25"
+      ],
+      "concept_ids": [
+        "prompt-design",
+        "few-shot",
+        "context-engineering",
+        "json-schema",
+        "output-validation",
+        "prompt-version"
+      ],
+      "source_page_ids": [
+        "CH25-P01",
+        "CH25-P02",
+        "CH25-P03"
+      ],
+      "prompt_markdown": "“좋은 퀴즈를 만들어줘”를 형식 검사와 내용 평가가 가능한 요청으로 바꿔 적어라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "입력을 개념 ID·자료 ID·난이도로 정하고, 출력은 문제 3개·보기 4개·정답 인덱스·해설·근거 ID로 명세한다. 형식은 스키마로 검사한다. 정답 유일성·근거 일치·중복·난이도는 내용 평가로 확인한다. 자료 밖 지식을 어떻게 처리할지도 정한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:4b93627f12c90f71d3337aed583fea84907121d3b1c5140577ccc2e7030febd3"
+    }
+  ]
+}

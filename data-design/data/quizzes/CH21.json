@@ -1,0 +1,117 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH21",
+  "questions": [
+    {
+      "id": "CH21-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "concept_ids": [
+        "rag",
+        "retrieval",
+        "grounding"
+      ],
+      "source_page_ids": [
+        "CH21-P01"
+      ],
+      "prompt_markdown": "RAG 시스템의 실패를 분석하는 올바른 순서는?",
+      "category": "시스템 이해",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH21-Q01:A",
+          "text": "어떤 실패든 모델 크기부터 늘린다."
+        },
+        {
+          "id": "CH21-Q01:B",
+          "text": "벡터 DB가 있으므로 정확성을 가정한다."
+        },
+        {
+          "id": "CH21-Q01:C",
+          "text": "출처 링크 개수만 센다."
+        },
+        {
+          "id": "CH21-Q01:D",
+          "text": "필요한 근거를 찾았는지와 그 근거를 올바르게 사용했는지를 구분한다."
+        }
+      ],
+      "correct_option_id": "CH21-Q01:D",
+      "explanation_markdown": "검색과 생성의 오류는 원인과 개선 방법이 다르다.",
+      "generation_id": null,
+      "revision": "sha256:431ada2335ab80c243328dd6edd62c95e5eacf86cf67eddd6a64956c8b6f8ddb"
+    },
+    {
+      "id": "CH21-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "concept_ids": [
+        "retrieval",
+        "query-pipeline"
+      ],
+      "source_page_ids": [
+        "CH21-P03"
+      ],
+      "prompt_markdown": "사용자가 현재 학습 페이지의 한 문장을 질문한다. 합리적인 첫 구현은?",
+      "category": "도입 범위",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH21-Q02:A",
+          "text": "전체 웹을 매번 크롤링한다."
+        },
+        {
+          "id": "CH21-Q02:B",
+          "text": "페이지 ID로 검증된 본문과 관련 개념을 조회해 제공한다."
+        },
+        {
+          "id": "CH21-Q02:C",
+          "text": "모델을 매번 재학습한다."
+        },
+        {
+          "id": "CH21-Q02:D",
+          "text": "출처 없이 답을 길게 만든다."
+        }
+      ],
+      "correct_option_id": "CH21-Q02:B",
+      "explanation_markdown": "이미 알고 있는 관련 자료를 직접 제공하는 것이 단순하고 측정하기 쉽다.",
+      "generation_id": null,
+      "revision": "sha256:439892bd2067d3c4ac03ccb527a8899f072ea06b67c2c192eb2901d9833a7d4a"
+    },
+    {
+      "id": "CH21-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "concept_ids": [
+        "rag",
+        "ingestion",
+        "retrieval",
+        "grounding",
+        "indexing",
+        "query-pipeline"
+      ],
+      "source_page_ids": [
+        "CH21-P01",
+        "CH21-P02",
+        "CH21-P03"
+      ],
+      "prompt_markdown": "문서 준비 파이프라인과 사용자 질의 파이프라인을 각각 단계별로 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "준비는 수집→파싱·정제→청킹→메타데이터·임베딩→색인이다. 질의는 질문·권한 확인→검색→재정렬·문맥 선택→생성→결과·출처 검증이다. 모든 시스템에 모든 단계가 필요한 것은 아니지만 각 역할과 실패 위치를 구분할 수 있어야 한다.",
+      "grading": "self_assessment",
+      "revision": "sha256:d03fa5d6f962a5e613b3fc8fee3d9c1fba09611be23a8490f8087d2fd81a7c8f"
+    }
+  ]
+}

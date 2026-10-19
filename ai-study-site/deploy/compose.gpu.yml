@@ -1,0 +1,24 @@
+# Linux + NVIDIA Container Toolkit only. Not for the current Apple Silicon Mac.
+name: orot-ai-inference
+services:
+  inference:
+    image: orot-ai-inference:${IMAGE_TAG:-local}
+    build:
+      context: ../..
+      dockerfile: ai-study-site/deploy/inference/Dockerfile
+      args:
+        VLLM_BASE_IMAGE: ${VLLM_BASE_IMAGE:?Set a verified official vLLM image digest}
+    environment:
+      MODEL_REPO: ${MODEL_REPO:?Select a compatible checkpoint}
+      MODEL_REVISION: ${MODEL_REVISION:?Set the full checkpoint commit SHA}
+      MODEL_NAME: ${MODEL_NAME:?Set the served model name}
+      VLLM_API_KEY: ${VLLM_API_KEY:?Set the private inference access token}
+      MAX_MODEL_LEN: ${MAX_MODEL_LEN:-4096}
+      GPU_MEMORY_UTILIZATION: ${GPU_MEMORY_UTILIZATION:-0.85}
+    volumes: [model-cache:/models]
+    ports: ['127.0.0.1:8000:8000']
+    shm_size: 1gb
+    gpus: all
+    init: true
+volumes:
+  model-cache:

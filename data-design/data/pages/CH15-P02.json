@@ -1,0 +1,14 @@
+{
+  "id": "CH15-P02",
+  "chapter_id": "CH15",
+  "title": "점수에서 가중합으로",
+  "order": 2,
+  "concept_ids": [
+    "scaled-dot-product",
+    "query-key-value"
+  ],
+  "body_markdown": "대표적인 scaled dot-product Attention은 다음과 같다.\n\n$$\\operatorname{Attention}(Q,K,V)=\\operatorname{softmax}\\left(\\frac{QK^T}{\\sqrt{d_k}}+M\\right)V$$\n\n마스크 M은 접근을 막을 위치에 매우 작은 값 또는 음의 무한대를 더해 softmax 확률이 0에 가깝게 되게 한다. 점수를 0으로 바꾸는 것만으로는 차단되지 않는다. softmax에서 `exp(0)=1`이기 때문이다.\n\n두 Value가 `[10,0]`, `[0,10]`이고 가중치가 `[0.8,0.2]`라면 결과는 `[8,2]`다. 가중치는 두 정보가 얼마나 섞이는지 정한다. 점수 나눗셈은 차원 증가에 따라 내적 크기가 커지는 현상을 완화하려는 장치다.\n\n길이가 n인 시퀀스의 기본 full self-attention 점수 행렬은 n×n이다. 이 구조가 긴 입력의 계산·메모리 부담과 연결된다. 실제 구현은 최적화될 수 있으므로 공식 하나만으로 모든 배포 지연을 정확히 예측할 수는 없다.\n\n한 head에서 Q와 K가 각각 `[n,d_k]`, V가 `[n,d_v]`라면 QKᵀ는 `[n,n]`, 최종 가중합은 `[n,d_v]`다. 문장 길이만큼 후보 위치를 비교한 뒤 각 위치의 새 표현을 만든 셈이다. 이 모양을 직접 적어보면 유사도 점수와 전달할 정보가 다른 행렬이라는 점이 분명해진다.",
+  "previous_page_id": "CH15-P01",
+  "next_page_id": "CH15-P03",
+  "revision": "sha256:d057cab0c2f451d156d939bc0afbb5e53074c33e65330798003051e00ccc4997"
+}

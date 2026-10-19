@@ -1,0 +1,15 @@
+{
+  "id": "CH16-P02",
+  "chapter_id": "CH16",
+  "title": "Encoder·decoder·encoder-decoder",
+  "order": 2,
+  "concept_ids": [
+    "encoder",
+    "decoder",
+    "causal-mask"
+  ],
+  "body_markdown": "Encoder 중심 모델은 보통 입력 양쪽 문맥을 참고해 표현을 만든다. BERT 계열의 masked language modeling은 일부 가린 토큰을 복원하는 대표적인 학습 방식이다. 이 표현은 분류나 토큰 분석 등에 활용할 수 있다.\n\nDecoder 중심의 causal 언어 모델은 현재 위치에서 미래 토큰을 보지 못하도록 마스킹하고 다음 토큰을 예측한다. GPT 계열이 대표적인 예다. Encoder-decoder 모델은 입력을 읽는 부분과 출력을 생성하는 부분을 연결하며 번역·요약 등에 사용할 수 있다. 구조 이름과 모든 학습 목표가 일대일로 고정되는 것은 아니므로 실제 모델 설명을 확인한다.\n\n우리 도우미가 앞의 대화를 바탕으로 다음 답변을 쓰는 과정은 일반적으로 causal 생성과 연결된다. 반면 검색용 문장 표현은 생성용 출력과 목적이 다르다. 같은 Transformer라는 이름만으로 모델을 서로 대체할 수는 없다.",
+  "previous_page_id": "CH16-P01",
+  "next_page_id": "CH16-P03",
+  "revision": "sha256:232f8d075b2b841fc550261d314ada01659d49cb991674968c728c12d3e91ce1"
+}

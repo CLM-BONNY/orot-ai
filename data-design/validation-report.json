@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "schema_version": "1.0.0",
+  "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+  "counts": {
+    "tracks": 8,
+    "chapters": 32,
+    "pages": 96,
+    "concepts": 215,
+    "questions": 102
+  },
+  "question_formats": {
+    "single_choice": 64,
+    "self_explanation": 38
+  },
+  "example_references": "all resolved",
+  "behavior_and_rejection_checks": [
+    "reject broken chapter/page edge",
+    "reject duplicate IDs",
+    "reject missing correct option",
+    "reject unsupported backup version",
+    "reject forged grading",
+    "reject mismatched snapshot reference",
+    "reject cross-profile records",
+    "reject duplicate starred target",
+    "reject missing generated question",
+    "reject client system role",
+    "reject unknown AI page",
+    "reject stale AI content release",
+    "option IDs preserve grading after presentation reorder",
+    "wrong retry resolves active mistake but preserves history",
+    "content update preserves historical question and flags outdated link"
+  ],
+  "api_calls_made": 0
+}

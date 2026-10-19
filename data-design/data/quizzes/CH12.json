@@ -1,0 +1,117 @@
+{
+  "content_version": "1.0.0",
+  "chapter_id": "CH12",
+  "questions": [
+    {
+      "id": "CH12-Q01",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "concept_ids": [
+        "cnn",
+        "convolution"
+      ],
+      "source_page_ids": [
+        "CH12-P01"
+      ],
+      "prompt_markdown": "CNN의 대표적인 설계 특징은?",
+      "category": "구조 비교",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH12-Q01:A",
+          "text": "지역 연결과 가중치 공유"
+        },
+        {
+          "id": "CH12-Q01:B",
+          "text": "모든 위치에 반드시 서로 다른 필터 사용"
+        },
+        {
+          "id": "CH12-Q01:C",
+          "text": "모든 회전·크기 변화에 대한 완전한 불변성 보장"
+        },
+        {
+          "id": "CH12-Q01:D",
+          "text": "레이블 없이 항상 정답 학습"
+        }
+      ],
+      "correct_option_id": "CH12-Q01:A",
+      "explanation_markdown": "C처럼 모든 변환에 대한 불변성을 보장하지는 않는다.",
+      "generation_id": null,
+      "revision": "sha256:dd97ff7b7ce8681ccf71197eb03a9acf2e353e35d4ce186e6f652247f345cb45"
+    },
+    {
+      "id": "CH12-Q02",
+      "format": "single_choice",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "concept_ids": [
+        "lstm",
+        "rnn"
+      ],
+      "source_page_ids": [
+        "CH12-P02"
+      ],
+      "prompt_markdown": "LSTM을 도입하면 긴 문맥 문제가 어떻게 되는가?",
+      "category": "한계 이해",
+      "difficulty": "not_rated",
+      "options": [
+        {
+          "id": "CH12-Q02:A",
+          "text": "모든 길이에서 완벽한 기억이 보장된다."
+        },
+        {
+          "id": "CH12-Q02:B",
+          "text": "순서 정보가 제거된다."
+        },
+        {
+          "id": "CH12-Q02:C",
+          "text": "정보 유지와 기울기 문제를 완화할 수 있지만 한계와 평가가 남는다."
+        },
+        {
+          "id": "CH12-Q02:D",
+          "text": "학습 자료가 필요 없어진다."
+        }
+      ],
+      "correct_option_id": "CH12-Q02:C",
+      "explanation_markdown": "게이트는 유용한 구조지만 무한한 기억이나 성능 보증은 아니다.",
+      "generation_id": null,
+      "revision": "sha256:e70ed04456984d5654eba78ca558fdda56986a129128e3017a599f3b249278d0"
+    },
+    {
+      "id": "CH12-R01",
+      "format": "self_explanation",
+      "origin": "authored",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH12"
+      ],
+      "concept_ids": [
+        "cnn",
+        "convolution",
+        "pooling",
+        "rnn",
+        "lstm",
+        "gru",
+        "inductive-bias"
+      ],
+      "source_page_ids": [
+        "CH12-P01",
+        "CH12-P02",
+        "CH12-P03"
+      ],
+      "prompt_markdown": "CNN·RNN이 각각 어떤 입력 관계를 쉽게 배우도록 설계되었는지 예시로 설명하라.",
+      "category": "인출 연습",
+      "difficulty": "not_rated",
+      "expected_answer_markdown": "CNN은 근처 이미지 패턴과 위치별 가중치 공유를 활용한다. RNN은 이전 상태와 현재 입력을 연결해 순서 정보를 다룬다. 각각 이미지의 지역 구조, 시퀀스의 시간 구조 같은 가정을 넣는다. 가정은 유용한 출발점이며 모든 변환 불변성이나 무한 기억을 보장하지 않는다.",
+      "grading": "self_assessment",
+      "revision": "sha256:b58a4545b3affb4bbbf90e04b0e1cb60d4b95fde0fa60e8743cbfb4f7cd69af2"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "kind": "review_response",
+  "request_id": "REQ-c2db6452-4513-47a4-bed2-d9984f533bd9",
+  "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+  "generation_id": "GEN-5245dc10-a5ba-448c-baa7-067f5cc1eb9b",
+  "model": "qwen3.5:9b-q4_K_M",
+  "prompt_version": "review-qwen-1.3.0",
+  "review_status": "unreviewed",
+  "questions": [
+    {
+      "id": "GQ-82c0d397-e27b-4d97-b608-c0d87a543756",
+      "format": "single_choice",
+      "origin": "generated",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH01"
+      ],
+      "concept_ids": [
+        "rag"
+      ],
+      "source_page_ids": [
+        "CH01-P01"
+      ],
+      "prompt_markdown": "RAG(검색 증강 생성) 시스템의 핵심 정의를 가장 정확하게 설명한 것은?",
+      "category": "AI 복습",
+      "difficulty": "beginner",
+      "options": [
+        {
+          "id": "GQ-82c0d397-e27b-4d97-b608-c0d87a543756:A",
+          "text": "모델 자체의 파라미터를 학습시켜 지식을 저장하는 방식"
+        },
+        {
+          "id": "GQ-82c0d397-e27b-4d97-b608-c0d87a543756:B",
+          "text": "외부 자료를 검색하여 이를 생성 과정에 활용하는 시스템 구성 방식"
+        },
+        {
+          "id": "GQ-82c0d397-e27b-4d97-b608-c0d87a543756:C",
+          "text": "거대한 벡터 데이터베이스만 설치하면 자동으로 구현되는 기술"
+        },
+        {
+          "id": "GQ-82c0d397-e27b-4d97-b608-c0d87a543756:D",
+          "text": "도서관에서 책을 빌리는 행위와 동일한 개념"
+        }
+      ],
+      "correct_option_id": "GQ-82c0d397-e27b-4d97-b608-c0d87a543756:B",
+      "explanation_markdown": "자료에 따르면 RAG는 모델 종류가 아니라 외부 자료를 검색해 생성에 활용하는 시스템 구성 방식입니다. 도서관 비유에서 LLM은 글 쓰는 사람이고, RAG는 자료를 찾아 읽고 글을 쓰는 전체 업무 흐름을 의미합니다.",
+      "generation_id": "GEN-5245dc10-a5ba-448c-baa7-067f5cc1eb9b",
+      "revision": "sha256:1e7ee1b795626629361b2913a8bb015f568c82740fdae2a3bf140c57e185c23e"
+    },
+    {
+      "id": "GQ-93479f7f-f894-42f1-8f03-64a05a0d77e1",
+      "format": "single_choice",
+      "origin": "generated",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "concept_ids": [
+        "rag"
+      ],
+      "source_page_ids": [
+        "CH21-P01"
+      ],
+      "prompt_markdown": "오픈북 시험에 비유하여 설명할 때, RAG 시스템이 '엉뚱한 책을 펼치거나 올바른 문장을 잘못 읽는' 오류를 해결하지 못한다면 어떤 결과가 발생하나요?",
+      "category": "AI 복습",
+      "difficulty": "beginner",
+      "options": [
+        {
+          "id": "GQ-93479f7f-f894-42f1-8f03-64a05a0d77e1:A",
+          "text": "모델의 파라미터가 자동으로 업데이트되어 지식이 개선됨"
+        },
+        {
+          "id": "GQ-93479f7f-f894-42f1-8f03-64a05a0d77e1:B",
+          "text": "검색된 페이지 내용을 읽어 답하는 과정에서 여전히 잘못된 답변이 생성될 수 있음"
+        },
+        {
+          "id": "GQ-93479f7f-f894-42f1-8f03-64a05a0d77e1:C",
+          "text": "거대한 벡터 DB 설치가 불필요해져 시스템 비용이 절감됨"
+        },
+        {
+          "id": "GQ-93479f7f-f894-42f1-8f03-64a05a0d77e1:D",
+          "text": "키워드 검색이나 SQL 조회 방식이 자동으로 최적화됨"
+        }
+      ],
+      "correct_option_id": "GQ-93479f7f-f894-42f1-8f03-64a05a0d77e1:B",
+      "explanation_markdown": "자료를 찾아놓고 답변에 쓰게 하는 과정에서 '찾는 능력'과 '읽어 답하는 능력'은 다르다고 합니다. RAG가 환각을 완전히 제거하지는 못하며, 엉뚱한 자료를 찾거나 잘못 읽으면 답도 틀릴 수 있습니다.",
+      "generation_id": "GEN-5245dc10-a5ba-448c-baa7-067f5cc1eb9b",
+      "revision": "sha256:8f6be4c01ea66f3cda39c4edcc0cd6eba8542545212a57e60031cd2c8f0fc126"
+    },
+    {
+      "id": "GQ-01da88a7-38f5-44ba-8adb-eb482a0d156d",
+      "format": "single_choice",
+      "origin": "generated",
+      "content_version": "1.0.0",
+      "chapter_ids": [
+        "CH21"
+      ],
+      "concept_ids": [
+        "rag"
+      ],
+      "source_page_ids": [
+        "CH21-P01"
+      ],
+      "prompt_markdown": "RAG를 구현할 때 흔히 하는 오해로, 반드시 거대한 벡터 DB부터 설치해야 한다는 주장은 어떤 근거에서 틀린 설명인가요?",
+      "category": "AI 복습",
+      "difficulty": "beginner",
+      "options": [
+        {
+          "id": "GQ-01da88a7-38f5-44ba-8adb-eb482a0d156d:A",
+          "text": "이미 현재 페이지 내용을 알고 있는 사이트에서는 ID 기반 자료 조회가 더 직접적일 수 있기 때문"
+        },
+        {
+          "id": "GQ-01da88a7-38f5-44ba-8adb-eb482a0d156d:B",
+          "text": "검색 방법은 키워드나 SQL 등 다양하므로 데이터베이스 크기와 무관하기 때문"
+        },
+        {
+          "id": "GQ-01da88a7-38f5-44ba-8adb-eb482a0d156d:C",
+          "text": "모델 파라미터를 바꾸지 않아도 되기 때문에 데이터베이스 설치 여부는 중요하지 않기 때문"
+        },
+        {
+          "id": "GQ-01da88a7-38f5-44ba-8adb-eb482a0d156d:D",
+          "text": "오픈북 시험 비유에서 환각을 제거할 수 없기 때문에 데이터베이스가 필요없기 때문"
+        }
+      ],
+      "correct_option_id": "GQ-01da88a7-38f5-44ba-8adb-eb482a0d156d:A",
+      "explanation_markdown": "검색 방법은 키워드·SQL·ID 조회·벡터 검색 등 다양할 수 있습니다. 이미 현재 페이지를 아는 사이트에서는 ID 기반 자료 조회가 더 직접적일 수 있으므로, 거대한 벡터 DB 설치만으로는 RAG 구현이 결정되지 않습니다.",
+      "generation_id": "GEN-5245dc10-a5ba-448c-baa7-067f5cc1eb9b",
+      "revision": "sha256:7a0e782e6c0bd10d5c364206e5e59de3995b4a385c722537c0c4697783915b71"
+    }
+  ]
+}

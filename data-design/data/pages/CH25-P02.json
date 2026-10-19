@@ -1,0 +1,14 @@
+{
+  "id": "CH25-P02",
+  "chapter_id": "CH25",
+  "title": "출력 계약은 코드가 검사할 수 있어야 한다",
+  "order": 2,
+  "concept_ids": [
+    "json-schema",
+    "output-validation"
+  ],
+  "body_markdown": "퀴즈 결과를 화면에 표시하려면 안정된 필드가 필요하다. 아래는 형식을 설명하는 가상 결과다.\n\n```json\n{\n  \"concept_id\": \"precision\",\n  \"question\": \"모델이 위험이라고 알린 결과 중 진짜 위험의 비율은?\",\n  \"options\": [\"정밀도\", \"재현율\", \"학습률\", \"배치 크기\"],\n  \"answer_index\": 0,\n  \"explanation\": \"알린 결과를 분모로 삼으므로 정밀도다.\",\n  \"source_page_ids\": [\"CH08-P01\"]\n}\n```\n\nJSON 문법을 파싱한 뒤에도 보기 수, 정답 인덱스 범위, 허용된 개념·근거 ID를 검사한다. JSON Schema나 데이터 모델로 필수 필드·자료형·길이 등을 제한할 수 있다. 제공자의 구조화 생성 기능을 사용하더라도 거절·중단·미완료 응답 경로를 처리해야 한다.\n\n문법이 맞는 결과에 정답이 틀릴 수 있다. “answer_index가 0~3이다”는 형식 검사, “정답이 하나뿐이며 해설이 근거와 일치한다”는 내용 검사다. 둘을 같은 성공률로 집계하지 않는다.",
+  "previous_page_id": "CH25-P01",
+  "next_page_id": "CH25-P03",
+  "revision": "sha256:5ab8118f56950d48011abb73337eb8df7b3a758d7da8d2520131495cc79b94bb"
+}

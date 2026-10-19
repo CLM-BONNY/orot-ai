@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-18T11:09:07.185085+00:00",
+  "base_url": "http://127.0.0.1:5179",
+  "passed": true,
+  "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+  "checks": [
+    "frontend/API content release matches",
+    "96 page bodies and revisions",
+    "32 chapter quiz files + capstones: 102 questions",
+    "11 direct SPA routes with no-cache HTML",
+    "missing API/content/assets/private paths return 404"
+  ],
+  "limits": [
+    "HTTP checks only; no UI, inference, load or performance benchmark in this script"
+  ]
+}
