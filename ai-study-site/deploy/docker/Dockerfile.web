@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:22-bookworm-slim AS build
+FROM node:22-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392 AS build
 ARG APP_REVISION=local
 WORKDIR /build/ai-study-site/frontend
 COPY ai-study-site/frontend/package*.json ./
@@ -8,7 +8,7 @@ COPY ai-study-site/frontend ./
 COPY ai-study-site/ai-review-example.json ../ai-review-example.json
 COPY data-design /build/data-design
 RUN npm run build && node -e "require('node:fs').writeFileSync('dist/release.json', JSON.stringify({code_revision:process.env.APP_REVISION}))"
-FROM nginxinc/nginx-unprivileged:stable-alpine
+FROM nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03
 ARG APP_REVISION=local
 LABEL org.opencontainers.image.title="orot-ai-web" org.opencontainers.image.revision=$APP_REVISION
 ENV API_UPSTREAM=127.0.0.1:8000 NGINX_RESOLVER=169.254.169.253 TRUSTED_PROXY_CIDR=10.0.0.0/16 SITE_AUTH_MODE=off

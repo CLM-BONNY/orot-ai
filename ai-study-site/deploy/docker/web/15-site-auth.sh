@@ -1,11 +1,15 @@
 #!/bin/sh
 set -eu
 if [ "${SITE_AUTH_MODE:-off}" != "off" ]; then
-    if [ -z "${SITE_HTPASSWD:-}" ]; then
-        echo 'SITE_HTPASSWD must be injected from the deployment secret.' >&2
+    umask 077
+    if [ -n "${SITE_HTPASSWD_FILE:-}" ]; then
+        cp "$SITE_HTPASSWD_FILE" /tmp/orot.htpasswd
+    elif [ -n "${SITE_HTPASSWD:-}" ]; then
+        printf '%s\n' "$SITE_HTPASSWD" > /tmp/orot.htpasswd
+    else
+        echo 'A site login secret file is required.' >&2
         exit 1
     fi
-    umask 077
-    printf '%s\n' "$SITE_HTPASSWD" > /tmp/orot.htpasswd
+    chmod 600 /tmp/orot.htpasswd
 fi
 unset SITE_HTPASSWD

@@ -1,8 +1,10 @@
 # 오롯 AI — 로컬 완성 및 운영 빌드 검증
 
-읽기·퀴즈·노트·AI 복습·기록 백업을 사용할 수 있는 로컬 버전이다. 사용자 요청에 따라 AWS 배포는 나중에 진행한다. React 운영 빌드와 FastAPI를 한 주소에서 제공하며, 기존 Qwen은 별도 로컬 Ollama에서 실행한다.
+읽기·퀴즈·노트·AI 복습·기록 백업을 사용할 수 있는 로컬 버전이다. 2026-10-19 사용자 요청으로 도메인·Docker·CI/CD가 연결된 AWS 배포를 진행한다. 웹 상시·GPU 실험 시간만 실행하는 저비용 EC2 구성을 준비 중이며 아직 클라우드 배포는 완료하지 않았다. React 운영 빌드와 FastAPI를 한 주소에서 제공하며, 기존 Qwen은 별도 로컬 Ollama에서 실행한다.
 
 [6단계 실행·검증 안내](local-completion.md) · [전체 점검 결과](end-to-end-test-result.json)
+
+[현재 AWS 배포 준비·견적](deploy/README.md) · [GitHub](https://github.com/CLM-BONNY/orot-ai)
 
 ## 운영용으로 실행하기
 

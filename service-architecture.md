@@ -7,16 +7,14 @@
 
 ## 0. 현재 배포 결정 — 2026-10-19 갱신
 
-사용자는 도메인·HTTPS·파트별 Docker 이미지·GitHub CI/CD가 연결된 AWS 배포를 먼저 완료하고 그 환경에서 1~6번 평가를 진행하기로 했다. 아래 초기 S3·CloudFront/Lambda 배포안과 AWS 보류 기록은 이전 단계의 기록이며, 현재 배포 목표는 이 절과 [컨테이너 배포 문서](ai-study-site/deploy/README.md)가 우선한다.
+사용자는 도메인·HTTPS·파트별 Docker 이미지·GitHub CI/CD가 연결된 AWS 배포를 먼저 완료하고 그 환경에서 평가하기로 했다. 비용을 낮추기 위해 **웹은 상시 접속, GPU는 실험할 때만 실행**한다. [배포·견적·진행 상태](ai-study-site/deploy/README.md)가 현재 구현의 상세 기준이다.
 
-- 서비스·저장소 이름: `orot-ai`, GitHub는 우선 비공개
-- 프런트: Nginx 컨테이너, API: FastAPI 컨테이너. 각각 이미지를 만들고 ECS Fargate의 한 Task에서 실행·배포·롤백
-- 모델 추론: ECS on EC2 GPU의 별도 vLLM 컨테이너, 가중치는 GPU 저장소에 다운로드·캐시
-- HTTPS 진입: 도메인 DNS → ACM 인증서가 연결된 ALB → 프런트 → 같은 Task의 API → 사설 GPU 추론 서버
-- 이미지: ECR. Git에는 소스·Dockerfile·CI/CD와 인프라 설정을 보관
-- CI/CD: GitHub Actions + AWS OIDC. 실제 인프라 구성 전 자동 AWS 배포는 비활성화
-- 관측: CloudWatch, 릴리스 Git SHA·이미지 digest·모델 commit·콘텐츠 버전
-- 현재는 Docker·CI/CD 준비 단계다. AWS 리전·예산·GPU/모델·도메인은 실제 확인과 설정이 남아 있다.
+- 비공개 저장소: [CLM-BONNY/orot-ai](https://github.com/CLM-BONNY/orot-ai)
+- 첫 배포: 작은 EC2에서 Caddy HTTPS·Nginx 프런트·FastAPI를 Docker Compose로 실행
+- 모델: 별도 GPU EC2의 vLLM 컨테이너, 사설 주소 통신, 가중치는 EBS 캐시
+- CI/CD: GitHub Actions → 테스트/이미지 빌드 → ECR → OIDC/SSM으로 EC2 교체 배포·검증·롤백
+- 기존 S3·CloudFront/Lambda·SAM과 초기 ECS+ALB 안은 첫 배포에 쓰지 않는다. CDN·다중 서버는 이후 개선 실험 후보다.
+- 도메인·서버·GPU는 아직 구매/생성하지 않았다. 실제 유료 배포 전 비용·사용 상한·AWS 접근·모델/GPU 호환성을 확인한다.
 
 ## 1. 서비스 범위
 
@@ -33,78 +31,62 @@
 
 ## 2. 주요 설계 결정
 
-### 사용자 요청에 따른 모델 실행 방식 변경
-
-기존 외부 OpenAI API 계획을 변경했다. 이미 다운로드한 Qwen으로 로컬 연결과 기능을 먼저 테스트하고, 큰 모델을 배포할 때 그 실행 환경에서 가중치를 다운로드해 직접 서빙한다. OpenAI API 키 설정은 현재 작업에 필요하지 않다.
-
-- 확인한 로컬 모델: `qwen3.5:9b-q4_K_M` (9.0B, GGUF, Q4_K_M)
-- 로컬 실행: React → FastAPI → Ollama → Qwen
-- 큰 모델의 배포 후보: S3·CloudFront → 애플리케이션 API → 사설 GPU 추론 서버(vLLM 등)
-- 모델 서버 교체는 서버 측 provider·주소·모델 설정으로 처리한다.
-- 로컬 테스트의 시간·품질·메모리 결과는 큰 모델의 결과와 별도로 기록한다.
-
-- 프런트엔드는 React 기반 정적 사이트로 배포한다.
-- 백엔드는 Python과 FastAPI를 사용한다.
-- 일반 백엔드와 AI 백엔드는 코드 모듈로 역할을 나눈다. 현재는 로컬 FastAPI 프로세스에서 실행하며 모델은 별도 Ollama 프로세스가 담당한다.
-- 개인 기록은 IndexedDB에 저장한다. 첫 버전은 로그인과 기기 간 자동 동기화를 제공하지 않는다.
-- 콘텐츠는 Markdown과 JSON으로 관리하고, 프런트엔드와 서버가 같은 원본과 콘텐츠 버전을 사용한다.
-- AI 기능은 서버를 통해 자체 모델 서버를 호출한다. 추론 서버의 주소·모델 설정·향후 인증 정보는 서버에서 관리한다.
-- 첫 버전의 AI 요청은 동기 응답 방식으로 구성한다. 긴 생성 작업이 필요해지면 비동기 작업 방식으로 확장한다.
-- 프런트의 AWS 배포 후보는 S3·CloudFront다. 큰 모델은 GPU 서버에서 실행한다. API를 컨테이너로 배포할지, API Gateway·Lambda 어댑터를 유지할지는 실제 추론 시간과 부하에 맞춰 확정한다.
+- 읽기·퀴즈·메모·AI 도우미·새 복습 문제를 한 서비스에서 제공한다.
+- 프런트는 React 정적 빌드를 Nginx 이미지에 포함하고, FastAPI는 별도 이미지로 만든다.
+- 일반 API와 AI 프롬프트/출력 검증은 같은 FastAPI 코드에 둔다. 실제 모델 추론은 별도 Ollama/vLLM 서버가 담당한다.
+- 로컬은 이미 받은 `qwen3.5:9b-q4_K_M`로 검증했다. 외부 OpenAI 유료 API와 API 키는 쓰지 않는다.
+- 배포 모델은 GPU 실행 환경에서 다운로드한다. 모델·GPU·양자화·런타임 버전은 실제 호환성/품질 확인 뒤 확정한다.
+- 개인 기록은 IndexedDB에 저장하고 JSON 백업·가져오기로 주소를 옮긴다. 첫 버전은 계정 동기화가 없다.
+- 콘텐츠는 Markdown·JSON이며 프런트와 서버가 동일한 릴리스 ID를 사용한다.
+- 첫 클라우드 배포는 EC2 Compose다. 웹은 상시, GPU는 제한된 실험 세션만 실행한다. GPU를 꺼도 글·기본 퀴즈·저장 기록은 사용할 수 있다.
+- 단일 서버 재생성 배포의 짧은 중단을 허용하고 이전 릴리스 롤백을 준비한다. 고가용성·무중단을 달성했다고 기록하지 않는다.
+- Git은 소스·설정, ECR은 이미지, GPU EBS는 모델 캐시를 보관한다. 비밀 값은 Secrets Manager와 제한된 mount로 전달한다.
+- 최초 기준선은 API 프로세스 1개다. 현재 동시 AI 처리 제한과 성공 요청 캐시는 프로세스 메모리이므로 다중 서버로 늘릴 때 공유 정책을 별도 설계한다.
 
 ## 3. 기술 스택
 
-| 영역 | 기술 | 역할과 선택 이유 |
-| --- | --- | --- |
-| 프런트엔드 | React + TypeScript + Vite | 학습·퀴즈 화면 구현 및 정적 빌드 |
-| UI | Tailwind CSS + shadcn/ui | 읽기 화면, 탭, 메모장, 대화 패널의 디자인 구성 |
-| 화면 이동 | React Router | 목차·학습·복습·노트 화면과 개별 학습 페이지 주소 관리 |
-| 학습 콘텐츠 | Markdown + 메타데이터 JSON | 긴 글과 연결 정보를 코드에서 분리해 관리 |
-| 콘텐츠 표시 | react-markdown + KaTeX | 본문·코드·수식 표시 |
-| 개인 기록 | IndexedDB + Dexie | 메모·풀이 기록·오답·별표·학습 진행 저장 |
-| 백엔드 | Python + FastAPI + Pydantic | API 구현, 입력·출력 검증, 오류 처리 |
-| AI 백엔드 | Python 내부 AI 모듈 + httpx | 로컬 Ollama 및 자체 GPU 서버의 호환 API 호출 |
-| 로컬 모델 | Ollama + Qwen3.5 9B Q4_K_M | 기존 다운로드 모델로 연결·기능 검증 |
-| 큰 모델 배포 | GPU 서버 + vLLM 등 | 배포 환경에서 체크포인트를 다운로드하고 직접 추론 |
-| Lambda 연결(선택) | Mangum | Lambda 배포를 선택할 경우에만 사용 |
-| 프런트 배포 | S3 + CloudFront | 정적 파일과 콘텐츠의 HTTPS 제공 |
-| API 배포 후보 | FastAPI 컨테이너 또는 API Gateway + Lambda | 실제 추론 시간·동시성·응답 방식에 따라 확정 |
-| 비밀 관리(필요 시) | AWS Secrets Manager | 자체 추론 서버의 인증 정보 보관 |
-| 관측·성능 실험 | CloudWatch + k6 | 요청 기록, 지연·실패·동시성 측정 |
-| 인프라 관리 | AWS SAM | 인프라를 파일로 관리하고 재현 가능한 배포 수행 |
+| 영역 | 기술 | 역할 |
+|---|---|---|
+| 프런트 | React·TypeScript·Vite | 읽기·퀴즈·복습 UI와 정적 빌드 |
+| UI·콘텐츠 | 커스텀 CSS·react-markdown·KaTeX | 읽기 화면·설명·코드·수식 |
+| 화면 이동·저장 | React Router·Dexie/IndexedDB | 직접 URL·브라우저별 학습 기록·백업 |
+| 일반/AI API | Python·FastAPI·Pydantic·httpx | 콘텐츠 조회·입력/출력 검증·추론 호출 |
+| 로컬 추론 | Ollama·기존 Qwen3.5 9B Q4_K_M | 로컬 기능 검증 |
+| 배포 추론 | GPU EC2·vLLM 컨테이너 | 선택한 체크포인트 직접 실행 |
+| 패키징 | Docker·Compose | 프런트/API/추론 이미지 및 실행 구성 |
+| 웹 배포 | EC2·Caddy·Nginx | 상시 접속·도메인 HTTPS·역방향 프록시 |
+| 이미지·비밀 | ECR·Secrets Manager | 불변 이미지 digest·서버 비밀 |
+| 자동 배포 | GitHub Actions·AWS OIDC·SSM | 테스트·게시·키 없는 원격 배포·롤백 |
+| 인프라 | CloudFormation | ECR·네트워크·EC2·IAM·로그·DNS 정의 |
+| 관측·실험 | CloudWatch·k6·고정 AI 평가 세트 | 지연·부하·실패·품질·비용 비교 |
 
-모델명과 라이브러리의 구체적인 버전은 구현 시 확정하고 잠금 파일 및 설정에 기록한다.
+Python/Node/Nginx/Caddy 베이스와 Actions는 확인한 digest/commit을 고정한다. 배포 체크포인트와 vLLM digest는 모델/GPU 선택 후 고정한다.
 
 ## 4. 전체 아키텍처
 
 ```mermaid
 flowchart TD
-    U[사용자 브라우저] --> CF[CloudFront]
-    CF --> S3[S3: React 화면·학습 글·기본 문제]
-    U <--> IDB[IndexedDB: 개인 학습 기록]
-    U --> GW[API Gateway HTTP API]
-    GW --> API[애플리케이션 API: FastAPI]
-    API --> C[콘텐츠 조회·입력 검증]
-    C --> AI[AI 모듈: 공부 도우미·복습 퀴즈]
-    AI --> LLM[자체 추론 서버: 로컬 Ollama / 배포 GPU 서버]
-    API --> CW[CloudWatch: 시간·토큰·오류 기록]
-    SM[필요 시: 추론 서버 인증 정보] --> AI
+    U[사용자 브라우저] --> DNS[도메인 DNS]
+    DNS --> EDGE[Caddy HTTPS]
+    subgraph WEB[상시 EC2 · Docker Compose]
+      EDGE --> N[Nginx 프런트]
+      N --> API[FastAPI · 일반 API와 AI 검증]
+    end
+    API --> GPU[실험 때만 켜는 GPU EC2 · vLLM]
+    GPU --> CACHE[EBS 모델 캐시]
+    U <--> IDB[IndexedDB · JSON 백업]
+    WEB --> LOG[CloudWatch]
+    SEC[Secrets Manager] --> WEB
+    GH[GitHub Actions] --> ECR[ECR 이미지]
+    GH --> SSM[OIDC · SSM 배포]
+    ECR --> WEB
 ```
 
-위 도식의 API Gateway는 Lambda 어댑터를 채택할 경우의 배포 경로다. 긴 추론을 직접 처리하는 컨테이너 API를 선택하면 ALB 등의 진입점으로 바꾼다. 현재 로컬 검증은 Vite 프록시 → FastAPI → Ollama로 수행했다.
-
-### 요청 흐름
-
-- 기본 학습: 브라우저 → CloudFront → S3 → 글·기본 문제 표시
-- 개인 기록: 브라우저에서 IndexedDB를 읽고 수정
-- AI 기능(현재): 브라우저 → Vite 프록시 → FastAPI → AI 모듈 → 로컬 Qwen → 브라우저
-- AI 기능(배포 후보): 브라우저 → API 진입점 → FastAPI → 사설 GPU 추론 서버 → 결과 검증 → 브라우저
-
-### 일반 백엔드와 AI 백엔드의 경계
-
-일반 백엔드는 요청 검증, 콘텐츠 조회, 오류 응답, 로그를 담당한다. AI 모듈은 문맥 구성, 프롬프트, 모델 호출, 생성 결과 검증을 담당한다.
-
-현재 일반 API와 AI 통신 모듈은 같은 FastAPI 앱에 있고, 모델 로딩·추론은 별도 프로세스가 담당한다. 이후 API의 실행 환경을 바꿔도 모델 서버와의 통신 경계를 유지한다.
+- 기본 학습: 도메인 HTTPS → Caddy → Nginx. 학습자료는 `/content` 프록시를 거쳐 API에서 같은 릴리스를 제공한다.
+- 개인 기록: 브라우저 IndexedDB에 저장하며 도메인 변경 전후 JSON 백업으로 이동한다.
+- AI 기능: 브라우저 → 같은 HTTPS 주소 → API → GPU 사설 추론 주소 → 검증 결과 반환.
+- 로컬 개발: Vite 프록시 → FastAPI → 기존 Ollama. 운영 빌드와 Docker 검증 경로는 별도다.
+- GPU가 꺼진 동안 새 AI 생성은 사용할 수 없다. 기본 학습과 저장된 AI 복습 문제는 독립적으로 동작한다.
 
 ## 5. 프런트엔드 설계
 
@@ -253,51 +235,30 @@ flowchart TD
 
 ## 9. 배포 설계
 
-### 프런트엔드
+[상세 파일·절차·가격 근거](ai-study-site/deploy/README.md)를 따른다. 현재는 GitHub와 컨테이너 CI 준비 단계이며 실제 AWS·도메인·GPU 배포는 미완료다.
 
-1. React 빌드
-2. 빌드 파일과 학습 콘텐츠를 S3에 업로드
-3. CloudFront로 HTTPS 제공
-4. SPA 경로 직접 접속 및 새로고침 처리
-5. 콘텐츠 갱신 시 버전과 캐시 갱신 정책 적용
+### 패키징과 자동 배포
 
-S3는 비공개 버킷을 사용하고 CloudFront OAC로 접근한다. OAC에는 S3 웹사이트 엔드포인트가 아닌 일반 버킷 오리진을 사용한다.
+1. GitHub main/PR에서 자동 테스트·TypeScript·운영 빌드·인프라 lint를 실행한다.
+2. 실제 Docker web/API 컨테이너를 띄워 프록시·전체 콘텐츠·직접 URL·오류·사이트 인증을 검사한다.
+3. AWS 준비 후 OIDC로 제한된 Role을 사용해 이미지를 ECR에 게시한다. SHA 기반 태그와 불변 digest를 기록한다.
+4. SSM으로 지정 CPU EC2만 업데이트한다. SSH 키와 장기 AWS 키를 GitHub에 넣지 않는다.
+5. Docker Compose 교체 후 내부 health와 공개 HTTPS의 코드 개정을 확인한다. 실패하면 이전 릴리스로 복구한다.
+6. GPU 추론 이미지는 별도로 빌드하고 모델·GPU·체크포인트를 검증한 뒤 배포한다. 가중치는 Git/앱 이미지에 넣지 않는다.
 
-### 백엔드·AI
+### 도메인·보안·운영
 
-사용자 요청에 따라 클라우드 리소스 생성과 큰 모델 다운로드는 이후 진행한다. 직접 모델을 실행하는 배포에서는 GPU 추론 서버가 별도로 필요하다. 모델 가중치를 Lambda 패키지에 넣어 대형 GPU 모델을 직접 실행하는 방식으로 진행하지 않는다.
+- Caddy로 HTTPS 발급/갱신, 공인 주소는 CPU EC2에 고정한다.
+- 최초 사이트는 비밀번호로 보호하고 AI 요청량을 제한한다. GPU 포트는 API 서버에서만 접근한다.
+- 모델 인증과 사이트 로그인은 Secrets Manager에서 읽어 해당 컨테이너의 파일로 전달한다. 비밀 값은 Git·빌드 인자·SSM 명령 본문·로그에 넣지 않는다.
+- 웹은 상시 운영한다. GPU 실험 세션은 시작/정지와 종료 예약을 확인하고 EBS 잔여 비용을 기록한다.
+- 최초 서버 후보는 t3.micro이며 메모리/CPU 크레딧을 검증한 후 확정한다. GPU·캐시 크기는 체크포인트에 맞춘다.
+- 앱의 AI 전체 마감 180초, Nginx 190초, Caddy 응답 헤더 대기 200초로 구성한다. 이 경로는 API Gateway HTTP API를 사용하지 않는다.
+- 활성 인프라는 `deploy/cloudformation`이다. `alternatives/ecs`는 실행하지 않는 대안 자료다.
 
-현재 provider는 Ollama API와 자체 호스팅 OpenAI 호환 프로토콜을 지원한다. 여기서 OpenAI 호환은 통신 형식이며 OpenAI의 외부 API를 사용한다는 뜻은 아니다. 실제 큰 모델·GPU 인스턴스·컨테이너 설정은 아직 배포하지 않았다.
+### 배포 완료 기준
 
-다음 목록은 기존 API Gateway·Lambda 어댑터 방식을 유지하기로 선택할 경우의 절차다. 장시간 추론이 필요하면 컨테이너 API 또는 비동기 작업 구조를 우선 비교한다.
-
-1. FastAPI와 AI 모듈을 Lambda 패키지로 배포
-2. Mangum handler를 Lambda 진입점으로 설정
-3. API Gateway HTTP API 연결
-4. 프런트 도메인에 맞춰 CORS 설정
-5. 추론 서버 인증이 필요하면 Secrets Manager에 보관하고 서버 권한으로 조회
-6. CloudWatch 로그 연결
-7. 요청량·동시성·입력 크기 제한을 설정하고 예산 알림 구성
-
-CORS는 인증 수단이 아니다. 첫 버전의 로그인 없는 AI API는 공개 호출이 가능하므로 요청 제한과 사용량 관측이 필요하다. 인증이 필요해지면 별도의 접근 제어를 추가한다.
-
-### 시간 제한
-
-- 현재 로컬 추론 전체 마감 시간은 180초다. API Gateway HTTP API에 그대로 적용하는 값이 아니다.
-- API Gateway HTTP API를 사용하는 배포의 최대 통합 제한은 30초다.
-- 서버 전체 처리 마감 시간은 이보다 짧게 설정한다.
-- 모델 호출과 재시도에 사용하는 시간도 전체 마감 시간에 포함한다.
-- 짧은 도우미 답변과 3문항 단위 생성으로 시작한다.
-- 시간 초과는 명확한 오류로 반환하며, 항상 제한 안에 생성된다고 가정하지 않는다.
-- 긴 작업이 필요해지면 작업 ID를 반환하고 상태를 조회하는 비동기 구조로 확장한다.
-- 컨테이너 API를 사용하면 해당 진입점과 애플리케이션의 시간 제한을 별도로 정한다.
-
-### 인프라 및 배포 관리
-
-- AWS 구성을 SAM 템플릿으로 관리한다.
-- 로컬에서 재현 가능한 빌드·배포 명령부터 마련한다.
-- 이후 자동 배포를 연결한다.
-- 배포 버전과 실험 기준선 태그를 구분해 기록한다.
+도메인 HTTPS에서 실제 AI와 학습 기능이 동작하고, main → CI → ECR → EC2의 실제 배포와 롤백이 검증돼야 한다. 파일 작성·CI 녹색 표시만으로 AWS 배포를 완료했다고 기록하지 않는다. 배포 버전·GPU/모델/콘텐츠를 고정한 뒤 성능 기준선을 측정한다.
 
 ## 10. 관측과 성능 실험
 
@@ -339,7 +300,7 @@ CORS는 인증 수단이 아니다. 첫 버전의 로그인 없는 AI API는 공
 | 3 | 전체 콘텐츠와 페이지형 읽기 화면 — 완료 | 8개 트랙·32개 챕터·96개 페이지 탐색, 읽기 완료·취소, 새로고침 후 기록·스크롤 복원 확인 |
 | 4 | 기본 퀴즈·메모·오답·별표 — 완료 | 객관식·인출·종합 문제, 메모 수정, 오답 재풀이, 별표 복습과 새로고침 후 기록 유지 확인 |
 | 5 | 공부 도우미·AI 복습 퀴즈 — 로컬 검증 완료 | 근거 링크·설명 메모 저장, 현재/오답 개념으로 3문제 생성·검토·저장·풀이·재풀이 가능 |
-| 6 | 로컬 운영 빌드·전체 흐름 점검 — 완료, AWS는 사용자 요청으로 보류 | 모바일 크기·직접 주소·저장·오류·백업 복원 확인. 실제 AWS 배포 후 검증은 미수행 |
+| 6 | 로컬 운영 빌드 점검 완료 · 도메인/Docker/AWS CI/CD 배포 준비 중 | 로컬 점검은 완료. 실제 도메인·AWS·GPU 배포와 배포 후 평가는 아직 미완료 |
 
 전체 기능 구현 목표를 유지하되 실제 API 호출과 배포를 초반에 검증한다. 완료 여부는 구현 시도나 화면 존재가 아니라 실제 흐름의 성공으로 판단한다.
 

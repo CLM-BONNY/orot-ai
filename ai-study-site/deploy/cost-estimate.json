@@ -1,0 +1,142 @@
+{
+  "checked_on": "2026-10-19",
+  "currency": "USD",
+  "region": "ap-northeast-2",
+  "status": "estimate_only_not_approved_spend_limit",
+  "monthly_hours": 730,
+  "instance_candidates": [
+    {
+      "instance_type": "t3.small",
+      "vcpu": "2",
+      "memory": "2 GiB",
+      "gpu": null,
+      "usd_per_hour": "0.0260000000",
+      "effective_date": "2026-10-01T00:00:00Z",
+      "region": "ap-northeast-2"
+    },
+    {
+      "instance_type": "g4dn.xlarge",
+      "vcpu": "4",
+      "memory": "16 GiB",
+      "gpu": "1",
+      "usd_per_hour": "0.6470000000",
+      "effective_date": "2026-10-01T00:00:00Z",
+      "region": "ap-northeast-2"
+    },
+    {
+      "instance_type": "t3.micro",
+      "vcpu": "2",
+      "memory": "1 GiB",
+      "gpu": null,
+      "usd_per_hour": "0.0130000000",
+      "effective_date": "2026-10-01T00:00:00Z",
+      "region": "ap-northeast-2"
+    },
+    {
+      "instance_type": "g5.xlarge",
+      "vcpu": "4",
+      "memory": "16 GiB",
+      "gpu": "1",
+      "usd_per_hour": "1.2370000000",
+      "effective_date": "2026-10-01T00:00:00Z",
+      "region": "ap-northeast-2"
+    },
+    {
+      "instance_type": "t4g.small",
+      "vcpu": "2",
+      "memory": "2 GiB",
+      "gpu": null,
+      "usd_per_hour": "0.0208000000",
+      "effective_date": "2026-10-01T00:00:00Z",
+      "region": "ap-northeast-2"
+    }
+  ],
+  "storage_ipv4": [
+    {
+      "service": "AmazonEC2",
+      "family": "Storage",
+      "attributes": {
+        "servicecode": "AmazonEC2",
+        "location": "Asia Pacific (Seoul)",
+        "locationType": "AWS Region",
+        "storageMedia": "SSD-backed",
+        "volumeType": "General Purpose",
+        "maxVolumeSize": "64 TiB",
+        "maxIopsvolume": "80000",
+        "maxThroughputvolume": "2000 MiB/s",
+        "usagetype": "APN2-EBS:VolumeUsage.gp3",
+        "operation": "",
+        "regionCode": "ap-northeast-2",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "volumeApiName": "gp3"
+      },
+      "unit": "GB-Mo",
+      "usd": "0.0912000000",
+      "description": "$0.0912 per GB-month of General Purpose (gp3) provisioned storage - Asia Pacific (Seoul)",
+      "effective_date": "2026-10-01T00:00:00Z",
+      "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/ap-northeast-2/index.json"
+    },
+    {
+      "service": "AmazonVPC",
+      "family": null,
+      "attributes": {
+        "servicecode": "AmazonVPC",
+        "location": "Asia Pacific (Seoul)",
+        "locationType": "AWS Region",
+        "group": "VPCPublicIPv4Address",
+        "groupDescription": "Hourly charge for In-use Public IPv4 Addresses",
+        "usagetype": "APN2-PublicIPv4:InUseAddress",
+        "operation": "",
+        "regionCode": "ap-northeast-2",
+        "servicename": "Amazon Virtual Private Cloud"
+      },
+      "unit": "Hrs",
+      "usd": "0.0050000000",
+      "description": "$0.005 per In-use public IPv4 address per hour",
+      "effective_date": "2026-10-01T00:00:00Z",
+      "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonVPC/current/ap-northeast-2/index.json"
+    }
+  ],
+  "assumptions": {
+    "web_instance": "t3.micro",
+    "web_root_gb": 20,
+    "gpu_candidate": "g5.xlarge",
+    "gpu_cache_root_gb": 100,
+    "web_public_ipv4_hours": 730,
+    "gpu_public_ipv4": "only while running, no GPU Elastic IP"
+  },
+  "base_compute_storage_ipv4_usd": 24.084,
+  "scenarios": [
+    {
+      "gpu_hours": 0,
+      "subtotal_usd": 24.08
+    },
+    {
+      "gpu_hours": 10,
+      "subtotal_usd": 36.5
+    },
+    {
+      "gpu_hours": 20,
+      "subtotal_usd": 48.92
+    }
+  ],
+  "excluded": [
+    "domain registration and renewal",
+    "DNS hosting",
+    "CloudWatch logs",
+    "ECR storage and transfer",
+    "Secrets Manager",
+    "data transfer",
+    "tax",
+    "foreign exchange",
+    "free credits or promotions"
+  ],
+  "limitations": [
+    "GPU/checkpoint compatibility and account quotas not yet verified",
+    "Not a total invoice estimate or a hard billing cap",
+    "Stopped GPU still incurs retained EBS charges",
+    "t3.micro memory and CPU-credit behavior must be measured before accepting production performance"
+  ],
+  "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/ap-northeast-2/index.json",
+  "source_publication": "2026-10-15T19:13:16Z"
+}

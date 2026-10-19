@@ -26,8 +26,12 @@ jobs:
           cache: npm
           cache-dependency-path: ai-study-site/frontend/package-lock.json
       - run: python -m pip install -r ai-study-site/backend/requirements.txt
-      - run: python -m pytest backend/tests deploy/inference/test_launch.py deploy/scripts/test_deploy_ecs.py -q -p no:cacheprovider
+      - run: python -m pytest backend/tests deploy/inference/test_launch.py deploy/ec2/test_release.py deploy/ec2/test_gpu_session.py -q -p no:cacheprovider
         working-directory: ai-study-site
+      - name: Validate active AWS infrastructure templates
+        run: |
+          python -m pip install cfn-lint==1.57.2
+          cfn-lint -t ai-study-site/deploy/cloudformation/*.yml --non-zero-exit-code error
       - run: npm ci
         working-directory: ai-study-site/frontend
       - run: npm test && npm run build
@@ -45,6 +49,16 @@ jobs:
           APP_REVISION: ${{ github.sha }}
       - name: Verify production HTTP routes, content and proxy errors
         run: python3 ai-study-site/deploy/scripts/container_smoke.py
+      - name: Validate production TLS proxy configuration
+        run: docker run --rm -e APP_DOMAIN=example.com -v "$PWD/ai-study-site/deploy/ec2/Caddyfile:/etc/caddy/Caddyfile:ro" caddy:2-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f caddy validate --config /etc/caddy/Caddyfile
+      - name: Test production-style site access control using a disposable fixture
+        run: |
+          python3 -c "import base64,hashlib,pathlib; pathlib.Path('/tmp/orot-fixture.htpasswd').write_text('fixture-user:{SHA}'+base64.b64encode(hashlib.sha1(b'fixture-password').digest()).decode()+'\n')"
+          chmod 644 /tmp/orot-fixture.htpasswd
+          docker compose -f ai-study-site/deploy/compose.yml -f ai-study-site/deploy/docker/web/auth-smoke.override.yml up -d --wait --wait-timeout 120
+          python3 ai-study-site/deploy/scripts/auth_smoke.py
+        env:
+          SITE_LOGIN_FIXTURE: /tmp/orot-fixture.htpasswd
       - name: Collect container logs on failure
         if: failure()
         run: docker compose -f ai-study-site/deploy/compose.yml logs --no-color --tail 100

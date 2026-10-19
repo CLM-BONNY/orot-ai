@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Orot AI GitHub OIDC role restricted to the private repository main branch
+Parameters:
+  GitHubProviderArn:
+    Type: String
+    Description: Existing IAM OIDC provider for https://token.actions.githubusercontent.com
+  AppInstanceId:
+    Type: String
+    AllowedPattern: 'i-[a-f0-9]{8,17}'
+Resources:
+  DeploymentRole:
+    Type: AWS::IAM::Role
+    Properties:
+      MaxSessionDuration: 3600
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: {Federated: !Ref GitHubProviderArn}
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+                token.actions.githubusercontent.com:sub:
+                  - repo:CLM-BONNY/orot-ai:ref:refs/heads/main
+                  - repo:CLM-BONNY@66056874/orot-ai@1425278609:ref:refs/heads/main
+      Policies:
+        - PolicyName: PushOnlyOrotImagesAndDeployOnlyOrotHost
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - {Effect: Allow, Action: 'ecr:GetAuthorizationToken', Resource: '*'}
+              - Effect: Allow
+                Action: ['ecr:BatchCheckLayerAvailability','ecr:InitiateLayerUpload','ecr:UploadLayerPart','ecr:CompleteLayerUpload','ecr:PutImage','ecr:DescribeImages','ecr:BatchGetImage','ecr:GetDownloadUrlForLayer']
+                Resource:
+                  - !Sub arn:${AWS::Partition}:ecr:${AWS::Region}:${AWS::AccountId}:repository/orot-ai-web
+                  - !Sub arn:${AWS::Partition}:ecr:${AWS::Region}:${AWS::AccountId}:repository/orot-ai-api
+                  - !Sub arn:${AWS::Partition}:ecr:${AWS::Region}:${AWS::AccountId}:repository/orot-ai-inference
+              - Effect: Allow
+                Action: ssm:SendCommand
+                Resource:
+                  - !Sub arn:${AWS::Partition}:ssm:${AWS::Region}::document/AWS-RunShellScript
+                  - !Sub arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:instance/${AppInstanceId}
+              - {Effect: Allow, Action: 'ssm:GetCommandInvocation', Resource: '*'}
+Outputs:
+  DeployRoleArn: {Value: !GetAtt DeploymentRole.Arn}

@@ -1,0 +1,79 @@
+name: orot-ai-production
+services:
+  api:
+    image: ${API_IMAGE:?Set immutable API image digest}
+    restart: unless-stopped
+    environment:
+      APP_REVISION: ${APP_REVISION:?Set Git SHA}
+      INFERENCE_PROVIDER: openai_compatible
+      INFERENCE_BASE_URL: ${INFERENCE_BASE_URL:?Set private GPU endpoint}
+      MODEL_NAME: ${MODEL_NAME:?Set served model name}
+      INFERENCE_AUTH_TOKEN_FILE: /run/secrets/inference_token
+      INFERENCE_TIMEOUT_SECONDS: '180'
+      REVIEW_MAX_OUTPUT_TOKENS: '1536'
+    secrets: [inference_token]
+    mem_limit: 384m
+    init: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks: [private]
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: ${AWS_REGION}
+        awslogs-group: /orot-ai/application
+        awslogs-stream: api
+  web:
+    image: ${WEB_IMAGE:?Set immutable web image digest}
+    restart: unless-stopped
+    environment:
+      API_UPSTREAM: api:8000
+      NGINX_RESOLVER: 127.0.0.11
+      TRUSTED_PROXY_CIDR: 172.28.0.0/16
+      SITE_AUTH_MODE: Orot-AI
+      SITE_HTPASSWD_FILE: /run/secrets/site_login
+    secrets: [site_login]
+    depends_on:
+      api: {condition: service_healthy}
+    ports: ['127.0.0.1:8081:8080']
+    mem_limit: 96m
+    init: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks: [private]
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: ${AWS_REGION}
+        awslogs-group: /orot-ai/application
+        awslogs-stream: web
+  edge:
+    mem_limit: 96m
+    image: caddy:2-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
+    restart: unless-stopped
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN:?Set the registered domain}
+    ports: ['80:80','443:443','443:443/udp']
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      web: {condition: service_healthy}
+    networks: [private]
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: ${AWS_REGION}
+        awslogs-group: /orot-ai/application
+        awslogs-stream: edge
+secrets:
+  inference_token: {file: "${SECRETS_DIR:?Set release secret directory}/inference_token"}
+  site_login: {file: "${SECRETS_DIR:?Set release secret directory}/site_login"}
+volumes:
+  caddy-data:
+  caddy-config:
+networks:
+  private:
+    ipam:
+      config: [{subnet: 172.28.0.0/16}]

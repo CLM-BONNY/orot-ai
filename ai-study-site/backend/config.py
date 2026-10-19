@@ -17,6 +17,11 @@ def read_local_env():
 read_local_env()
 
 
+def inference_token():
+    path = os.getenv('INFERENCE_AUTH_TOKEN_FILE')
+    return Path(path).read_text().strip() if path else os.getenv('INFERENCE_AUTH_TOKEN', '')
+
+
 @dataclass(frozen=True)
 class Settings:
     provider: str = os.getenv('INFERENCE_PROVIDER', 'ollama')
@@ -27,7 +32,7 @@ class Settings:
     review_output_tokens: int = int(os.getenv('REVIEW_MAX_OUTPUT_TOKENS', '1536'))
     structured_context: int = int(os.getenv('STRUCTURED_CONTEXT_LENGTH', '4096'))
     data_dir: Path = Path(os.getenv('CONTENT_DATA_DIR', str(PROJECT.parent / 'data-design/data')))
-    auth_token: str = os.getenv('INFERENCE_AUTH_TOKEN', '')
+    auth_token: str = inference_token()
     serve_frontend: bool = os.getenv('SERVE_FRONTEND', 'false').lower() == 'true'
     frontend_dir: Path = Path(os.getenv('FRONTEND_DIST_DIR', str(PROJECT / 'frontend/dist')))
 

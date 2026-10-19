@@ -1,0 +1,7 @@
+services:
+  web:
+    environment:
+      SITE_AUTH_MODE: Orot-AI
+      SITE_HTPASSWD_FILE: /run/secrets/site_login
+    volumes:
+      - ${SITE_LOGIN_FIXTURE:?Set fixture path}:/run/secrets/site_login:ro

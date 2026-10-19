@@ -7,7 +7,7 @@
 - FastAPI → 자체 호스팅 Qwen 공부 도우미와 복습 문제 생성
 - GitHub Actions 테스트 및 Docker 웹/API 통합 점검
 
-[서비스 아키텍처](service-architecture.md) · [앱 실행](ai-study-site/README.md) · [AWS 배포 계획과 진행 상태](ai-study-site/deploy/README.md) · [학습 콘텐츠](learning-content/README.md)
+[서비스 아키텍처](service-architecture.md) · [앱 실행](ai-study-site/README.md) · [저비용 AWS 배포 계획과 진행 상태](ai-study-site/deploy/README.md) · [학습 콘텐츠](learning-content/README.md)
 
 ## 로컬 실행
 
@@ -23,4 +23,4 @@ docker compose -f ai-study-site/deploy/compose.yml up --build --wait
 
 ## 현재 상태
 
-클라우드 배포를 준비 중입니다. Docker/CI 설정 파일의 존재, CI 통과, AWS 실제 배포, 도메인 연결은 각각 별도로 검증하고 배포 문서에 기록합니다. 공개 서비스와 GPU 서버가 이미 실행 중이라는 뜻은 아닙니다. 학습 기록은 브라우저별 IndexedDB에 저장되며 주소 변경 전 JSON 백업이 필요합니다.
+클라우드 배포를 준비 중입니다. Docker/CI 설정 파일의 존재, CI 통과, AWS 실제 배포, 도메인 연결은 각각 별도로 검증하고 배포 문서에 기록합니다. 웹은 상시, GPU는 실험 때만 실행하는 EC2 구성을 준비하고 있습니다. 공개 서비스와 GPU 서버가 이미 실행 중이라는 뜻은 아닙니다. 학습 기록은 브라우저별 IndexedDB에 저장되며 주소 변경 전 JSON 백업이 필요합니다.

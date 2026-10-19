@@ -1,0 +1,234 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Orot AI HTTPS application in an existing VPC; GPU infrastructure is separate
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+  VpcCidr:
+    Type: String
+    Description: Actual CIDR of the existing VPC, used only to trust ALB proxy headers
+  PublicSubnets:
+    Type: List<AWS::EC2::Subnet::Id>
+    Description: At least two public ALB subnets in distinct availability zones
+  AppSubnets:
+    Type: List<AWS::EC2::Subnet::Id>
+    Description: App subnets with working ECR, Secrets Manager and CloudWatch access
+  AssignPublicIp:
+    Type: String
+    Default: DISABLED
+    AllowedValues: [ENABLED, DISABLED]
+  ClusterName:
+    Type: String
+    Default: orot-ai
+  CertificateArn:
+    Type: String
+    Description: ACM certificate in this region covering AppDomainName
+  HostedZoneId:
+    Type: AWS::Route53::HostedZone::Id
+  AppDomainName:
+    Type: String
+  WebImage:
+    Type: String
+    AllowedPattern: '.+@sha256:[a-f0-9]{64}'
+  ApiImage:
+    Type: String
+    AllowedPattern: '.+@sha256:[a-f0-9]{64}'
+  CodeRevision:
+    Type: String
+    AllowedPattern: '[a-f0-9]{40}'
+  InferenceBaseUrl:
+    Type: String
+    Description: Private compatible inference endpoint ending in /v1
+    AllowedPattern: 'https?://.+/v1'
+  ModelName:
+    Type: String
+  InferenceAuthSecretArn:
+    Type: String
+    Description: Existing Secrets Manager secret, same token as GPU VLLM_API_KEY
+  SiteLoginSecretArn:
+    Type: String
+    Description: Existing Secrets Manager secret containing a username:htpasswd-hash line
+Resources:
+  ApplicationLogs:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      RetentionInDays: 30
+  ExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: {Service: ecs-tasks.amazonaws.com}
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+      Policies:
+        - PolicyName: ReadOnlyApplicationSecrets
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: secretsmanager:GetSecretValue
+                Resource: [!Ref InferenceAuthSecretArn, !Ref SiteLoginSecretArn]
+  TaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: {Service: ecs-tasks.amazonaws.com}
+            Action: sts:AssumeRole
+  AlbSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Public HTTPS and HTTP redirect only
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - {IpProtocol: tcp, FromPort: 443, ToPort: 443, CidrIp: 0.0.0.0/0}
+        - {IpProtocol: tcp, FromPort: 80, ToPort: 80, CidrIp: 0.0.0.0/0}
+  AppSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Nginx can be reached only from the ALB; API stays inside the task
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          SourceSecurityGroupId: !Ref AlbSecurityGroup
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Type: application
+      Scheme: internet-facing
+      Subnets: !Ref PublicSubnets
+      SecurityGroups: [!Ref AlbSecurityGroup]
+      LoadBalancerAttributes:
+        - {Key: idle_timeout.timeout_seconds, Value: '240'}
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      VpcId: !Ref VpcId
+      Port: 8080
+      Protocol: HTTP
+      TargetType: ip
+      HealthCheckPath: /healthz
+      Matcher: {HttpCode: '200'}
+      TargetGroupAttributes:
+        - {Key: deregistration_delay.timeout_seconds, Value: '200'}
+  HttpsListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 443
+      Protocol: HTTPS
+      Certificates: [{CertificateArn: !Ref CertificateArn}]
+      DefaultActions: [{Type: forward, TargetGroupArn: !Ref TargetGroup}]
+  HttpListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: redirect
+          RedirectConfig: {Protocol: HTTPS, Port: '443', StatusCode: HTTP_301}
+  Task:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: orot-ai-app
+      NetworkMode: awsvpc
+      RequiresCompatibilities: [FARGATE]
+      Cpu: '512'
+      Memory: '1024'
+      RuntimePlatform: {CpuArchitecture: X86_64, OperatingSystemFamily: LINUX}
+      ExecutionRoleArn: !GetAtt ExecutionRole.Arn
+      TaskRoleArn: !GetAtt TaskRole.Arn
+      ContainerDefinitions:
+        - Name: api
+          Image: !Ref ApiImage
+          Essential: true
+          Cpu: 384
+          Memory: 768
+          PortMappings: [{ContainerPort: 8000, Protocol: tcp}]
+          LinuxParameters: {Capabilities: {Drop: [ALL]}}
+          Environment:
+            - {Name: APP_REVISION, Value: !Ref CodeRevision}
+            - {Name: INFERENCE_PROVIDER, Value: openai_compatible}
+            - {Name: INFERENCE_BASE_URL, Value: !Ref InferenceBaseUrl}
+            - {Name: MODEL_NAME, Value: !Ref ModelName}
+            - {Name: INFERENCE_TIMEOUT_SECONDS, Value: '180'}
+            - {Name: REVIEW_MAX_OUTPUT_TOKENS, Value: '1536'}
+          Secrets: [{Name: INFERENCE_AUTH_TOKEN, ValueFrom: !Ref InferenceAuthSecretArn}]
+          HealthCheck:
+            Command: [CMD-SHELL, "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health',timeout=3)\""]
+            Interval: 15
+            Timeout: 5
+            Retries: 3
+            StartPeriod: 30
+          LogConfiguration:
+            LogDriver: awslogs
+            Options: {awslogs-group: !Ref ApplicationLogs, awslogs-region: !Ref 'AWS::Region', awslogs-stream-prefix: api}
+        - Name: web
+          Image: !Ref WebImage
+          Essential: true
+          Cpu: 128
+          Memory: 256
+          DependsOn: [{ContainerName: api, Condition: HEALTHY}]
+          PortMappings: [{ContainerPort: 8080, Protocol: tcp}]
+          LinuxParameters: {Capabilities: {Drop: [ALL]}}
+          Environment:
+            - {Name: APP_REVISION, Value: !Ref CodeRevision}
+            - {Name: API_UPSTREAM, Value: '127.0.0.1:8000'}
+            - {Name: NGINX_RESOLVER, Value: '169.254.169.253'}
+            - {Name: TRUSTED_PROXY_CIDR, Value: !Ref VpcCidr}
+            - {Name: SITE_AUTH_MODE, Value: Orot-AI}
+          Secrets: [{Name: SITE_HTPASSWD, ValueFrom: !Ref SiteLoginSecretArn}]
+          HealthCheck:
+            Command: [CMD-SHELL, 'wget -q -O /dev/null http://127.0.0.1:8080/healthz || exit 1']
+            Interval: 15
+            Timeout: 5
+            Retries: 3
+            StartPeriod: 30
+          LogConfiguration:
+            LogDriver: awslogs
+            Options: {awslogs-group: !Ref ApplicationLogs, awslogs-region: !Ref 'AWS::Region', awslogs-stream-prefix: web}
+  Service:
+    Type: AWS::ECS::Service
+    DependsOn: HttpsListener
+    Properties:
+      Cluster: !Ref ClusterName
+      ServiceName: orot-ai-app
+      TaskDefinition: !Ref Task
+      LaunchType: FARGATE
+      DesiredCount: 1
+      HealthCheckGracePeriodSeconds: 60
+      DeploymentConfiguration:
+        MinimumHealthyPercent: 100
+        MaximumPercent: 200
+        DeploymentCircuitBreaker: {Enable: true, Rollback: true}
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: !Ref AssignPublicIp
+          Subnets: !Ref AppSubnets
+          SecurityGroups: [!Ref AppSecurityGroup]
+      LoadBalancers: [{ContainerName: web, ContainerPort: 8080, TargetGroupArn: !Ref TargetGroup}]
+  DomainAlias:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref AppDomainName
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt LoadBalancer.DNSName
+        HostedZoneId: !GetAtt LoadBalancer.CanonicalHostedZoneID
+Outputs:
+  PublicUrl: {Value: !Sub 'https://${AppDomainName}'}
+  ServiceName: {Value: !GetAtt Service.Name}
+  AppSecurityGroupId: {Value: !Ref AppSecurityGroup}
+  ExecutionRoleArn: {Value: !GetAtt ExecutionRole.Arn}
+  TaskRoleArn: {Value: !GetAtt TaskRole.Arn}

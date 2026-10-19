@@ -47,7 +47,7 @@ class InferenceProvider:
         except (asyncio.TimeoutError, httpx.TimeoutException) as exc:
             raise InferenceFailure('MODEL_TIMEOUT', '모델 응답 시간이 초과됐어요. 잠시 후 다시 시도해 주세요.', 504) from exc
         except httpx.ConnectError as exc:
-            raise InferenceFailure('MODEL_UNAVAILABLE', '로컬 모델 서버에 연결할 수 없어요. 실행 상태를 확인해 주세요.', 503) from exc
+            raise InferenceFailure('MODEL_UNAVAILABLE', '모델 서버에 연결할 수 없어요. 실행 상태를 확인해 주세요.', 503) from exc
         except httpx.HTTPStatusError as exc:
             code = 'MODEL_RATE_LIMITED' if exc.response.status_code == 429 else 'MODEL_ERROR'
             raise InferenceFailure(code, '모델 서버가 요청을 처리하지 못했어요.', 429 if code == 'MODEL_RATE_LIMITED' else 502) from exc
