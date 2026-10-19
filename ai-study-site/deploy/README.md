@@ -2,7 +2,7 @@
 
 2026-10-19. 사용자 결정: 도메인·HTTPS·Docker·GitHub CI/CD를 갖춘 AWS 서비스에서 평가한다. 비용을 낮추기 위해 웹은 상시 운영하고 GPU는 실험할 때만 켠다.
 
-**현재 상태:** [비공개 GitHub 저장소](https://github.com/CLM-BONNY/orot-ai) 생성·push 완료. 첫 CI에서 실제 web/API Docker 빌드와 HTTP 통합 점검 통과. 저비용 EC2 배포 코드·인프라 템플릿을 준비 중이며, AWS 리소스·도메인·GPU 모델은 아직 생성하거나 구매하지 않았다.
+**현재 상태:** [비공개 GitHub 저장소](https://github.com/CLM-BONNY/orot-ai) 생성·push 완료. [최신 CI](https://github.com/CLM-BONNY/orot-ai/actions/runs/39220350945)에서 자동 테스트 128개(백엔드/배포 87·프런트 41), 인프라 lint, 실제 web/API Docker 빌드·HTTP 통합·인증·Caddy 설정 검증 통과. EC2 배포 코드는 준비했지만 AWS 리소스·도메인·GPU 모델은 아직 생성하거나 구매하지 않았다. [검증 기록](preparation-result.json)
 
 ## 현재 배포 구성
 

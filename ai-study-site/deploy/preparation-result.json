@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-19",
+  "repository": "https://github.com/CLM-BONNY/orot-ai",
+  "repository_visibility": "private",
+  "validated_code_commit": "845e7c12150ed11fb4268116a12a4588f840679b",
+  "ci_url": "https://github.com/CLM-BONNY/orot-ai/actions/runs/39220350945",
+  "tests": {
+    "backend_and_deployment": 87,
+    "frontend": 41,
+    "total": 128,
+    "cloudformation_lint": "passed locally and in CI",
+    "docker_web_api_build_and_http": "passed in GitHub Actions",
+    "site_authentication_smoke": "passed in GitHub Actions",
+    "caddy_configuration": "passed in GitHub Actions"
+  },
+  "selected_architecture": "always-on EC2 + Caddy/Nginx/FastAPI Docker Compose, separate GPU EC2 only during experiments",
+  "aws_deployment": {
+    "enabled": false,
+    "resources_created": false,
+    "credentials_available_locally": false,
+    "console": "login_required"
+  },
+  "domain": {
+    "candidate": "orot-ai.study",
+    "availability_and_price_checked": false,
+    "purchased": false
+  },
+  "inference": {
+    "docker_definition": "prepared",
+    "image_built": false,
+    "checkpoint_and_gpu_verified": false,
+    "gpu_created": false
+  },
+  "cost_assumption": "See cost-estimate.json; not an approved budget cap or full invoice estimate",
+  "remaining": [
+    "AWS sign-in and account/region/quota verification",
+    "Confirm cost ceiling and domain registration/renewal price",
+    "Choose and verify model/GPU/runtime",
+    "Provision infrastructure and validate actual deployment/rollback/GPU stop",
+    "Enable CD only after setup and conduct the six evaluation areas"
+  ],
+  "limitations": [
+    "No public deployment or paid AWS resource created",
+    "GPU hardware, private networking and shutdown guard not exercised on real AWS yet",
+    "Host rollout unit tests do not replace an actual AWS rollback test",
+    "CI runs do not evaluate model answer or quiz quality"
+  ],
+  "ci_conclusion": "success"
+}
