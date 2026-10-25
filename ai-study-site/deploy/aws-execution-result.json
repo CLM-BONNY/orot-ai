@@ -19,5 +19,17 @@
   "gpu_created_or_started": false,
   "cd_enabled": false,
   "credentials_exported": false,
-  "next_required_user_input": "Confirm whether to purchase the domain and approve the monthly web budget. Portfolio tests do not require a purchased domain."
+  "next_required_user_input": "Confirm whether to purchase the domain and approve the monthly web budget. Portfolio tests do not require a purchased domain.",
+  "aws_template_validation": {
+    "revision": "7200d1b544059019b8c2339eb772008f7e57a539",
+    "registry.yml": "passed",
+    "web-ec2.yml": "passed",
+    "github-oidc.yml": "passed"
+  },
+  "site_login": {
+    "setup_script": "ec2/create_site_login.py",
+    "user_entry_required": true,
+    "created": false
+  },
+  "temporary_https_candidate": "orot.<public-ip>.sslip.io"
 }
