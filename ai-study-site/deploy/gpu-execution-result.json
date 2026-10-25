@@ -24,9 +24,9 @@
   "model_downloaded_on_aws": false,
   "model_response_verified_on_aws": false,
   "existing_web_inference_provider": "disabled",
-  "approved_total_monthly_operating_budget_usd": 10,
+  "approved_total_monthly_operating_budget_usd": 25,
   "proposed_total_monthly_operating_budget_usd": 25,
-  "proposed_budget_approved": false,
+  "proposed_budget_approved": true,
   "additional_gpu_access_approved": false,
   "first_gpu_session_minutes": 90,
   "gpu_monthly_hours_example": 5,
@@ -34,7 +34,7 @@
   "compute_storage_ipv4_monthly_example_usd": 21.324,
   "limitations": [
     "GPU EC2 creation requires an approved and applied GPU quota",
-    "New GPU costs exceed the existing web-only USD 10 operating budget",
+    "User approved a total USD 25 monthly operating budget excluding tax; it is not an automatic charge cap",
     "Actual GPU model compatibility and functional AI responses have not been verified",
     "No GPU success is inferred from CPU-only unit tests"
   ]

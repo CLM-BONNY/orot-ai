@@ -35,6 +35,11 @@ jobs:
           [[ "$VLLM_BASE_IMAGE" =~ ^vllm/vllm-openai@sha256:[a-f0-9]{64}$ ]]
           test -n "$AWS_REGION"
           echo "VLLM_BASE_IMAGE=$VLLM_BASE_IMAGE" >> "$GITHUB_ENV"
+      - name: Free disposable runner SDKs for the CUDA image
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          docker system prune -af
+          df -h /
       - name: Authenticate to AWS using OIDC
         uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5
         with:
