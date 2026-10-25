@@ -4,7 +4,9 @@
 
 주소는 **https://orot.13.124.182.186.sslip.io**다. 서버 정지 중에는 접속되지 않는다. 로그인 아이디는 `orot`, 비밀번호는 사용자가 CloudShell에서 직접 설정한 값이다. 에이전트는 비밀번호를 알지 못하며 Git·명령 인자·로그에 남기지 않았다.
 
-**현재 상태:** ECR·웹 EC2·SSM·GitHub OIDC 역할 생성과 서버 bootstrap 검증 완료. GitHub 배포 검증 진행 중. [저장소](https://github.com/CLM-BONNY/orot-ai) · [실제 AWS 실행 기록](aws-execution-result.json) · [코드/CI 검증 기록](preparation-result.json)
+**현재 상태: 웹 배포 완료.** [CI](https://github.com/CLM-BONNY/orot-ai/actions/runs/40172094509)에서 135개 자동 테스트(백엔드/배포 94·프런트 41), 실제 Docker HTTP·인증·인프라 lint 검사를 통과했다. [실제 AWS 배포](https://github.com/CLM-BONNY/orot-ai/actions/runs/40172193910)는 ECR → OIDC/SSM → 공개 HTTPS 버전 확인까지 성공했다. 실제 버전 불일치 배포의 자동 복구, 서버 종료 서비스의 stopped 상태, 재시작 후 앱·인증서·타이머 복원도 확인했다. 사용자가 외부 브라우저의 로그인 성공과 사이트 표시를 확인했다. [실제 AWS 결과](aws-execution-result.json) · [코드/CI 검증](preparation-result.json)
+
+현재 배포 버전은 `13d7cdc99b41edd57ea94c0d2647ccf075bbccdf`다. 문서 기록 커밋은 `[skip ci]`로 저장하므로 이 배포 SHA와 저장소의 최종 문서 SHA가 다를 수 있다. 사용자 확인을 위해 서버를 켜 두었으며 **2026-10-25 18:25:17 KST 자동 정지 예정**이다. 이후 상태는 콘솔에서 확인한다.
 
 ## 구성과 생성 범위
 
@@ -87,6 +89,8 @@ AWS Budgets 알림이나 강제 청구 차단은 만들지 않았다. 현재 비
 5. Docker Compose 교체 후 내부 health/release와 공개 HTTPS의 Git SHA를 확인한다. 실패하면 이전 릴리스로 복구한다. 첫 릴리스는 이전 버전이 없어 롤백할 수 없다.
 6. Actions artifact로 릴리스 SHA·이미지 digest·공개 URL을 남긴다. 호스트 `/opt/orot/current`, `/opt/orot/previous`로 릴리스를 추적한다.
 
+내장 브라우저는 Basic 인증창을 표시하지 못해 `ERR_INVALID_AUTH_CREDENTIALS`가 발생할 수 있다. Chrome·Safari 등 외부 브라우저에서 접속하며 사용자가 로그인 성공을 확인했다. 인증을 해제하거나 비밀번호를 URL에 넣지 않는다.
+
 사이트 인증과 AI 요청 제한을 유지한다. 단일 EC2의 Compose 교체는 짧은 중단이 있을 수 있다. 무중단·고가용성 구성은 아니다. 공식 Actions·Python/Node/Nginx/Caddy 베이스는 commit/digest로 고정한다.
 
 | GitHub 변수 | 값/역할 |
@@ -114,7 +118,7 @@ GPU는 추후 모델·라이선스·런타임·한도·비용을 확정한 뒤 �
 
 [실제 AWS 결과](aws-execution-result.json)를 최종 기준으로 확인한다. [코드 검증](preparation-result.json)에는 테스트·컨테이너·인증·인프라 lint 결과를 기록한다. [10월 19일](account-preflight.json)·[10월 25일 배포 전](account-preflight-2026-10-25.json) 계정 점검은 생성 전 시점의 스냅샷이다.
 
-CI는 모델 품질·GPU 성능을 검증하지 않는다. 본 배포는 성능 기준선 측정과 별개다. 실제 롤백·재시작·정지 검증 결과도 실행 기록의 개별 항목으로 구분한다. 모바일 Safari·실제 휴대폰 검증은 아직 수행하지 않았다.
+CI는 모델 품질·GPU 성능을 검증하지 않는다. 본 배포는 성능 기준선 측정과 별개다. 호스트의 버전 불일치 실패 후 자동 복구를 검증했다. 외부 HTTPS 단계에서만 발생하는 실패를 별도로 유도하지는 않았다. 종료 서비스는 20초짜리 임시 타이머로 호출해 실제 정지를 확인했고, 영구 120분 타이머를 끝까지 기다린 검사는 아니다. 재시작 후 120분 예약이 다시 잡히는 것을 확인했다. 모바일 Safari·실제 휴대폰 검증은 아직 수행하지 않았다.
 
 ## 파일과 로컬 실행
 

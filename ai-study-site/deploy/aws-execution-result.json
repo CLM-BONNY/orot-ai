@@ -2,8 +2,8 @@
   "date": "2026-10-25",
   "region": "ap-northeast-2",
   "user_approved_security_scope": true,
-  "financial_approval": "pending_clarification",
-  "domain_purchase": "not_approved_or_executed",
+  "financial_approval": "approved_lab_only_monthly_budget_10_usd_excluding_tax",
+  "domain_purchase": "declined_for_current_deployment",
   "created_resources": [
     {
       "type": "IAM OIDC provider",
@@ -11,17 +11,37 @@
       "audience": "sts.amazonaws.com",
       "project_tag": "orot-ai",
       "verified_created": true
+    },
+    {
+      "type": "CloudFormation stack",
+      "name": "orot-ai-registry",
+      "status": "CREATE_COMPLETE"
+    },
+    {
+      "type": "CloudFormation stack",
+      "name": "orot-ai-web",
+      "status": "CREATE_COMPLETE"
+    },
+    {
+      "type": "CloudFormation stack",
+      "name": "orot-ai-github",
+      "status": "CREATE_COMPLETE"
+    },
+    {
+      "type": "Secrets Manager site login",
+      "password_entered_by_user": true,
+      "plaintext_retrieved_by_agent": false
     }
   ],
-  "web_ec2_created": false,
-  "deployment_role_created": false,
-  "paid_resources_created": false,
+  "web_ec2_created": true,
+  "deployment_role_created": true,
+  "paid_resources_created": true,
   "gpu_created_or_started": false,
-  "cd_enabled": false,
+  "cd_enabled": true,
   "credentials_exported": false,
-  "next_required_user_input": "Confirm whether to purchase the domain and approve the monthly web budget. Portfolio tests do not require a purchased domain.",
+  "next_required_user_input": null,
   "aws_template_validation": {
-    "revision": "7200d1b544059019b8c2339eb772008f7e57a539",
+    "revision": "44f9a747c4dd22f2a917a022911d1c54dbef3503",
     "registry.yml": "passed",
     "web-ec2.yml": "passed",
     "github-oidc.yml": "passed"
@@ -29,7 +49,221 @@
   "site_login": {
     "setup_script": "ec2/create_site_login.py",
     "user_entry_required": true,
-    "created": false
+    "created": true,
+    "password_entered_by_user": true
   },
-  "temporary_https_candidate": "orot.<public-ip>.sslip.io"
+  "temporary_https_candidate": "orot.13.124.182.186.sslip.io",
+  "approved_configuration": {
+    "instance_type": "t3.micro",
+    "operating_budget_usd": 10,
+    "tax_included": false,
+    "always_on": false,
+    "reference_running_hours_per_month": 40,
+    "auto_stop_minutes_after_boot": 120,
+    "automatic_monthly_billing_cap": false,
+    "gpu_create": false,
+    "domain_purchase": false
+  },
+  "registry_stack_status": "CREATE_COMPLETE",
+  "web_stack_status": "CREATE_COMPLETE",
+  "github_role_stack_status": "CREATE_COMPLETE",
+  "instance_id": "i-0c40b75c4fb81e590",
+  "public_ipv4": "13.124.182.186",
+  "vpc_id": "vpc-06cff0f41707f4beb",
+  "subnet_id": "subnet-0e9ad7595e035381c",
+  "security_group_id": "sg-0bee2caf97b350113",
+  "deployment_role_arn": "arn:aws:iam::226564742618:role/orot-ai-github-DeploymentRole-tNvrvfj196YP",
+  "deployment_status": "success",
+  "deployment_run_url": "https://github.com/CLM-BONNY/orot-ai/actions/runs/40172193910",
+  "host_bootstrap": {
+    "verified": true,
+    "ssm": "Online",
+    "cloud_init": "done",
+    "docker_compose": "v5.6.0",
+    "auto_stop_timer": "active and enabled",
+    "minutes_after_every_boot": 120,
+    "ssm_check_command_id": "a5c33edf-e468-45d9-a722-aef0e25086a7"
+  },
+  "release": {
+    "verified": true,
+    "release_id": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf-40172193910-1",
+    "revision": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf",
+    "url": "https://orot.13.124.182.186.sslip.io",
+    "images": {
+      "api": "226564742618.dkr.ecr.ap-northeast-2.amazonaws.com/orot-ai-api@sha256:b32bd5b740e534e4ac42cc93d5e389f3374f400d693a067e90342673d03a2773",
+      "web": "226564742618.dkr.ecr.ap-northeast-2.amazonaws.com/orot-ai-web@sha256:4c3c164fa3697aa52ac11cbf2aad3786fa954e70efda64b851a935ae68ca76d8"
+    }
+  },
+  "public_https": {
+    "host": "orot.13.124.182.186.sslip.io",
+    "ipv4": "13.124.182.186",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "json": {
+          "status": "ok",
+          "version": "0.2.0",
+          "code_revision": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf"
+        }
+      },
+      {
+        "path": "/release.json",
+        "status": 200,
+        "json": {
+          "code_revision": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf"
+        }
+      },
+      {
+        "path": "/",
+        "status": 401,
+        "authentication": "Basic realm=\"Orot-AI\""
+      },
+      {
+        "path": "/notebook",
+        "status": 401,
+        "authentication": "Basic realm=\"Orot-AI\""
+      },
+      {
+        "path": "/api/meta",
+        "status": 401,
+        "authentication": "Basic realm=\"Orot-AI\""
+      },
+      {
+        "path": "/content/curriculum.json",
+        "status": 401,
+        "authentication": "Basic realm=\"Orot-AI\""
+      }
+    ]
+  },
+  "infrastructure_verification": {
+    "instance_type": "t3.micro",
+    "credit_mode": "standard",
+    "imds_tokens": "required",
+    "root_volume": {
+      "gb": 20,
+      "type": "gp3",
+      "encrypted": true
+    },
+    "public_ingress": [
+      "tcp/80",
+      "tcp/443",
+      "udp/443"
+    ],
+    "instance_initiated_shutdown_behavior": "stop",
+    "no_gpu_resources_created": true
+  },
+  "corrected_deployment_issues": [
+    {
+      "issue": "Deployment environment leaked into provider protocol tests",
+      "fix": "Use explicit isolated MockTransport provider settings",
+      "verification": "94 tests pass under disabled inference and empty URL/model environment"
+    },
+    {
+      "issue": "AWS CLI --cli-input-json rejected /dev/stdin with exit 252",
+      "fix": "Use a mode-0600 temporary regular JSON parameter file and remove it after CLI completion",
+      "verification": "CloudShell actual CLI exit 0 and GitHub production deploy success"
+    }
+  ],
+  "rollback_verification": {
+    "passed": true,
+    "ssm_command_id": "5f35f903-eae5-4f00-8759-5db5b6ce5311",
+    "method": "Attempt a candidate with an older immutable web image and the current API, detect real release.json revision mismatch, and automatically reactivate the prior healthy release",
+    "candidate_release_id": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf-40172193910-99",
+    "restored_release_id": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf-40172193910-1",
+    "restored_revision": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf",
+    "host_health_and_web_revision_verified": true,
+    "limits": "This verifies host activation failure rollback. A failure occurring only at external HTTPS validation was not separately induced."
+  },
+  "runtime_content_verification": {
+    "passed": true,
+    "ssm_command_id": "647e93a9-03df-462c-ae4c-24cd8e08fc6e",
+    "path": "Docker exec to actual production API loopback (no authentication bypass on public Nginx)",
+    "pages": 96,
+    "chapters": 32,
+    "questions": 102,
+    "provider": "disabled",
+    "ai_response": "503 MODEL_DISABLED",
+    "revision": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf"
+  },
+  "cloudwatch_verification": {
+    "group": "/orot-ai/application",
+    "streams_with_events": [
+      "api",
+      "edge",
+      "web"
+    ]
+  },
+  "automatic_stop_verification": {
+    "configured_on_each_boot_minutes": 120,
+    "timer_enabled_and_active": true,
+    "shutdown_service_exercised": true,
+    "method": "A temporary systemd timer invoked the production stop service after 20 seconds, without changing the permanent 120-minute timer",
+    "instance_state_after_service": "stopped",
+    "full_120_minute_wait_exercised": false,
+    "restart_verification": "passed"
+  },
+  "restart_verification": {
+    "verified": true,
+    "same_hostname": true,
+    "same_revision": true,
+    "public_health": {
+      "status": "ok",
+      "version": "0.2.0",
+      "code_revision": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf"
+    },
+    "web_release": {
+      "code_revision": "13d7cdc99b41edd57ea94c0d2647ccf075bbccdf"
+    },
+    "certificate": {
+      "subject": [
+        [
+          [
+            "commonName",
+            "orot.13.124.182.186.sslip.io"
+          ]
+        ]
+      ],
+      "issuer": [
+        [
+          [
+            "countryName",
+            "US"
+          ]
+        ],
+        [
+          [
+            "organizationName",
+            "Let's Encrypt"
+          ]
+        ],
+        [
+          [
+            "commonName",
+            "YE1"
+          ]
+        ]
+      ],
+      "notBefore": "Oct 25 06:20:57 2026 GMT",
+      "notAfter": "Jan 23 06:20:56 2027 GMT",
+      "subjectAltName": [
+        [
+          "DNS",
+          "orot.13.124.182.186.sslip.io"
+        ]
+      ]
+    },
+    "ssm_timer_check_command_id": "923714cb-ee40-45bf-9c6f-2bd1afbd2478",
+    "timer_active_and_enabled_after_restart": true,
+    "three_containers_restarted": true,
+    "fixed_public_ip_preserved": true
+  },
+  "user_browser_verification": {
+    "result": "login_success_site_visible",
+    "reported_by": "user",
+    "browser": "Chrome or Safari (not individually identified)",
+    "agent_knows_password": false
+  },
+  "final_instance_state": "running_for_user_review_with_120_minute_guard",
+  "scheduled_stop_at": "2026-10-25T18:25:17+09:00"
 }
