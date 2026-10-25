@@ -1,7 +1,7 @@
 {
   "date": "2026-10-19",
   "repository": "https://github.com/CLM-BONNY/orot-ai",
-  "repository_visibility": "private",
+  "repository_visibility": "public",
   "validated_code_commit": "845e7c12150ed11fb4268116a12a4588f840679b",
   "ci_url": "https://github.com/CLM-BONNY/orot-ai/actions/runs/39220350945",
   "tests": {
@@ -18,7 +18,7 @@
     "enabled": false,
     "resources_created": false,
     "credentials_available_locally": false,
-    "console": "authenticated_cloudshell_read_only_preflight_complete",
+    "console": "previous_session_expired_reauthentication_requested_2026-10-25",
     "preflight": "account-preflight.json",
     "gpu_on_demand_vcpu_quota": 0
   },

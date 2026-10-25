@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-10-19",
+  "checked_on": "2026-10-25",
   "currency": "USD",
   "region": "ap-northeast-2",
   "status": "estimate_only_not_approved_spend_limit",
@@ -15,24 +15,6 @@
       "region": "ap-northeast-2"
     },
     {
-      "instance_type": "g4dn.xlarge",
-      "vcpu": "4",
-      "memory": "16 GiB",
-      "gpu": "1",
-      "usd_per_hour": "0.6470000000",
-      "effective_date": "2026-10-01T00:00:00Z",
-      "region": "ap-northeast-2"
-    },
-    {
-      "instance_type": "t3.micro",
-      "vcpu": "2",
-      "memory": "1 GiB",
-      "gpu": null,
-      "usd_per_hour": "0.0130000000",
-      "effective_date": "2026-10-01T00:00:00Z",
-      "region": "ap-northeast-2"
-    },
-    {
       "instance_type": "g5.xlarge",
       "vcpu": "4",
       "memory": "16 GiB",
@@ -42,12 +24,11 @@
       "region": "ap-northeast-2"
     },
     {
-      "instance_type": "t4g.small",
+      "instance_type": "m7i.large",
       "vcpu": "2",
-      "memory": "2 GiB",
+      "memory": "8 GiB",
       "gpu": null,
-      "usd_per_hour": "0.0208000000",
-      "effective_date": "2026-10-01T00:00:00Z",
+      "usd_per_hour": "0.1239000000",
       "region": "ap-northeast-2"
     }
   ],
@@ -98,29 +79,30 @@
     }
   ],
   "assumptions": {
-    "web_instance": "t3.micro",
+    "web_instance": "t3.small",
     "web_root_gb": 20,
     "gpu_candidate": "g5.xlarge",
     "gpu_cache_root_gb": 100,
     "web_public_ipv4_hours": 730,
     "gpu_public_ipv4": "only while running, no GPU Elastic IP"
   },
-  "base_compute_storage_ipv4_usd": 24.084,
+  "base_compute_storage_ipv4_usd": 33.574,
   "scenarios": [
     {
       "gpu_hours": 0,
-      "subtotal_usd": 24.08
+      "subtotal_usd": 33.57
     },
     {
       "gpu_hours": 10,
-      "subtotal_usd": 36.5
+      "subtotal_usd": 45.99
     },
     {
       "gpu_hours": 20,
-      "subtotal_usd": 48.92
+      "subtotal_usd": 58.41
     }
   ],
   "excluded": [
+    "precision benchmark and load generator usage",
     "domain registration and renewal",
     "DNS hosting",
     "CloudWatch logs",
@@ -135,8 +117,53 @@
     "GPU/checkpoint compatibility and account quotas not yet verified",
     "Not a total invoice estimate or a hard billing cap",
     "Stopped GPU still incurs retained EBS charges",
-    "t3.micro memory and CPU-credit behavior must be measured before accepting production performance"
+    "T3 CPU-credit state must be recorded; precision comparisons can use the same m7i.large configuration before and after"
   ],
   "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/ap-northeast-2/index.json",
-  "source_publication": "2026-10-15T19:13:16Z"
+  "source_publication": "2026-10-23T22:13:55Z",
+  "verified_current_prices": {
+    "AmazonEC2": {
+      "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/ap-northeast-2/index.json",
+      "publication": "2026-10-23T22:13:55Z",
+      "prices": [
+        {
+          "instance_type": null,
+          "description": "$0.0912 per GB-month of General Purpose (gp3) provisioned storage - Asia Pacific (Seoul)",
+          "unit": "GB-Mo",
+          "usd": "0.0912000000"
+        },
+        {
+          "instance_type": "t3.small",
+          "description": "$0.026 per On Demand Linux t3.small Instance Hour",
+          "unit": "Hrs",
+          "usd": "0.0260000000"
+        },
+        {
+          "instance_type": "m7i.large",
+          "description": "$0.1239 per On Demand Linux m7i.large Instance Hour",
+          "unit": "Hrs",
+          "usd": "0.1239000000"
+        },
+        {
+          "instance_type": "g5.xlarge",
+          "description": "$1.237 per On Demand Linux g5.xlarge Instance Hour",
+          "unit": "Hrs",
+          "usd": "1.2370000000"
+        }
+      ]
+    },
+    "AmazonVPC": {
+      "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonVPC/current/ap-northeast-2/index.json",
+      "publication": "2026-10-16T22:43:21Z",
+      "prices": [
+        {
+          "instance_type": null,
+          "description": "$0.005 per In-use public IPv4 address per hour",
+          "unit": "Hrs",
+          "usd": "0.0050000000"
+        }
+      ]
+    }
+  },
+  "web_only_compute_storage_ipv4_usd": 24.454
 }

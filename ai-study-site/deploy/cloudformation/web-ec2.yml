@@ -3,8 +3,9 @@ Description: Orot AI low-cost web/API EC2, fixed address, SSM and logging; no GP
 Parameters:
   InstanceType:
     Type: String
-    Default: t3.micro
-    AllowedValues: [t3.micro, t3.small]
+    Default: t3.small
+    AllowedValues: [t3.micro, t3.small, m7i.large]
+    Description: t3.small for always-on operation; m7i.large for a separate fixed-spec benchmark
   AmiId:
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64
@@ -28,6 +29,7 @@ Parameters:
     Description: Leave empty to configure DNS at another registrar
 Conditions:
   CreateDns: !And [!Not [!Equals [!Ref HostedZoneId, '']], !Not [!Equals [!Ref DomainName, '']]]
+  IsBurstable: !Or [!Equals [!Ref InstanceType, t3.micro], !Equals [!Ref InstanceType, t3.small]]
 Resources:
   Vpc:
     Type: AWS::EC2::VPC
@@ -112,7 +114,7 @@ Resources:
       SubnetId: !Ref PublicSubnet
       SecurityGroupIds: [!Ref WebSecurityGroup]
       IamInstanceProfile: !Ref Profile
-      CreditSpecification: {CPUCredits: standard}
+      CreditSpecification: !If [IsBurstable, {CPUCredits: standard}, !Ref 'AWS::NoValue']
       MetadataOptions: {HttpTokens: required, HttpPutResponseHopLimit: 1}
       BlockDeviceMappings:
         - DeviceName: /dev/xvda

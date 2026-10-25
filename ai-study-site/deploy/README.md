@@ -2,7 +2,9 @@
 
 2026-10-19. 사용자 결정: 도메인·HTTPS·Docker·GitHub CI/CD를 갖춘 AWS 서비스에서 평가한다. 비용을 낮추기 위해 웹은 상시 운영하고 GPU는 실험할 때만 켠다.
 
-**현재 상태:** [비공개 GitHub 저장소](https://github.com/CLM-BONNY/orot-ai) 생성·push 완료. [최신 CI](https://github.com/CLM-BONNY/orot-ai/actions/runs/39220350945)에서 자동 테스트 128개(백엔드/배포 87·프런트 41), 인프라 lint, 실제 web/API Docker 빌드·HTTP 통합·인증·Caddy 설정 검증 통과. EC2 배포 코드는 준비했지만 AWS 리소스·도메인·GPU 모델은 아직 생성하거나 구매하지 않았다. [검증 기록](preparation-result.json)
+**현재 상태:** [GitHub 저장소](https://github.com/CLM-BONNY/orot-ai) 생성·push 완료. 2026-10-25 GitHub API에서 현재 공개 저장소임을 확인했다. [이전 CI](https://github.com/CLM-BONNY/orot-ai/actions/runs/39220350945)에서 자동 테스트 128개(백엔드/배포 87·프런트 41), 인프라 lint, 실제 web/API Docker 빌드·HTTP 통합·인증·Caddy 설정 검증 통과. EC2 배포 코드는 준비했지만 AWS 리소스·도메인·GPU 모델은 아직 생성하거나 구매하지 않았다. [검증 기록](preparation-result.json)
+
+2026-10-25 사용자가 실제 배포를 요청했다. 웹 기본값을 `t3.small`로 바꾸고 정밀 측정용 `m7i.large`를 선택할 수 있도록 반영했다. T3에만 standard CPU 크레딧 설정을 적용한다. 기존 콘솔 세션이 만료되어 AWS 재로그인을 요청한 상태이며, 로컬 AWS 자격 증명은 없다. `DEPLOY_ENABLED=false`를 유지하고 있다.
 
 ## 현재 배포 구성
 
@@ -19,7 +21,7 @@ flowchart LR
     CPU --> L[CloudWatch]
 ```
 
-- 초기 웹 서버 후보: x86 `t3.micro`(1GB). 빌드는 CI에서 수행하고 서버는 완성 이미지만 실행한다. 실제 메모리·CPU 크레딧을 확인해 부족하면 `t3.small`로 변경한다. T3 크레딧 모드는 standard로 두고 추가 Unlimited 크레딧 비용을 사용하지 않는다. 성능 실험에는 크레딧 상태도 기록한다.
+- 기본 웹 서버: x86 `t3.small`(2GB). 빌드는 CI에서 수행하고 서버는 완성 이미지만 실행한다. T3 크레딧 모드는 standard로 두고 추가 Unlimited 크레딧 비용을 사용하지 않는다. 성능 실험에는 크레딧 상태도 기록한다. 정밀 측정 시 `m7i.large`(2 vCPU·8GB)를 선택할 수 있으며 개선 전후는 같은 유형으로 고정한다.
 - 프런트·API·추론은 각각 이미지다. 초기 배포에서 프런트와 API는 같은 CPU EC2의 별도 컨테이너로 실행한다. 모델은 별도 GPU EC2에서 실행한다.
 - Caddy가 도메인 HTTPS 인증서를 자동 발급·갱신한다. HTTP/HTTPS만 공개하고 SSH·API·모델 포트는 인터넷에 열지 않는다.
 - GPU는 같은 VPC의 사설 주소로만 API 요청을 받는다. 다운로드와 관리에 사용하는 아웃바운드 통신은 별도로 필요하다. 첫 구성에서는 NAT Gateway·ALB·Fargate 비용을 추가하지 않는다.
@@ -32,18 +34,18 @@ flowchart LR
 
 ## 비용 견적
 
-[계산식과 AWS 공식 원본 요금](cost-estimate.json). 서울 리전 Linux On-Demand, 2026-10-19 확인. 리전은 실제 배포 전에 계정의 가용 용량·GPU 할당량과 함께 확인한다.
+[계산식과 AWS 공식 원본 요금](cost-estimate.json). 서울 리전 Linux On-Demand, 2026-10-25 공식 가격 피드 재확인. 리전은 실제 배포 전에 계정의 가용 용량·GPU 할당량과 함께 확인한다.
 
 | 항목 | 견적 |
 |---|---:|
-| 웹 `t3.micro` 730시간 | $9.49/월 |
+| 웹 `t3.small` 730시간 | $18.98/월 |
 | 웹 gp3 20GB | $1.82/월 |
 | 웹 공인 IPv4 730시간 | $3.65/월 |
 | GPU 캐시용 gp3 100GB 유지 | $9.12/월 |
 | GPU 후보 `g5.xlarge` | $1.237/실행 시간 |
 | GPU 실행 중 공인 IPv4 | $0.005/시간 |
 
-위 항목만 합친 소계는 GPU 월 10시간 약 **$36.50**, 20시간 약 **$48.92**다. 도메인 등록/갱신·DNS·Secrets Manager·ECR·CloudWatch·트래픽·세금·환율·무료 크레딧은 미반영이다. 청구 총액이나 확정 예산 상한이 아니다. GPU 캐시를 보관하면 GPU를 꺼도 디스크 비용이 남는다. 모델에 필요한 GPU/디스크 크기에 따라 견적이 달라진다.
+위 항목만 합친 소계는 GPU 월 10시간 약 **$45.99**, 20시간 약 **$58.41**다. 웹 서버·20GB 디스크·웹 공인 IP만의 소계는 월 $24.45다. 정밀 측정용 `m7i.large` CPU 실행 요금은 시간당 $0.1239이며 부하 발생기와 함께 별도 사용량을 계산한다. 도메인 등록/갱신·DNS·Secrets Manager·ECR·CloudWatch·트래픽·세금·환율·무료 크레딧은 미반영이다. 청구 총액이나 확정 예산 상한이 아니다. GPU 캐시를 보관하면 GPU를 꺼도 디스크 비용이 남는다. 모델에 필요한 GPU/디스크 크기에 따라 견적이 달라진다.
 
 도메인 후보는 `orot-ai.dev`다. 2026-10-19 Route 53 Domains API 조회에서 등록 가능하며 등록·갱신 각각 연 $17이었다. 처음 검토한 `.study`는 Route 53 등록 미지원, `orot-ai.com`은 등록 불가였다. 구매 직전 가격·가용 여부를 다시 확인하며 아직 구매하지 않았다. 도메인 구매는 기술적 필수 조건은 아니지만 이번 완료 기준에는 포함한다. 실제 구매·유료 리소스 생성 전 예상 비용과 사용 상한을 확정한다.
 

@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Orot AI GitHub OIDC role restricted to the private repository main branch
+Description: Orot AI GitHub OIDC role restricted to the designated repository main branch
 Parameters:
   GitHubProviderArn:
     Type: String
