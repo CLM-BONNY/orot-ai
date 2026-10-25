@@ -27,7 +27,7 @@ def command(env):
     args = ['vllm', 'serve', repo, '--revision', revision, '--tokenizer-revision', revision, '--served-model-name', served,
             '--host', '0.0.0.0', '--port', '8000', '--max-model-len', str(length),
             '--gpu-memory-utilization', str(utilization), '--max-num-seqs', str(sequences),
-            '--dtype', 'bfloat16', '--reasoning-parser', 'qwen3', '--disable-log-requests',
+            '--dtype', 'bfloat16', '--reasoning-parser', 'qwen3', '--no-enable-log-requests',
             '--default-chat-template-kwargs', '{"enable_thinking":false}']
     for key,flag in [('LANGUAGE_MODEL_ONLY','--language-model-only'),('ENFORCE_EAGER','--enforce-eager')]:
         value=env.get(key,'true').lower()

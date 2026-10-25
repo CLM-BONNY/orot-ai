@@ -23,7 +23,7 @@ def test_qwen_text_baseline_and_file_token_are_not_exposed(tmp_path):
     assert '--language-model-only' in args and '--enforce-eager' in args
     assert '{"enable_thinking":false}' in args
     assert args[args.index('--tokenizer-revision')+1]==BASE['MODEL_REVISION']
-    assert '--disable-log-requests' in args
+    assert '--no-enable-log-requests' in args
     assert 'private-test-only-token' not in ' '.join(args) and str(path) not in args
 
 
