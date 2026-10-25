@@ -2,9 +2,18 @@
   "checked_on": "2026-10-25",
   "currency": "USD",
   "region": "ap-northeast-2",
-  "status": "web_only_deployment_design_not_approved_spend_limit",
-  "monthly_hours": 730,
+  "status": "approved_lab_budget_10_usd_excluding_tax_not_hard_cap",
+  "monthly_hours": 40,
   "instance_candidates": [
+    {
+      "instance_type": "t3.micro",
+      "vcpu": "2",
+      "memory": "1 GiB",
+      "gpu": null,
+      "usd_per_hour": "0.0130000000",
+      "region": "ap-northeast-2",
+      "verified_by": "AWS Pricing GetProducts in authenticated CloudShell, 2026-10-25"
+    },
     {
       "instance_type": "t3.small",
       "vcpu": "2",
@@ -79,7 +88,7 @@
     }
   ],
   "assumptions": {
-    "web_instance": "t3.small",
+    "web_instance": "t3.micro",
     "web_root_gb": 20,
     "gpu_candidate": "g5.xlarge",
     "web_public_ipv4_hours": 730,
@@ -89,37 +98,30 @@
     "gpu_cache_root_gb_if_later_provisioned": 100,
     "gpu_monthly_hours_example_not_schedule": 10,
     "gpu_auto_start_from_web_or_ci": false,
-    "load_generator_provisioned_in_current_phase": false
+    "load_generator_provisioned_in_current_phase": false,
+    "web_running_hours_example": 40,
+    "web_always_on": false,
+    "web_auto_stop_minutes_after_boot": 120,
+    "domain_purchase": false,
+    "dns": "temporary sslip.io hostname; no Route 53 zone"
   },
-  "base_compute_storage_ipv4_usd": 24.454,
+  "base_compute_storage_ipv4_usd": 5.994,
   "scenarios": [
     {
-      "phase": "current_web_only",
+      "phase": "approved_lab_example",
+      "web_hours": 40,
       "gpu_provisioned": false,
       "retained_gpu_disk_gb": 0,
       "gpu_hours": 0,
-      "subtotal_usd": 24.45
+      "subtotal_usd": 5.99
     },
     {
-      "phase": "future_gpu_configured",
-      "gpu_provisioned": true,
-      "retained_gpu_disk_gb": 100,
+      "phase": "comparison_not_selected_always_on_micro",
+      "web_hours": 730,
+      "gpu_provisioned": false,
+      "retained_gpu_disk_gb": 0,
       "gpu_hours": 0,
-      "subtotal_usd": 33.57
-    },
-    {
-      "phase": "future_gpu_configured",
-      "gpu_provisioned": true,
-      "retained_gpu_disk_gb": 100,
-      "gpu_hours": 10,
-      "subtotal_usd": 45.99
-    },
-    {
-      "phase": "future_gpu_configured",
-      "gpu_provisioned": true,
-      "retained_gpu_disk_gb": 100,
-      "gpu_hours": 20,
-      "subtotal_usd": 58.41
+      "subtotal_usd": 14.96
     }
   ],
   "excluded": [
@@ -186,6 +188,7 @@
       ]
     }
   },
-  "web_only_compute_storage_ipv4_usd": 24.454,
-  "future_base_with_retained_gpu_disk_usd": 33.574
+  "web_only_compute_storage_ipv4_usd": 5.994,
+  "future_base_with_retained_gpu_disk_usd": 15.114,
+  "approved_operating_budget_usd_per_month": 10
 }
