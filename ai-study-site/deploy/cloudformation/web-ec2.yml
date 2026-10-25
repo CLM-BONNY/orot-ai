@@ -1,11 +1,17 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Orot AI low-cost web/API EC2, fixed address, SSM and logging; no GPU instance
+Description: Orot AI lab-only web/API EC2 with automatic stop, fixed address and SSM; no GPU
 Parameters:
   InstanceType:
     Type: String
-    Default: t3.small
+    Default: t3.micro
     AllowedValues: [t3.micro, t3.small, m7i.large]
-    Description: t3.small for always-on operation; m7i.large for a separate fixed-spec benchmark
+    Description: t3.micro for the approved low-cost lab; other types require a new cost decision
+  LabSessionMinutes:
+    Type: Number
+    Default: 120
+    MinValue: 30
+    MaxValue: 180
+    Description: Automatically stop this lab instance after each boot; retained disk and IP still cost money
   AmiId:
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64
@@ -123,6 +129,7 @@ Resources:
     Properties:
       ImageId: !Ref AmiId
       InstanceType: !Ref InstanceType
+      InstanceInitiatedShutdownBehavior: stop
       SubnetId: !Ref PublicSubnet
       SecurityGroupIds: [!Ref WebSecurityGroup]
       IamInstanceProfile: !Ref Profile
@@ -136,6 +143,24 @@ Resources:
         Fn::Base64: !Sub |
           #!/bin/bash
           set -euo pipefail
+          cat > /etc/systemd/system/orot-lab-stop.service <<'UNIT'
+          [Unit]
+          Description=Stop Orot lab instance after its session
+          [Service]
+          Type=oneshot
+          ExecStart=/usr/sbin/shutdown -h now
+          UNIT
+          cat > /etc/systemd/system/orot-lab-stop.timer <<'UNIT'
+          [Unit]
+          Description=Limit Orot lab running time after every boot
+          [Timer]
+          OnBootSec=${LabSessionMinutes}min
+          Unit=orot-lab-stop.service
+          [Install]
+          WantedBy=timers.target
+          UNIT
+          systemctl daemon-reload
+          systemctl enable --now orot-lab-stop.timer
           dnf install -y docker
           systemctl enable --now docker
           systemctl enable --now amazon-ssm-agent
