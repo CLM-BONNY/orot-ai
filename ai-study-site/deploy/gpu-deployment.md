@@ -8,6 +8,8 @@
 - 서울 GPU G/VT On-Demand 한도는 0 vCPU다. 2026-10-25 16:35:59 KST에 4 vCPU 증액을 요청했다.
 - 요청 ID: `8c196c246b6740589b2c833887540fe8mLIBzOKe`, 지원 사례 `179291394000491`. 최근 확인 상태는 `CASE_OPENED`, 적용 한도는 여전히 0이다. AWS 승인 시각은 확정할 수 없다.
 - [모델·런타임 고정](inference/model-lock.json), GPU CloudFormation·Compose·호스트 배포·CD 워크플로를 작성했다. 실제 GPU 호환성 검증과 구분한다.
+- [추론 이미지 게시](https://github.com/CLM-BONNY/orot-ai/actions/runs/40174875225)는 성공했다. ECR 조회로 digest `sha256:3439097ccb5862dea8bedaf3a63c9becb1bca06200a069585c0219829ff80c78`, 압축 크기 9,268,972,228 bytes를 확인했다. 모델 가중치는 이미지에 포함하지 않았다.
+- [해당 코드 CI](https://github.com/CLM-BONNY/orot-ai/actions/runs/40174854809)에서 백엔드·배포 106개, 프런트 41개 테스트와 운영용 컨테이너 HTTP·인증 검증을 통과했다. AWS `validate_template`도 통과했다. GPU 위에서 모델을 실행한 결과는 아니다.
 - 사용자가 웹·GPU 합산 월 $25 운영예산(세금 별도)을 승인했다. 새 GPU 접근 권한은 실제 생성 전에 확인받는다.
 
 ## 배포할 구성
@@ -56,8 +58,8 @@ ECR 이미지 저장·CloudWatch·Secrets Manager·트래픽·세금은 별도�
 
 ## 완료 순서와 실제 검증
 
-1. AWS GPU 할당량 승인과 실제 적용 한도 4 이상 확인. 비용·위 접근 범위 승인
-2. 고정 런타임을 사용하는 추론 이미지를 GitHub Actions에서 ECR에 게시
+1. AWS GPU 할당량 승인과 실제 적용 한도 4 이상 확인. 비용은 승인됐으며 위 접근 범위는 실제 생성 전에 확인
+2. 고정 런타임을 사용하는 추론 이미지를 GitHub Actions에서 ECR에 게시 — 완료
 3. GPU 스택 생성, 초기 90분 자동 정지·SSM·Docker·NVIDIA 드라이버 검증
 4. GPU 전용 CD로 모델 다운로드·로딩, 인증된 모델 준비 상태 확인
 5. 웹의 사설 추론 주소·모델 이름·Secret ARN 설정 후 기존 웹 CD 재실행
