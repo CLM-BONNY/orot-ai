@@ -4,6 +4,25 @@ from copy import deepcopy
 import pytest
 spec=importlib.util.spec_from_file_location('apply_release',Path(__file__).with_name('apply_release.py'))
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+
+def test_ssm_cli_uses_a_readable_json_file_and_removes_it(monkeypatch):
+    import json
+    from types import SimpleNamespace
+    spec=importlib.util.spec_from_file_location('deploy_cli',Path(__file__).with_name('deploy.py'))
+    cli=importlib.util.module_from_spec(spec);spec.loader.exec_module(cli)
+    payload={'Parameters':{'commands':['printf "한글"']}}
+    seen=[]
+    def run(args,**options):
+        path=Path(args[args.index('--cli-input-json')+1].removeprefix('file://'))
+        assert path.is_file() and json.loads(path.read_text())==payload
+        assert path.stat().st_mode & 0o777==0o600
+        assert 'input' not in options
+        seen.append(path)
+        return SimpleNamespace(stdout='{"Command":{"CommandId":"fixture-id"}}')
+    monkeypatch.setattr(cli.subprocess,'run',run)
+    assert cli.aws('ssm','send-command',body=payload)['Command']['CommandId']=='fixture-id'
+    assert len(seen)==1 and not seen[0].exists()
+
 REV='a'*40
 BASE={'revision':REV,'release_id':REV+'-123-1','env':{'API_IMAGE':'123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/orot-ai-api@sha256:'+'b'*64,
  'WEB_IMAGE':'123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/orot-ai-web@sha256:'+'c'*64,'APP_REVISION':REV,

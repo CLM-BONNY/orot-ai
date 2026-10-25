@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import shlex
 import subprocess
+import tempfile
 import time
 from urllib.request import urlopen
 
@@ -13,13 +14,20 @@ HERE=Path(__file__).resolve().parent
 
 
 def aws(*args,body=None):
-    result=subprocess.run(['aws',*args,'--output','json'],input=json.dumps(body) if body is not None else None,
-                          text=True,capture_output=True,check=True,timeout=60)
+    command=['aws',*args,'--output','json']
+    if body is None:
+        result=subprocess.run(command,text=True,capture_output=True,check=True,timeout=60)
+    else:
+        # AWS CLI parameter-file loading does not reliably accept /dev/stdin.
+        with tempfile.NamedTemporaryFile(mode='w',encoding='utf-8',suffix='.json') as request:
+            json.dump(body,request);request.flush()
+            result=subprocess.run(command+['--cli-input-json','file://'+request.name],
+                                  text=True,capture_output=True,check=True,timeout=60)
     return json.loads(result.stdout)
 
 
 def execute(instance,commands):
-    sent=aws('ssm','send-command','--cli-input-json','file:///dev/stdin',body={
+    sent=aws('ssm','send-command',body={
         'InstanceIds':[instance],'DocumentName':'AWS-RunShellScript','TimeoutSeconds':600,
         'Parameters':{'commands':commands,'executionTimeout':['600']}})
     command_id=sent['Command']['CommandId'];deadline=time.monotonic()+900
