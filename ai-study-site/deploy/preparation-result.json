@@ -16,7 +16,7 @@
   "selected_architecture": "Phase 1: always-on t3.small web/API only. Phase 2: separate GPU configured later and started only for explicit experiment sessions.",
   "aws_deployment": {
     "enabled": false,
-    "resources_created": false,
+    "resources_created": true,
     "credentials_available_locally": false,
     "console": "authenticated_cloudshell_read_only_preflight_complete_2026-10-25",
     "preflight": "account-preflight-2026-10-25.json",
@@ -24,7 +24,13 @@
     "current_phase": "web_only",
     "web_instance_type": "t3.small",
     "gpu_provisioning_in_current_phase": false,
-    "gpu_start_in_web_ci_cd": false
+    "gpu_start_in_web_ci_cd": false,
+    "created_resource_types": [
+      "iam_oidc_provider"
+    ],
+    "web_ec2_created": false,
+    "paid_resources_created": false,
+    "execution_record": "aws-execution-result.json"
   },
   "domain": {
     "candidate": "orot-ai.dev",
@@ -52,10 +58,17 @@
     "Prioritize evaluations 4 (latency/cost) and 5 (load/recovery)"
   ],
   "limitations": [
-    "No public deployment or paid AWS resource created",
+    "Only the approved GitHub IAM OIDC provider was created; no public deployment or paid AWS resource yet",
     "GPU hardware, private networking and shutdown guard not exercised on real AWS yet",
     "Host rollout unit tests do not replace an actual AWS rollback test",
     "CI runs do not evaluate model answer or quiz quality"
   ],
-  "ci_conclusion": "success"
+  "ci_conclusion": "success",
+  "web_only_ai_mode": {
+    "provider": "disabled",
+    "network_calls": false,
+    "inference_secret_required": false,
+    "expected_ai_response": "503 MODEL_DISABLED",
+    "local_backend_and_deployment_tests_passed": 93
+  }
 }

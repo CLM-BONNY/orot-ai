@@ -20,6 +20,35 @@ def test_release_path_cannot_escape_root():
     p=deepcopy(BASE);p['release_id']='../escape'
     with pytest.raises(ValueError):module.validate(p)
 
+
+def test_web_only_release_needs_no_inference_endpoint_or_credentials():
+    p=deepcopy(BASE);p['env']['INFERENCE_PROVIDER']='disabled'
+    p['env'].pop('INFERENCE_BASE_URL');p['env'].pop('MODEL_NAME')
+    p['secrets']={'site_login':'fixture-login-arn'}
+    assert module.validate(p)==p
+
+
+@pytest.mark.parametrize('extra',['secret','override'])
+def test_web_only_release_rejects_inference_credentials_and_override(extra):
+    p=deepcopy(BASE);p['env']['INFERENCE_PROVIDER']='disabled'
+    if extra=='secret':p['secrets']={'inference_token':'fixture-inference-arn'}
+    else:p['files']={'compose.inference.yml':'fixture-override'}
+    with pytest.raises(ValueError):module.validate(p)
+
+
+def test_enabled_inference_requires_private_endpoint_and_its_configuration():
+    p=deepcopy(BASE);p['env']['INFERENCE_PROVIDER']='openai_compatible'
+    with pytest.raises(ValueError):module.validate(p)
+    p['files']={'compose.inference.yml':'fixture-override'}
+    p['secrets']={'inference_token':'fixture-inference-arn'}
+    assert module.validate(p)==p
+
+
+def test_compose_uses_an_inference_override_only_for_that_release(tmp_path):
+    assert str(tmp_path/'compose.inference.yml') not in module.compose(tmp_path)
+    (tmp_path/'compose.inference.yml').write_text('fixture-override')
+    assert module.compose(tmp_path)[-2:]==['-f',str(tmp_path/'compose.inference.yml')]
+
 def test_api_reads_token_file_without_exposing_it(monkeypatch,tmp_path):
     from backend.config import inference_token
     path=tmp_path/'token';path.write_text('fixture-key\n')

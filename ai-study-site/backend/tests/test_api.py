@@ -133,3 +133,18 @@ def test_self_hosted_compatible_endpoint_can_replace_ollama():
     result = asyncio.run(InferenceProvider(config, httpx.MockTransport(handler)).chat([{'role': 'user', 'content': '설명'}]))
     assert result.text == '자체 서버 응답'
     assert result.metrics['input_tokens'] == 12
+
+
+def test_disabled_inference_never_contacts_a_model_and_preserves_learning():
+    def forbidden_request(request):
+        pytest.fail('Web-only deployment must not contact an inference server')
+    provider = InferenceProvider(replace(settings, provider='disabled'), httpx.MockTransport(forbidden_request))
+    assert asyncio.run(provider.available()) is False
+    with TestClient(create_app(provider)) as client:
+        assert client.get('/api/health').status_code == 200
+        assert client.get('/content/pages/CH01-P01.json').status_code == 200
+        assert client.get('/api/meta').json()['model_ready'] is False
+        response = client.post('/api/ai/tutor', json=payload())
+        assert response.status_code == 503
+        assert response.json()['error']['code'] == 'MODEL_DISABLED'
+        assert 'answer_markdown' not in response.json()

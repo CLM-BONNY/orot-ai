@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-25",
+  "region": "ap-northeast-2",
+  "user_approved_security_scope": true,
+  "financial_approval": "pending_clarification",
+  "domain_purchase": "not_approved_or_executed",
+  "created_resources": [
+    {
+      "type": "IAM OIDC provider",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "audience": "sts.amazonaws.com",
+      "project_tag": "orot-ai",
+      "verified_created": true
+    }
+  ],
+  "web_ec2_created": false,
+  "deployment_role_created": false,
+  "paid_resources_created": false,
+  "gpu_created_or_started": false,
+  "cd_enabled": false,
+  "credentials_exported": false,
+  "next_required_user_input": "Confirm whether to purchase the domain and approve the monthly web budget. Portfolio tests do not require a purchased domain."
+}

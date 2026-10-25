@@ -5,13 +5,10 @@ services:
     restart: unless-stopped
     environment:
       APP_REVISION: ${APP_REVISION:?Set Git SHA}
-      INFERENCE_PROVIDER: openai_compatible
-      INFERENCE_BASE_URL: ${INFERENCE_BASE_URL:?Set private GPU endpoint}
-      MODEL_NAME: ${MODEL_NAME:?Set served model name}
-      INFERENCE_AUTH_TOKEN_FILE: /run/secrets/inference_token
+      INFERENCE_PROVIDER: disabled
+      MODEL_NAME: not-configured
       INFERENCE_TIMEOUT_SECONDS: '180'
       REVIEW_MAX_OUTPUT_TOKENS: '1536'
-    secrets: [inference_token]
     mem_limit: 384m
     init: true
     cap_drop: [ALL]
@@ -68,7 +65,6 @@ services:
         awslogs-group: /orot-ai/application
         awslogs-stream: edge
 secrets:
-  inference_token: {file: "${SECRETS_DIR:?Set release secret directory}/inference_token"}
   site_login: {file: "${SECRETS_DIR:?Set release secret directory}/site_login"}
 volumes:
   caddy-data:

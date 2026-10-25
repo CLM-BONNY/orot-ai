@@ -1,0 +1,11 @@
+# Added only to an explicitly enabled AI release; never starts a GPU instance.
+services:
+  api:
+    environment:
+      INFERENCE_PROVIDER: openai_compatible
+      INFERENCE_BASE_URL: ${INFERENCE_BASE_URL:?Set private GPU endpoint}
+      MODEL_NAME: ${MODEL_NAME:?Set served model name}
+      INFERENCE_AUTH_TOKEN_FILE: /run/secrets/inference_token
+    secrets: [inference_token]
+secrets:
+  inference_token: {file: "${SECRETS_DIR:?Set release secret directory}/inference_token"}

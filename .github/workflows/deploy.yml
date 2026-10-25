@@ -28,6 +28,7 @@ jobs:
       AWS_DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
       APP_INSTANCE_ID: ${{ vars.APP_INSTANCE_ID }}
       APP_DOMAIN: ${{ vars.APP_DOMAIN }}
+      INFERENCE_PROVIDER: ${{ vars.INFERENCE_PROVIDER || 'disabled' }}
       INFERENCE_BASE_URL: ${{ vars.INFERENCE_BASE_URL }}
       MODEL_NAME: ${{ vars.MODEL_NAME }}
       INFERENCE_SECRET_ARN: ${{ vars.INFERENCE_SECRET_ARN }}
@@ -44,8 +45,13 @@ jobs:
         run: |
           test -n "$AWS_REGION" && test -n "$AWS_DEPLOY_ROLE_ARN"
           test -n "$APP_INSTANCE_ID" && test -n "$APP_DOMAIN"
-          test -n "$INFERENCE_BASE_URL" && test -n "$MODEL_NAME"
-          test -n "$INFERENCE_SECRET_ARN" && test -n "$SITE_LOGIN_SECRET_ARN"
+          test -n "$SITE_LOGIN_SECRET_ARN"
+          case "$INFERENCE_PROVIDER" in
+            disabled) ;;
+            openai_compatible)
+              test -n "$INFERENCE_BASE_URL" && test -n "$MODEL_NAME" && test -n "$INFERENCE_SECRET_ARN" ;;
+            *) exit 1 ;;
+          esac
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'

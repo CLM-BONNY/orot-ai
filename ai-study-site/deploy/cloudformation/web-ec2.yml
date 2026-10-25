@@ -15,7 +15,8 @@ Parameters:
     AllowedPattern: 'v[0-9]+\.[0-9]+\.[0-9]+'
   InferenceSecretArn:
     Type: String
-    Description: Existing Secrets Manager secret for the private inference token
+    Default: ''
+    Description: Optional inference secret, only after GPU experiments are configured
   SiteLoginSecretArn:
     Type: String
     Description: Existing Secrets Manager secret containing the htpasswd login line
@@ -30,6 +31,7 @@ Parameters:
 Conditions:
   CreateDns: !And [!Not [!Equals [!Ref HostedZoneId, '']], !Not [!Equals [!Ref DomainName, '']]]
   IsBurstable: !Or [!Equals [!Ref InstanceType, t3.micro], !Equals [!Ref InstanceType, t3.small]]
+  HasInferenceSecret: !Not [!Equals [!Ref InferenceSecretArn, '']]
 Resources:
   Vpc:
     Type: AWS::EC2::VPC
@@ -98,10 +100,20 @@ Resources:
                   - !Sub arn:${AWS::Partition}:ecr:${AWS::Region}:${AWS::AccountId}:repository/orot-ai-api
               - Effect: Allow
                 Action: secretsmanager:GetSecretValue
-                Resource: [!Ref InferenceSecretArn, !Ref SiteLoginSecretArn]
+                Resource: !Ref SiteLoginSecretArn
               - Effect: Allow
                 Action: ['logs:CreateLogStream', 'logs:PutLogEvents', 'logs:DescribeLogStreams']
                 Resource: !GetAtt ApplicationLogs.Arn
+        - !If
+          - HasInferenceSecret
+          - PolicyName: ReadInferenceSecret
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action: secretsmanager:GetSecretValue
+                  Resource: !Ref InferenceSecretArn
+          - !Ref 'AWS::NoValue'
   Profile:
     Type: AWS::IAM::InstanceProfile
     Properties: {Roles: [!Ref InstanceRole]}

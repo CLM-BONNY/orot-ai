@@ -21,12 +21,14 @@ class ModelResult:
 
 class InferenceProvider:
     def __init__(self, config: Settings, transport=None):
-        if config.provider not in ('ollama', 'openai_compatible'):
+        if config.provider not in ('ollama', 'openai_compatible', 'disabled'):
             raise ValueError('Unsupported inference provider')
         self.config = config
         self.transport = transport
 
     async def available(self):
+        if self.config.provider == 'disabled':
+            return False
         endpoint = '/api/tags' if self.config.provider == 'ollama' else '/models'
         try:
             async with httpx.AsyncClient(timeout=3, transport=self.transport, trust_env=False) as client:
@@ -42,6 +44,8 @@ class InferenceProvider:
         return {'Authorization': f'Bearer {self.config.auth_token}'} if self.config.auth_token else {}
 
     async def chat(self, messages, *, json_schema=None, max_output_tokens=None):
+        if self.config.provider == 'disabled':
+            raise InferenceFailure('MODEL_DISABLED', '현재 AI 실험 서버가 꺼져 있어요. 글 읽기와 기본 퀴즈는 계속 사용할 수 있어요.', 503)
         try:
             return await asyncio.wait_for(self._chat(messages, json_schema, max_output_tokens), timeout=self.config.timeout)
         except (asyncio.TimeoutError, httpx.TimeoutException) as exc:

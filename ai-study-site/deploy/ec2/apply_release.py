@@ -30,17 +30,29 @@ def validate(payload):
             raise ValueError('Invalid non-secret environment value')
     if not re.fullmatch(r'(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}',payload['env']['APP_DOMAIN']):
         raise ValueError('Use a domain name without a scheme or port')
-    address=urlparse(payload['env']['INFERENCE_BASE_URL'])
-    ip=ipaddress.ip_address(address.hostname or '')
-    if address.scheme!='http' or address.port!=8000 or address.path!='/v1' or address.username or address.query or address.fragment or not any(ip in ipaddress.ip_network(cidr) for cidr in ['10.0.0.0/8','172.16.0.0/12','192.168.0.0/16']):
-        raise ValueError('Use the GPU private IP on port 8000 with /v1')
+    provider=payload['env'].get('INFERENCE_PROVIDER','openai_compatible')
+    if provider not in ['disabled','openai_compatible']:raise ValueError('Unsupported deployment inference provider')
+    if provider!='disabled':
+        address=urlparse(payload['env']['INFERENCE_BASE_URL'])
+        ip=ipaddress.ip_address(address.hostname or '')
+        if address.scheme!='http' or address.port!=8000 or address.path!='/v1' or address.username or address.query or address.fragment or not any(ip in ipaddress.ip_network(cidr) for cidr in ['10.0.0.0/8','172.16.0.0/12','192.168.0.0/16']):
+            raise ValueError('Use the GPU private IP on port 8000 with /v1')
+    if provider=='disabled' and 'inference_token' in payload.get('secrets',{}):
+        raise ValueError('Disabled AI release must not request inference credentials')
+    if provider=='disabled' and 'compose.inference.yml' in payload.get('files',{}):
+        raise ValueError('Disabled AI release must not include inference configuration')
+    if provider=='openai_compatible' and payload['env'].get('INFERENCE_PROVIDER'):
+        if not payload.get('secrets',{}).get('inference_token') or 'compose.inference.yml' not in payload.get('files',{}):
+            raise ValueError('Enabled AI release requires inference configuration and credentials')
     if payload['env'].get('SECRETS_DIR')!=f"/opt/orot/releases/{payload['release_id']}/secrets":
         raise ValueError('Secrets must belong to this release')
     return payload
 
 
 def compose(folder):
-    return ['docker','compose','--env-file',str(folder/'.env'),'-f',str(folder/'compose.yml')]
+    args=['docker','compose','--env-file',str(folder/'.env'),'-f',str(folder/'compose.yml')]
+    if (folder/'compose.inference.yml').is_file():args+=['-f',str(folder/'compose.inference.yml')]
+    return args
 
 
 def activate(folder,revision):
@@ -80,6 +92,10 @@ def apply(payload):
         if not value:raise ValueError('Empty secret')
         path=secret_folder/name;path.write_text(value+'\n');path.chmod(0o644)
     for name in ['compose.yml','Caddyfile']:(folder/name).write_text(payload['files'][name])
+    if 'compose.inference.yml' in payload['files']:
+        (folder/'compose.inference.yml').write_text(payload['files']['compose.inference.yml'])
+    else:
+        (folder/'compose.inference.yml').unlink(missing_ok=True)
     (folder/'.env').write_text(''.join(f'{k}={v}\n' for k,v in payload['env'].items()))
     (folder/'release.json').write_text(json.dumps({'revision':payload['revision'],'release_id':payload['release_id']}))
     registry=payload['env']['API_IMAGE'].split('/')[0]

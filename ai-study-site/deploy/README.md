@@ -2,7 +2,7 @@
 
 2026-10-25 갱신. 사용자 결정: 도메인·HTTPS·Docker·GitHub CI/CD를 갖춘 AWS 서비스에서 평가한다. 웹은 상시 운영하고 GPU는 실험할 때만 켠다. **현재 단계는 웹 배포이며 GPU EC2·GPU 캐시 EBS·부하 발생기는 생성하지 않는다.**
 
-**현재 상태:** [GitHub 저장소](https://github.com/CLM-BONNY/orot-ai) 생성·push 완료. 2026-10-25 GitHub API에서 현재 공개 저장소임을 확인했다. [최신 코드 CI](https://github.com/CLM-BONNY/orot-ai/actions/runs/40168802244)(`520ee7379bca413ebe7e46dd6d45bf12dc4a7cd3`)에서 자동 테스트 128개(백엔드/배포 87·프런트 41), 인프라 lint, 실제 web/API Docker 빌드·HTTP 통합·인증·Caddy 설정 검증 통과. EC2 배포 코드는 준비했지만 AWS 리소스·도메인·GPU 모델은 아직 생성하거나 구매하지 않았다. [검증 기록](preparation-result.json)
+**현재 상태:** [GitHub 저장소](https://github.com/CLM-BONNY/orot-ai) 생성·push 완료. 2026-10-25 GitHub API에서 현재 공개 저장소임을 확인했다. [직전 코드 CI](https://github.com/CLM-BONNY/orot-ai/actions/runs/40168802244)(`520ee7379bca413ebe7e46dd6d45bf12dc4a7cd3`)에서 자동 테스트 128개(백엔드/배포 87·프런트 41), 인프라 lint, 실제 web/API Docker 빌드·HTTP 통합·인증·Caddy 설정 검증 통과. 사용자 승인 후 GitHub OIDC 공급자만 생성했다. EC2·유료 리소스·도메인·GPU는 아직 생성하거나 구매하지 않았다. [검증 기록](preparation-result.json) · [실제 AWS 실행 기록](aws-execution-result.json)
 
 2026-10-25 사용자가 실제 배포를 요청했다. 웹 기본값을 `t3.small`로 바꾸고 정밀 측정용 `m7i.large`를 선택할 수 있도록 반영했다. T3에만 standard CPU 크레딧 설정을 적용한다. 콘솔 재로그인 후 기존 CloudShell로 읽기 전용 사전 조회를 완료했으며 로컬 AWS 자격 증명은 없다. `DEPLOY_ENABLED=false`를 유지하고 있다.
 
@@ -15,7 +15,9 @@
 | 실험 세션 | 필요 시 `m7i.large`로 측정 사양 고정 | 명시적으로 시작하고 종료 예약·실제 정지 확인 | k6 실행 중에만 사용 |
 | 실험 종료 후 | 상시 운영 | stopped 유지. 보관한 EBS는 과금 | 정지·정리 여부와 잔여 디스크 비용 확인 |
 
-웹 접속·챗봇 요청·웹 CI/CD가 GPU를 자동으로 켜지 않는다. GPU 미구성·정지 중 새 AI 답변/복습 문제 생성은 사용할 수 없고 글·기본 퀴즈·메모·저장된 복습은 유지한다. 현재 구현은 추론 연결 오류를 안내하며 별도 GPU 전원 상태 연동 UI는 구현하지 않았다.
+웹 접속·챗봇 요청·웹 CI/CD가 GPU를 자동으로 켜지 않는다. GPU 미구성·정지 중 새 AI 답변/복습 문제 생성은 사용할 수 없고 글·기본 퀴즈·메모·저장된 복습은 유지한다. 웹 배포의 기본 `INFERENCE_PROVIDER=disabled`는 모델 서버에 접속하지 않고 AI 요청에 `503 MODEL_DISABLED`를 반환한다. 건강 상태와 기본 학습은 동작한다. 별도 GPU 전원 상태 연동 UI는 구현하지 않았다.
+
+기본 `ec2/compose.yml`에는 추론 주소나 토큰 mount가 없다. 추후 AI를 명시적으로 활성화한 릴리스만 `compose.inference.yml`과 추론 Secret을 추가한다. 이 변경도 GPU 인스턴스를 시작시키지는 않는다. CloudFormation의 `InferenceSecretArn`은 웹 단독 배포에서 비워 두고 추론 비밀 읽기 권한도 부여하지 않는다.
 
 ## 현재 배포 구성
 
@@ -122,9 +124,10 @@ CI는 Python/프런트 테스트·빌드, CloudFormation lint, 실제 Docker 빌
 | `AWS_DEPLOY_ROLE_ARN` | 이 저장소 main만 신뢰하는 OIDC Role |
 | `APP_INSTANCE_ID` | CPU EC2 |
 | `APP_DOMAIN` | 등록·연결한 도메인, scheme 없이 입력 |
-| `INFERENCE_BASE_URL` | GPU 사설 IP의 `http://주소:8000/v1` |
-| `MODEL_NAME` | 추론 서버의 served model name |
-| `INFERENCE_SECRET_ARN` | 모델 인증 토큰 Secret ARN |
+| `INFERENCE_PROVIDER` | 웹 단독 배포 기본 `disabled`; 추후 활성화 시 `openai_compatible` |
+| `INFERENCE_BASE_URL` | AI 활성화 릴리스에서만 GPU 사설 IP의 `http://주소:8000/v1` 필요 |
+| `MODEL_NAME` | AI 활성화 릴리스에서만 served model name 필요 |
+| `INFERENCE_SECRET_ARN` | AI 활성화 릴리스에서만 모델 인증 토큰 Secret ARN 필요 |
 | `SITE_LOGIN_SECRET_ARN` | htpasswd 로그인 Secret ARN |
 
 현재 이 Mac에 AWS CLI/자격 증명이 설정돼 있지 않다. 기존 콘솔의 CloudShell로 계정 사전 조회는 완료했고, 실제 리소스와 OIDC 신뢰 claim은 생성·배포 단계에서 확인해야 한다. OIDC 템플릿은 저장소/소유자 ID 및 main branch를 제한한다. 계정 전체 관리자 권한을 GitHub에 주지 않는다.

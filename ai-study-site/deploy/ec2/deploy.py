@@ -39,11 +39,18 @@ def main():
     instance=os.environ['APP_INSTANCE_ID']
     if args.rollback:
         print(execute(instance,['set -eu','python3 /opt/orot/apply_release.py --rollback']));return
-    env={key:os.environ[key] for key in ['API_IMAGE','WEB_IMAGE','APP_REVISION','APP_DOMAIN','AWS_REGION','INFERENCE_BASE_URL','MODEL_NAME']}
+    env={key:os.environ[key] for key in ['API_IMAGE','WEB_IMAGE','APP_REVISION','APP_DOMAIN','AWS_REGION']}
+    provider=os.getenv('INFERENCE_PROVIDER','disabled')
+    env['INFERENCE_PROVIDER']=provider
+    files={name:(HERE/name).read_text() for name in ['compose.yml','Caddyfile']}
+    secrets={'site_login':os.environ['SITE_LOGIN_SECRET_ARN']}
+    if provider=='openai_compatible':
+        env.update({key:os.environ[key] for key in ['INFERENCE_BASE_URL','MODEL_NAME']})
+        secrets['inference_token']=os.environ['INFERENCE_SECRET_ARN']
+        files['compose.inference.yml']=(HERE/'compose.inference.yml').read_text()
     env['SECRETS_DIR']=f"/opt/orot/releases/{os.environ['RELEASE_ID']}/secrets"
     payload={'revision':env['APP_REVISION'],'release_id':os.environ['RELEASE_ID'],'env':env,
-             'files':{name:(HERE/name).read_text() for name in ['compose.yml','Caddyfile']},
-             'secrets':{'inference_token':os.environ['INFERENCE_SECRET_ARN'],'site_login':os.environ['SITE_LOGIN_SECRET_ARN']}}
+             'files':files,'secrets':secrets}
     import importlib.util
     spec=importlib.util.spec_from_file_location('host_apply',HERE/'apply_release.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     module.validate(payload)
