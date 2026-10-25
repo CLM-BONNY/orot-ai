@@ -26,7 +26,7 @@ jobs:
           cache: npm
           cache-dependency-path: ai-study-site/frontend/package-lock.json
       - run: python -m pip install -r ai-study-site/backend/requirements.txt
-      - run: python -m pytest backend/tests deploy/inference/test_launch.py deploy/ec2/test_release.py deploy/ec2/test_gpu_session.py -q -p no:cacheprovider
+      - run: python -m pytest backend/tests deploy/inference/test_launch.py deploy/inference/test_gpu_release.py deploy/ec2/test_release.py deploy/ec2/test_gpu_session.py -q -p no:cacheprovider
         working-directory: ai-study-site
       - name: Validate active AWS infrastructure templates
         run: |

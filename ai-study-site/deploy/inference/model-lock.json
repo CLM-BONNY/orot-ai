@@ -1,0 +1,26 @@
+{
+  "checked_on": "2026-10-25",
+  "model_repo": "Qwen/Qwen3.5-9B",
+  "model_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "license": "apache-2.0",
+  "weights_bytes": 19306310880,
+  "vllm_version": "0.17.1",
+  "vllm_base_image": "vllm/vllm-openai@sha256:0dc46f74eb0e630675d83101dc66c6441c4475cceedcf9235ee42b87c3affd23",
+  "gpu_ami_id": "ami-0f26145607b7dbd71",
+  "gpu_ami_region": "ap-northeast-2",
+  "gpu_ami_name": "al2023-ami-ecs-gpu-hvm-2023.0.20261019-kernel-6.1-x86_64-ebs",
+  "ami_operation": "Use its preinstalled NVIDIA driver and Docker runtime; disable the ECS agent and run Compose directly",
+  "instance_type": "g5.xlarge",
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "gpu_memory_utilization": 0.9,
+  "language_model_only": true,
+  "enable_thinking": false,
+  "enforce_eager": true,
+  "actual_gpu_compatibility_verified": false,
+  "sources": [
+    "https://huggingface.co/Qwen/Qwen3.5-9B",
+    "https://github.com/vllm-project/vllm/releases/tag/v0.17.1",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html"
+  ]
+}

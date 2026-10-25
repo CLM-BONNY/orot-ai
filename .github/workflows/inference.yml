@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       vllm_base_image:
-        description: Verified official vLLM image pinned with @sha256
-        required: true
+        description: Optional confirmation of the official digest in model-lock.json
+        required: false
         type: string
 permissions:
   contents: read
@@ -29,8 +29,12 @@ jobs:
           persist-credentials: false
       - name: Check immutable official base image
         run: |
+          locked_image=$(python3 -c "import json; print(json.load(open('ai-study-site/deploy/inference/model-lock.json'))['vllm_base_image'])")
+          if [ -n "$VLLM_BASE_IMAGE" ]; then test "$VLLM_BASE_IMAGE" = "$locked_image"; fi
+          VLLM_BASE_IMAGE="$locked_image"
           [[ "$VLLM_BASE_IMAGE" =~ ^vllm/vllm-openai@sha256:[a-f0-9]{64}$ ]]
           test -n "$AWS_REGION"
+          echo "VLLM_BASE_IMAGE=$VLLM_BASE_IMAGE" >> "$GITHUB_ENV"
       - name: Authenticate to AWS using OIDC
         uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5
         with:

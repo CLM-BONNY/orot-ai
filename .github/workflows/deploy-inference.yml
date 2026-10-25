@@ -1,0 +1,53 @@
+name: Deploy inference to EC2
+on:
+  workflow_dispatch:
+    inputs:
+      inference_image:
+        description: Tested private ECR inference image pinned with @sha256
+        type: string
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: aws-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main' && vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    permissions: {contents: read, id-token: write}
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      GPU_INSTANCE_ID: ${{ vars.GPU_INSTANCE_ID }}
+      GPU_PRIVATE_IPV4: ${{ vars.GPU_PRIVATE_IPV4 }}
+      INFERENCE_SECRET_ARN: ${{ vars.INFERENCE_SECRET_ARN }}
+      INFERENCE_IMAGE: ${{ inputs.inference_image }}
+      RELEASE_ID: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with: {python-version: '3.12'}
+      - name: Validate immutable GPU release and target
+        run: |
+          test -n "$AWS_REGION" && test -n "$GPU_INSTANCE_ID"
+          test -n "$GPU_PRIVATE_IPV4" && test -n "$INFERENCE_SECRET_ARN"
+          python3 -c "import sys; sys.path.insert(0,'ai-study-site/deploy/ec2'); from deploy_inference import payload_from_env; import os; payload_from_env(os.environ)"
+      - name: Authenticate using main-only AWS OIDC role
+        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Deploy and wait for authenticated model readiness
+        run: python3 ai-study-site/deploy/ec2/deploy_inference.py > inference-release-result.json
+      - name: Request GPU shutdown if rollout fails
+        if: failure()
+        run: |
+          if [ -n "${AWS_ACCESS_KEY_ID:-}" ] && [ -n "$GPU_INSTANCE_ID" ]; then
+            aws ssm send-command --instance-ids "$GPU_INSTANCE_ID" --document-name AWS-RunShellScript --parameters 'commands=["shutdown -h now"]' > /dev/null
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: inference-release-${{ github.sha }}
+          path: inference-release-result.json

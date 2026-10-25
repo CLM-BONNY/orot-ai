@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-25",
+  "region": "ap-northeast-2",
+  "user_requested_gpu_deployment": true,
+  "existing_web_cd_verified": true,
+  "existing_web_cd_run": "https://github.com/CLM-BONNY/orot-ai/actions/runs/40172193910",
+  "quota": {
+    "service": "ec2",
+    "code": "L-DB2E81BA",
+    "applied_vcpu": 0,
+    "requested_vcpu": 4,
+    "request_id": "8c196c246b6740589b2c833887540fe8mLIBzOKe",
+    "requested_at": "2026-10-25T16:35:59+09:00",
+    "last_observed_status": "CASE_OPENED",
+    "support_case_id": "179291394000491"
+  },
+  "model_and_runtime": "inference/model-lock.json",
+  "local_backend_and_deployment_tests": 106,
+  "cloudformation_lint": "passed",
+  "gpu_template_created": true,
+  "gpu_created": false,
+  "gpu_secret_or_iam_created": false,
+  "gpu_image_published": false,
+  "model_downloaded_on_aws": false,
+  "model_response_verified_on_aws": false,
+  "existing_web_inference_provider": "disabled",
+  "approved_total_monthly_operating_budget_usd": 10,
+  "proposed_total_monthly_operating_budget_usd": 25,
+  "proposed_budget_approved": false,
+  "additional_gpu_access_approved": false,
+  "first_gpu_session_minutes": 90,
+  "gpu_monthly_hours_example": 5,
+  "automatic_monthly_charge_cap": false,
+  "compute_storage_ipv4_monthly_example_usd": 21.324,
+  "limitations": [
+    "GPU EC2 creation requires an approved and applied GPU quota",
+    "New GPU costs exceed the existing web-only USD 10 operating budget",
+    "Actual GPU model compatibility and functional AI responses have not been verified",
+    "No GPU success is inferred from CPU-only unit tests"
+  ]
+}

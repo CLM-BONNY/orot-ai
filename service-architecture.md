@@ -7,6 +7,8 @@
 
 ## 0. 현재 배포 결정 — 2026-10-25 갱신
 
+웹 배포 완료 후 사용자가 GPU 배포와 실제 모델 연결을 추가로 요청했다. [GPU 실행 계획과 진행 상태](ai-study-site/deploy/gpu-deployment.md)를 추가 기준으로 사용한다. GPU 할당량 증액은 접수했고, GPU 비용과 추가 접근 권한 승인은 남아 있다. 아래 월 $10·GPU 미생성은 완료된 첫 웹 배포의 승인 범위다.
+
 사용자는 비용을 낮추기 위해 **웹도 실습할 때만 실행, 월 $10 운영예산(세금 별도), 도메인 구매 없이 임시 HTTPS 주소**로 결정했다. 이전 웹 상시·t3.small·유료 도메인 안을 대체한다. [배포·견적·실행 결과](ai-study-site/deploy/README.md)를 현재 기준으로 사용한다.
 
 - 공개 저장소: [CLM-BONNY/orot-ai](https://github.com/CLM-BONNY/orot-ai)
