@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-25",
+  "source": "Authenticated AWS CloudShell; read-only boto3 calls",
+  "region": "ap-northeast-2",
+  "identity_type": "root",
+  "credentials_exported": false,
+  "resources_created": false,
+  "quota_request_submitted": false,
+  "ec2": {
+    "instances_in_region": [],
+    "g_and_vt_on_demand_vcpu_quota": 0
+  },
+  "ecr": {
+    "repositories_in_region": []
+  },
+  "iam": {
+    "oidc_providers_found": 0
+  },
+  "cloudformation": {
+    "orot_project_stacks": []
+  },
+  "domain": {
+    "candidate": "orot-ai.dev",
+    "availability": "AVAILABLE",
+    "registration_usd_per_year": 17,
+    "renewal_usd_per_year": 17,
+    "purchased": false
+  },
+  "current_deployment_scope": {
+    "web_instance": "t3.small",
+    "gpu_instance_create": false,
+    "gpu_cache_ebs_create": false,
+    "gpu_start": false,
+    "load_generator_create": false,
+    "benchmark_instance_type": "m7i.large",
+    "benchmark_instance_create_now": false
+  },
+  "limitations": [
+    "No creation or deployment was executed by this read-only check",
+    "CPU quota, Elastic IP count and GPU type offerings were not rechecked in this run; see dated 2026-10-19 evidence",
+    "Prices and domain availability can change before purchase",
+    "Budget and IAM creation confirmation remain pending"
+  ]
+}

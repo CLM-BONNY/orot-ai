@@ -147,7 +147,7 @@ INFERENCE_TIMEOUT_SECONDS=180
 
 현재 로컬 요청 마감 시간은 180초다. 모델 최초 로딩이나 노트북 추론을 위한 값이며 API Gateway HTTP API의 30초 제한에 그대로 들어가는 설계가 아니다.
 
-큰 모델을 직접 실행하는 배포에서는 GPU 추론 서버가 필요하다. 검토 대상은 `S3·CloudFront → 애플리케이션 API → 사설 GPU 추론 서버`다. Lambda를 API 어댑터로 유지할지, 컨테이너 API를 사용할지, 긴 생성을 비동기 작업으로 분리할지는 실제 시간·부하 측정 후 선택한다. 모델 가중치를 Lambda에 넣어 대형 GPU 모델을 직접 실행하는 방식으로 진행하지 않는다.
+현재 AWS 배포 설계는 `도메인 HTTPS → Caddy → Nginx/React → FastAPI → 사설 GPU 추론 서버`다. 서울 리전 `t3.small`에서 웹·API를 Docker Compose로 상시 운영하며, 현재 웹 배포 단계에는 GPU와 GPU 캐시 EBS를 생성하지 않는다. GPU는 추후 구성해 실험할 때만 켜고 종료 후 정지한다. 정밀 CPU 측정 시에는 `m7i.large`를 선택하며 별도 k6 서버도 실험 중에만 사용한다. GPU 미구성·정지 중에도 글·기본 퀴즈·메모·저장된 복습은 동작해야 한다. S3·CloudFront/Lambda와 ECS·ALB는 첫 배포에 사용하지 않는 대안이다. [현재 배포 절차와 비용](deploy/README.md)을 따른다.
 
 ## 검증
 

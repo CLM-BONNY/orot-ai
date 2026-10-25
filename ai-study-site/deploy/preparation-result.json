@@ -1,9 +1,9 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-25",
   "repository": "https://github.com/CLM-BONNY/orot-ai",
   "repository_visibility": "public",
-  "validated_code_commit": "845e7c12150ed11fb4268116a12a4588f840679b",
-  "ci_url": "https://github.com/CLM-BONNY/orot-ai/actions/runs/39220350945",
+  "validated_code_commit": "520ee7379bca413ebe7e46dd6d45bf12dc4a7cd3",
+  "ci_url": "https://github.com/CLM-BONNY/orot-ai/actions/runs/40168802244",
   "tests": {
     "backend_and_deployment": 87,
     "frontend": 41,
@@ -13,35 +13,43 @@
     "site_authentication_smoke": "passed in GitHub Actions",
     "caddy_configuration": "passed in GitHub Actions"
   },
-  "selected_architecture": "always-on EC2 + Caddy/Nginx/FastAPI Docker Compose, separate GPU EC2 only during experiments",
+  "selected_architecture": "Phase 1: always-on t3.small web/API only. Phase 2: separate GPU configured later and started only for explicit experiment sessions.",
   "aws_deployment": {
     "enabled": false,
     "resources_created": false,
     "credentials_available_locally": false,
-    "console": "previous_session_expired_reauthentication_requested_2026-10-25",
-    "preflight": "account-preflight.json",
-    "gpu_on_demand_vcpu_quota": 0
+    "console": "authenticated_cloudshell_read_only_preflight_complete_2026-10-25",
+    "preflight": "account-preflight-2026-10-25.json",
+    "gpu_on_demand_vcpu_quota": 0,
+    "current_phase": "web_only",
+    "web_instance_type": "t3.small",
+    "gpu_provisioning_in_current_phase": false,
+    "gpu_start_in_web_ci_cd": false
   },
   "domain": {
     "candidate": "orot-ai.dev",
     "availability_and_price_checked": true,
     "registration_usd_per_year": 17,
     "renewal_usd_per_year": 17,
-    "purchased": false
+    "purchased": false,
+    "checked_on": "2026-10-25"
   },
   "inference": {
     "docker_definition": "prepared",
     "image_built": false,
     "checkpoint_and_gpu_verified": false,
-    "gpu_created": false
+    "gpu_created": false,
+    "current_state": "not_provisioned",
+    "gpu_cache_ebs_created": false,
+    "startup_policy": "manual experiment session only; no web or CI auto-start"
   },
   "cost_assumption": "See cost-estimate.json; not an approved budget cap or full invoice estimate",
   "remaining": [
-    "Request G/VT quota increase from 0 to 4 vCPU and await approval; web can proceed separately",
-    "Confirm cost ceiling and domain registration/renewal price",
-    "Choose and verify model/GPU/runtime",
-    "Provision infrastructure and validate actual deployment/rollback/GPU stop",
-    "Enable CD only after setup and conduct the six evaluation areas"
+    "Confirm web deployment cost/domain purchase and IAM scope",
+    "Provision and verify web-only infrastructure, TLS, deployment and rollback",
+    "Later: request GPU quota and verify checkpoint/runtime before GPU provisioning",
+    "Later: verify explicit experiment start, shutdown guard and stopped state",
+    "Prioritize evaluations 4 (latency/cost) and 5 (load/recovery)"
   ],
   "limitations": [
     "No public deployment or paid AWS resource created",

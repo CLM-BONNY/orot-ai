@@ -2,7 +2,7 @@
   "checked_on": "2026-10-25",
   "currency": "USD",
   "region": "ap-northeast-2",
-  "status": "estimate_only_not_approved_spend_limit",
+  "status": "web_only_deployment_design_not_approved_spend_limit",
   "monthly_hours": 730,
   "instance_candidates": [
     {
@@ -82,21 +82,42 @@
     "web_instance": "t3.small",
     "web_root_gb": 20,
     "gpu_candidate": "g5.xlarge",
-    "gpu_cache_root_gb": 100,
     "web_public_ipv4_hours": 730,
-    "gpu_public_ipv4": "only while running, no GPU Elastic IP"
+    "gpu_public_ipv4": "only while running, no GPU Elastic IP",
+    "current_phase": "web_only",
+    "gpu_provisioned_in_current_phase": false,
+    "gpu_cache_root_gb_if_later_provisioned": 100,
+    "gpu_monthly_hours_example_not_schedule": 10,
+    "gpu_auto_start_from_web_or_ci": false,
+    "load_generator_provisioned_in_current_phase": false
   },
-  "base_compute_storage_ipv4_usd": 33.574,
+  "base_compute_storage_ipv4_usd": 24.454,
   "scenarios": [
     {
+      "phase": "current_web_only",
+      "gpu_provisioned": false,
+      "retained_gpu_disk_gb": 0,
+      "gpu_hours": 0,
+      "subtotal_usd": 24.45
+    },
+    {
+      "phase": "future_gpu_configured",
+      "gpu_provisioned": true,
+      "retained_gpu_disk_gb": 100,
       "gpu_hours": 0,
       "subtotal_usd": 33.57
     },
     {
+      "phase": "future_gpu_configured",
+      "gpu_provisioned": true,
+      "retained_gpu_disk_gb": 100,
       "gpu_hours": 10,
       "subtotal_usd": 45.99
     },
     {
+      "phase": "future_gpu_configured",
+      "gpu_provisioned": true,
+      "retained_gpu_disk_gb": 100,
       "gpu_hours": 20,
       "subtotal_usd": 58.41
     }
@@ -114,7 +135,7 @@
     "free credits or promotions"
   ],
   "limitations": [
-    "GPU/checkpoint compatibility and account quotas not yet verified",
+    "GPU quota was 0 vCPU on 2026-10-25; model compatibility, capacity and actual GPU shutdown are not verified",
     "Not a total invoice estimate or a hard billing cap",
     "Stopped GPU still incurs retained EBS charges",
     "T3 CPU-credit state must be recorded; precision comparisons can use the same m7i.large configuration before and after"
@@ -165,5 +186,6 @@
       ]
     }
   },
-  "web_only_compute_storage_ipv4_usd": 24.454
+  "web_only_compute_storage_ipv4_usd": 24.454,
+  "future_base_with_retained_gpu_disk_usd": 33.574
 }
