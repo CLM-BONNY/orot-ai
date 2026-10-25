@@ -100,14 +100,15 @@ def test_busy_model_returns_429_without_second_inference():
 
 
 def test_ollama_protocol_and_telemetry():
+    config = replace(settings, provider='ollama', base_url='http://127.0.0.1:11535', model='fixture-model', auth_token='')
     def handler(request):
         assert str(request.url) == 'http://127.0.0.1:11535/api/chat'
         body = json.loads(request.content)
-        assert body['model'] == settings.model
+        assert body['model'] == config.model
         assert body['stream'] is False and body['think'] is False
         return httpx.Response(200, json={'message': {'content': '정상 응답'}, 'done': True,
             'done_reason': 'stop', 'prompt_eval_count': 8, 'eval_count': 3, 'load_duration': 2000000})
-    provider = InferenceProvider(settings, httpx.MockTransport(handler))
+    provider = InferenceProvider(config, httpx.MockTransport(handler))
     result = asyncio.run(provider.chat([{'role': 'user', 'content': '설명'}]))
     assert result.text == '정상 응답'
     assert result.metrics['load_ms'] == 2
@@ -117,7 +118,7 @@ def test_total_inference_deadline_is_enforced():
     async def handler(request):
         await asyncio.sleep(1)
         return httpx.Response(200, json={})
-    provider = InferenceProvider(replace(settings, timeout=0.01), httpx.MockTransport(handler))
+    provider = InferenceProvider(replace(settings, provider='ollama', base_url='http://fixture.invalid', timeout=0.01, auth_token=''), httpx.MockTransport(handler))
     with pytest.raises(InferenceFailure) as exc:
         asyncio.run(provider.chat([{'role': 'user', 'content': '설명'}]))
     assert exc.value.code == 'MODEL_TIMEOUT'

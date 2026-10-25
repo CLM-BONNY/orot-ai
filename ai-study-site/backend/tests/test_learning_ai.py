@@ -222,6 +222,6 @@ def test_provider_sends_json_schema_and_operation_specific_output_limit(kind):
         assert body['response_format']['json_schema']['schema'] == schema
         assert body['max_tokens'] == 2000
         return httpx.Response(200,json={'choices':[{'message':{'content':'{"answer":"응답"}'},'finish_reason':'stop'}]})
-    p = InferenceProvider(replace(settings,provider=kind),httpx.MockTransport(handler))
+    p = InferenceProvider(replace(settings,provider=kind,base_url='http://fixture.invalid',model='fixture-model',auth_token=''),httpx.MockTransport(handler))
     result = asyncio.run(p.chat([{'role':'user','content':'질문'}],json_schema=schema,max_output_tokens=2000))
     assert json.loads(result.text)['answer'] == '응답'
