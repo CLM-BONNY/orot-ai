@@ -48,10 +48,10 @@ class InferenceProvider:
             raise InferenceFailure('MODEL_DISABLED', '현재 AI 실험 서버가 꺼져 있어요. 글 읽기와 기본 퀴즈는 계속 사용할 수 있어요.', 503)
         try:
             return await asyncio.wait_for(self._chat(messages, json_schema, max_output_tokens), timeout=self.config.timeout)
+        except (httpx.ConnectError, httpx.ConnectTimeout) as exc:
+            raise InferenceFailure('MODEL_UNAVAILABLE', '모델 서버에 연결할 수 없어요. 실행 상태를 확인해 주세요.', 503) from exc
         except (asyncio.TimeoutError, httpx.TimeoutException) as exc:
             raise InferenceFailure('MODEL_TIMEOUT', '모델 응답 시간이 초과됐어요. 잠시 후 다시 시도해 주세요.', 504) from exc
-        except httpx.ConnectError as exc:
-            raise InferenceFailure('MODEL_UNAVAILABLE', '모델 서버에 연결할 수 없어요. 실행 상태를 확인해 주세요.', 503) from exc
         except httpx.HTTPStatusError as exc:
             code = 'MODEL_RATE_LIMITED' if exc.response.status_code == 429 else 'MODEL_ERROR'
             raise InferenceFailure(code, '모델 서버가 요청을 처리하지 못했어요.', 429 if code == 'MODEL_RATE_LIMITED' else 502) from exc
@@ -76,7 +76,8 @@ class InferenceProvider:
             if json_schema:
                 payload['response_format'] = {'type': 'json_schema', 'json_schema': {
                     'name': 'learning_response', 'strict': True, 'schema': json_schema}}
-        async with httpx.AsyncClient(timeout=self.config.timeout, transport=self.transport, trust_env=False) as client:
+        timeout = httpx.Timeout(self.config.timeout, connect=min(3.0, self.config.timeout))
+        async with httpx.AsyncClient(timeout=timeout, transport=self.transport, trust_env=False) as client:
             response = await client.post(self.config.base_url + endpoint, json=payload, headers=self.headers())
             response.raise_for_status()
             data = response.json()

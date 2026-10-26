@@ -124,6 +124,24 @@ def test_total_inference_deadline_is_enforced():
     assert exc.value.code == 'MODEL_TIMEOUT'
 
 
+@pytest.mark.parametrize('failure,code,status', [
+    (httpx.ConnectTimeout, 'MODEL_UNAVAILABLE', 503),
+    (httpx.ConnectError, 'MODEL_UNAVAILABLE', 503),
+    (httpx.ReadTimeout, 'MODEL_TIMEOUT', 504),
+])
+def test_stopped_gpu_fails_fast_without_shortening_connected_generation(failure, code, status):
+    def handler(request):
+        limits = request.extensions['timeout']
+        assert limits['connect'] < limits['read']
+        assert limits['read'] == 180
+        raise failure('simulated inference connection failure')
+    config = replace(settings, provider='openai_compatible', base_url='http://gpu.internal:8000/v1', timeout=180)
+    provider = InferenceProvider(config, httpx.MockTransport(handler))
+    with pytest.raises(InferenceFailure) as exc:
+        asyncio.run(provider.chat([{'role': 'user', 'content': '설명'}]))
+    assert (exc.value.code, exc.value.status) == (code, status)
+
+
 def test_self_hosted_compatible_endpoint_can_replace_ollama():
     def handler(request):
         assert str(request.url) == 'http://gpu.internal:8000/v1/chat/completions'
