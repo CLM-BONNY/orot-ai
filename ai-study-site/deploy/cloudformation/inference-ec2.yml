@@ -96,7 +96,7 @@ Resources:
           systemctl daemon-reload
           systemctl enable --now orot-gpu-stop.timer
           systemctl disable --now ecs || true
-          dnf install -y python3 curl awscli-2 amazon-ssm-agent
+          dnf install -y python3 awscli-2 amazon-ssm-agent
           systemctl enable --now docker amazon-ssm-agent
           mkdir -p /usr/local/lib/docker/cli-plugins /opt/orot-inference
           chmod 700 /opt/orot-inference

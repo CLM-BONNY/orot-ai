@@ -5,12 +5,12 @@
 ## 현재 상태
 
 - 기존 웹 CD는 [실제 성공 실행](https://github.com/CLM-BONNY/orot-ai/actions/runs/40172193910)에서 ECR 게시·SSM 배포·공개 HTTPS의 버전 확인까지 완료했다. CI만 실행한 상태가 아니다.
-- 서울 GPU G/VT On-Demand 한도는 0 vCPU다. 2026-10-25 16:35:59 KST에 4 vCPU 증액을 요청했다.
-- 요청 ID: `8c196c246b6740589b2c833887540fe8mLIBzOKe`, 지원 사례 `179291394000491`. 최근 확인 상태는 `CASE_OPENED`, 적용 한도는 여전히 0이다. AWS 승인 시각은 확정할 수 없다.
+- 증액 요청 당시 서울 GPU G/VT On-Demand 한도는 0 vCPU였다. 2026-10-25 16:35:59 KST에 4 vCPU 증액을 요청했다.
+- 요청 ID: `8c196c246b6740589b2c833887540fe8mLIBzOKe`, 지원 사례 `179291394000491`. 2026-10-25 18:44:37 KST에 요청 상태 `CASE_CLOSED`, **실제 적용 한도 4 vCPU**를 인증된 AWS 조회로 확인했다. 추가 GPU 접근 권한의 실행 직전 확인을 요청했으며, 회신 전에는 GPU 스택을 생성하지 않는다. 동일한 확인 요청을 반복하지 않는다.
 - [모델·런타임 고정](inference/model-lock.json), GPU CloudFormation·Compose·호스트 배포·CD 워크플로를 작성했다. 실제 GPU 호환성 검증과 구분한다.
 - [추론 이미지 게시](https://github.com/CLM-BONNY/orot-ai/actions/runs/40174875225)는 성공했다. ECR 조회로 digest `sha256:3439097ccb5862dea8bedaf3a63c9becb1bca06200a069585c0219829ff80c78`, 압축 크기 9,268,972,228 bytes를 확인했다. 모델 가중치는 이미지에 포함하지 않았다.
 - [해당 코드 CI](https://github.com/CLM-BONNY/orot-ai/actions/runs/40174854809)에서 백엔드·배포 106개, 프런트 41개 테스트와 운영용 컨테이너 HTTP·인증 검증을 통과했다. AWS `validate_template`도 통과했다. GPU 위에서 모델을 실행한 결과는 아니다.
-- 사용자가 웹·GPU 합산 월 $25 운영예산(세금 별도)을 승인했다. 새 GPU 접근 권한은 실제 생성 전에 확인받는다.
+- 사용자가 웹·GPU 합산 월 $25 운영예산(세금 별도)을 승인했다. 2026-10-26 KST에 아래 GPU·웹·GitHub IAM, Secret 및 사설 8000 포트의 정확한 접근 범위도 승인했다. 해당 범위의 승인을 다시 요청하지 않는다. 생성 전 AWS 콘솔 세션 만료를 확인해 사용자 재로그인을 기다린다. GPU 리소스는 아직 생성하지 않았다.
 
 ## 배포할 구성
 

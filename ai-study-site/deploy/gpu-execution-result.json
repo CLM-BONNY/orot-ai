@@ -7,12 +7,13 @@
   "quota": {
     "service": "ec2",
     "code": "L-DB2E81BA",
-    "applied_vcpu": 0,
+    "applied_vcpu": 4,
     "requested_vcpu": 4,
     "request_id": "8c196c246b6740589b2c833887540fe8mLIBzOKe",
     "requested_at": "2026-10-25T16:35:59+09:00",
-    "last_observed_status": "CASE_OPENED",
-    "support_case_id": "179291394000491"
+    "last_observed_status": "CASE_CLOSED",
+    "support_case_id": "179291394000491",
+    "last_checked_at": "2026-10-25T09:44:37.565116+00:00"
   },
   "model_and_runtime": "inference/model-lock.json",
   "local_backend_and_deployment_tests": 106,
@@ -37,7 +38,7 @@
   "approved_total_monthly_operating_budget_usd": 25,
   "proposed_total_monthly_operating_budget_usd": 25,
   "proposed_budget_approved": true,
-  "additional_gpu_access_approved": false,
+  "additional_gpu_access_approved": true,
   "first_gpu_session_minutes": 90,
   "gpu_monthly_hours_example": 5,
   "automatic_monthly_charge_cap": false,
@@ -47,5 +48,8 @@
     "User approved a total USD 25 monthly operating budget excluding tax; it is not an automatic charge cap",
     "Actual GPU model compatibility and functional AI responses have not been verified",
     "No GPU success is inferred from CPU-only unit tests"
-  ]
+  ],
+  "additional_gpu_access_approval_requested": true,
+  "additional_gpu_access_approval_source": "User approved exact GPU IAM, Secret and private port scope in this conversation on 2026-10-26 KST",
+  "deployment_blocker": "AWS console session expired; user login required"
 }
