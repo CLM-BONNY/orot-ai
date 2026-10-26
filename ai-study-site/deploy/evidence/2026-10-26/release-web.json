@@ -1,0 +1,10 @@
+{
+  "verified": true,
+  "release_id": "51a8181b378b270a8536bbd6dbe847ff9b1d1bdb-40250209702-1",
+  "revision": "51a8181b378b270a8536bbd6dbe847ff9b1d1bdb",
+  "url": "https://orot.13.124.182.186.sslip.io",
+  "images": {
+    "api": "226564742618.dkr.ecr.ap-northeast-2.amazonaws.com/orot-ai-api@sha256:28d5f3ccc94524741962b5840985e2b11b3654a254096a94b9d102bf73a0b4f2",
+    "web": "226564742618.dkr.ecr.ap-northeast-2.amazonaws.com/orot-ai-web@sha256:e0e0db94c971f57b2db8e852f9e7288bcea00d408b2cb4fb6fa997c2750b9291"
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "ssm_status": "Success",
+  "result": {
+    "mode": "online",
+    "meta": {
+      "api_version": "0.2.0",
+      "code_revision": "37359d2d922c71fbdf108473533c00e1a5b6c398",
+      "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+      "content_version": "1.0.0",
+      "model": "orot-qwen3.5-9b",
+      "provider": "openai_compatible",
+      "model_ready": true,
+      "prompt_version": "tutor-qwen-2.0.0",
+      "review_prompt_version": "review-qwen-1.3.0",
+      "review_question_count": 3,
+      "review_quality_prompt_version": "review-quality-qwen-1.0.0"
+    },
+    "health_status": 200,
+    "content_status": 200,
+    "tutor_status": 200,
+    "tutor": {
+      "kind": "tutor_response",
+      "request_id": "REQ-0f02aec4-dd88-49c6-a83d-baae519d5ebb",
+      "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+      "answer_markdown": "RAG(검색 증강 생성)는 모델이 가진 고정된 지식과 외부 자료를 실시간으로 연결하는 '시스템 구성 방식'입니다. 이를 도서관에 비유하면, LLM(대규모 언어 모델)은 글을 쓰는 저자이고, RAG는 그 저자가 필요할 때마다 도서관에서 최신 자료를 찾아와 글을 쓰게 하는 전체 업무 흐름입니다. 모델 자체의 지식은 학습 시점에 고정되어 있지만, RAG는 검색된 외부 문맥을 참고하여 답변을 생성하므로 최신 정보나 특정 사내 규정 같은 최신 지식을 반영할 수 있습니다. (참고: CH01-P01 페이지에 따르면 RAG는 모델 종류가 아니라 외부 자료를 검색해 생성에 활용하는 방식입니다.)",
+      "answer_status": "grounded",
+      "source_page_ids": [
+        "CH01-P01"
+      ],
+      "model": "orot-qwen3.5-9b",
+      "prompt_version": "tutor-qwen-2.0.0"
+    },
+    "tutor_seconds": 40.476,
+    "tutor_metrics": {
+      "metrics": {
+        "request_id": "REQ-0f02aec4-dd88-49c6-a83d-baae519d5ebb",
+        "api_kind": "tutor",
+        "page_id": "CH01-P01",
+        "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+        "prompt_version": "tutor-qwen-2.0.0",
+        "model_ms": 40471.2,
+        "provider": "openai_compatible",
+        "model": "orot-qwen3.5-9b",
+        "input_tokens": 1292,
+        "output_tokens": 187,
+        "load_ms": null,
+        "done_reason": "stop",
+        "truncated": false,
+        "success": true,
+        "total_ms": 40471.54
+      }
+    },
+    "review_status": 200,
+    "review": {
+      "kind": "review_response",
+      "request_id": "REQ-6d5d6e98-806f-4f7d-8f42-99b5d502413a",
+      "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+      "generation_id": "GEN-3eeb6d05-c78f-497f-a9e7-864516da0dcb",
+      "model": "orot-qwen3.5-9b",
+      "prompt_version": "review-qwen-1.3.0",
+      "review_status": "unreviewed",
+      "questions": [
+        {
+          "id": "GQ-9cad09df-f0ed-49b7-8ece-42a687f9acda",
+          "format": "single_choice",
+          "origin": "generated",
+          "content_version": "1.0.0",
+          "chapter_ids": [
+            "CH01"
+          ],
+          "concept_ids": [
+            "rag"
+          ],
+          "source_page_ids": [
+            "CH01-P01"
+          ],
+          "prompt_markdown": "RAG(Retrieval-Augmented Generation) 시스템의 핵심 정의는 무엇인가?",
+          "category": "AI 복습",
+          "difficulty": "beginner",
+          "options": [
+            {
+              "id": "GQ-9cad09df-f0ed-49b7-8ece-42a687f9acda:A",
+              "text": "모델의 파라미터를 학습시켜 지식을 내재화하는 방식이다."
+            },
+            {
+              "id": "GQ-9cad09df-f0ed-49b7-8ece-42a687f9acda:B",
+              "text": "외부 자료를 검색하여 생성에 활용하는 시스템 구성 방식이다."
+            },
+            {
+              "id": "GQ-9cad09df-f0ed-49b7-8ece-42a687f9acda:C",
+              "text": "거대한 벡터 데이터베이스를 설치하여 검색 속도를 높이는 기술이다."
+            },
+            {
+              "id": "GQ-9cad09df-f0ed-49b7-8ece-42a687f9acda:D",
+              "text": "오픈북 시험에서 필요한 페이지를 자동으로 찾아주는 평가 도구이다."
+            }
+          ],
+          "correct_option_id": "GQ-9cad09df-f0ed-49b7-8ece-42a687f9acda:B",
+          "explanation_markdown": "자료에 따르면 RAG는 모델 종류가 아니라 외부 자료를 검색해 생성에 활용하는 '시스템 구성 방식'입니다. 모델 자체를 학습시키는 것이 아니라, 외부 지식을 요청 문맥에 공급하는 것이 핵심입니다.",
+          "generation_id": "GEN-3eeb6d05-c78f-497f-a9e7-864516da0dcb",
+          "revision": "sha256:c145ef2ff5751dddac65b73c2edf98ec1c7e871d45e0a2a678733838edf2a4f3"
+        },
+        {
+          "id": "GQ-c3d4719e-b274-4798-91e3-072d3a9939ce",
+          "format": "single_choice",
+          "origin": "generated",
+          "content_version": "1.0.0",
+          "chapter_ids": [
+            "CH21"
+          ],
+          "concept_ids": [
+            "rag"
+          ],
+          "source_page_ids": [
+            "CH21-P01"
+          ],
+          "prompt_markdown": "자료를 찾아놓고 답변에 쓰게 하는 RAG 시스템에서, '재현율과 정밀도'를 설명하기 위해 시스템이 수행해야 할 역할은 무엇인가?",
+          "category": "AI 복습",
+          "difficulty": "beginner",
+          "options": [
+            {
+              "id": "GQ-c3d4719e-b274-4798-91e3-072d3a9939ce:A",
+              "text": "모델의 파라미터를 변경하여 학습 데이터를 재조정한다."
+            },
+            {
+              "id": "GQ-c3d4719e-b274-4798-91e3-072d3a9939ce:B",
+              "text": "평가 지표 페이지를 찾아 관련 구간을 도우미에게 전달하고 설명하게 한다."
+            },
+            {
+              "id": "GQ-c3d4719e-b274-4798-91e3-072d3a9939ce:C",
+              "text": "이미 알고 있는 사이트의 ID 기반 조회를 사용하여 검색 시간을 단축한다."
+            },
+            {
+              "id": "GQ-c3d4719e-b274-4798-91e3-072d3a9939ce:D",
+              "text": "검색 방법을 키워드나 SQL 등으로 변경하여 정확도를 높인다."
+            }
+          ],
+          "correct_option_id": "GQ-c3d4719e-b274-4798-91e3-072d3a9939ce:B",
+          "explanation_markdown": "자료에 따르면 학습자가 '재현율과 정밀도'를 묻는 경우, 시스템은 평가 지표 페이지를 찾아 관련 구간을 도우미에게 전달하고 설명하게 할 수 있습니다. 이는 모델 파라미터를 바꾸지 않고 외부 지식을 요청 문맥에 공급하는 RAG의 기본 아이디어에 해당합니다.",
+          "generation_id": "GEN-3eeb6d05-c78f-497f-a9e7-864516da0dcb",
+          "revision": "sha256:6d243e234a3847680aaf60ca00f02e7bd496b2816528f81760b9a14f2644ebe6"
+        },
+        {
+          "id": "GQ-e6d98c2a-000d-466d-9244-bdb32439911e",
+          "format": "single_choice",
+          "origin": "generated",
+          "content_version": "1.0.0",
+          "chapter_ids": [
+            "CH21"
+          ],
+          "concept_ids": [
+            "rag"
+          ],
+          "source_page_ids": [
+            "CH21-P01"
+          ],
+          "prompt_markdown": "RAG 시스템을 구현할 때 흔히 하는 오해나 한계는 무엇인가?",
+          "category": "AI 복습",
+          "difficulty": "beginner",
+          "options": [
+            {
+              "id": "GQ-e6d98c2a-000d-466d-9244-bdb32439911e:A",
+              "text": "검색 방법은 키워드, SQL, ID 조회, 벡터 검색 등 다양할 수 있다."
+            },
+            {
+              "id": "GQ-e6d98c2a-000d-466d-9244-bdb32439911e:B",
+              "text": "RAG를 구현하려면 반드시 거대한 벡터 DB부터 설치해야 한다."
+            },
+            {
+              "id": "GQ-e6d98c2a-000d-466d-9244-bdb32439911e:C",
+              "text": "이미 현재 페이지를 아는 사이트에서는 ID 기반 자료 조회가 더 직접적일 수 있다."
+            },
+            {
+              "id": "GQ-e6d98c2a-000d-466d-9244-bdb32439911e:D",
+              "text": "검색기는 자료를 찾는 도구이며, 사람이 이해하는 방식까지 모델에 그대로 옮겨 해석하면 안 된다."
+            }
+          ],
+          "correct_option_id": "GQ-e6d98c2a-000d-466d-9244-bdb32439911e:B",
+          "explanation_markdown": "자료에 따르면 RAG를 구현하려면 반드시 거대한 벡터 DB부터 설치해야 하는 것은 아닙니다. 이미 현재 페이지를 아는 사이트에서는 ID 기반 자료 조회가 더 직접적일 수 있습니다. 따라서 거대 벡터 DB 설치 필수라는 주장은 오해입니다.",
+          "generation_id": "GEN-3eeb6d05-c78f-497f-a9e7-864516da0dcb",
+          "revision": "sha256:dc7ad178d5b16ec6313cd5a11943a30b0350c3b1b8e9c4d185cee9213fd19629"
+        }
+      ]
+    },
+    "review_seconds": 49.952,
+    "review_metrics": {
+      "metrics": {
+        "request_id": "REQ-6d5d6e98-806f-4f7d-8f42-99b5d502413a",
+        "api_kind": "review",
+        "concept_count": 1,
+        "source_page_ids": [
+          "CH01-P01",
+          "CH21-P01"
+        ],
+        "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+        "prompt_version": "review-qwen-1.3.0",
+        "quality_prompt_version": "review-quality-qwen-1.0.0",
+        "model_ms": 49944.92,
+        "provider": "openai_compatible",
+        "model": "orot-qwen3.5-9b",
+        "input_tokens": 1751,
+        "output_tokens": 891,
+        "load_ms": null,
+        "done_reason": "stop",
+        "truncated": false,
+        "generation_model_ms": 33569.77,
+        "inference_calls": 2,
+        "quality_model_ms": 16375.15,
+        "success": true,
+        "total_ms": 49948.11
+      }
+    },
+    "review_idempotency_verified": true
+  }
+}

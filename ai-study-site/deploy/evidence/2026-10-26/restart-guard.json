@@ -1,0 +1,21 @@
+{
+  "ssm_status": "Success",
+  "result": {
+    "first_session_absolute_guard": {
+      "code": 0,
+      "output": "Running timer as unit: orot-first-session-stop.timer\nWill run service as unit: orot-first-session-stop.service\n"
+    },
+    "boot_guard": {
+      "code": 0,
+      "output": "active\n"
+    },
+    "timers": {
+      "code": 0,
+      "output": "NEXT                        LEFT          LAST PASSED UNIT                          ACTIVATES\nMon 2026-10-26 01:39:03 UTC 55min left    -    -      orot-first-session-stop.timer orot-first-session-stop.service\nMon 2026-10-26 02:12:12 UTC 1h 28min left -    -      orot-gpu-stop.timer           orot-gpu-stop.service\n\n2 timers listed.\nPass --all to see loaded but inactive timers, too.\n"
+    },
+    "containers": {
+      "code": 0,
+      "output": "orot-ai-inference-inference-1 Up 56 seconds (health: starting)\n"
+    }
+  }
+}

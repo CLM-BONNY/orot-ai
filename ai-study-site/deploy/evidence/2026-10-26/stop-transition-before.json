@@ -1,0 +1,11 @@
+{
+  "ssm_status": "Success",
+  "result": {
+    "model_ready": false,
+    "health": 200,
+    "content": 200,
+    "ai_status": "client_timeout_at_8_seconds",
+    "ai_body": null,
+    "elapsed_seconds": 8.012
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-10-26T00:56:49.646405+00:00",
+  "gpu_state": "stopped",
+  "web_state": "running",
+  "web_revision": "51a8181b378b270a8536bbd6dbe847ff9b1d1bdb",
+  "tutor_http": 200,
+  "quiz_http": 200,
+  "quiz_questions": 3,
+  "duplicate_generation_prevented": true,
+  "offline_health_http": 200,
+  "offline_content_http": 200,
+  "offline_ai_http": 503,
+  "cache_manifest_unchanged": true,
+  "gpu_without_token_http": 401
+}

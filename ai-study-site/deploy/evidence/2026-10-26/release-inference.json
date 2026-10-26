@@ -1,0 +1,7 @@
+{
+  "model_ready": true,
+  "release_id": "37359d2d922c71fbdf108473533c00e1a5b6c398-40248135784-1",
+  "model_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "image": "226564742618.dkr.ecr.ap-northeast-2.amazonaws.com/orot-ai-inference@sha256:3439097ccb5862dea8bedaf3a63c9becb1bca06200a069585c0219829ff80c78",
+  "endpoint": "http://10.42.1.31:8000/v1"
+}

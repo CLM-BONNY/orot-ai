@@ -1,0 +1,7 @@
+{
+  "ssm_status": "Success",
+  "result": {
+    "active": "active",
+    "timers": "NEXT                        LEFT          LAST PASSED UNIT                ACTIVATES\nMon 2026-10-26 02:20:02 UTC 1h 30min left -    -      orot-lab-stop.timer orot-lab-stop.service\n\n1 timers listed.\nPass --all to see loaded but inactive timers, too.\n"
+  }
+}

@@ -1,27 +1,27 @@
 # AI Engineer 학습 사이트 서비스 아키텍처
 
 - 작성일: 2026-10-18
-- 상태: 2026-10-25 실습용 AWS 웹 배포 완료. HTTPS·로그인·실패 배포 복구·정지/재시작 검증 완료. GPU·성능 기준선 측정은 후속 범위
+- 상태: 2026-10-26 AWS 웹·GPU 모델 배포 및 실제 AI 응답·퀴즈·GPU 정지/재시작 검증 완료. 성능 기준선 측정은 후속 범위
 - 목표: 읽기 → 퀴즈 → 오답 복습으로 이어지는 개인 학습 사이트를 만들고, AI 기능을 대상으로 성능 개선 실험을 진행한다.
 - 현재 목표: 배포한 웹 환경에서 인프라 실험 ④ 지연·비용, ⑤ 부하·장애 복구를 우선 진행한다. AI 품질 평가는 후속 범위로 관리한다.
 
-## 0. 현재 배포 결정 — 2026-10-25 갱신
+## 0. 현재 배포 구성 — 2026-10-26
 
-웹 배포 완료 후 사용자가 GPU 배포와 실제 모델 연결을 추가로 요청했고, 웹·GPU 합산 월 $25 운영예산(세금 별도, 자동 청구 차단 아님)을 승인했다. [GPU 실행 계획과 진행 상태](ai-study-site/deploy/gpu-deployment.md)를 추가 기준으로 사용한다. GPU 할당량 증액은 접수했고 현재 적용 한도는 0 vCPU다. 추가 접근 권한은 실제 생성 전에 확인한다. 아래 월 $10·GPU 미생성은 완료된 첫 웹 배포 당시의 범위다.
+웹·GPU 모두 **실습 중에만 실행**, 합산 월 $25 운영예산(세금 별도), 도메인 구매 없음이 현재 승인된 구성이다. 월 예산은 자동 결제 차단 상한이 아니다. 이전 웹 단독 월 $10 범위를 대체한다. [배포 실행 기록](ai-study-site/deploy/gpu-execution-result.json)과 [서버 시작·정지 방법](ai-study-site/deploy/gpu-operations.md)을 함께 사용한다.
 
-사용자는 비용을 낮추기 위해 **웹도 실습할 때만 실행, 월 $10 운영예산(세금 별도), 도메인 구매 없이 임시 HTTPS 주소**로 결정했다. 이전 웹 상시·t3.small·유료 도메인 안을 대체한다. [배포·견적·실행 결과](ai-study-site/deploy/README.md)를 현재 기준으로 사용한다.
-
-- 공개 저장소: [CLM-BONNY/orot-ai](https://github.com/CLM-BONNY/orot-ai)
-- 웹: 서울 `ap-northeast-2`의 `t3.micro` 1대, 20GB 암호화 gp3, 고정 IPv4 `13.124.182.186`. Caddy·Nginx·FastAPI를 Docker Compose로 실행한다.
-- 주소: `https://orot.13.124.182.186.sslip.io`. 도메인 등록·Route 53 hosted zone을 구매하지 않는다.
-- 실행: 매 부팅 후 120분 자동 정지. 실습이 끝나면 수동으로 더 일찍 정지한다. 정지 중 웹은 접속되지 않으며 EBS·고정 IP 비용은 남는다.
-- 예산: 월 40시간 실행 예시의 서버·20GB 디스크·고정 IP 소계 $5.99. 월 $10은 사용자가 승인한 운영예산이며 자동 결제 차단 상한이 아니다. ECR·로그·Secrets Manager·트래픽·세금은 별도다.
-- 생성 범위: 웹·네트워크·ECR·사이트 로그인 비밀·CloudWatch 로그·GitHub OIDC/SSM. GPU EC2·모델 캐시 EBS·부하 발생기는 생성하지 않는다.
-- 웹 기본값 `INFERENCE_PROVIDER=disabled`: AI 요청은 모델 접속 없이 `503 MODEL_DISABLED`를 반환한다. 기본 학습·퀴즈·메모·기존 복습은 웹 실행 중 사용 가능하다.
-- CI/CD: GitHub Actions 테스트/이미지 빌드 → ECR 불변 digest → OIDC/SSM → 지정 EC2 교체·검증·롤백. SSH와 장기 AWS 키를 사용하지 않는다.
-- 정밀 측정은 현재 사양을 고정해 시작하고, T3 크레딧 상태를 기록한다. 추가 비용이 필요한 m7i.large·부하 발생기는 실험 조건과 비용을 정한 후 구성한다.
-- GPU는 할당량·모델·vLLM 호환성을 확인한 뒤 별도 구성하고 실험 중에만 실행한다. 현재 GPU 한도 0 vCPU이며 4 vCPU 증액 요청은 `CASE_OPENED` 상태다. 승인·실제 적용 전에는 생성하지 않는다.
-- S3·CloudFront/Lambda·ECS·ALB는 초기 배포 경로에서 제외한다. 이후 병목에 근거한 개선 실험 후보로 남긴다.
+- 저장소: [CLM-BONNY/orot-ai](https://github.com/CLM-BONNY/orot-ai). 리전: 서울 `ap-northeast-2`.
+- 웹: EC2 `t3.micro`, 인스턴스 `i-0c40b75c4fb81e590`, 암호화 gp3 20GB. Caddy·Nginx·FastAPI를 Docker Compose로 실행하며 부팅 후 120분 자동 정지한다.
+- 접속: <https://orot.13.124.182.186.sslip.io>. 기존 로그인 보호와 고정 IPv4를 유지하며 도메인 등록·Route 53 hosted zone을 구매하지 않는다.
+- GPU: EC2 `g5.xlarge`, 인스턴스 `i-095e698c86e8120ac`, A10G 한 개, 암호화 gp3 100GB. 부팅 후 90분 자동 정지하며 실습 후 수동으로 더 일찍 정지한다.
+- 모델: `Qwen/Qwen3.5-9B`, commit `c202236235762e1c871ad0ccb60c8ee5ba337b9a`. vLLM 0.17.1·BF16·텍스트 전용·문맥 4096·동시 시퀀스 4로 배포했다. [고정 조건](ai-study-site/deploy/inference/model-lock.json)을 기준으로 실험한다.
+- 모델 캐시: GPU 루트 디스크의 `/opt/orot-inference/model-cache`. 가중치 네 개, 총 19,306,310,880 bytes. EC2 정지·시작 후 재사용하며 인스턴스 종료 시 디스크가 삭제된다.
+- 통신: 웹 → `http://10.42.1.31:8000/v1`, `INFERENCE_PROVIDER=openai_compatible`, 모델 이름 `orot-qwen3.5-9b`. GPU 사설 8000 포트는 현재 웹 보안 그룹에서만 접근할 수 있다. 인터넷에 GPU·SSH 포트를 열지 않는다.
+- 인증: GPU·웹 instance role만 지정 추론 Secret을 읽는다. GitHub에는 Secret ARN만 저장하고 지정 웹·GPU에 SSM 배포 권한만 부여한다. GPU 생성·시작 권한과 Secret 값 읽기 권한은 GitHub에 부여하지 않는다.
+- CI/CD: 웹 main CI 성공 → ECR 불변 digest → OIDC/SSM → 공개 HTTPS 검증·실패 시 복구. GPU는 이미 실행 중인 지정 서버에 수동 CD하고 인증된 모델 준비 상태를 확인한다.
+- GPU 중지 시: 웹과 학습자료는 계속 동작하고, AI 연결 실패는 `503 MODEL_UNAVAILABLE`로 알린다. 연결 대기는 최대 3초로 제한하며 연결된 생성 요청의 전체 제한은 180초를 유지한다. 웹도 정지하면 사이트에 접속할 수 없다.
+- 관측: CloudWatch `/orot-ai/application`, `/orot-ai/inference`. GPU 로그는 14일 보관한다. EBS·웹 고정 IP·이미지·비밀·로그 보관료는 서버 정지 중에도 남는다.
+- 측정: 이번 실제 답변·퀴즈·GPU 정지/복구 확인은 배포 기능 검증이다. 부하·품질·비용의 기준선과 기존 여섯 가지 실험은 조건을 고정해 별도로 진행한다. T3 CPU 크레딧 상태도 기록한다.
+- 부하 발생기·m7i.large·ALB·ECS·자동 확장은 아직 생성하지 않았으며 필요한 실험에서 별도로 구성한다.
 
 ## 1. 서비스 범위
 

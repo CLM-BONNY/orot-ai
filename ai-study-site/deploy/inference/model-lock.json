@@ -17,10 +17,13 @@
   "language_model_only": true,
   "enable_thinking": false,
   "enforce_eager": true,
-  "actual_gpu_compatibility_verified": false,
+  "actual_gpu_compatibility_verified": true,
   "sources": [
     "https://huggingface.co/Qwen/Qwen3.5-9B",
     "https://github.com/vllm-project/vllm/releases/tag/v0.17.1",
     "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html"
-  ]
+  ],
+  "verified_on": "2026-10-26",
+  "verified_gpu": "NVIDIA A10G",
+  "verified_driver": "580.178.04"
 }

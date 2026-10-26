@@ -1,0 +1,54 @@
+{
+  "ssm_status": "Success",
+  "result": {
+    "mode": "warm",
+    "meta": {
+      "api_version": "0.2.0",
+      "code_revision": "51a8181b378b270a8536bbd6dbe847ff9b1d1bdb",
+      "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+      "content_version": "1.0.0",
+      "model": "orot-qwen3.5-9b",
+      "provider": "openai_compatible",
+      "model_ready": true,
+      "prompt_version": "tutor-qwen-2.0.0",
+      "review_prompt_version": "review-qwen-1.3.0",
+      "review_question_count": 3,
+      "review_quality_prompt_version": "review-quality-qwen-1.0.0"
+    },
+    "health_status": 200,
+    "content_status": 200,
+    "tutor_status": 200,
+    "tutor": {
+      "kind": "tutor_response",
+      "request_id": "REQ-30676fd3-2d6f-4510-88f2-448809ec77be",
+      "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+      "answer_markdown": "RAG(검색 증강 생성)는 모델이 가진 고정된 지식과 외부 자료를 실시간으로 연결하는 '시스템 구성 방식'입니다. 이를 도서관에 비유하면, LLM(대규모 언어 모델)은 글을 쓰는 저자이고, RAG는 그 저자가 필요할 때마다 도서관에서 최신 자료를 찾아와 글을 쓰게 하는 전체 업무 흐름입니다. 모델 자체의 지식은 학습 시점에 고정되어 있지만, RAG는 검색된 외부 문맥을 참고하여 답변을 생성하므로 최신 정보나 특정 사내 규정 같은 최신 지식을 반영할 수 있습니다. (참고: CH01-P01 페이지에 따르면 RAG는 모델 종류가 아니라 외부 자료를 검색해 생성에 활용하는 방식입니다.)",
+      "answer_status": "grounded",
+      "source_page_ids": [
+        "CH01-P01"
+      ],
+      "model": "orot-qwen3.5-9b",
+      "prompt_version": "tutor-qwen-2.0.0"
+    },
+    "tutor_seconds": 20.579,
+    "tutor_metrics": {
+      "metrics": {
+        "request_id": "REQ-30676fd3-2d6f-4510-88f2-448809ec77be",
+        "api_kind": "tutor",
+        "page_id": "CH01-P01",
+        "content_release_id": "sha256:581c6798b6d07c5654eef2b40b0f7c149449c61596f766c62c02cd6da8e938ce",
+        "prompt_version": "tutor-qwen-2.0.0",
+        "model_ms": 20575.93,
+        "provider": "openai_compatible",
+        "model": "orot-qwen3.5-9b",
+        "input_tokens": 1292,
+        "output_tokens": 187,
+        "load_ms": null,
+        "done_reason": "stop",
+        "truncated": false,
+        "success": true,
+        "total_ms": 20576.3
+      }
+    }
+  }
+}
